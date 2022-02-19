@@ -1,0 +1,13 @@
+*-backups/
+*-cache
+*-cache.lib
+*.csv
+*.dxf
+*.kicad_pcb-bak
+*.kicad_prl
+*.sch-bak
+*.step
+*.tar.xz
+*.wrl
+*.xml
+plot/
