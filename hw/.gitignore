@@ -3,6 +3,7 @@
 *-cache.lib
 *.csv
 *.dxf
+*.FCStd1
 *.kicad_pcb-bak
 *.kicad_prl
 *.sch-bak
