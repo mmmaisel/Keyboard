@@ -2,6 +2,8 @@
 
 An Open-Source and Open-Hardware full-sized modular, ergonomic, RGB keyboard.
 
+This project is currently work in progress and not tested.
+
 ## License
 
 Keyboard KiCAD hardware design files in the "hw" directory are licenses under
