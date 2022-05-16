@@ -45,6 +45,10 @@ CPPSRC = main.cpp \
     startup.cpp \
     system.cpp \
     uart.cpp \
+    usb_control_endpoint.cpp \
+    usb_descriptor.cpp \
+    usb_endpoint.cpp \
+    usb_phy.cpp \
 
 CSRC = inttable.c
 

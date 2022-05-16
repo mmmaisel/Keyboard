@@ -30,6 +30,8 @@ extern void default_vector();
 
 extern void tim2_vector();
 extern void tim3_vector();
+extern void usb_vector();
+extern void usb_wakeup_vector();
 
 extern uint8_t __stack_top__;
 
@@ -91,7 +93,7 @@ void (* const __inttable__[])() = {
     0,                             // -     -    Reserved
     default_vector,                // 56    40   EXTI15-10
     default_vector,                // 57    41   RTC Alarm
-    default_vector,                // 58    42   USB OTG Wakeup
+    usb_wakeup_vector,             // 58    42   USB OTG Wakeup
     0, 0, 0, 0,                    // -     -    Reserved
     default_vector,                // 63    47   DMA1 Stream7
     0,                             // -     -    Reserved
@@ -105,7 +107,7 @@ void (* const __inttable__[])() = {
     default_vector,                // 75    59   DMA2 Stream 3
     default_vector,                // 76    60   DMA2 Stream 4
     0, 0, 0, 0, 0, 0,              // -     -    Reserved
-    default_vector,                // 83    67   USB OTG FS
+    usb_vector,                    // 83    67   USB OTG FS
     default_vector,                // 84    68   DMA2 Stream 5
     default_vector,                // 85    69   DMA2 Stream 6
     default_vector,                // 86    70   DMA2 Stream 7

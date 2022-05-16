@@ -1,10 +1,9 @@
 /**********************************************************************\
  * Keyboard
  *
- * C++ main function
- *  - please note that the real program starts in startup.cpp
+ * ARM M4 external interrupt register map
  **********************************************************************
- * Copyright (C) 2019-2022 - Max Maisel
+ * Copyright (C) 2021-2022 - Max Maisel
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,24 +18,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \**********************************************************************/
-/// @file
-#include <string.h>
-#include <stdlib.h>
+#pragma once
 
-#include "module_detection.h"
-#include "led_matrix.h"
-#include "key_matrix.h"
-#include "system.h"
-#include "usb_phy.h"
+#include "../types.h"
 
-/// C++ main function, program starts here.
-void main() __attribute__((noreturn));
-void main() {
-    module::Module module = module::detect();
-    LedMatrix::initialize(module);
-    KeyMatrix::initialize(module);
-    if(module == module::RIGHT)
-        USBPhy::Initialize();
+namespace dev {
+    struct ExtiStruct {
+        WORD IMR;
+        WORD EMR;
+        WORD RTSR;
+        WORD FTSR;
+        WORD SWIER;
+        WORD PR;
+    };
 
-    for(;;);
+    volatile ExtiStruct* const EXTI = (volatile ExtiStruct*)0x40013C00;
+
+    namespace exti {
+        enum : WORD {
+            EXTINUM_WAKEUP_USB = 18
+        };
+    }
 }
