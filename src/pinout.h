@@ -160,7 +160,7 @@ namespace pinout {
 
         // PORTC
         AFRL_UART6_TX = (8 << (4*6)),
-        AFRL_UART6_RX = unsigned((8 << (4*7))),
+        AFRL_UART6_RX = (8u << (4*7)),
     };
 
     enum : WORD {

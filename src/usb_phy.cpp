@@ -219,42 +219,38 @@ void USBPhy::ISR() {
         SCB->SCR &= ~SLEEPONEXIT;
         // XXX: reset matrix
 
-        cause &= ~USBRST;
         USB->GINTSTS = USBRST;
     }
     if(cause & ENUMDNE) {
-        WORD status = USBDEV->DSTS;
+        // cppcheck-suppress[unreadVariable]
+        WORD _status = USBDEV->DSTS;
 
         // XXX: The hardware only supports full-speed mode
         //      => fixed max packet size of 64
         USB_INEP[0].DIEPCTL &= ~(3 << 0);
 
-        cause &= ~ENUMDNE;
         USB->GINTSTS = ENUMDNE;
     }
     // TODO: disable this interrupt
     if(cause & SOF) {
         // XXX: this is just for timesync and maybe high-speed devices
-        WORD status = USBDEV->DSTS;
-        cause &= ~SOF;
+        // cppcheck-suppress[unreadVariable]
+        WORD _status = USBDEV->DSTS;
         USB->GINTSTS = SOF;
     }
     if(cause & OTGINT) {
         WORD status = USB->GOTGINT;
-        cause &= ~OTGINT;
         // VBUS went low, cable disconnected
         if(status & SEDET)
             USB->GOTGINT = SEDET;
     }
     if(cause & USBSUSP) {
-        cause &= ~USBSUSP;
         USB->GINTSTS = USBSUSP;
         *USB_PCGCCTL |= STPPCLK | PHYSUSP | GATEHCLK;
         // XXX: disable all LEDs
         SCB->SCR |= SLEEPONEXIT;
     }
     if(cause & WKUPINT) {
-        cause &= ~WKUPINT;
         USB->GINTSTS = WKUPINT;
         // XXX: restart matrix
     }
@@ -266,14 +262,13 @@ void USBPhy::ISR() {
         WORD rxstat = USB->GRXSTSP;
 
         USHORT size = (rxstat & BCNT_MASK) >> BCNT_POS;
-        BYTE frmnum = (rxstat & FRMNUM_MASK) >> FRMNUM_POS;
-        BYTE pktsts = (rxstat & PKTSTS_MASK) >> PKTSTS_POS;
-        BYTE dpid   = (rxstat & DPID_MASK) >> DPID_POS;
+        //BYTE frmnum = (rxstat & FRMNUM_MASK) >> FRMNUM_POS;
+        //BYTE pktsts = (rxstat & PKTSTS_MASK) >> PKTSTS_POS;
+        //BYTE dpid   = (rxstat & DPID_MASK) >> DPID_POS;
         BYTE epnum  = (rxstat & EPNUM_MASK) >> EPNUM_POS;
 
         // RX FIFO is always 0
         eps[epnum]->OnRxData(&USB_FIFO[0].data, size);
-        cause &= ~RXFLVL;
     }
     if(cause & IEPINT) {
         WORD ep_bits = USBDEV->DAINT;
@@ -291,7 +286,6 @@ void USBPhy::ISR() {
                 USB_INEP[num].DIEPINT = cause2;
             }
         }
-        cause &= ~IEPINT;
     }
     if(cause & OEPINT) {
         WORD ep_bits = USBDEV->DAINT;
@@ -311,7 +305,6 @@ void USBPhy::ISR() {
                 USB_OUTEP[num].DOEPINT = cause2;
             }
         }
-        cause &= ~OEPINT;
     }
 }
 

@@ -139,12 +139,15 @@ extern "C" {
         SCB->SCR |= SLEEPDEEP;
 
         // Put initial values into initialized global/static variables
+        // cppcheck-suppress[comparePointers]
         memcpy(&__data_start__, &__data_load__, &__data_end__ - &__data_start__);
 
         // Clear bss
+        // cppcheck-suppress[comparePointers]
         memset(&__bss_start__, 0, &__bss_end__ - &__bss_start__);
 
         // Call global constructors
+        // cppcheck-suppress[comparePointers]
         for(ctorPtr* ctor = &__init_array_start__; ctor < &__init_array_end__; ++ctor)
             (*ctor)();
 

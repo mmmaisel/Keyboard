@@ -29,7 +29,7 @@ class SimpleUart
     SimpleUart(SimpleUart&&) = delete;
 
     public:
-        SimpleUart(volatile dev::UsartStruct* usart);
+        explicit SimpleUart(volatile dev::UsartStruct* usart);
         ~SimpleUart() {}
 
         inline void write(BYTE c)

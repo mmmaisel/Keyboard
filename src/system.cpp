@@ -40,6 +40,7 @@ void sleep_ms(ULONG ms) {
 /// with destruction of global objects.
 ///
 /// As main() never exits here this function is a stub.
+/// cppcheck-suppress[unusedFunction]
 extern "C" void __dso_handle() {
 }
 
@@ -48,6 +49,7 @@ extern "C" void __dso_handle() {
 /// destruction of modules.
 ///
 /// As main() never exits here this function is a stub.
+/// cppcheck-suppress[unusedFunction]
 extern "C" void _fini() {
 }
 
@@ -62,6 +64,7 @@ void error_handler() {
 
 /// @internal
 /// Pure virtual function call error hook
+/// cppcheck-suppress[unusedFunction]
 extern "C" void __cxa_pure_virtual() {
     error_handler();
 }

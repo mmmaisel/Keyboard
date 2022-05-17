@@ -55,7 +55,7 @@ void USBEndpoint::Receive(WORD* pData, USHORT len) {
 }
 
 BYTE USBEndpoint::TXFIFOEmpty() {
-    USBPhy::TXFIFOEmpty(m_epnum);
+    return USBPhy::TXFIFOEmpty(m_epnum);
 }
 
 void USBEndpoint::OnReceive() {
@@ -67,7 +67,7 @@ void USBEndpoint::OnSetup() {
 void USBEndpoint::OnTransmit() {
 }
 
-void USBEndpoint::OnRxData(volatile WORD* data, USHORT len) {
+void USBEndpoint::OnRxData(const volatile WORD* data, USHORT len) {
     USHORT wcnt = (len + 3) / 4;
     for(int i = 0; i < wcnt; ++i) {
         if(m_bufferPos == BUFFER_SIZE)

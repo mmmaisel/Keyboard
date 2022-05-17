@@ -99,7 +99,7 @@ void ControlEndpoint::OnSetup() {
         bRequest == REQUEST_GET_INTERFACE)
     {
         BYTE index = wValue;
-        if(wValue == 0 && index == 0 && wLength == 1) {
+        if(index == 0 && wLength == 1) {
             // There is only one interface, just send 0
             WORD buffer[1] = {0};
             USBPhy::TransmitData(m_epnum, buffer, 1);
@@ -112,7 +112,7 @@ void ControlEndpoint::OnSetup() {
         bRequest == REQUEST_SET_INTERFACE)
     {
         BYTE index = wValue;
-        if(wValue == 0 && index == 0 && wLength == 0) {
+        if(index == 0 && wLength == 0) {
             // There is only one interface, just send ACK
             EnableAppEndpoints();
             USBPhy::TransmitData(m_epnum, 0, 0);
@@ -135,8 +135,6 @@ void ControlEndpoint::OnSetup() {
         USBPhy::TransmitData(0, 0, 0);
     // TODO: move hid stuff to own class
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_REPORT) {
-        BYTE type = wValue >> 8;
-        BYTE index = wValue;
         WORD buffer[2];
         BYTE length = 8;
         memset(buffer, 0, 8);
@@ -145,13 +143,11 @@ void ControlEndpoint::OnSetup() {
             length = wLength;
         USBPhy::TransmitData(m_epnum, buffer, length);
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_IDLE) {
-        BYTE index = wValue;
         WORD buffer[1] = { 0 };
         buffer[0] = idle; //HidKeyboard::GetIdle();
         USBPhy::TransmitData(m_epnum, buffer, 1);
     } else if(bmRequestType == SET_CLASS_INTERFACE && bRequest == REQUEST_HID_SET_IDLE) {
         BYTE duration = wValue >> 8;
-        BYTE index = wValue;
         if(wIndex == 0) {
             //HidKeyboard::SetIdle(duration);
             idle = duration;

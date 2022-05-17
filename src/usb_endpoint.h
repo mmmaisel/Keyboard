@@ -28,7 +28,7 @@ class USBEndpoint {
     public:
         enum { DIR_IN = 1, DIR_OUT = 2};
 
-        USBEndpoint(BYTE epnum);
+        explicit USBEndpoint(BYTE epnum);
         USBEndpoint(const USBEndpoint&) = delete;
         USBEndpoint(USBEndpoint&&) = delete;
         virtual ~USBEndpoint();
@@ -44,7 +44,7 @@ class USBEndpoint {
         virtual void OnReceive();
         virtual void OnSetup();
         virtual void OnTransmit();
-        void OnRxData(volatile WORD* data, USHORT len);
+        void OnRxData(const volatile WORD* data, USHORT len);
 
         static void operator delete(void* __attribute__((unused)));
 
