@@ -41,6 +41,8 @@ EXTRAINCDIRS = dev
 CPPSRC = main.cpp \
     led_matrix.cpp \
     key_matrix.cpp \
+    key_layout.cpp \
+    hid_keyboard_endpoint.cpp \
     module_detection.cpp \
     startup.cpp \
     system.cpp \

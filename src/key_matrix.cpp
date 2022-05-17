@@ -19,15 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \**********************************************************************/
 #include "key_matrix.h"
+#include "key_layout.h"
+#include "hid_keyboard_endpoint.h"
 
 #include "pinout.h"
 #include "dev/core.h"
 #include "dev/gpio.h"
 #include "dev/rcc.h"
 #include "dev/timer.h"
-
-#include "system.h"
-#include "uart.h"
 
 #include <string.h>
 
@@ -37,10 +36,11 @@ BYTE KeyMatrix::m_column;
 KeyMatrix::Pin KeyMatrix::m_rows[16];
 KeyMatrix::Pin KeyMatrix::m_columns[16];
 BYTE KeyMatrix::m_phase;
-const BYTE KeyMatrix::KEY_VALUES[16][16] = {0}; // Keyboard layout
+const BYTE* KeyMatrix::m_key_layout = 0;
 BYTE KeyMatrix::m_key_state[16][16] = {0};
 BYTE KeyMatrix::m_key_idx;
-BYTE KeyMatrix::m_keys[16];
+BYTE KeyMatrix::m_keys[MAX_KEYS];
+BYTE KeyMatrix::m_keys_scan[MAX_KEYS];
 
 // TODO: evaluate module
 void KeyMatrix::initialize(module::Module module) {
@@ -62,6 +62,7 @@ void KeyMatrix::initialize(module::Module module) {
     m_column = 0;
     m_phase = 0;
     m_key_idx = 0;
+    m_key_layout = &LAYOUT_RIGHT[0][0];
 
     m_row_count = 7;
     m_rows[0] = Pin { .port = GPIOB, .pin = KR1 };
@@ -99,7 +100,7 @@ void KeyMatrix::initialize(module::Module module) {
 void KeyMatrix::get_keys(BYTE* keys) {
     using namespace dev;
     NVIC->DIS[0] = (1 << 29);
-    memcpy(keys, m_keys, 17);
+    memcpy(keys, m_keys, MAX_KEYS);
     NVIC->EN[0] = (1 << 29);
 }
 
@@ -117,9 +118,9 @@ void KeyMatrix::ISR() {
         for(BYTE row = 0; row < m_row_count; ++row) {
             if(m_rows[row].port->IDR & m_rows[row].pin) {
                 if(m_key_state[row][m_column] == 3) {
-                    // XXX: KEY_VALUES[row][column]
-                    if(m_key_idx < 16)
-                        m_keys[m_key_idx++] = '0' + m_column*16+row;
+                    if(m_key_idx < MAX_KEYS)
+                        m_keys_scan[m_key_idx++] =
+                            *(m_key_layout + 16*row + m_column);
                 } else {
                     ++m_key_state[row][m_column];
                 }
@@ -130,12 +131,15 @@ void KeyMatrix::ISR() {
         m_columns[m_column].port->clear_odr(m_columns[m_column].pin);
 
         if(++m_column == m_column_count) {
+            for(register BYTE i = 0; i < MAX_KEYS; ++i) {
+                if(i < m_key_idx)
+                    m_keys[i] = m_keys_scan[i];
+                else
+                    m_keys[i] = 0;
+            }
             m_column = 0;
-            // XXX: output received values via UART for testing
-            for(int i = 0; i < m_key_idx; ++i)
-                UART6.write(m_keys[i]);
-            UART6.write('\r');
             m_key_idx = 0;
+            ep1.send_report(m_keys);
         }
     }
 }

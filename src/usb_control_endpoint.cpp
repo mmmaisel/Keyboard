@@ -23,11 +23,11 @@
 #include "usb_phy.h"
 #include "usb_descriptor.h"
 #include "usb_control_endpoint.h"
+#include "hid_keyboard_endpoint.h"
 
+#include "key_matrix.h"
 #include "uart.h"
 #include <string.h>
-
-WORD idle = 0;
 
 ControlEndpoint ep0;
 
@@ -133,24 +133,24 @@ void ControlEndpoint::OnSetup() {
         bRequest == REQUEST_SET_LINE_CODING)
     {
         USBPhy::TransmitData(0, 0, 0);
-    // TODO: move hid stuff to own class
+    // TODO: move hid stuff to HidKeyboard class
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_REPORT) {
         WORD buffer[2];
+        BYTE keys[KeyMatrix::MAX_KEYS];
         BYTE length = 8;
-        memset(buffer, 0, 8);
-        //HidKeyboard::MakeReport((BYTE*)buffer);
+        KeyMatrix::get_keys(keys);
+        HidKeyboardEndpoint::make_report((BYTE*)buffer, keys);
         if(wLength < length)
             length = wLength;
         USBPhy::TransmitData(m_epnum, buffer, length);
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_IDLE) {
         WORD buffer[1] = { 0 };
-        buffer[0] = idle; //HidKeyboard::GetIdle();
+        buffer[0] = ep1.get_idle();
         USBPhy::TransmitData(m_epnum, buffer, 1);
     } else if(bmRequestType == SET_CLASS_INTERFACE && bRequest == REQUEST_HID_SET_IDLE) {
         BYTE duration = wValue >> 8;
         if(wIndex == 0) {
-            //HidKeyboard::SetIdle(duration);
-            idle = duration;
+            ep1.set_idle(duration);
             USBPhy::TransmitData(m_epnum, 0, 0);
         } else {
             USBPhy::TransmitStall(m_epnum);
@@ -185,4 +185,5 @@ void ControlEndpoint::OnTransmit() {
 
 void ControlEndpoint::EnableAppEndpoints() {
     using namespace dev::usb;
+    eps[1]->Enable(USBEndpoint::DIR_IN, EPTYP_INT);
 }

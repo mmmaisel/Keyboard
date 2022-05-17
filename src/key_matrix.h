@@ -24,6 +24,7 @@
 
 #include "types.h"
 #include "dev/gpio.h"
+#include "key_layout.h"
 
 extern "C" void tim3_vector() __attribute__((error("calling ISR")));
 
@@ -37,9 +38,10 @@ class KeyMatrix {
     friend void tim3_vector();
 
     public:
+        static const BYTE MAX_KEYS = 16;
+
         static void initialize(module::Module module);
         static void get_keys(BYTE* keys);
-
     private:
         struct Pin {
             volatile dev::GpioStruct* port;
@@ -53,10 +55,11 @@ class KeyMatrix {
         static Pin m_columns[16];
         static BYTE m_phase;
 
-        static const BYTE KEY_VALUES[16][16]; // Keyboard layout
+        static const BYTE* m_key_layout;
         static BYTE m_key_state[16][16];
         static BYTE m_key_idx;
-        static BYTE m_keys[16];
+        static BYTE m_keys[MAX_KEYS];
+        static BYTE m_keys_scan[MAX_KEYS];
 
         static void ISR();
 };

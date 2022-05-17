@@ -49,6 +49,7 @@ class USBEndpoint {
         static void operator delete(void* __attribute__((unused)));
 
         BYTE m_epnum;
+        BYTE m_enabled;
 
         static const int BUFFER_SIZE = 32;
         template<USHORT S> union Buffer {
@@ -59,8 +60,7 @@ class USBEndpoint {
         Buffer<BUFFER_SIZE> m_buffer;
         BYTE m_bufferPos;
         USHORT m_length;
-
-    private:
 };
 
-extern USBEndpoint* eps[];
+const BYTE USB_ENDPOINT_COUNT = 2;
+extern USBEndpoint* eps[USB_ENDPOINT_COUNT];

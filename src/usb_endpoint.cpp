@@ -20,12 +20,12 @@
 \**********************************************************************/
 #include "usb_endpoint.h"
 #include "usb_control_endpoint.h"
-#include "cdc_control_endpoint.h"
-#include "cdc_data_endpoint.h"
+#include "hid_keyboard_endpoint.h"
 #include "usb_phy.h"
 
 USBEndpoint::USBEndpoint(BYTE epnum) :
     m_epnum(epnum),
+    m_enabled(0),
     m_bufferPos(0),
     m_length(0)
 {
@@ -45,6 +45,7 @@ void USBEndpoint::Enable(BYTE dir, WORD type) {
         USBPhy::EnableOutEndpoint(m_epnum, type);
         USBPhy::PrepareRX(m_epnum);
     }
+    m_enabled = 1;
 }
 
 void USBEndpoint::Transmit(const WORD* pData, USHORT len) {
@@ -78,4 +79,4 @@ void USBEndpoint::OnRxData(const volatile WORD* data, USHORT len) {
     m_length += len;
 }
 
-USBEndpoint* eps[] = {&ep0};
+USBEndpoint* eps[USB_ENDPOINT_COUNT] = {&ep0, &ep1};
