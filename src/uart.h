@@ -1,7 +1,7 @@
 /**********************************************************************\
  * Keyboard
  *
- * debug write only UART class
+ * UART class
  **********************************************************************
  * Copyright (C) 2022 - Max Maisel
  *
@@ -22,27 +22,54 @@
 
 #include "types.h"
 #include "dev/uart.h"
+#include "dev/dma.h"
 
-class SimpleUart
+#include "ringbuffer.h"
+
+extern "C" void uart1_vector() __attribute__((error("calling ISR")));
+extern "C" void uart2_vector() __attribute__((error("calling ISR")));
+extern "C" void uart6_vector() __attribute__((error("calling ISR")));
+extern "C" void dma1s5_vector() __attribute__((error("calling ISR")));
+extern "C" void dma1s6_vector() __attribute__((error("calling ISR")));
+extern "C" void dma2s1_vector() __attribute__((error("calling ISR")));
+extern "C" void dma2s2_vector() __attribute__((error("calling ISR")));
+extern "C" void dma2s6_vector() __attribute__((error("calling ISR")));
+extern "C" void dma2s7_vector() __attribute__((error("calling ISR")));
+
+class Uart
 {
-    SimpleUart(const SimpleUart&) = delete;
-    SimpleUart(SimpleUart&&) = delete;
+    Uart(const Uart&) = delete;
+    Uart(Uart&&) = delete;
+
+    friend void uart1_vector();
+    friend void uart2_vector();
+    friend void uart6_vector();
+    friend void dma1s5_vector();
+    friend void dma1s6_vector();
+    friend void dma2s1_vector();
+    friend void dma2s2_vector();
+    friend void dma2s6_vector();
+    friend void dma2s7_vector();
 
     public:
-        explicit SimpleUart(volatile dev::UsartStruct* usart);
-        ~SimpleUart() {}
+        explicit Uart(volatile dev::UsartStruct* usart);
+        ~Uart() {}
 
-        inline void write(BYTE c)
-        {
-            using namespace dev;
-            using namespace dev::usart;
-
-            while(!(m_uart->SR & TXE));
-            m_uart->DR = c;
-        }
+        void write(BYTE* buffer, BYTE length);
+        BYTE read();
+        void read(BYTE* buffer, BYTE length);
 
     private:
-        volatile dev::UsartStruct* m_uart;
+        volatile dev::UsartStruct* const m_uart;
+        volatile BYTE m_tx;
+        volatile BYTE m_rx;
+        static const BYTE BUFFER_SIZE = 64;
+        BYTE m_tx_buffer[BUFFER_SIZE];
+        volatile Ringbuffer<BYTE, BYTE, BUFFER_SIZE> m_rx_buffer;
+
+        void ISR();
+        void DMA_TX_ISR();
+        void DMA_RX_ISR();
 };
 
-extern SimpleUart UART6;
+extern Uart Uart6;

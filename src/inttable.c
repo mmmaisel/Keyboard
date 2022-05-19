@@ -33,6 +33,16 @@ extern void tim3_vector();
 extern void usb_vector();
 extern void usb_wakeup_vector();
 
+void uart1_vector();
+void uart2_vector();
+void uart6_vector();
+void dma1s5_vector();
+void dma1s6_vector();
+void dma2s1_vector();
+void dma2s2_vector();
+void dma2s6_vector();
+void dma2s7_vector();
+
 extern uint8_t __stack_top__;
 
 /// @internal
@@ -70,8 +80,8 @@ void (* const __inttable__[])() = {
     default_vector,                // 29    13   DMA1 Stream 2
     default_vector,                // 30    14   DMA1 Stream 3
     default_vector,                // 31    15   DMA1 Stream 4
-    default_vector,                // 32    16   DMA1 Stream 5
-    default_vector,                // 33    17   DMA1 Stream 6
+    dma1s5_vector,                 // 32    16   DMA1 Stream 5
+    dma1s6_vector,                 // 33    17   DMA1 Stream 6
     default_vector,                // 34    18   ADCs
     0, 0, 0, 0,                    // -     -    Reserved
     default_vector,                // 39    23   EXTI9-5
@@ -88,8 +98,8 @@ void (* const __inttable__[])() = {
     default_vector,                // 50    34   I2C2 Error
     default_vector,                // 51    35   SPI1
     default_vector,                // 52    36   SPI2
-    default_vector,                // 53    37   USART1
-    default_vector,                // 54    38   USART2
+    uart1_vector,                  // 53    37   USART1
+    uart2_vector,                  // 54    38   USART2
     0,                             // -     -    Reserved
     default_vector,                // 56    40   EXTI15-10
     default_vector,                // 57    41   RTC Alarm
@@ -102,16 +112,16 @@ void (* const __inttable__[])() = {
     default_vector,                // 67    51   SPI3
     0, 0, 0, 0,                    // -     -    Reserved
     default_vector,                // 72    56   DMA2 Stream 0
-    default_vector,                // 73    57   DMA2 Stream 1
-    default_vector,                // 74    58   DMA2 Stream 2
+    dma2s1_vector,                 // 73    57   DMA2 Stream 1
+    dma2s2_vector,                 // 74    58   DMA2 Stream 2
     default_vector,                // 75    59   DMA2 Stream 3
     default_vector,                // 76    60   DMA2 Stream 4
     0, 0, 0, 0, 0, 0,              // -     -    Reserved
     usb_vector,                    // 83    67   USB OTG FS
     default_vector,                // 84    68   DMA2 Stream 5
-    default_vector,                // 85    69   DMA2 Stream 6
-    default_vector,                // 86    70   DMA2 Stream 7
-    default_vector,                // 87    71   USART6
+    dma2s6_vector,                 // 85    69   DMA2 Stream 6
+    dma2s7_vector,                 // 86    70   DMA2 Stream 7
+    uart6_vector,                  // 87    71   USART6
     default_vector,                // 88    72   I2C3 Event
     default_vector,                // 89    73   I2C3 Error
     0, 0, 0, 0, 0, 0, 0,           // -     -    Reserved

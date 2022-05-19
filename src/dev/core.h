@@ -82,12 +82,18 @@ namespace dev {
 
     namespace isrnum {
         enum : WORD {
+            DMA1S5 = 16,
+            DMA1S6 = 17,
             TIM2 = 28,
             TIM3 = 29,
             USART1 = 37,
             USART2 = 38,
             USB_WAKEUP = 42,
+            DMA2S1 = 57,
+            DMA2S2 = 58,
             USB = 67,
+            DMA2S6 = 69,
+            DMA2S7 = 70,
             USART6 = 71,
         };
     }
