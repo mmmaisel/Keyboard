@@ -31,7 +31,6 @@
 using namespace dev;
 using namespace dev::core;
 using namespace dev::exti;
-using namespace dev::nvic;
 using namespace dev::rcc;
 using namespace dev::usb;
 using namespace pinout;
@@ -50,12 +49,12 @@ void USBPhy::Initialize() {
     GPIOA->AFRH |= AFRH_DM | AFRH_DP;
 
     // Enable USB interrupt
-    NVIC->EN[(ISRNUM_USB / 32)] = (1 << (ISRNUM_USB % 32));
-    NVIC->PRI[ISRNUM_USB]  = 0x09;
+    NVIC->enable_isr(isrnum::USB);
+    NVIC->PRI[isrnum::USB]  = 0x10;
 
     // Enable USB wakeup interrupt
-    NVIC->EN[(ISRNUM_WAKEUP_USB / 32)] = (1 << (ISRNUM_WAKEUP_USB % 32));
-    NVIC->PRI[ISRNUM_WAKEUP_USB]  = 0x09;
+    NVIC->enable_isr(isrnum::USB_WAKEUP);
+    NVIC->PRI[isrnum::USB_WAKEUP]  = 0x09;
 
     EXTI->IMR |= (1 << EXTINUM_WAKEUP_USB);
     EXTI->RTSR |= (1 << EXTINUM_WAKEUP_USB);

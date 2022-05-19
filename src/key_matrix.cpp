@@ -91,17 +91,17 @@ void KeyMatrix::initialize(module::Module module) {
     TIM3->CR1 |= CEN;
 
     // Enable Timer interrupt
-    NVIC->EN[0] = (1 << 29);
-    NVIC->PRI[29]  = 0x10;
+    NVIC->enable_isr(isrnum::TIM3);
+    NVIC->PRI[isrnum::TIM3]  = 0x09;
 
     GPIOC->set_odr(KC1|KC2|KC3|KC4|KC5|KC6);
 }
 
 void KeyMatrix::get_keys(BYTE* keys) {
     using namespace dev;
-    NVIC->DIS[0] = (1 << 29);
+    NVIC->disable_isr(isrnum::TIM3);
     memcpy(keys, m_keys, MAX_KEYS);
-    NVIC->EN[0] = (1 << 29);
+    NVIC->enable_isr(isrnum::TIM3);
 }
 
 void KeyMatrix::ISR() {

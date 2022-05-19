@@ -68,9 +68,29 @@ namespace dev {
         BYTE PRI[240];
         WORD _unused5[644];
         WORD SWTRIG;
+
+        inline void enable_isr(BYTE num) volatile {
+            EN[num / 32] = (1 << (num % 32));
+        }
+
+        inline void disable_isr(BYTE num) volatile {
+            EN[num / 32] = (1 << (num % 32));
+        }
     };
 
     volatile NvicStruct* const NVIC = (volatile NvicStruct*)0xE000E100;
+
+    namespace isrnum {
+        enum : WORD {
+            TIM2 = 28,
+            TIM3 = 29,
+            USART1 = 37,
+            USART2 = 38,
+            USB_WAKEUP = 42,
+            USB = 67,
+            USART6 = 71,
+        };
+    }
 
     struct SystickStruct {
         WORD CTRL;
@@ -98,13 +118,6 @@ namespace dev {
             TICKEN = (1 << 0)
         };
     }
-
-    namespace nvic {
-        enum : WORD {
-            ISRNUM_WAKEUP_USB = 42,
-            ISRNUM_USB = 67
-        };
-    };
 
     namespace debug {
         enum : WORD {

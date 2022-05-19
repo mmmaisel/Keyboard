@@ -98,8 +98,8 @@ void LedMatrix::initialize(module::Module module) {
     TIM2->CR1 |= CEN;
 
     // Enable Timer interrupt
-    NVIC->EN[0] = (1 << 28);
-    NVIC->PRI[28]  = 0x10;
+    NVIC->enable_isr(isrnum::TIM2);
+    NVIC->PRI[isrnum::TIM2]  = 0x09;
 
     GPIOD->set_odr(LC1|LC2|LC3|LC4|LC5|LC6|LC7|LC8|LC9);
     GPIOE->clear_odr(LR1|LR2|LR3|LR4|LR5|LR6|LR7|LR8|LR9|LR10|LR11|LR12|LR13|LR14|LR15);
