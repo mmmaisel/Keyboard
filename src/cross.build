@@ -1,0 +1,42 @@
+[binaries]
+c = 'arm-none-eabi-gcc'
+cpp = 'arm-none-eabi-g++'
+ld = 'arm-none-eabi-ld'
+ar = 'arm-none-eabi-ar'
+as = 'arm-none-eabi-as'
+size = 'arm-none-eabi-size'
+objdump = 'arm-none-eabi-objdump'
+objcopy = 'arm-none-eabi-objcopy'
+strip = 'arm-none-eabi-strip'
+nm = 'arm-none-eabi-nm'
+gdb = 'arm-none-eabi-gdb'
+bash = 'bash'
+openocd = 'openocd'
+
+[constants]
+cpu_flags = [
+    '-mcpu=cortex-m4',
+    '-march=armv7e-m',
+    '-mfpu=fpv4-sp-d16',
+    '-mfloat-abi=hard',
+    '-mthumb']
+
+common_flags = [
+    '-Wall',
+    '-ffreestanding',
+    '-funsigned-char',
+    '-funsigned-bitfields',
+    '-fshort-enums',
+    '-ffunction-sections',
+    '-fdata-sections',
+    '-nostartfiles']
+
+[built-in options]
+c_args = cpu_flags + common_flags
+
+cpp_args = cpu_flags + common_flags + [
+    '-fno-exceptions',
+    '-fno-rtti']
+
+c_link_args = cpu_flags + common_flags
+cpp_link_args = cpu_flags + common_flags
