@@ -52,7 +52,7 @@ class Uart
     friend void dma2s7_vector();
 
     public:
-        explicit Uart(volatile dev::UsartStruct* usart);
+        explicit Uart(BYTE num);
         ~Uart() {}
 
         void write(BYTE* buffer, BYTE length);
@@ -60,7 +60,11 @@ class Uart
         void read(BYTE* buffer, BYTE length);
 
     private:
-        volatile dev::UsartStruct* const m_uart;
+        volatile dev::UsartStruct* m_uart;
+        volatile dev::DmaStruct* m_dma;
+        BYTE m_rx_stream;
+        BYTE m_tx_stream;
+
         volatile BYTE m_tx;
         volatile BYTE m_rx;
         static const BYTE BUFFER_SIZE = 64;
@@ -72,4 +76,6 @@ class Uart
         void DMA_RX_ISR();
 };
 
+extern Uart Uart1;
+extern Uart Uart2;
 extern Uart Uart6;

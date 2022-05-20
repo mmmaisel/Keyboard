@@ -27,62 +27,148 @@
 
 #include <cstring>
 
-// UART1: DMA2, CH4, Stream 2,7
-// UART2: DMA1, CH4, Stream 5,6
-// UART6: DMA2, CH5, Stream 1,6
+Uart Uart1(1);
+Uart Uart2(2);
+Uart Uart6(6);
 
-Uart Uart6(dev::USART6);
-
-Uart::Uart(volatile dev::UsartStruct* uart) :
-    m_uart(uart),
+// XXX: only valid for master module
+// XXX: may it work and initialize HW that is not routed to pins?
+Uart::Uart(BYTE num, UartHandler* handler) :
     m_tx(0),
-    m_rx(0)
+    m_rx(0),
+    m_handler(handler)
 {
     using namespace dev;
     using namespace dev::rcc;
     using namespace pinout;
 
-    // Enable used GPIO port clocks
-    // XXX: evaluate which uart to use
-    // XXX: this is for UART6
-    RCC->AHB1ENR |= GPIOCEN | DMA1EN | DMA2EN;
-    RCC->APB2ENR |= USART6EN;
+    if(num == 1) {
+        m_uart = USART1;
+        m_dma = DMA2;
+        m_rx_stream = 2;
+        m_tx_stream = 7;
 
-    {
-        using namespace dev::dma;
-        // RX stream
-        DMA2->STREAM[1].PAR = (WORD)&m_uart->DR;
-        DMA2->STREAM[1].CR = (5 << CHSEL_POS) | (1 << PL_POS) |
-            (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_P2M | TCIE;
-        // TX stream
-        DMA2->STREAM[6].PAR = (WORD)&m_uart->DR;
-        DMA2->STREAM[6].CR = (5 << CHSEL_POS) | (1 << PL_POS) |
-            (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
-        NVIC->enable_isr(isrnum::DMA2S1);
-        NVIC->enable_isr(isrnum::DMA2S6);
-        NVIC->PRI[isrnum::DMA2S1] = 0x09;
-        NVIC->PRI[isrnum::DMA2S6] = 0x09;
+        // Enable used port clocks
+        RCC->AHB1ENR |= GPIOBEN | DMA2EN;
+        RCC->APB2ENR |= USART1EN;
+
+        {
+            using namespace dev::dma;
+            m_dma->STREAM[m_rx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_rx_stream].CR = (4 << CHSEL_POS) | (1 << PL_POS) |
+                (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_P2M | TCIE;
+            m_dma->STREAM[m_tx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_tx_stream].CR = (4 << CHSEL_POS) | (1 << PL_POS) |
+                (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
+            NVIC->enable_isr(isrnum::DMA2S2);
+            NVIC->enable_isr(isrnum::DMA2S7);
+            NVIC->PRI[isrnum::DMA2S2] = 0x09;
+            NVIC->PRI[isrnum::DMA2S7] = 0x09;
+        }
+
+        // Configure Pins PB6, PB7
+        GPIOB->MODER |= MODE_UART1_TX | MODE_UART1_RX;
+        GPIOB->AFRL |= AFRL_UART1_TX | AFRL_UART1_RX;
+
+        {
+            using namespace dev::usart;
+            m_uart->CR1 &= CR1_MASK;
+            m_uart->CR2 &= CR2_MASK;
+            m_uart->CR3 &= CR3_MASK;
+            m_uart->BRR = (m_uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) |
+                (8 << DIV_FRAC_POS); // 460800 @ uart6
+            m_uart->CR3 |= DMAT;
+            m_uart->CR1 |= UE | TE | RE | RXNEIE;
+            NVIC->enable_isr(isrnum::USART1);
+            NVIC->PRI[isrnum::USART1] = 0x09;
+        }
+    } else if(num == 2) {
+        m_uart = USART2;
+        m_dma = DMA1;
+        m_rx_stream = 5;
+        m_tx_stream = 6;
+
+        // Enable used port clocks
+        RCC->AHB1ENR |= GPIOAEN | DMA1EN;
+        RCC->APB1ENR |= USART2EN;
+
+        {
+            using namespace dev::dma;
+            m_dma->STREAM[m_rx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_rx_stream].CR = (4 << CHSEL_POS) | (1 << PL_POS) |
+                (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_P2M | TCIE;
+            m_dma->STREAM[m_tx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_tx_stream].CR = (4 << CHSEL_POS) | (1 << PL_POS) |
+                (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
+            NVIC->enable_isr(isrnum::DMA1S5);
+            NVIC->enable_isr(isrnum::DMA1S6);
+            NVIC->PRI[isrnum::DMA1S5] = 0x09;
+            NVIC->PRI[isrnum::DMA1S6] = 0x09;
+        }
+
+        // Configure Pins PA2, PA3
+        GPIOA->MODER |= MODE_UART2_TX | MODE_UART2_RX;
+        GPIOA->AFRL |= AFRL_UART2_TX | AFRL_UART2_RX;
+
+        {
+            using namespace dev::usart;
+            m_uart->CR1 &= CR1_MASK;
+            m_uart->CR2 &= CR2_MASK;
+            m_uart->CR3 &= CR3_MASK;
+            m_uart->BRR = (m_uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) |
+                (8 << DIV_FRAC_POS); // 460800 @ uart6
+            m_uart->CR3 |= DMAT;
+            m_uart->CR1 |= UE | TE | RE | RXNEIE;
+            NVIC->enable_isr(isrnum::USART2);
+            NVIC->PRI[isrnum::USART2] = 0x09;
+        }
+    } else if(num == 6) {
+        m_uart = USART6;
+        m_dma = DMA2;
+        m_rx_stream = 1;
+        m_tx_stream = 6;
+
+        // Enable used GPIO port clocks
+        RCC->AHB1ENR |= GPIOCEN | DMA2EN;
+        RCC->APB2ENR |= USART6EN;
+
+        {
+            using namespace dev::dma;
+            m_dma->STREAM[m_rx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_rx_stream].CR = (5 << CHSEL_POS) | (1 << PL_POS) |
+                (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_P2M | TCIE;
+            m_dma->STREAM[m_tx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_tx_stream].CR = (5 << CHSEL_POS) | (1 << PL_POS) |
+                (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
+            NVIC->enable_isr(isrnum::DMA2S1);
+            NVIC->enable_isr(isrnum::DMA2S6);
+            NVIC->PRI[isrnum::DMA2S1] = 0x09;
+            NVIC->PRI[isrnum::DMA2S6] = 0x09;
+        }
+
+        // Configure Pins PC6, PC7
+        GPIOC->MODER |= MODE_UART6_TX | MODE_UART6_RX;
+        GPIOC->AFRL |= AFRL_UART6_TX | AFRL_UART6_RX;
+
+        {
+            using namespace dev::usart;
+            m_uart->CR1 &= CR1_MASK;
+            m_uart->CR2 &= CR2_MASK;
+            m_uart->CR3 &= CR3_MASK;
+            m_uart->BRR = (m_uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) |
+                (8 << DIV_FRAC_POS); // 460800 @ uart6
+            m_uart->CR3 |= DMAT;
+            m_uart->CR1 |= UE | TE | RE | RXNEIE;
+            NVIC->enable_isr(isrnum::USART6);
+            NVIC->PRI[isrnum::USART6] = 0x09;
+        }
+    } else {
+        asm volatile(" svc 1");
     }
 
-    // Configure Pins PA2, PA3
-    GPIOC->MODER |= MODE_UART6_TX | MODE_UART6_RX;
-    GPIOC->AFRL |= AFRL_UART6_TX | AFRL_UART6_RX;
-
-    {
-        using namespace dev::usart;
-        m_uart->CR1 &= CR1_MASK;
-        m_uart->CR2 &= CR2_MASK;
-        m_uart->CR3 &= CR3_MASK;
-        m_uart->BRR = (m_uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) | (8 << DIV_FRAC_POS); // 460800 @ uart6
-        m_uart->CR3 |= DMAT;// | DMAR;
-        m_uart->CR1 |= UE | TE | RE | RXNEIE;
-        NVIC->enable_isr(isrnum::USART6);
-        NVIC->PRI[isrnum::USART6] = 0x09;
-    }
 }
 
 void Uart::write(BYTE* buffer, BYTE length) {
-    // XXX: this is only valid for UART6
     using namespace dev;
     using namespace dev::dma;
 
@@ -92,9 +178,9 @@ void Uart::write(BYTE* buffer, BYTE length) {
         length = BUFFER_SIZE;
     memcpy(m_tx_buffer, buffer, length);
 
-    DMA2->STREAM[6].M0AR = (WORD)m_tx_buffer;
-    DMA2->STREAM[6].NDTR = length;
-    DMA2->STREAM[6].CR |= EN;
+    m_dma->STREAM[m_tx_stream].M0AR = (WORD)m_tx_buffer;
+    m_dma->STREAM[m_tx_stream].NDTR = length;
+    m_dma->STREAM[m_tx_stream].CR |= EN;
 }
 
 BYTE Uart::read() {
@@ -109,18 +195,18 @@ BYTE Uart::read() {
 
 void Uart::read(BYTE* buffer, BYTE length) {
     using namespace dev;
-    using namespace dev::dma;
+    using namespace dev::usart;
 
     m_rx = 1;
-    m_uart->CR1 &= ~usart::RXNEIE;
-    m_uart->CR3 |= usart::DMAR;
-    DMA2->STREAM[1].M0AR = (WORD)buffer;
-    DMA2->STREAM[1].NDTR = length;
-    DMA2->STREAM[1].CR |= EN;
+    m_uart->CR1 &= ~RXNEIE;
+    m_uart->CR3 |= DMAR;
+    m_dma->STREAM[m_rx_stream].M0AR = (WORD)buffer;
+    m_dma->STREAM[m_rx_stream].NDTR = length;
+    m_dma->STREAM[m_rx_stream].CR |= dma::EN;
 
     while(m_rx);
-    m_uart->CR3 &= ~usart::DMAR;
-    m_uart->CR1 |= usart::RXNEIE;
+    m_uart->CR3 &= ~DMAR;
+    m_uart->CR1 |= RXNEIE;
 }
 
 void Uart::ISR() {
@@ -132,24 +218,23 @@ void Uart::ISR() {
 void Uart::DMA_TX_ISR() {
     using namespace dev;
     using namespace dev::dma;
-    DMA2->HIFCR = (TCIF << STREAM6_POS);
+    m_dma->clear_isr(m_tx_stream);
     m_tx = 0;
 }
 
 void Uart::DMA_RX_ISR() {
     using namespace dev;
     using namespace dev::dma;
-    // XXX: add helper to clear that stream
-    DMA2->LIFCR = (TCIF << STREAM1_POS);
+    m_dma->clear_isr(m_rx_stream);
     m_rx = 0;
 }
 
 extern "C" void uart1_vector() {
-    //Uart1.ISR();
+    Uart1.ISR();
 }
 
 extern "C" void uart2_vector(){
-    //Uart2.ISR();
+    Uart2.ISR();
 }
 
 extern "C" void uart6_vector(){
@@ -157,9 +242,11 @@ extern "C" void uart6_vector(){
 }
 
 extern "C" void dma1s5_vector(){
+    Uart2.DMA_RX_ISR();
 }
 
 extern "C" void dma1s6_vector(){
+    Uart2.DMA_TX_ISR();
 }
 
 extern "C" void dma2s1_vector(){
@@ -167,6 +254,7 @@ extern "C" void dma2s1_vector(){
 }
 
 extern "C" void dma2s2_vector(){
+    Uart1.DMA_RX_ISR();
 }
 
 extern "C" void dma2s6_vector(){
@@ -174,4 +262,5 @@ extern "C" void dma2s6_vector(){
 }
 
 extern "C" void dma2s7_vector(){
+    Uart1.DMA_TX_ISR();
 }

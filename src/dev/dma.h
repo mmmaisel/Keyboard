@@ -23,26 +23,6 @@
 #include "../types.h"
 
 namespace dev {
-    struct DmaStreamStruct {
-        WORD CR;
-        WORD NDTR;
-        WORD PAR;
-        WORD M0AR;
-        WORD M1AR;
-        WORD FCR;
-    };
-
-    struct DmaStruct {
-        WORD LISR;
-        WORD HISR;
-        WORD LIFCR;
-        WORD HIFCR;
-        DmaStreamStruct STREAM[8];
-    };
-
-    volatile DmaStruct* const DMA1 = (volatile DmaStruct*)0x40026000;
-    volatile DmaStruct* const DMA2 = (volatile DmaStruct*)0x40026400;
-
     namespace dma {
         // (L|H)(ISR|FCR)
         enum : WORD {
@@ -110,4 +90,57 @@ namespace dev {
             FTH_POS = 0
         };
     }
+
+    struct DmaStreamStruct {
+        WORD CR;
+        WORD NDTR;
+        WORD PAR;
+        WORD M0AR;
+        WORD M1AR;
+        WORD FCR;
+    };
+
+    struct DmaStruct {
+        WORD LISR;
+        WORD HISR;
+        WORD LIFCR;
+        WORD HIFCR;
+        DmaStreamStruct STREAM[8];
+
+        inline void clear_isr(BYTE stream) volatile {
+            using namespace dma;
+            switch(stream) {
+                case 0:
+                    LIFCR = (TCIF << STREAM0_POS);
+                    break;
+                case 1:
+                    LIFCR = (TCIF << STREAM1_POS);
+                    break;
+                case 2:
+                    LIFCR = (TCIF << STREAM2_POS);
+                    break;
+                case 3:
+                    LIFCR = (TCIF << STREAM3_POS);
+                    break;
+                case 4:
+                    HIFCR = (TCIF << STREAM4_POS);
+                    break;
+                case 5:
+                    HIFCR = (TCIF << STREAM5_POS);
+                    break;
+                case 6:
+                    HIFCR = (TCIF << STREAM6_POS);
+                    break;
+                case 7:
+                    HIFCR = (TCIF << STREAM7_POS);
+                    break;
+                default:
+                    asm volatile(" svc #1");
+                    break;
+            }
+        }
+    };
+
+    volatile DmaStruct* const DMA1 = (volatile DmaStruct*)0x40026000;
+    volatile DmaStruct* const DMA2 = (volatile DmaStruct*)0x40026400;
 }
