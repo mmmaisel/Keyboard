@@ -40,6 +40,9 @@ class LedMatrix {
         static void initialize(module::Module module);
 
     private:
+        static const BYTE MAX_DIM = 16;
+        static const BYTE PHASE_COUNT = 16;
+
         struct Pin {
             volatile dev::GpioStruct* port;
             WORD pin;
@@ -49,10 +52,9 @@ class LedMatrix {
         static BYTE m_row;
         static BYTE m_row_count;
         static BYTE m_column_count;
-        static Pin m_rows[16];
-        static Pin m_columns[16];
-        static BYTE m_phases[16][16];
-        static const BYTE PHASE_COUNT = 16;
+        static Pin m_rows[MAX_DIM];
+        static Pin m_columns[MAX_DIM];
+        static BYTE m_phases[MAX_DIM][MAX_DIM];
 
         static void ISR();
 };

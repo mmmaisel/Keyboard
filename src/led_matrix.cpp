@@ -30,9 +30,9 @@ BYTE LedMatrix::m_phase;
 BYTE LedMatrix::m_row;
 BYTE LedMatrix::m_row_count;
 BYTE LedMatrix::m_column_count;
-LedMatrix::Pin LedMatrix::m_rows[16];
-LedMatrix::Pin LedMatrix::m_columns[16];
-BYTE LedMatrix::m_phases[16][16];
+LedMatrix::Pin LedMatrix::m_rows[MAX_DIM];
+LedMatrix::Pin LedMatrix::m_columns[MAX_DIM];
+BYTE LedMatrix::m_phases[MAX_DIM][MAX_DIM];
 
 // TODO: evaluate module
 void LedMatrix::initialize(module::Module module) {

@@ -33,11 +33,11 @@
 BYTE KeyMatrix::m_row_count;
 BYTE KeyMatrix::m_column_count;
 BYTE KeyMatrix::m_column;
-KeyMatrix::Pin KeyMatrix::m_rows[16];
-KeyMatrix::Pin KeyMatrix::m_columns[16];
+KeyMatrix::Pin KeyMatrix::m_rows[MAX_DIM];
+KeyMatrix::Pin KeyMatrix::m_columns[MAX_DIM];
 BYTE KeyMatrix::m_phase;
 const BYTE* KeyMatrix::m_key_layout = 0;
-BYTE KeyMatrix::m_key_state[16][16] = {0};
+BYTE KeyMatrix::m_key_state[MAX_DIM][MAX_DIM] = {0};
 BYTE KeyMatrix::m_key_idx;
 BYTE KeyMatrix::m_keys[MAX_KEYS];
 BYTE KeyMatrix::m_keys_scan[MAX_KEYS];
@@ -120,7 +120,7 @@ void KeyMatrix::ISR() {
                 if(m_key_state[row][m_column] == 3) {
                     if(m_key_idx < MAX_KEYS)
                         m_keys_scan[m_key_idx++] =
-                            *(m_key_layout + 16*row + m_column);
+                            *(m_key_layout + MAX_DIM*row + m_column);
                 } else {
                     ++m_key_state[row][m_column];
                 }
