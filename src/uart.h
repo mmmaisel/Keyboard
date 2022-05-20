@@ -24,8 +24,6 @@
 #include "dev/uart.h"
 #include "dev/dma.h"
 
-#include "ringbuffer.h"
-
 extern "C" void uart1_vector() __attribute__((error("calling ISR")));
 extern "C" void uart2_vector() __attribute__((error("calling ISR")));
 extern "C" void uart6_vector() __attribute__((error("calling ISR")));
@@ -35,6 +33,8 @@ extern "C" void dma2s1_vector() __attribute__((error("calling ISR")));
 extern "C" void dma2s2_vector() __attribute__((error("calling ISR")));
 extern "C" void dma2s6_vector() __attribute__((error("calling ISR")));
 extern "C" void dma2s7_vector() __attribute__((error("calling ISR")));
+
+class UartHandler;
 
 class Uart
 {
@@ -52,11 +52,10 @@ class Uart
     friend void dma2s7_vector();
 
     public:
-        explicit Uart(BYTE num);
+        explicit Uart(BYTE num, UartHandler* handler);
         ~Uart() {}
 
         void write(BYTE* buffer, BYTE length);
-        BYTE read();
         void read(BYTE* buffer, BYTE length);
 
     private:
@@ -69,7 +68,7 @@ class Uart
         volatile BYTE m_rx;
         static const BYTE BUFFER_SIZE = 64;
         BYTE m_tx_buffer[BUFFER_SIZE];
-        volatile Ringbuffer<BYTE, BYTE, BUFFER_SIZE> m_rx_buffer;
+        UartHandler* m_handler;
 
         void ISR();
         void DMA_TX_ISR();

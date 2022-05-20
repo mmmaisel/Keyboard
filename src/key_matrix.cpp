@@ -20,7 +20,7 @@
 \**********************************************************************/
 #include "key_matrix.h"
 #include "key_layout.h"
-#include "hid_keyboard_endpoint.h"
+#include "modular_keyboard.h"
 
 #include "pinout.h"
 #include "dev/core.h"
@@ -139,7 +139,7 @@ void KeyMatrix::ISR() {
             }
             m_column = 0;
             m_key_idx = 0;
-            ep1.send_report(m_keys);
+            keyboard.update_keys(0, m_keys);
         }
     }
 }

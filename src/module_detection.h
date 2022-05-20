@@ -28,5 +28,5 @@ namespace module {
         NUM
     };
 
-    Module detect();
+    Module detect_module();
 }

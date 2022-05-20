@@ -25,11 +25,13 @@
 #include "dev/dma.h"
 #include "dev/rcc.h"
 
+#include "modular_keyboard.h"
+
 #include <cstring>
 
-Uart Uart1(1);
-Uart Uart2(2);
-Uart Uart6(6);
+Uart Uart1(1, &keyboard);
+Uart Uart2(2, &keyboard);
+Uart Uart6(6, &keyboard);
 
 // XXX: only valid for master module
 // XXX: may it work and initialize HW that is not routed to pins?
@@ -183,16 +185,6 @@ void Uart::write(BYTE* buffer, BYTE length) {
     m_dma->STREAM[m_tx_stream].CR |= EN;
 }
 
-BYTE Uart::read() {
-    using namespace dev;
-    while(m_rx_buffer.size() == 0);
-
-    NVIC->disable_isr(isrnum::USART6);
-    BYTE data = m_rx_buffer.pop();
-    NVIC->enable_isr(isrnum::USART6);
-    return data;
-}
-
 void Uart::read(BYTE* buffer, BYTE length) {
     using namespace dev;
     using namespace dev::usart;
@@ -211,8 +203,9 @@ void Uart::read(BYTE* buffer, BYTE length) {
 
 void Uart::ISR() {
     using namespace dev::usart;
-    m_rx_buffer.push(m_uart->DR);
+    BYTE data = m_uart->DR;
     m_uart->SR = RXNE;
+    m_handler->OnReceive(this, data);
 }
 
 void Uart::DMA_TX_ISR() {

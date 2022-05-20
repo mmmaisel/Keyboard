@@ -43,6 +43,7 @@ CPPSRC = main.cpp \
     key_matrix.cpp \
     key_layout.cpp \
     hid_keyboard_endpoint.cpp \
+    modular_keyboard.cpp \
     module_detection.cpp \
     startup.cpp \
     system.cpp \

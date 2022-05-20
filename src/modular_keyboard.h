@@ -1,10 +1,9 @@
 /**********************************************************************\
  * Keyboard
  *
- * C++ main function
- *  - please note that the real program starts in startup.cpp
+ * Modular keyboard class
  **********************************************************************
- * Copyright (C) 2019-2022 - Max Maisel
+ * Copyright (C) 2022 - Max Maisel
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,27 +18,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \**********************************************************************/
-/// @file
-#include <string.h>
-#include <stdlib.h>
+#pragma once
 
-#include "module_detection.h"
-#include "led_matrix.h"
+#include "types.h"
+#include "uart_handler.h"
 #include "key_matrix.h"
-#include "system.h"
-#include "usb_phy.h"
 
-#include "uart.h"
+class Uart;
 
-/// C++ main function, program starts here.
-void main() __attribute__((noreturn));
-void main() {
-    using namespace module;
-    Module module = detect_module();
-    LedMatrix::initialize(module);
-    KeyMatrix::initialize(module);
-    if(module == RIGHT)
-        USBPhy::Initialize();
+class ModularKeyboard : public UartHandler {
+    public:
+        ModularKeyboard();
+        ModularKeyboard(const ModularKeyboard&) = delete;
+        ModularKeyboard(ModularKeyboard&&) = delete;
+        virtual ~ModularKeyboard();
 
-    for(;;);
-}
+        virtual void OnReceive(Uart* uart, BYTE data) override;
+        void update_keys(BYTE page, BYTE* buffer);
+
+    private:
+        // XXX: sync
+        BYTE m_keys[4][KeyMatrix::MAX_KEYS];
+
+        static void operator delete(void* __attribute__((unused)));
+};
+
+extern ModularKeyboard keyboard;

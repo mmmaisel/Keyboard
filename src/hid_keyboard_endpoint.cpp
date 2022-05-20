@@ -20,6 +20,7 @@
 \**********************************************************************/
 #include "hid_keyboard_endpoint.h"
 #include "key_matrix.h"
+#include "key_layout.h"
 
 #include "dev/usb.h"
 #include "usb_endpoint.h"

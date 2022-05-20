@@ -1,7 +1,7 @@
 /**********************************************************************\
  * Keyboard
  *
- * USB HID keyboard endpoint class
+ * Modular keyboard class
  **********************************************************************
  * Copyright (C) 2022 - Max Maisel
  *
@@ -18,30 +18,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \**********************************************************************/
-#pragma once
+#include "modular_keyboard.h"
+#include "hid_keyboard_endpoint.h"
+#include "uart.h"
 
-#include "types.h"
-#include "usb_endpoint.h"
+#include <cstring>
 
-class HidKeyboardEndpoint : public USBEndpoint {
-    public:
-        HidKeyboardEndpoint();
-        HidKeyboardEndpoint(const HidKeyboardEndpoint&) = delete;
-        HidKeyboardEndpoint(HidKeyboardEndpoint&&) = delete;
-        virtual ~HidKeyboardEndpoint();
+// XXX: only valid on master module
+ModularKeyboard keyboard;
 
-        inline void set_idle(BYTE idle) { m_idle = idle; }
-        inline BYTE get_idle() { return m_idle; }
+ModularKeyboard::ModularKeyboard() {
+}
 
-        void send_report(const BYTE* keys);
-        static void make_report(BYTE* buffer, const BYTE* keys);
+ModularKeyboard::~ModularKeyboard() {
+}
 
-    protected:
-        virtual void OnTransmit() override;
+void ModularKeyboard::operator delete(void* __attribute__((unused))) {
+    /// Shut up stupid linker - there are no dynamic objects!!!
+}
 
-    private:
-        BYTE m_idle;
-        BYTE m_transmitting;
-};
+void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
+    BYTE buffer[KeyMatrix::MAX_KEYS];
+    uart->read(buffer, KeyMatrix::MAX_KEYS);
+    if(uart == &Uart1) {
+        update_keys(1, buffer);
+    } else if(uart == &Uart2) {
+        update_keys(2, buffer);
+    } else if(uart == &Uart6) {
+        update_keys(3, buffer);
+    }
+}
 
-extern HidKeyboardEndpoint ep1;
+void ModularKeyboard::update_keys(BYTE page, BYTE* buffer) {
+    memcpy(m_keys[page], buffer, KeyMatrix::MAX_KEYS);
+    if(page == 0)
+        ep1.send_report(&m_keys[0][0]);
+}

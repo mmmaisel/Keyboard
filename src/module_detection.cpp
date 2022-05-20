@@ -25,7 +25,7 @@
 #include "dev/rcc.h"
 
 namespace module {
-    Module detect() {
+    Module detect_module() {
         using namespace pinout;
 
         dev::RCC->AHB1ENR |= dev::rcc::GPIOCEN;
