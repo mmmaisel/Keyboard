@@ -49,10 +49,6 @@ void HidKeyboardEndpoint::send_report(const BYTE* keys) {
     make_report((BYTE*)buffer, keys);
     m_transmitting = 1;
 
-    BYTE* pbuf = (BYTE*)buffer;
-    for(BYTE i = 0; i < 8; ++i) {
-        UART6.write(pbuf[i]);
-    }
     USBPhy::TransmitData(m_epnum, buffer, 8);
 }
 

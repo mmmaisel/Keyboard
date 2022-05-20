@@ -33,12 +33,15 @@ class ModularKeyboard : public UartHandler {
         ModularKeyboard(ModularKeyboard&&) = delete;
         virtual ~ModularKeyboard();
 
+        static const BYTE PAGE_COUNT = 4;
+        static const BYTE BUFFER_SIZE = PAGE_COUNT * KeyMatrix::MAX_KEYS;
+
         virtual void OnReceive(Uart* uart, BYTE data) override;
-        void update_keys(BYTE page, BYTE* buffer);
+        void update_keys(BYTE page, const BYTE* buffer);
+        void get_keys(BYTE* buffer);
 
     private:
-        // XXX: sync
-        BYTE m_keys[4][KeyMatrix::MAX_KEYS];
+        BYTE m_keys[PAGE_COUNT][KeyMatrix::MAX_KEYS];
 
         static void operator delete(void* __attribute__((unused)));
 };

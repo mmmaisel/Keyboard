@@ -40,7 +40,6 @@ const BYTE* KeyMatrix::m_key_layout = 0;
 BYTE KeyMatrix::m_key_state[MAX_DIM][MAX_DIM] = {0};
 BYTE KeyMatrix::m_key_idx;
 BYTE KeyMatrix::m_keys[MAX_KEYS];
-BYTE KeyMatrix::m_keys_scan[MAX_KEYS];
 
 // TODO: evaluate module
 void KeyMatrix::initialize() {
@@ -97,13 +96,6 @@ void KeyMatrix::initialize() {
     GPIOC->set_odr(KC1|KC2|KC3|KC4|KC5|KC6);
 }
 
-void KeyMatrix::get_keys(BYTE* keys) {
-    using namespace dev;
-    NVIC->disable_isr(isrnum::TIM3);
-    memcpy(keys, m_keys, MAX_KEYS);
-    NVIC->enable_isr(isrnum::TIM3);
-}
-
 void KeyMatrix::ISR() {
     using namespace dev;
     using namespace dev::timer;
@@ -119,7 +111,7 @@ void KeyMatrix::ISR() {
             if(m_rows[row].port->IDR & m_rows[row].pin) {
                 if(m_key_state[row][m_column] == 3) {
                     if(m_key_idx < MAX_KEYS)
-                        m_keys_scan[m_key_idx++] =
+                        m_keys[m_key_idx++] =
                             *(m_key_layout + MAX_DIM*row + m_column);
                 } else {
                     ++m_key_state[row][m_column];
@@ -131,11 +123,8 @@ void KeyMatrix::ISR() {
         m_columns[m_column].port->clear_odr(m_columns[m_column].pin);
 
         if(++m_column == m_column_count) {
-            for(register BYTE i = 0; i < MAX_KEYS; ++i) {
-                if(i < m_key_idx)
-                    m_keys[i] = m_keys_scan[i];
-                else
-                    m_keys[i] = 0;
+            for(register BYTE i = m_key_idx; i < MAX_KEYS; ++i) {
+                m_keys[i] = 0;
             }
             m_column = 0;
             m_key_idx = 0;

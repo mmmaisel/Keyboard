@@ -24,6 +24,7 @@
 #include "usb_descriptor.h"
 #include "usb_control_endpoint.h"
 #include "hid_keyboard_endpoint.h"
+#include "modular_keyboard.h"
 
 #include "key_matrix.h"
 #include "uart.h"
@@ -136,9 +137,9 @@ void ControlEndpoint::OnSetup() {
     // TODO: move hid stuff to HidKeyboard class
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_REPORT) {
         WORD buffer[2];
-        BYTE keys[KeyMatrix::MAX_KEYS];
+        BYTE keys[ModularKeyboard::BUFFER_SIZE];
         BYTE length = 8;
-        KeyMatrix::get_keys(keys);
+        keyboard.get_keys(keys);
         HidKeyboardEndpoint::make_report((BYTE*)buffer, keys);
         if(wLength < length)
             length = wLength;

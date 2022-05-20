@@ -39,7 +39,6 @@ class KeyMatrix {
         static const BYTE MAX_KEYS = 16;
 
         static void initialize();
-        static void get_keys(BYTE* keys);
     private:
         struct Pin {
             volatile dev::GpioStruct* port;
@@ -57,7 +56,6 @@ class KeyMatrix {
         static BYTE m_key_state[MAX_DIM][MAX_DIM];
         static BYTE m_key_idx;
         static BYTE m_keys[MAX_KEYS];
-        static BYTE m_keys_scan[MAX_KEYS];
 
         static void ISR();
 };

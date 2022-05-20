@@ -28,6 +28,7 @@
 ModularKeyboard keyboard;
 
 ModularKeyboard::ModularKeyboard() {
+    memset(m_keys, 0, BUFFER_SIZE);
 }
 
 ModularKeyboard::~ModularKeyboard() {
@@ -49,8 +50,13 @@ void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
     }
 }
 
-void ModularKeyboard::update_keys(BYTE page, BYTE* buffer) {
+void ModularKeyboard::update_keys(BYTE page, const BYTE* buffer) {
     memcpy(m_keys[page], buffer, KeyMatrix::MAX_KEYS);
     if(page == 0)
         ep1.send_report(&m_keys[0][0]);
+}
+
+void ModularKeyboard::get_keys(BYTE* buffer) {
+    // XXX: needs sync: disable all uart rx ISRs and key matrix
+    memcpy(buffer, &m_keys[0][0], BUFFER_SIZE);
 }
