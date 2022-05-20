@@ -43,6 +43,7 @@
 #include "dev/flash.h"
 #include "dev/pwr.h"
 #include "dev/rcc.h"
+#include "module.h"
 
 extern void main();
 
@@ -145,6 +146,9 @@ extern "C" {
         // Clear bss
         // cppcheck-suppress[comparePointers]
         memset(&__bss_start__, 0, &__bss_end__ - &__bss_start__);
+
+        // Detect module
+        Module::detect();
 
         // Call global constructors
         // cppcheck-suppress[comparePointers]

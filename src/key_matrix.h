@@ -20,8 +20,6 @@
 \**********************************************************************/
 #pragma once
 
-#include "module_detection.h"
-
 #include "types.h"
 #include "dev/gpio.h"
 
@@ -40,7 +38,7 @@ class KeyMatrix {
         static const BYTE MAX_DIM = 16;
         static const BYTE MAX_KEYS = 16;
 
-        static void initialize(module::Module module);
+        static void initialize();
         static void get_keys(BYTE* keys);
     private:
         struct Pin {

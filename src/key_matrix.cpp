@@ -43,7 +43,7 @@ BYTE KeyMatrix::m_keys[MAX_KEYS];
 BYTE KeyMatrix::m_keys_scan[MAX_KEYS];
 
 // TODO: evaluate module
-void KeyMatrix::initialize(module::Module module) {
+void KeyMatrix::initialize() {
     using namespace dev;
     using namespace dev::rcc;
     using namespace dev::timer;

@@ -20,8 +20,6 @@
 \**********************************************************************/
 #pragma once
 
-#include "module_detection.h"
-
 #include "types.h"
 #include "dev/gpio.h"
 
@@ -37,7 +35,7 @@ class LedMatrix {
     friend void tim2_vector();
 
     public:
-        static void initialize(module::Module module);
+        static void initialize();
 
     private:
         static const BYTE MAX_DIM = 16;

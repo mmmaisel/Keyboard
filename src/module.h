@@ -18,25 +18,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \**********************************************************************/
-#include "module_detection.h"
-#include "pinout.h"
+#pragma once
 
-#include "dev/gpio.h"
-#include "dev/rcc.h"
+#include "types.h"
 
-namespace module {
-    Module detect_module() {
-        using namespace pinout;
+class Module {
+    // Static class
+    Module() = delete;
+    Module(const Module&) = delete;
+    Module(Module&&) = delete;
+    ~Module() = delete;
 
-        dev::RCC->AHB1ENR |= dev::rcc::GPIOCEN;
-        WORD nodeid = dev::GPIOC->IDR & (NODEID0 | NODEID1);
-        if(nodeid == (NODEID0 | NODEID1))
-            return NAV;
-        else if(nodeid == NODEID0)
-            return NUM;
-        else if(nodeid == NODEID1)
-            return LEFT;
-        else
-            return RIGHT;
-    }
-}
+    public:
+        enum {
+            RIGHT,
+            LEFT,
+            NAV,
+            NUM
+        };
+
+        static void detect();
+        static inline BYTE get_id() { return m_module; }
+
+    private:
+        static BYTE m_module;
+};

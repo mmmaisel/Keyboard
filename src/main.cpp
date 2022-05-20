@@ -23,7 +23,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "module_detection.h"
+#include "module.h"
 #include "led_matrix.h"
 #include "key_matrix.h"
 #include "system.h"
@@ -34,11 +34,9 @@
 /// C++ main function, program starts here.
 void main() __attribute__((noreturn));
 void main() {
-    using namespace module;
-    Module module = detect_module();
-    LedMatrix::initialize(module);
-    KeyMatrix::initialize(module);
-    if(module == RIGHT)
+    LedMatrix::initialize();
+    KeyMatrix::initialize();
+    if(Module::get_id() == Module::RIGHT)
         USBPhy::Initialize();
 
     for(;;);

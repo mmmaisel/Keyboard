@@ -18,15 +18,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \**********************************************************************/
-#pragma once
+#include "module.h"
+#include "pinout.h"
 
-namespace module {
-    enum Module {
-        RIGHT,
-        LEFT,
-        NAV,
-        NUM
-    };
+#include "dev/gpio.h"
+#include "dev/rcc.h"
 
-    Module detect_module();
+BYTE Module::m_module = 0;
+
+void Module::detect() {
+    using namespace pinout;
+
+    dev::RCC->AHB1ENR |= dev::rcc::GPIOCEN;
+    WORD nodeid = dev::GPIOC->IDR & (NODEID0 | NODEID1);
+    if(nodeid == (NODEID0 | NODEID1))
+        m_module = NAV;
+    else if(nodeid == NODEID0)
+        m_module = NUM;
+    else if(nodeid == NODEID1)
+        m_module = LEFT;
+    else
+        m_module = RIGHT;
 }

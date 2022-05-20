@@ -44,7 +44,7 @@ CPPSRC = main.cpp \
     key_layout.cpp \
     hid_keyboard_endpoint.cpp \
     modular_keyboard.cpp \
-    module_detection.cpp \
+    module.cpp \
     startup.cpp \
     system.cpp \
     uart.cpp \

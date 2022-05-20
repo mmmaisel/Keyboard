@@ -35,7 +35,7 @@ LedMatrix::Pin LedMatrix::m_columns[MAX_DIM];
 BYTE LedMatrix::m_phases[MAX_DIM][MAX_DIM];
 
 // TODO: evaluate module
-void LedMatrix::initialize(module::Module module) {
+void LedMatrix::initialize() {
     using namespace dev;
     using namespace dev::rcc;
     using namespace dev::timer;
