@@ -56,7 +56,7 @@ void KeyMatrix::initialize() {
             GPIOC->MODER |= MODE_KC1 | MODE_KC2 | MODE_KC3 | MODE_KC4 | MODE_KC5 |
                 MODE_KC6;
             GPIOB->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5 |
-                PUPD_KR6;
+                PUPD_KR6 | PUPD_KR7;
             GPIOB->clear_odr(LVEN);
             GPIOC->set_odr(KC1|KC2|KC3|KC4|KC5|KC6);
 
@@ -82,17 +82,88 @@ void KeyMatrix::initialize() {
         }
 
         case Module::LEFT: {
-            // XXX: implement
+            using namespace pinout::left;
+            RCC->AHB1ENR |= GPIOBEN | GPIOCEN;
+            GPIOB->MODER |= MODE_LVEN | MODE_KR7;
+            GPIOC->MODER |= MODE_KC1 | MODE_KC2 | MODE_KC3 | MODE_KC4 | MODE_KC5 |
+                MODE_KC6 | MODE_KR1 | MODE_KR2 | MODE_KR3 | MODE_KR4 | MODE_KR5 |
+                MODE_KR6;
+            GPIOC->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5 |
+                PUPD_KR6;
+            GPIOB->clear_odr(LVEN);
+            GPIOC->set_odr(KC1|KC2|KC3|KC4|KC5|KC6);
+
+            m_key_layout = &LAYOUT_LEFT[0][0];
+
+            m_row_count = 7;
+            m_rows[0] = Pin { .port = GPIOC, .pin = KR1 };
+            m_rows[1] = Pin { .port = GPIOC, .pin = KR2 };
+            m_rows[2] = Pin { .port = GPIOC, .pin = KR3 };
+            m_rows[3] = Pin { .port = GPIOC, .pin = KR4 };
+            m_rows[4] = Pin { .port = GPIOC, .pin = KR5 };
+            m_rows[5] = Pin { .port = GPIOC, .pin = KR6 };
+            m_rows[6] = Pin { .port = GPIOB, .pin = KR7 };
+
+            m_column_count = 6;
+            m_columns[0] = Pin { .port = GPIOC, .pin = KC1 };
+            m_columns[1] = Pin { .port = GPIOC, .pin = KC2 };
+            m_columns[2] = Pin { .port = GPIOC, .pin = KC3 };
+            m_columns[3] = Pin { .port = GPIOC, .pin = KC4 };
+            m_columns[4] = Pin { .port = GPIOC, .pin = KC5 };
+            m_columns[5] = Pin { .port = GPIOC, .pin = KC6 };
             break;
         }
 
         case Module::NAV: {
-            // XXX: implement
+            using namespace pinout::nav;
+            RCC->AHB1ENR |= GPIOBEN | GPIOCEN;
+            GPIOB->MODER |= MODE_LVEN;
+            GPIOC->MODER |= MODE_KC1 | MODE_KC2 | MODE_KC3 |
+                MODE_KR1 | MODE_KR2 | MODE_KR3 | MODE_KR4 | MODE_KR5;
+            GPIOC->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5;
+            GPIOB->clear_odr(LVEN);
+            GPIOC->set_odr(KC1|KC2|KC3);
+
+            m_key_layout = &LAYOUT_NAV[0][0];
+
+            m_row_count = 5;
+            m_rows[0] = Pin { .port = GPIOC, .pin = KR1 };
+            m_rows[1] = Pin { .port = GPIOC, .pin = KR2 };
+            m_rows[2] = Pin { .port = GPIOC, .pin = KR3 };
+            m_rows[3] = Pin { .port = GPIOC, .pin = KR4 };
+            m_rows[4] = Pin { .port = GPIOC, .pin = KR5 };
+
+            m_column_count = 3;
+            m_columns[0] = Pin { .port = GPIOC, .pin = KC1 };
+            m_columns[1] = Pin { .port = GPIOC, .pin = KC2 };
+            m_columns[2] = Pin { .port = GPIOC, .pin = KC3 };
             break;
         }
 
         case Module::NUM: {
-            // XXX: implement
+            using namespace pinout::num;
+            RCC->AHB1ENR |= GPIOBEN | GPIOCEN;
+            GPIOB->MODER |= MODE_LVEN;
+            GPIOC->MODER |= MODE_KC1 | MODE_KC2 | MODE_KC3 | MODE_KC4 |
+                MODE_KR1 | MODE_KR2 | MODE_KR3 | MODE_KR4 | MODE_KR5;
+            GPIOC->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5;
+            GPIOB->clear_odr(LVEN);
+            GPIOC->set_odr(KC1|KC2|KC3|KC4);
+
+            m_key_layout = &LAYOUT_NUM[0][0];
+
+            m_row_count = 5;
+            m_rows[0] = Pin { .port = GPIOC, .pin = KR1 };
+            m_rows[1] = Pin { .port = GPIOC, .pin = KR2 };
+            m_rows[2] = Pin { .port = GPIOC, .pin = KR3 };
+            m_rows[3] = Pin { .port = GPIOC, .pin = KR4 };
+            m_rows[4] = Pin { .port = GPIOC, .pin = KR5 };
+
+            m_column_count = 4;
+            m_columns[0] = Pin { .port = GPIOC, .pin = KC1 };
+            m_columns[1] = Pin { .port = GPIOC, .pin = KC2 };
+            m_columns[2] = Pin { .port = GPIOC, .pin = KC3 };
+            m_columns[3] = Pin { .port = GPIOC, .pin = KC4 };
             break;
         }
     }
