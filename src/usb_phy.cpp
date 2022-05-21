@@ -156,11 +156,6 @@ void USBPhy::EnableInEndpoint(BYTE num, WORD type) {
     USBDEV->DIEPMSK  |= XFRC;
     // | USB_OTG_DIEPMSK_ITTXFEMSK;// | USB_OTG_DIEPMSK_TOM;
 
-    // TODO: ep0 TX FF is special, in GLOBAL register
-    // TODO: calc FIFO num from size
-    // XXX: FIFO: (size in words << 16) | (sum size from FF0 in words, == pos)
-    // TODO: TXFF0 does not fit into addressing scheme
-    // TODO: observe EP enable disable timing
     if(num == 0) {
         USB->DIEPTXF0_HNPTXFSIZ =
             ((TX_FIFO_SIZE*2 / 4) << TX0FD_POS) | ((RX_FIFO_SIZE / 4) << TX0FSA_POS);
@@ -178,8 +173,7 @@ void USBPhy::EnableOutEndpoint(BYTE num, WORD type) {
     USBDEV->DAINTMSK |= ((1 << num) << OEPINT_POS);
     USBDEV->DOEPMSK  |= XFRC | STUP;
 
-    // TODO: this is global and must be >= 256 ?
-    USB->GRXFSIZ = ((RX_FIFO_SIZE / 4) << RXFD_POS); // 256 bytes RX FIFO
+    USB->GRXFSIZ = ((RX_FIFO_SIZE / 4) << RXFD_POS);
 
     if(num == 0) {
         USB_OUTEP[num].DOEPTSIZ = (3 << STUPCNT_POS); // 3 setup packets
@@ -224,8 +218,8 @@ void USBPhy::ISR() {
         // cppcheck-suppress[unreadVariable]
         WORD _status = USBDEV->DSTS;
 
-        // XXX: The hardware only supports full-speed mode
-        //      => fixed max packet size of 64
+        // The hardware only supports full-speed mode
+        //   => fixed max packet size of 64
         USB_INEP[0].DIEPCTL &= ~(3 << 0);
 
         USB->GINTSTS = ENUMDNE;

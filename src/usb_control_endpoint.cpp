@@ -56,8 +56,8 @@ void ControlEndpoint::OnSetup() {
     // TODO: handle 3 back-to-back setup packets
     // TODO: get len from m_bufferPos
     // TODO: refactor buffer handling
-    // XXX: all setup commands land on EP0 (HID, CDC set line state, ...)
 
+    // All setup commands land on EP0 (HID, CDC set line state, ...)
     if(bmRequestType == SET_STANDARD_DEVICE && bRequest == REQUEST_SET_ADDRESS) {
         BYTE addr = wValue & 0x7F;
         USBPhy::SetAddress(addr);
