@@ -24,6 +24,8 @@
 #include "dev/rcc.h"
 #include "pinout.h"
 
+extern void* __heap_start__;
+
 void sleep_ms(ULONG ms) {
     volatile ULONG cycles = 48000 * ms / 4; // Sysclock: 48 MHz
     asm (
@@ -51,6 +53,14 @@ extern "C" void __dso_handle() {
 /// As main() never exits here this function is a stub.
 /// cppcheck-suppress[unusedFunction]
 extern "C" void _fini() {
+}
+
+/// @internal
+/// Increases heap size, used by malloc / new.
+/// Since there is no dynamic memory in this program this function is a stub.
+/// cppcheck-suppress[unusedFunction]
+extern "C" void* _sbrk(int incr) {
+    return __heap_start__;
 }
 
 /**********************************************************************\

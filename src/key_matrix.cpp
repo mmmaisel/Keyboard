@@ -123,7 +123,7 @@ void KeyMatrix::ISR() {
         m_columns[m_column].port->clear_odr(m_columns[m_column].pin);
 
         if(++m_column == m_column_count) {
-            for(register BYTE i = m_key_idx; i < MAX_KEYS; ++i) {
+            for(BYTE i = m_key_idx; i < MAX_KEYS; ++i) {
                 m_keys[i] = 0;
             }
             m_column = 0;

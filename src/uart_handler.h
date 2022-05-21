@@ -26,5 +26,6 @@ class Uart;
 
 class UartHandler {
     public:
+        virtual ~UartHandler() = default;
         virtual void OnReceive(Uart* uart, BYTE data) = 0;
 };

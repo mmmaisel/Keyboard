@@ -121,7 +121,7 @@ void LedMatrix::ISR() {
         m_phase = 0;
     }
 
-    for(register BYTE column = 0; column < m_column_count; ++column)
+    for(BYTE column = 0; column < m_column_count; ++column)
     {
         if(m_phases[m_row][column] > m_phase)
             // columns are low active

@@ -47,12 +47,12 @@
 
 extern void main();
 
-extern uint8_t __data_start__;
-extern uint8_t __data_load__;
-extern uint8_t __data_end__;
+extern BYTE __data_start__;
+extern BYTE __data_load__;
+extern BYTE __data_end__;
 
-extern uint8_t __bss_start__;
-extern uint8_t __bss_end__;
+extern BYTE __bss_start__;
+extern BYTE __bss_end__;
 
 typedef void (*ctorPtr)();
 
