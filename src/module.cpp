@@ -27,7 +27,8 @@
 BYTE Module::m_module = 0;
 
 void Module::detect() {
-    using namespace pinout;
+    // module ID pinout is identical on all modules
+    using namespace pinout::right;
 
     dev::RCC->AHB1ENR |= dev::rcc::GPIOCEN;
     WORD nodeid = dev::GPIOC->IDR & (NODEID0 | NODEID1);

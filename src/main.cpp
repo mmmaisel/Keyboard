@@ -31,6 +31,8 @@
 
 #include "uart.h"
 
+// XXX: led control usb protocol
+
 /// C++ main function, program starts here.
 void main() __attribute__((noreturn));
 void main() {

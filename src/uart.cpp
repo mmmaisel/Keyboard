@@ -21,6 +21,7 @@
 #include "uart.h"
 
 #include "pinout.h"
+#include "module.h"
 #include "dev/core.h"
 #include "dev/dma.h"
 #include "dev/rcc.h"
@@ -33,8 +34,6 @@ Uart Uart1(1, &keyboard);
 Uart Uart2(2, &keyboard);
 Uart Uart6(6, &keyboard);
 
-// XXX: only valid for master module
-// XXX: may it work and initialize HW that is not routed to pins?
 Uart::Uart(BYTE num, UartHandler* handler) :
     m_tx(0),
     m_rx(0),
@@ -42,7 +41,6 @@ Uart::Uart(BYTE num, UartHandler* handler) :
 {
     using namespace dev;
     using namespace dev::rcc;
-    using namespace pinout;
 
     if(num == 1) {
         m_uart = USART1;
@@ -50,9 +48,13 @@ Uart::Uart(BYTE num, UartHandler* handler) :
         m_rx_stream = 2;
         m_tx_stream = 7;
 
-        // Enable used port clocks
+        // Enable used port clocks and configure pins PB6 and PB7.
+        // This is identical for all modules.
+        using namespace pinout::right;
         RCC->AHB1ENR |= GPIOBEN | DMA2EN;
         RCC->APB2ENR |= USART1EN;
+        GPIOB->MODER |= MODE_UART1_TX | MODE_UART1_RX;
+        GPIOB->AFRL |= AFRL_UART1_TX | AFRL_UART1_RX;
 
         {
             using namespace dev::dma;
@@ -67,11 +69,6 @@ Uart::Uart(BYTE num, UartHandler* handler) :
             NVIC->PRI[isrnum::DMA2S2] = 0x09;
             NVIC->PRI[isrnum::DMA2S7] = 0x09;
         }
-
-        // Configure Pins PB6, PB7
-        GPIOB->MODER |= MODE_UART1_TX | MODE_UART1_RX;
-        GPIOB->AFRL |= AFRL_UART1_TX | AFRL_UART1_RX;
-
         {
             using namespace dev::usart;
             m_uart->CR1 &= CR1_MASK;
@@ -85,14 +82,21 @@ Uart::Uart(BYTE num, UartHandler* handler) :
             NVIC->PRI[isrnum::USART1] = 0x09;
         }
     } else if(num == 2) {
+        // UART2 only exists on right module.
+        if(Module::get_id() != Module::RIGHT)
+            return;
+
         m_uart = USART2;
         m_dma = DMA1;
         m_rx_stream = 5;
         m_tx_stream = 6;
 
-        // Enable used port clocks
+        // Enable used port clocks and configure pins PA2 and PA3.
+        using namespace pinout::right;
         RCC->AHB1ENR |= GPIOAEN | DMA1EN;
         RCC->APB1ENR |= USART2EN;
+        GPIOA->MODER |= MODE_UART2_TX | MODE_UART2_RX;
+        GPIOA->AFRL |= AFRL_UART2_TX | AFRL_UART2_RX;
 
         {
             using namespace dev::dma;
@@ -107,11 +111,6 @@ Uart::Uart(BYTE num, UartHandler* handler) :
             NVIC->PRI[isrnum::DMA1S5] = 0x09;
             NVIC->PRI[isrnum::DMA1S6] = 0x09;
         }
-
-        // Configure Pins PA2, PA3
-        GPIOA->MODER |= MODE_UART2_TX | MODE_UART2_RX;
-        GPIOA->AFRL |= AFRL_UART2_TX | AFRL_UART2_RX;
-
         {
             using namespace dev::usart;
             m_uart->CR1 &= CR1_MASK;
@@ -130,9 +129,21 @@ Uart::Uart(BYTE num, UartHandler* handler) :
         m_rx_stream = 1;
         m_tx_stream = 6;
 
-        // Enable used GPIO port clocks
-        RCC->AHB1ENR |= GPIOCEN | DMA2EN;
-        RCC->APB2ENR |= USART6EN;
+        // Enable used GPIO port clocks and configure pins.
+        if(Module::get_id() == Module::RIGHT) {
+            using namespace pinout::right;
+            RCC->AHB1ENR |= GPIOCEN | DMA2EN;
+            RCC->APB2ENR |= USART6EN;
+            GPIOC->MODER |= MODE_UART6_TX | MODE_UART6_RX;
+            GPIOC->AFRL |= AFRL_UART6_TX | AFRL_UART6_RX;
+        } else {
+            // This is identical on left, num and nav module.
+            using namespace pinout::left;
+            RCC->AHB1ENR |= GPIOAEN | DMA2EN;
+            RCC->APB2ENR |= USART6EN;
+            GPIOA->MODER |= MODE_UART6_TX | MODE_UART6_RX;
+            GPIOA->AFRL |= AFRH_UART6_TX | AFRH_UART6_RX;
+        }
 
         {
             using namespace dev::dma;
@@ -147,11 +158,6 @@ Uart::Uart(BYTE num, UartHandler* handler) :
             NVIC->PRI[isrnum::DMA2S1] = 0x09;
             NVIC->PRI[isrnum::DMA2S6] = 0x09;
         }
-
-        // Configure Pins PC6, PC7
-        GPIOC->MODER |= MODE_UART6_TX | MODE_UART6_RX;
-        GPIOC->AFRL |= AFRL_UART6_TX | AFRL_UART6_RX;
-
         {
             using namespace dev::usart;
             m_uart->CR1 &= CR1_MASK;

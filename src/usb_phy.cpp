@@ -33,7 +33,7 @@ using namespace dev::core;
 using namespace dev::exti;
 using namespace dev::rcc;
 using namespace dev::usb;
-using namespace pinout;
+using namespace pinout::right;
 
 const WORD RX_FIFO_SIZE = 256;
 const WORD TX_FIFO_SIZE = 128;
