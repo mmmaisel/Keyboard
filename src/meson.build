@@ -33,6 +33,7 @@ main = executable(
 
 objdump = find_program('objdump')
 nm = find_program('nm')
+size = find_program('size')
 
 mainlss = custom_target(
   'lss',
@@ -49,6 +50,14 @@ mainsym = custom_target(
   output: f'@target@.sym',
   build_by_default: true,
   command: [nm, '-n', f'@target@.elf'],
+  depends: [main]
+)
+
+mainsize = custom_target(
+  'size',
+  build_by_default: true,
+  output: f'@target@.size',
+  command: [size, '--format=berkeley', f'@target@.elf'],
   depends: [main]
 )
 
