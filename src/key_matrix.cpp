@@ -214,7 +214,7 @@ void KeyMatrix::ISR() {
             }
             m_column = 0;
             m_key_idx = 0;
-            keyboard.update_keys(0, m_keys);
+            keyboard.update_keys(Module::get_id(), m_keys);
         }
     }
 }

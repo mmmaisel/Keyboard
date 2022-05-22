@@ -42,6 +42,13 @@ class ModularKeyboard : public UartHandler {
         void get_keys(BYTE* buffer);
 
     private:
+        enum : BYTE {
+            MSG_KEYS = 0x10,
+            MSG_LEDS = 0x20,
+            MSG_TYPE_MASK = 0xF0,
+            MSG_PAGE_MASK = 0x0F
+        };
+
         BYTE m_keys[PAGE_COUNT][KeyMatrix::MAX_KEYS];
 
         static void operator delete(void* __attribute__((unused)));
