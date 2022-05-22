@@ -36,6 +36,7 @@ class LedMatrix {
 
     public:
         static void initialize();
+        static void set_led(BYTE row, BYTE column, BYTE red, BYTE green, BYTE blue);
 
     private:
         static const BYTE MAX_DIM = 16;

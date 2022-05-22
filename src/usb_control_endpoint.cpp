@@ -27,13 +27,15 @@
 #include "modular_keyboard.h"
 
 #include "key_matrix.h"
+#include "led_matrix.h"
 #include "uart.h"
 #include <string.h>
 
 ControlEndpoint ep0;
 
 ControlEndpoint::ControlEndpoint() :
-    USBEndpoint(0)
+    USBEndpoint(0),
+    m_last_command(0)
 {
 }
 
@@ -41,21 +43,47 @@ ControlEndpoint::~ControlEndpoint() {
 }
 
 void ControlEndpoint::OnReceive() {
-    //SimpleUart::Write('R');
+    //Uart6.write('R');
+    //Uart6.write(m_bufferPos);
+
+    // Set Num / Caps / Scroll LEDs
+    if(m_last_command == REQUEST_HID_SET_REPORT) {
+        BYTE leds = m_buffer.b[8];
+        BYTE red = leds & (1 << 2) ? 16: 0; // num
+        BYTE green = leds & (1 << 1) ? 4 : 0; // caps
+        BYTE blue = leds & (1 << 0) ? 4 : 0; // scroll
+        LedMatrix::set_led(3, 4, red, green, blue);
+        m_last_command = 0;
+    }
+
+    m_length = 0;
+    m_bufferPos = 0;
+    // XXX: just in case
+    m_buffer.w[0] = 0;
+    m_buffer.w[1] = 0;
+    m_buffer.w[2] = 0;
+    m_buffer.w[3] = 0;
+    USBPhy::PrepareRX(m_epnum);
 }
 
 void ControlEndpoint::OnSetup() {
-    //SimpleUart::Write('S');
+    //Uart6.write('S');
+    //Uart6.write(m_bufferPos);
+    HandleSetup(*reinterpret_cast<Buffer<BUFFER_SIZE>*>(
+        m_buffer.w + m_bufferPos - SETUP_PKT_WSIZE));
+    USBPhy::PrepareRX(m_epnum);
+}
 
-    BYTE bmRequestType = m_buffer.b[0];
-    BYTE bRequest = m_buffer.b[1];
-    SHORT wValue = m_buffer.h[1];
-    SHORT wIndex = m_buffer.h[2];
-    SHORT wLength = m_buffer.h[3];
+void ControlEndpoint::OnTransmit() {
+    //SimpleUart::Write('T');
+}
 
-    // TODO: handle 3 back-to-back setup packets
-    // TODO: get len from m_bufferPos
-    // TODO: refactor buffer handling
+void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
+    BYTE bmRequestType = buffer.b[0];
+    BYTE bRequest = buffer.b[1];
+    SHORT wValue = buffer.h[1];
+    SHORT wIndex = buffer.h[2];
+    SHORT wLength = buffer.h[3];
 
     // All setup commands land on EP0 (HID, CDC set line state, ...)
     if(bmRequestType == SET_STANDARD_DEVICE && bRequest == REQUEST_SET_ADDRESS) {
@@ -91,7 +119,7 @@ void ControlEndpoint::OnSetup() {
             if(wLength < length)
                 length = wLength;
             USBPhy::TransmitData(m_epnum, (WORD*)pDescriptor->data, length);
-            //SimpleUart::Write('D');
+            //Uart6.write('D');
         } else {
             //SimpleUart::Write('z');
             USBPhy::TransmitStall(m_epnum);
@@ -115,6 +143,8 @@ void ControlEndpoint::OnSetup() {
         BYTE index = wValue;
         if(index == 0 && wLength == 0) {
             // There is only one interface, just send ACK
+            // XXX: use this to switch between bootp and report descriptor
+            // XXX: needs two interface descriptors
             EnableAppEndpoints();
             USBPhy::TransmitData(m_epnum, 0, 0);
         } else {
@@ -133,7 +163,7 @@ void ControlEndpoint::OnSetup() {
     else if(bmRequestType == SET_CLASS_INTERFACE &&
         bRequest == REQUEST_SET_LINE_CODING)
     {
-        USBPhy::TransmitData(0, 0, 0);
+        USBPhy::TransmitData(m_epnum, 0, 0);
     // TODO: move hid stuff to HidKeyboard class
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_REPORT) {
         WORD buffer[2];
@@ -144,6 +174,11 @@ void ControlEndpoint::OnSetup() {
         if(wLength < length)
             length = wLength;
         USBPhy::TransmitData(m_epnum, buffer, length);
+    } else if(bmRequestType == SET_CLASS_INTERFACE && bRequest == REQUEST_HID_SET_REPORT) {
+        // Postpone command processing until the following data fragment
+        // was received.
+        m_last_command = REQUEST_HID_SET_REPORT;
+        USBPhy::TransmitData(m_epnum, 0, 0);
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_IDLE) {
         WORD buffer[1] = { 0 };
         buffer[0] = ep1.get_idle();
@@ -158,30 +193,18 @@ void ControlEndpoint::OnSetup() {
         }
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_PROTOCOL) {
         WORD buffer[1] = { 0 };
+        // XXX: 0 == boot protocol, 1 == report protocol
         // TODO: implement action
         USBPhy::TransmitData(m_epnum, buffer, 1);
     } else if(bmRequestType == SET_CLASS_INTERFACE && bRequest == REQUEST_HID_SET_PROTOCOL) {
         // TODO: implement action
+        // XXX: switch between boot and report protocol
         USBPhy::TransmitData(m_epnum, 0, 0);
     } else {
         // Unknown request
-        //SimpleUart::Write('x');
+        //Uart6.write('x');
         USBPhy::TransmitStall(m_epnum);
     }
-
-    m_bufferPos = 0;
-    // XXX: just in case
-    m_buffer.w[0] = 0;
-    m_buffer.w[1] = 0;
-    m_buffer.w[2] = 0;
-    m_buffer.w[3] = 0;
-
-    USBPhy::PrepareRX(m_epnum);
-    //SimpleUart::Write('0');
-}
-
-void ControlEndpoint::OnTransmit() {
-    //SimpleUart::Write('T');
 }
 
 void ControlEndpoint::EnableAppEndpoints() {

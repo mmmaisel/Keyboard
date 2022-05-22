@@ -249,8 +249,7 @@ void USBPhy::ISR() {
     }
     if(cause & RXFLVL) {
         //SimpleUart::Write('x');
-        // XXX: setup packet must be decoded in OEP STUP interrupt,
-        //   FIFO POP must stay here
+        // setup packet must be decoded in OEP STUP interrupt, FIFO POP must stay here
         // Read and pop status
         WORD rxstat = USB->GRXSTSP;
 
@@ -284,7 +283,7 @@ void USBPhy::ISR() {
         WORD ep_bits = USBDEV->DAINT;
         // get endpoint from ep_bits
         for(WORD num = 0, mask = (1 << 16); mask < (1 << 20); ++num, mask <<= 1) {
-            // TODO: XFRC interrupts are triggered when special values
+            // XFRC interrupts are triggered when special values
             // are popped from FIFO in RXFLVL interrupt
             if(ep_bits & mask) {
                 WORD cause2 = USB_OUTEP[num].DOEPINT & USBDEV->DOEPMSK;
@@ -307,7 +306,7 @@ void USBPhy::WakeupISR() {
 
     EXTI->PR |= (1 << EXTINUM_WAKEUP_USB);
 
-    // XXX: dedup PLL code
+    // TODO: dedup PLL code
     // Enable crystal
     RCC->CR |= HSEON;
     // PLL On

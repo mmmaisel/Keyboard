@@ -176,7 +176,11 @@ Uart::Uart(BYTE num, UartHandler* handler) :
 
 }
 
-void Uart::write(BYTE* buffer, BYTE length) {
+void Uart::write(BYTE data) {
+    write(&data, 1);
+}
+
+void Uart::write(const BYTE* buffer, BYTE length) {
     using namespace dev;
     using namespace dev::dma;
 

@@ -65,6 +65,7 @@ class ControlEndpoint : public USBEndpoint {
             REQUEST_HID_GET_REPORT = 1,
             REQUEST_HID_GET_IDLE = 2,
             REQUEST_HID_GET_PROTOCOL = 3,
+            REQUEST_HID_SET_REPORT = 9,
             REQUEST_HID_SET_IDLE = 10,
             REQUEST_HID_SET_PROTOCOL = 11
         };
@@ -75,12 +76,16 @@ class ControlEndpoint : public USBEndpoint {
             APP_STATUS = 0x00000000 // no wakeup, bus powered
         };
 
+        static const BYTE SETUP_PKT_WSIZE = 2;
+
     protected:
         virtual void OnReceive() override;
         virtual void OnSetup() override;
         virtual void OnTransmit() override;
 
     private:
+        BYTE m_last_command;
+        void HandleSetup(const Buffer<BUFFER_SIZE>& buffer);
         static void EnableAppEndpoints();
 };
 extern ControlEndpoint ep0;

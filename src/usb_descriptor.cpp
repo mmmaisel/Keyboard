@@ -127,6 +127,15 @@ HidReportDescriptor0 HID_REPORT_DESCRIPTOR = {
     0x75, 0x08,                    //   REPORT_SIZE (8)
     0x95, 0x06,                    //   REPORT_COUNT (6)
     0x81, 0x00,                    //   INPUT (Data,Ary,Abs)
+    0x95, 0x03,                    //   REPORT_COUNT (3),
+    0x75, 0x01,                    //   REPORT_SIZE (1),
+    0x05, 0x08,                    //   USAGE_PAGE (LEDs),
+    0x19, 0x01,                    //   USAGE_MINIMUM (Num Lock),
+    0x29, 0x03,                    //   USAGE_MAXIMUM (Scroll Lock),
+    0x91, 0x02,                    //   OUTPUT (Data,Var,Abs),
+    0x95, 0x05,                    //   REPORT_COUNT (5),
+    0x75, 0x01,                    //   REPORT_SIZE (1),
+    0x91, 0x01,                    //   OUTPUT (Cnst,Ary,Abs),
     0xc0                           // END_COLLECTION
 };
 

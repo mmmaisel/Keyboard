@@ -208,6 +208,13 @@ void LedMatrix::initialize() {
     NVIC->PRI[isrnum::TIM2]  = 0x09;
 }
 
+void LedMatrix::set_led(BYTE row, BYTE column, BYTE red, BYTE green, BYTE blue) {
+    // XXX; needs sync
+    m_phases[3*row][column] = red;
+    m_phases[3*row+1][column] = green;
+    m_phases[3*row+2][column] = blue;
+}
+
 void LedMatrix::ISR() {
     using namespace dev;
     using namespace dev::timer;

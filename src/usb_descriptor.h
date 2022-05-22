@@ -135,7 +135,7 @@ struct __attribute__((__packed__)) HidDescriptor {
 };
 
 struct __attribute__((__packed__)) HidReportDescriptor0 {
-    BYTE report[46];
+    BYTE report[64];
 };
 
 struct __attribute__((__packed__)) KeyboardBootHidReport {

@@ -55,7 +55,8 @@ class Uart
         explicit Uart(BYTE num, UartHandler* handler);
         ~Uart() {}
 
-        void write(BYTE* buffer, BYTE length);
+        void write(BYTE data);
+        void write(const BYTE* buffer, BYTE length);
         void read(BYTE* buffer, BYTE length);
 
     private:
