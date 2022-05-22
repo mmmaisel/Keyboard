@@ -35,6 +35,8 @@ LedMatrix::Pin LedMatrix::m_rows[MAX_DIM] = {0};
 LedMatrix::Pin LedMatrix::m_columns[MAX_DIM] = {0};
 BYTE LedMatrix::m_phases[MAX_DIM][MAX_DIM] = {0};
 
+const LedCoordinate* LedMatrix::m_layout;
+
 void LedMatrix::initialize() {
     using namespace dev;
     using namespace dev::rcc;
@@ -53,6 +55,8 @@ void LedMatrix::initialize() {
             GPIOB->clear_odr(LVEN);
             GPIOD->set_odr(LC1|LC2|LC3|LC4|LC5|LC6|LC7|LC8|LC9);
             GPIOE->clear_odr(LR1|LR2|LR3|LR4|LR5|LR6|LR7|LR8|LR9|LR10|LR11|LR12|LR13|LR14|LR15);
+
+            m_layout = LED_LAYOUT_RIGHT;
 
             m_row_count = 15;
             m_rows[0] = Pin { .port = GPIOE, .pin = LR1 };
@@ -96,6 +100,8 @@ void LedMatrix::initialize() {
             GPIOA->clear_odr(LR1|LR2|LR3);
             GPIOB->clear_odr(LVEN|LR4|LR5|LR6|LR7|LR8|LR9|LR10|LR11|LR12);
 
+            m_layout = LED_LAYOUT_LEFT;
+
             m_row_count = 12;
             m_rows[0] = Pin { .port = GPIOA, .pin = LR1 };
             m_rows[1] = Pin { .port = GPIOA, .pin = LR2 };
@@ -133,6 +139,8 @@ void LedMatrix::initialize() {
             GPIOA->set_odr(LC1|LC2|LC3|LC4|LC5);
             GPIOB->clear_odr(LVEN|LR1|LR2|LR3|LR4|LR5|LR6|LR7|LR8|LR9);
 
+            m_layout = LED_LAYOUT_NAV;
+
             m_row_count = 9;
             m_rows[0] = Pin { .port = GPIOB, .pin = LR1 };
             m_rows[1] = Pin { .port = GPIOB, .pin = LR2 };
@@ -163,6 +171,8 @@ void LedMatrix::initialize() {
             GPIOA->clear_odr(LR1|LR2|LR3|LR4|LR5|LR6|LR7|LR8|LR9);
             GPIOB->clear_odr(LVEN);
             GPIOB->set_odr(LC1|LC2|LC3|LC4|LC5|LC6);
+
+            m_layout = LED_LAYOUT_NUM;
 
             m_row_count = 9;
             m_rows[0] = Pin { .port = GPIOA, .pin = LR1 };
@@ -208,8 +218,11 @@ void LedMatrix::initialize() {
     NVIC->PRI[isrnum::TIM2]  = 0x09;
 }
 
-void LedMatrix::set_led(BYTE row, BYTE column, BYTE red, BYTE green, BYTE blue) {
-    // XXX; needs sync
+void LedMatrix::set_led(BYTE keycode, BYTE red, BYTE green, BYTE blue) {
+    // XXX: needs sync?
+    BYTE row = m_layout[keycode].row;
+    BYTE column = m_layout[keycode].column;
+
     m_phases[3*row][column] = red;
     m_phases[3*row+1][column] = green;
     m_phases[3*row+2][column] = blue;

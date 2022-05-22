@@ -188,7 +188,7 @@ namespace keycodes {
     };
 }
 
-extern const BYTE LAYOUT_RIGHT[16][16];
-extern const BYTE LAYOUT_LEFT[16][16];
-extern const BYTE LAYOUT_NUM[16][16];
-extern const BYTE LAYOUT_NAV[16][16];
+extern const BYTE KEY_LAYOUT_RIGHT[16][16];
+extern const BYTE KEY_LAYOUT_LEFT[16][16];
+extern const BYTE KEY_LAYOUT_NUM[16][16];
+extern const BYTE KEY_LAYOUT_NAV[16][16];

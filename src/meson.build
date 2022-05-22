@@ -5,6 +5,7 @@ srcs = [
   'main.cpp',
   'inttable.c',
   'led_matrix.cpp',
+  'led_layout.cpp',
   'key_matrix.cpp',
   'key_layout.cpp',
   'hid_keyboard_endpoint.cpp',

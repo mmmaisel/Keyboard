@@ -52,7 +52,7 @@ void ControlEndpoint::OnReceive() {
         BYTE red = leds & (1 << 2) ? 16: 0; // num
         BYTE green = leds & (1 << 1) ? 4 : 0; // caps
         BYTE blue = leds & (1 << 0) ? 4 : 0; // scroll
-        LedMatrix::set_led(3, 4, red, green, blue);
+        LedMatrix::set_led(52, red, green, blue);
         m_last_command = 0;
     }
 

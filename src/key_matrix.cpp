@@ -60,7 +60,7 @@ void KeyMatrix::initialize() {
             GPIOB->clear_odr(LVEN);
             GPIOC->set_odr(KC1|KC2|KC3|KC4|KC5|KC6);
 
-            m_key_layout = &LAYOUT_RIGHT[0][0];
+            m_key_layout = &KEY_LAYOUT_RIGHT[0][0];
 
             m_row_count = 7;
             m_rows[0] = Pin { .port = GPIOB, .pin = KR1 };
@@ -93,7 +93,7 @@ void KeyMatrix::initialize() {
             GPIOB->clear_odr(LVEN);
             GPIOC->set_odr(KC1|KC2|KC3|KC4|KC5|KC6);
 
-            m_key_layout = &LAYOUT_LEFT[0][0];
+            m_key_layout = &KEY_LAYOUT_LEFT[0][0];
 
             m_row_count = 7;
             m_rows[0] = Pin { .port = GPIOC, .pin = KR1 };
@@ -124,7 +124,7 @@ void KeyMatrix::initialize() {
             GPIOB->clear_odr(LVEN);
             GPIOC->set_odr(KC1|KC2|KC3);
 
-            m_key_layout = &LAYOUT_NAV[0][0];
+            m_key_layout = &KEY_LAYOUT_NAV[0][0];
 
             m_row_count = 5;
             m_rows[0] = Pin { .port = GPIOC, .pin = KR1 };
@@ -150,7 +150,7 @@ void KeyMatrix::initialize() {
             GPIOB->clear_odr(LVEN);
             GPIOC->set_odr(KC1|KC2|KC3|KC4);
 
-            m_key_layout = &LAYOUT_NUM[0][0];
+            m_key_layout = &KEY_LAYOUT_NUM[0][0];
 
             m_row_count = 5;
             m_rows[0] = Pin { .port = GPIOC, .pin = KR1 };

@@ -23,6 +23,8 @@
 #include "types.h"
 #include "dev/gpio.h"
 
+#include "led_layout.h"
+
 extern "C" void tim2_vector() __attribute__((error("calling ISR")));
 
 class LedMatrix {
@@ -36,7 +38,7 @@ class LedMatrix {
 
     public:
         static void initialize();
-        static void set_led(BYTE row, BYTE column, BYTE red, BYTE green, BYTE blue);
+        static void set_led(BYTE keycode, BYTE red, BYTE green, BYTE blue);
 
     private:
         static const BYTE MAX_DIM = 16;
@@ -54,6 +56,8 @@ class LedMatrix {
         static Pin m_rows[MAX_DIM];
         static Pin m_columns[MAX_DIM];
         static BYTE m_phases[MAX_DIM][MAX_DIM];
+
+        static const LedCoordinate* m_layout;
 
         static void ISR();
 };
