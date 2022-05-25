@@ -218,14 +218,18 @@ void LedMatrix::initialize() {
     NVIC->PRI[isrnum::TIM2]  = 0x09;
 }
 
-void LedMatrix::set_led(BYTE keycode, BYTE red, BYTE green, BYTE blue) {
+BYTE LedMatrix::set_led(Led led) {
     // XXX: needs sync?
-    BYTE row = m_layout[keycode].row;
-    BYTE column = m_layout[keycode].column;
+    BYTE row = m_layout[led.keycode].row;
+    BYTE column = m_layout[led.keycode].column;
 
-    m_phases[3*row][column] = red;
-    m_phases[3*row+1][column] = green;
-    m_phases[3*row+2][column] = blue;
+    if(row > MAX_DIM || column > MAX_DIM)
+        return 0;
+
+    m_phases[3*row][column] = led.red;
+    m_phases[3*row+1][column] = led.green;
+    m_phases[3*row+2][column] = led.blue;
+    return 1;
 }
 
 void LedMatrix::ISR() {

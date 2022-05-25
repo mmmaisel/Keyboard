@@ -37,8 +37,14 @@ class LedMatrix {
     friend void tim2_vector();
 
     public:
+        struct Led {
+            BYTE keycode;
+            BYTE red;
+            BYTE green;
+            BYTE blue;
+        };
         static void initialize();
-        static void set_led(BYTE keycode, BYTE red, BYTE green, BYTE blue);
+        static BYTE set_led(Led led);
 
     private:
         static const BYTE MAX_DIM = 16;

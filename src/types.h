@@ -39,3 +39,7 @@ typedef uint32_t    ULONG;
 
 typedef int64_t     BIG;
 typedef uint64_t    UBIG;
+
+inline constexpr BYTE operator "" _u8(unsigned long long arg) noexcept {
+    return static_cast<BYTE>(arg);
+}

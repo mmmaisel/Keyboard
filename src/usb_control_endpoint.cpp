@@ -49,10 +49,13 @@ void ControlEndpoint::OnReceive() {
     // Set Num / Caps / Scroll LEDs
     if(m_last_command == REQUEST_HID_SET_REPORT) {
         BYTE leds = m_buffer.b[8];
-        BYTE red = leds & (1 << 2) ? 16: 0; // num
-        BYTE green = leds & (1 << 1) ? 4 : 0; // caps
-        BYTE blue = leds & (1 << 0) ? 4 : 0; // scroll
-        LedMatrix::set_led(52, red, green, blue);
+        LedMatrix::Led led {
+            .keycode = 52,
+            .red = leds & (1 << 2) ? 16_u8: 0_u8, // num
+            .green = leds & (1 << 1) ? 4_u8 : 0_u8, // caps
+            .blue = leds & (1 << 0) ? 4_u8 : 0_u8, // scroll
+        };
+        LedMatrix::set_led(led);
         m_last_command = 0;
     }
 

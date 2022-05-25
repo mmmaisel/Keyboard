@@ -23,6 +23,7 @@
 #include "types.h"
 #include "uart_handler.h"
 #include "key_matrix.h"
+#include "led_matrix.h"
 
 class Uart;
 
@@ -36,10 +37,10 @@ class ModularKeyboard : public UartHandler {
         static const BYTE PAGE_COUNT = 4;
         static const BYTE BUFFER_SIZE = PAGE_COUNT * KeyMatrix::MAX_KEYS;
 
-        // XXX: implement key transmitter and led receiver
         virtual void OnReceive(Uart* uart, BYTE data) override;
         void update_keys(BYTE page, const BYTE* buffer);
         void get_keys(BYTE* buffer);
+        void set_led(LedMatrix::Led led);
 
     private:
         enum : BYTE {
