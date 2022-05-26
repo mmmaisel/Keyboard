@@ -52,6 +52,7 @@ void HidKeyboardEndpoint::send_report(const BYTE* keys) {
     USBPhy::TransmitData(m_epnum, buffer, 8);
 }
 
+// TODO: needs sync as soon as changing HID protocol is supported.
 void HidKeyboardEndpoint::make_report(BYTE* buffer, const BYTE* keys) {
     using namespace keycodes;
     memset(buffer, 0, 8);

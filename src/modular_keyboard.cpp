@@ -20,8 +20,11 @@
 \**********************************************************************/
 #include "modular_keyboard.h"
 #include "module.h"
+#include "priority.h"
 #include "hid_keyboard_endpoint.h"
 #include "uart.h"
+
+#include "dev/core.h"
 
 #include <cstring>
 
@@ -74,9 +77,10 @@ void ModularKeyboard::update_keys(BYTE page, const BYTE* buffer) {
 }
 
 void ModularKeyboard::get_keys(BYTE* buffer) {
-    // XXX: needs sync: disable all uart rx ISRs and key matrix
     // XXX: process some fn keys on master
+    dev::set_basepri(priority::USB_KEY_REQUEST);
     memcpy(buffer, &m_keys[0][0], BUFFER_SIZE);
+    dev::set_basepri(priority::BASE);
 }
 
 void ModularKeyboard::set_led(LedMatrix::Led led) {

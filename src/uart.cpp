@@ -21,6 +21,7 @@
 #include "uart.h"
 
 #include "pinout.h"
+#include "priority.h"
 #include "module.h"
 #include "dev/core.h"
 #include "dev/dma.h"
@@ -66,8 +67,8 @@ Uart::Uart(BYTE num, UartHandler* handler) :
                 (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
             NVIC->enable_isr(isrnum::DMA2S2);
             NVIC->enable_isr(isrnum::DMA2S7);
-            NVIC->PRI[isrnum::DMA2S2] = 0x09;
-            NVIC->PRI[isrnum::DMA2S7] = 0x09;
+            NVIC->set_priority(isrnum::DMA2S2, priority::UART);
+            NVIC->set_priority(isrnum::DMA2S7, priority::UART);
         }
         {
             using namespace dev::usart;
@@ -79,7 +80,7 @@ Uart::Uart(BYTE num, UartHandler* handler) :
             m_uart->CR3 |= DMAT;
             m_uart->CR1 |= UE | TE | RE | RXNEIE;
             NVIC->enable_isr(isrnum::USART1);
-            NVIC->PRI[isrnum::USART1] = 0x09;
+            NVIC->set_priority(isrnum::USART1, priority::UART);
         }
     } else if(num == 2) {
         // UART2 only exists on right module.
@@ -108,8 +109,8 @@ Uart::Uart(BYTE num, UartHandler* handler) :
                 (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
             NVIC->enable_isr(isrnum::DMA1S5);
             NVIC->enable_isr(isrnum::DMA1S6);
-            NVIC->PRI[isrnum::DMA1S5] = 0x09;
-            NVIC->PRI[isrnum::DMA1S6] = 0x09;
+            NVIC->set_priority(isrnum::DMA1S5, priority::UART);
+            NVIC->set_priority(isrnum::DMA1S6, priority::UART);
         }
         {
             using namespace dev::usart;
@@ -121,7 +122,7 @@ Uart::Uart(BYTE num, UartHandler* handler) :
             m_uart->CR3 |= DMAT;
             m_uart->CR1 |= UE | TE | RE | RXNEIE;
             NVIC->enable_isr(isrnum::USART2);
-            NVIC->PRI[isrnum::USART2] = 0x09;
+            NVIC->set_priority(isrnum::USART2, priority::UART);
         }
     } else if(num == 6) {
         m_uart = USART6;
@@ -155,8 +156,8 @@ Uart::Uart(BYTE num, UartHandler* handler) :
                 (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
             NVIC->enable_isr(isrnum::DMA2S1);
             NVIC->enable_isr(isrnum::DMA2S6);
-            NVIC->PRI[isrnum::DMA2S1] = 0x09;
-            NVIC->PRI[isrnum::DMA2S6] = 0x09;
+            NVIC->set_priority(isrnum::DMA2S1, priority::UART);
+            NVIC->set_priority(isrnum::DMA2S6, priority::UART);
         }
         {
             using namespace dev::usart;
@@ -168,7 +169,7 @@ Uart::Uart(BYTE num, UartHandler* handler) :
             m_uart->CR3 |= DMAT;
             m_uart->CR1 |= UE | TE | RE | RXNEIE;
             NVIC->enable_isr(isrnum::USART6);
-            NVIC->PRI[isrnum::USART6] = 0x09;
+            NVIC->set_priority(isrnum::USART6, priority::UART);
         }
     } else {
         asm volatile(" svc 1");

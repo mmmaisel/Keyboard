@@ -44,6 +44,7 @@
 #include "dev/pwr.h"
 #include "dev/rcc.h"
 #include "module.h"
+#include "priority.h"
 
 extern void main();
 
@@ -154,6 +155,8 @@ extern "C" {
         // cppcheck-suppress[comparePointers]
         for(ctorPtr* ctor = &__init_array_start__; ctor < &__init_array_end__; ++ctor)
             (*ctor)();
+
+        set_basepri(priority::BASE);
 
         // Call main
         main();

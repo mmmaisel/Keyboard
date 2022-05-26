@@ -54,6 +54,20 @@ namespace dev {
         CP11_ACC_FULL = 0x00C00000
     };
 
+    // 4 left aligned priority bits are implemented on STM32F401.
+    const WORD NVIC_PRIORITY_POS = 4;
+
+    inline WORD get_basepri() {
+        WORD pri;
+        asm volatile("mrs %[pri], basepri" : [pri]"=r"(pri));
+        return pri >> NVIC_PRIORITY_POS;
+    }
+
+    inline void set_basepri(WORD pri) {
+        pri <<= NVIC_PRIORITY_POS;
+        asm volatile("msr basepri, %[pri]" : : [pri]"r"(pri));
+    }
+
     struct NvicStruct {
         WORD EN[8];
         WORD _unused0[24];
@@ -75,6 +89,10 @@ namespace dev {
 
         inline void disable_isr(BYTE num) volatile {
             EN[num / 32] = (1 << (num % 32));
+        }
+
+        inline void set_priority(BYTE num, BYTE pri) volatile {
+            PRI[num] = pri << NVIC_PRIORITY_POS;
         }
     };
 

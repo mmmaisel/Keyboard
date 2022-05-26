@@ -23,6 +23,7 @@
 #include "modular_keyboard.h"
 
 #include "pinout.h"
+#include "priority.h"
 #include "module.h"
 #include "dev/core.h"
 #include "dev/gpio.h"
@@ -179,7 +180,7 @@ void KeyMatrix::initialize() {
 
     // Enable Timer interrupt
     NVIC->enable_isr(isrnum::TIM3);
-    NVIC->PRI[isrnum::TIM3]  = 0x09;
+    NVIC->set_priority(isrnum::TIM3, priority::KEY_MATRIX);
 }
 
 void KeyMatrix::ISR() {

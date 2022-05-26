@@ -21,6 +21,7 @@
 #include "led_matrix.h"
 
 #include "pinout.h"
+#include "priority.h"
 #include "module.h"
 #include "dev/core.h"
 #include "dev/gpio.h"
@@ -196,14 +197,6 @@ void LedMatrix::initialize() {
         }
     }
 
-    // XXX: Some test values
-    m_phases[8][3] = 4;
-    m_phases[7][1] = 1;
-    m_phases[11][3] = 4;
-    m_phases[9][4] = 4;
-    m_phases[10][4] = 4;
-    m_phases[11][4] = 4;
-
     // Configure 16 kHz timer
     // Timer clock is divided by 2 again if APB1_DIV != 1
     RCC->APB1ENR |= TIM2EN;
@@ -215,11 +208,10 @@ void LedMatrix::initialize() {
 
     // Enable Timer interrupt
     NVIC->enable_isr(isrnum::TIM2);
-    NVIC->PRI[isrnum::TIM2]  = 0x09;
+    NVIC->set_priority(isrnum::TIM2, priority::LED_MATRIX);
 }
 
 BYTE LedMatrix::set_led(Led led) {
-    // XXX: needs sync?
     BYTE row = m_layout[led.keycode].row;
     BYTE column = m_layout[led.keycode].column;
 

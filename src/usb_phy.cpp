@@ -27,6 +27,7 @@
 #include "dev/usb.h"
 #include "usb_endpoint.h"
 #include "pinout.h"
+#include "priority.h"
 
 using namespace dev;
 using namespace dev::core;
@@ -50,11 +51,11 @@ void USBPhy::Initialize() {
 
     // Enable USB interrupt
     NVIC->enable_isr(isrnum::USB);
-    NVIC->PRI[isrnum::USB]  = 0x10;
+    NVIC->set_priority(isrnum::USB, priority::USB);
 
     // Enable USB wakeup interrupt
     NVIC->enable_isr(isrnum::USB_WAKEUP);
-    NVIC->PRI[isrnum::USB_WAKEUP]  = 0x09;
+    NVIC->set_priority(isrnum::USB_WAKEUP, priority::USB);
 
     EXTI->IMR |= (1 << EXTINUM_WAKEUP_USB);
     EXTI->RTSR |= (1 << EXTINUM_WAKEUP_USB);
