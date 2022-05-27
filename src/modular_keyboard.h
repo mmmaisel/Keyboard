@@ -52,6 +52,8 @@ class ModularKeyboard : public UartHandler {
 
         BYTE m_keys[PAGE_COUNT][KeyMatrix::MAX_KEYS];
 
+        void process_keys(BYTE* buffer);
+
         static void operator delete(void* __attribute__((unused)));
 };
 

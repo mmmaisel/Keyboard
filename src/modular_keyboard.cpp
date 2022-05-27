@@ -23,6 +23,7 @@
 #include "priority.h"
 #include "hid_keyboard_endpoint.h"
 #include "uart.h"
+#include "key_layout.h"
 
 #include "dev/core.h"
 
@@ -66,9 +67,11 @@ void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
 void ModularKeyboard::update_keys(BYTE page, const BYTE* buffer) {
     if(Module::get_id() == Module::RIGHT) {
         memcpy(m_keys[page], buffer, KeyMatrix::MAX_KEYS);
-        if(page == 0)
-            // XXX: process some fn keys on master before
+        if(page == 0) {
+            BYTE buffer[BUFFER_SIZE];
+            process_keys(buffer);
             ep1.send_report(&m_keys[0][0]);
+        }
     } else {
         BYTE buffer[KeyMatrix::MAX_KEYS+1];
         buffer[0] = MSG_KEYS | page;
@@ -78,10 +81,28 @@ void ModularKeyboard::update_keys(BYTE page, const BYTE* buffer) {
 }
 
 void ModularKeyboard::get_keys(BYTE* buffer) {
-    // XXX: process some fn keys on master
     dev::set_basepri(priority::USB_KEY_REQUEST);
-    memcpy(buffer, &m_keys[0][0], BUFFER_SIZE);
+    process_keys(buffer);
     dev::set_basepri(priority::BASE);
+}
+
+void ModularKeyboard::process_keys(BYTE* buffer) {
+    BYTE is_fn = 0;
+    BYTE fn_code = 0;
+    for(BYTE i = 0; i < BUFFER_SIZE; ++i) {
+        BYTE keycode = *(&m_keys[0][0]+i);
+        if(keycode == keycodes::KEY_FN)
+            is_fn = 1;
+        if(fn_code == 0)
+            fn_code = keycode;
+    }
+
+    if(is_fn) {
+        // TODO: process fn_code to keycode here
+        memset(buffer, 0, BUFFER_SIZE);
+    } else {
+        memcpy(buffer, &m_keys[0][0], BUFFER_SIZE);
+    }
 }
 
 void ModularKeyboard::set_led(LedMatrix::Led led) {

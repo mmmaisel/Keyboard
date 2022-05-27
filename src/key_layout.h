@@ -184,7 +184,9 @@ namespace keycodes {
         KEY_RIGHTCTRL = 228,
         KEY_RIGHTSHIFT = 229,
         KEY_RIGHTALT = 230,
-        KEY_RIGHTSUPER = 231
+        KEY_RIGHTSUPER = 231,
+
+        KEY_FN = 255
     };
 }
 
