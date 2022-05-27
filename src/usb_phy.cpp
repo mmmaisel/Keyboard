@@ -217,7 +217,7 @@ void USBPhy::ISR() {
     }
     if(cause & ENUMDNE) {
         // cppcheck-suppress[unreadVariable]
-        WORD _status = USBDEV->DSTS;
+        WORD _status __attribute__((unused)) = USBDEV->DSTS;
 
         // The hardware only supports full-speed mode
         //   => fixed max packet size of 64
@@ -229,7 +229,7 @@ void USBPhy::ISR() {
     if(cause & SOF) {
         // XXX: this is just for timesync and maybe high-speed devices
         // cppcheck-suppress[unreadVariable]
-        WORD _status = USBDEV->DSTS;
+        WORD _status __attribute__((unused)) = USBDEV->DSTS;
         USB->GINTSTS = SOF;
     }
     if(cause & OTGINT) {

@@ -72,7 +72,7 @@ void USBEndpoint::OnRxData(const volatile WORD* data, USHORT len) {
     USHORT wcnt = (len + 3) / 4;
     for(int i = 0; i < wcnt; ++i) {
         if(m_bufferPos == BUFFER_SIZE)
-            WORD _dummy = *data;
+            WORD _dummy __attribute__((unused)) = *data;
         else
             m_buffer.w[m_bufferPos++] = *data;
     };
