@@ -59,10 +59,10 @@ Uart::Uart(BYTE num, UartHandler* handler) :
 
         {
             using namespace dev::dma;
-            m_dma->STREAM[m_rx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_rx_stream].PAR = &m_uart->DR;
             m_dma->STREAM[m_rx_stream].CR = (4 << CHSEL_POS) | (1 << PL_POS) |
                 (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_P2M | TCIE;
-            m_dma->STREAM[m_tx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_tx_stream].PAR = &m_uart->DR;
             m_dma->STREAM[m_tx_stream].CR = (4 << CHSEL_POS) | (1 << PL_POS) |
                 (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
             NVIC->enable_isr(isrnum::DMA2S2);
@@ -101,10 +101,10 @@ Uart::Uart(BYTE num, UartHandler* handler) :
 
         {
             using namespace dev::dma;
-            m_dma->STREAM[m_rx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_rx_stream].PAR = &m_uart->DR;
             m_dma->STREAM[m_rx_stream].CR = (4 << CHSEL_POS) | (1 << PL_POS) |
                 (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_P2M | TCIE;
-            m_dma->STREAM[m_tx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_tx_stream].PAR = &m_uart->DR;
             m_dma->STREAM[m_tx_stream].CR = (4 << CHSEL_POS) | (1 << PL_POS) |
                 (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
             NVIC->enable_isr(isrnum::DMA1S5);
@@ -148,10 +148,10 @@ Uart::Uart(BYTE num, UartHandler* handler) :
 
         {
             using namespace dev::dma;
-            m_dma->STREAM[m_rx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_rx_stream].PAR = &m_uart->DR;
             m_dma->STREAM[m_rx_stream].CR = (5 << CHSEL_POS) | (1 << PL_POS) |
                 (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_P2M | TCIE;
-            m_dma->STREAM[m_tx_stream].PAR = (WORD)&m_uart->DR;
+            m_dma->STREAM[m_tx_stream].PAR = &m_uart->DR;
             m_dma->STREAM[m_tx_stream].CR = (5 << CHSEL_POS) | (1 << PL_POS) |
                 (0 << MSIZE_POS) | (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
             NVIC->enable_isr(isrnum::DMA2S1);
@@ -191,7 +191,7 @@ void Uart::write(const BYTE* buffer, BYTE length) {
         length = BUFFER_SIZE;
     memcpy(m_tx_buffer, buffer, length);
 
-    m_dma->STREAM[m_tx_stream].M0AR = (WORD)m_tx_buffer;
+    m_dma->STREAM[m_tx_stream].M0AR = reinterpret_cast<WORD*>(m_tx_buffer);
     m_dma->STREAM[m_tx_stream].NDTR = length;
     m_dma->STREAM[m_tx_stream].CR |= EN;
 }
@@ -203,7 +203,7 @@ void Uart::read(BYTE* buffer, BYTE length) {
     m_rx = 1;
     m_uart->CR1 &= ~RXNEIE;
     m_uart->CR3 |= DMAR;
-    m_dma->STREAM[m_rx_stream].M0AR = (WORD)buffer;
+    m_dma->STREAM[m_rx_stream].M0AR = reinterpret_cast<WORD*>(buffer);
     m_dma->STREAM[m_rx_stream].NDTR = length;
     m_dma->STREAM[m_rx_stream].CR |= dma::EN;
 

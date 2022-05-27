@@ -94,9 +94,9 @@ namespace dev {
     struct DmaStreamStruct {
         WORD CR;
         WORD NDTR;
-        WORD PAR;
-        WORD M0AR;
-        WORD M1AR;
+        volatile WORD* PAR;
+        volatile WORD* M0AR;
+        volatile WORD* M1AR;
         WORD FCR;
     };
 

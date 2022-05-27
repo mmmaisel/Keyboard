@@ -121,7 +121,8 @@ void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
             USHORT length = pDescriptor->length;
             if(wLength < length)
                 length = wLength;
-            USBPhy::TransmitData(m_epnum, (WORD*)pDescriptor->data, length);
+            USBPhy::TransmitData(
+                m_epnum, reinterpret_cast<WORD*>(pDescriptor->data), length);
             //Uart6.write('D');
         } else {
             //SimpleUart::Write('z');
@@ -173,7 +174,7 @@ void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
         BYTE keys[ModularKeyboard::BUFFER_SIZE];
         BYTE length = 8;
         keyboard.get_keys(keys);
-        HidKeyboardEndpoint::make_report((BYTE*)buffer, keys);
+        HidKeyboardEndpoint::make_report(reinterpret_cast<BYTE*>(buffer), keys);
         if(wLength < length)
             length = wLength;
         USBPhy::TransmitData(m_epnum, buffer, length);

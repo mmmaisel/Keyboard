@@ -46,7 +46,7 @@ void HidKeyboardEndpoint::send_report(const BYTE* keys) {
         return;
 
     WORD buffer[2];
-    make_report((BYTE*)buffer, keys);
+    make_report(reinterpret_cast<BYTE*>(buffer), keys);
     m_transmitting = 1;
 
     USBPhy::TransmitData(m_epnum, buffer, 8);

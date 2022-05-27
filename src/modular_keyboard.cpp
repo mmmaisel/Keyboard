@@ -54,7 +54,8 @@ void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
         case MSG_LEDS: {
             BYTE length = data & MSG_PAGE_MASK;
             LedMatrix::Led leds[16];
-            uart->read((BYTE*)leds, length*sizeof(LedMatrix::Led));
+            uart->read(
+                reinterpret_cast<BYTE*>(leds), length*sizeof(LedMatrix::Led));
             for(BYTE i = 0; i < length; ++i)
                 LedMatrix::set_led(leds[i]);
             break;

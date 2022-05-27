@@ -141,7 +141,7 @@ HidReportDescriptor0 HID_REPORT_DESCRIPTOR = {
 
 // XXX: pad descriptors to word boundaries to avoid leaking memory
 #define DESCRIPTOR_ENTRY(descriptor, type) \
-    { sizeof(descriptor), DESCRIPTOR_TYPE_ ## type, (BYTE*)&descriptor }
+    { sizeof(descriptor), DESCRIPTOR_TYPE_ ## type, reinterpret_cast<BYTE*>(&descriptor) }
 
 static const Descriptor DESCRIPTORS[] = {
     // Descriptors of the same type must be ordered as they are
