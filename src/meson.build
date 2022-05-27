@@ -1,4 +1,4 @@
-project('Keyboard', ['c', 'cpp'])
+project('Keyboard', ['c', 'cpp'], default_options: ['buildtype=minsize'])
 target = 'Keyboard'
 
 srcs = [
