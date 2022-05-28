@@ -79,8 +79,7 @@ void USBPhy::Initialize() {
 }
 
 void USBPhy::PrepareRX(BYTE epnum) {
-    // XXX: setup packets are handled separately
-    // XXX: this must be done after each transfer
+    // This must be done after each transfer
     USB_OUTEP[epnum].DOEPTSIZ &= ~0x0000007F;
     USB_OUTEP[epnum].DOEPTSIZ |= (1 << PKTCNT_POS) | (PKT_SIZE << XFRSIZ_POS) | RXPID_MDATA;
     USB_OUTEP[epnum].DOEPCTL |= EPENA | CNAK;
@@ -227,7 +226,7 @@ void USBPhy::ISR() {
     }
     // TODO: disable this interrupt
     if(cause & SOF) {
-        // XXX: this is just for timesync and maybe high-speed devices
+        // This is just for timesync and maybe high-speed devices
         // cppcheck-suppress[unreadVariable]
         WORD _status __attribute__((unused)) = USBDEV->DSTS;
         USB->GINTSTS = SOF;
@@ -270,9 +269,9 @@ void USBPhy::ISR() {
             if(ep_bits & mask) {
                 WORD cause2 = USB_INEP[num].DIEPINT & USBDEV->DIEPMSK;
                 USBDEV->DIEPEMPMSK &= ~(1 << num);
+                // XFRC is relevant for setup and empty ack packets
                 if(cause2 & XFRC)
                     eps[num]->OnTransmit();
-                // TODO: relevant: XFRC (for empty ack packet)
                 // TODO: TXFE ISR is optional here
                 //else if(cause2 & USB_OTG_DIEPINT_ITTXFE)
                 //    ;
