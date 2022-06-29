@@ -2769,20 +2769,20 @@
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e1b/00000000-0000-0000-0000-00005f5b4551"
       (reference "#FLG02000") (unit 1) (value "PWR_FLAG") (footprint "")
     )
-    (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e1b/00000000-0000-0000-0000-00005f5978c0"
-      (reference "#FLG02001") (unit 1) (value "PWR_FLAG") (footprint "")
+    (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e1b/628d2148-0ae5-4078-ab31-a8fabeb5319e"
+      (reference "#FLG02101") (unit 1) (value "PWR_FLAG") (footprint "")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee65a2/00000000-0000-0000-0000-00005f5bba2a"
       (reference "#FLG03000") (unit 1) (value "PWR_FLAG") (footprint "")
     )
-    (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee65a2/00000000-0000-0000-0000-00005f59e6a5"
-      (reference "#FLG03001") (unit 1) (value "PWR_FLAG") (footprint "")
+    (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee65a2/25f2f329-297a-4886-9ba7-ec19b34196b2"
+      (reference "#FLG03102") (unit 1) (value "PWR_FLAG") (footprint "")
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0c44/00000000-0000-0000-0000-00005f5c9732"
       (reference "#FLG04000") (unit 1) (value "PWR_FLAG") (footprint "")
     )
-    (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0c44/00000000-0000-0000-0000-00005f5a5976"
-      (reference "#FLG04001") (unit 1) (value "PWR_FLAG") (footprint "")
+    (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0c44/01a6d727-4c9b-461a-b974-f6cc2f34c6ff"
+      (reference "#FLG04103") (unit 1) (value "PWR_FLAG") (footprint "")
     )
     (path "/00000000-0000-0000-0000-00005efbd359"
       (reference "#PWR0101") (unit 1) (value "GND") (footprint "")
@@ -2952,6 +2952,9 @@
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f163059/00000000-0000-0000-0000-00005e7ca771"
       (reference "#PWR01312") (unit 1) (value "GND") (footprint "")
     )
+    (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f163059/4a16e6f8-3500-44d4-8fa7-89cd5670ecf3"
+      (reference "#PWR01313") (unit 1) (value "VDD_3V3") (footprint "")
+    )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/00000000-0000-0000-0000-00005f37dab1"
       (reference "#PWR01400") (unit 1) (value "VDD_5V0") (footprint "")
     )
@@ -3045,9 +3048,6 @@
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e1b/00000000-0000-0000-0000-00005ef1f05d"
       (reference "#PWR02013") (unit 1) (value "VDD_5V0_2") (footprint "")
     )
-    (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e1b/00000000-0000-0000-0000-00005ef232be"
-      (reference "#PWR02014") (unit 1) (value "VDD_3V3_2") (footprint "")
-    )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e1b/00000000-0000-0000-0000-00005ef13a9d"
       (reference "#PWR02015") (unit 1) (value "GND") (footprint "")
     )
@@ -3083,6 +3083,12 @@
     )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e9d/00000000-0000-0000-0000-00005ef6d66c"
       (reference "#PWR02109") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e1b/84edc70c-f9b8-44ad-a28c-eb22f04170ac"
+      (reference "#PWR02110") (unit 1) (value "VDD_3V3_2") (footprint "")
+    )
+    (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e9d/b82c152f-b398-461b-83d2-3539c91c41bc"
+      (reference "#PWR02111") (unit 1) (value "VDD_3V3_2") (footprint "")
     )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e62/00000000-0000-0000-0000-00005f2b6432"
       (reference "#PWR02200") (unit 1) (value "VDD_5V0_2") (footprint "")
@@ -3197,6 +3203,9 @@
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee65df/00000000-0000-0000-0000-00005f897f23"
       (reference "#PWR03109") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee65df/d103ddc0-dcb8-410e-a929-9b60f116dc25"
+      (reference "#PWR03112") (unit 1) (value "VDD_3V3_3") (footprint "")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/00000000-0000-0000-0000-00005f83bcf3"
       (reference "#PWR03200") (unit 1) (value "VDD_5V0_3") (footprint "")
@@ -3314,6 +3323,9 @@
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0c81/00000000-0000-0000-0000-00005f37d7c2"
       (reference "#PWR04109") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0c81/b8dfb7ff-49f2-4ceb-91a8-50a53842690f"
+      (reference "#PWR04113") (unit 1) (value "VDD_3V3_4") (footprint "")
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0be4/00000000-0000-0000-0000-00005f951108"
       (reference "#PWR04201") (unit 1) (value "GND") (footprint "")
@@ -4551,6 +4563,18 @@
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f002e30"
       (reference "P1000") (unit 1) (value "Current-Probe") (footprint "Keyboard:Current-Probe-2.54")
     )
+    (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f11f966/e27425e9-c370-403a-8bca-eeb3ff71f82b"
+      (reference "P1001") (unit 1) (value "Current-Probe") (footprint "Keyboard:Current-Probe-2.54")
+    )
+    (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e1b/ce96b8d4-6559-4e3b-910f-fe08cdbde849"
+      (reference "P2000") (unit 1) (value "Current-Probe") (footprint "Keyboard:Current-Probe-2.54")
+    )
+    (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee65a2/6865eff2-8d4c-490d-9f7b-b0e953360c9e"
+      (reference "P3000") (unit 1) (value "Current-Probe") (footprint "Keyboard:Current-Probe-2.54")
+    )
+    (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0c44/df1616f7-7900-4532-88d9-0eb0b7ac0f16"
+      (reference "P4000") (unit 1) (value "Current-Probe") (footprint "Keyboard:Current-Probe-2.54")
+    )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/00000000-0000-0000-0000-00005f298b3d"
       (reference "Q1400") (unit 1) (value "DTA114E") (footprint "Keyboard:SC-75")
     )
@@ -4803,6 +4827,9 @@
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f163059/90d43c39-430f-4a8b-b284-f74a636fd845"
       (reference "R1303") (unit 1) (value "100R") (footprint "Keyboard:R_0402")
     )
+    (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f163059/1a6a211e-b360-43c6-b8b7-274c0fad3d45"
+      (reference "R1304") (unit 1) (value "10.0kR") (footprint "Keyboard:R_0402")
+    )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/0b841f8f-fa69-4ac8-81ba-d23fb0551660"
       (reference "R1400") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
@@ -4869,6 +4896,9 @@
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e9d/10fc24d2-d2b1-4575-92e6-e14a2534a512"
       (reference "R2101") (unit 1) (value "100R") (footprint "Keyboard:R_0402")
     )
+    (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e9d/ae150ae5-009b-44cb-8855-efa613a28d7f"
+      (reference "R2102") (unit 1) (value "10.0kR") (footprint "Keyboard:R_0402")
+    )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e62/c11e57a2-69ff-4d0f-8fe5-b4f5af23ad95"
       (reference "R2200") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
@@ -4916,6 +4946,9 @@
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee65df/5d131662-23c3-4049-91d4-51f9c07d5deb"
       (reference "R3101") (unit 1) (value "100R") (footprint "Keyboard:R_0402")
+    )
+    (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee65df/ddca4730-fbe0-4753-af30-88f71c11a0c2"
+      (reference "R3102") (unit 1) (value "10.0kR") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/8b7ee6bf-1b62-4e79-ace4-09b84c7c3d98"
       (reference "R3200") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
@@ -4973,6 +5006,9 @@
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0c81/024f0c45-b743-4877-9a8e-5ce187d5f02e"
       (reference "R4101") (unit 1) (value "100R") (footprint "Keyboard:R_0402")
+    )
+    (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0c81/4f810914-ef9f-48bc-a0b2-d90a92af8626"
+      (reference "R4102") (unit 1) (value "10.0kR") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0be4/5f4c54fb-f578-4d10-9cbd-de188c9c0774"
       (reference "R4200") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
