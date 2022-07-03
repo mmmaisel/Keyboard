@@ -211,6 +211,14 @@ void LedMatrix::initialize() {
     NVIC->set_priority(isrnum::TIM2, priority::LED_MATRIX);
 }
 
+void LedMatrix::clear() {
+    for(BYTE row = 0; row < m_row_count; ++row) {
+        for(BYTE column = 0; column < m_column_count; ++column) {
+            m_phases[row][column] = 0;
+        }
+    }
+}
+
 BYTE LedMatrix::set_led(Led led) {
     BYTE row = m_layout[led.keycode].row;
     BYTE column = m_layout[led.keycode].column;
@@ -218,9 +226,9 @@ BYTE LedMatrix::set_led(Led led) {
     if(row > MAX_DIM || column > MAX_DIM)
         return 0;
 
-    m_phases[3*row][column] = led.red;
-    m_phases[3*row+1][column] = led.green;
-    m_phases[3*row+2][column] = led.blue;
+    m_phases[row][column] = led.blue;
+    m_phases[row+1][column] = led.green;
+    m_phases[row+2][column] = led.red;
     return 1;
 }
 

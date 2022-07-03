@@ -44,6 +44,7 @@ class LedMatrix {
             BYTE blue;
         };
         static void initialize();
+        static void clear();
         static BYTE set_led(Led led);
 
     private:
