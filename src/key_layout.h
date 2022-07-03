@@ -186,6 +186,11 @@ namespace keycodes {
         KEY_RIGHTALT = 230,
         KEY_RIGHTSUPER = 231,
 
+        LED_X = 250,
+        LED_Y = 251,
+        LED_SCROLL = 252,
+        LED_CAPSLOCK = 253,
+        LED_NUMLOCK = 254,
         KEY_FN = 255
     };
 }

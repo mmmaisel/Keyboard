@@ -26,6 +26,7 @@
 #include "hid_keyboard_endpoint.h"
 #include "modular_keyboard.h"
 
+#include "key_layout.h"
 #include "key_matrix.h"
 #include "led_matrix.h"
 #include "uart.h"
@@ -49,13 +50,38 @@ void ControlEndpoint::OnReceive() {
     // Set Num / Caps / Scroll LEDs
     if(m_last_command == REQUEST_HID_SET_REPORT) {
         BYTE leds = m_buffer.b[8];
-        LedMatrix::Led led {
-            .keycode = 52,
-            .red = leds & (1 << 2) ? 16_u8: 0_u8, // num
-            .green = leds & (1 << 1) ? 4_u8 : 0_u8, // caps
-            .blue = leds & (1 << 0) ? 4_u8 : 0_u8, // scroll
+        LedMatrix::Led led_on {
+            .red = 16,
+            .green = 0,
+            .blue = 0,
         };
-        LedMatrix::set_led(led);
+        LedMatrix::Led led_off {
+            .red = 0,
+            .green = 0,
+            .blue = 0,
+        };
+
+        if(leds & NUMLOCK_MASK) {
+            led_on.keycode = keycodes::LED_NUMLOCK;
+            LedMatrix::set_led(led_on);
+        } else {
+            led_off.keycode = keycodes::LED_NUMLOCK;
+            LedMatrix::set_led(led_off);
+        }
+        if(leds & CAPSLOCK_MASK) {
+            led_on.keycode = keycodes::LED_CAPSLOCK;
+            LedMatrix::set_led(led_on);
+        } else {
+            led_off.keycode = keycodes::LED_CAPSLOCK;
+            LedMatrix::set_led(led_off);
+        }
+        if(leds & SCROLL_MASK) {
+            led_on.keycode = keycodes::LED_SCROLL;
+            LedMatrix::set_led(led_on);
+        } else {
+            led_off.keycode = keycodes::LED_SCROLL;
+            LedMatrix::set_led(led_off);
+        }
         m_last_command = 0;
     }
 

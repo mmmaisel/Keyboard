@@ -70,7 +70,7 @@ const LedCoordinate LED_LAYOUT_RIGHT[LED_LAYOUT_SIZE] = {
     {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA},
     // Row 15
     {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA},
-    {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {3, 4},
+    {NA, NA}, {NA, NA}, {NA, NA}, {NA, NA}, {6, 0},   {6, 8},   {6, 4},   {3, 4},
 };
 
 const LedCoordinate LED_LAYOUT_LEFT[LED_LAYOUT_SIZE] = {

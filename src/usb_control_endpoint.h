@@ -76,6 +76,12 @@ class ControlEndpoint : public USBEndpoint {
             APP_STATUS = 0x00000000 // no wakeup, bus powered
         };
 
+        enum {
+            NUMLOCK_MASK = (1 << 0),
+            CAPSLOCK_MASK = (1 << 1),
+            SCROLL_MASK = (1 << 2)
+        };
+
         static const BYTE SETUP_PKT_WSIZE = 2;
 
     protected:

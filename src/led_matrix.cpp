@@ -219,7 +219,7 @@ void LedMatrix::clear() {
     }
 }
 
-BYTE LedMatrix::set_led(Led led) {
+BYTE LedMatrix::set_led(const Led& led) {
     BYTE row = m_layout[led.keycode].row;
     BYTE column = m_layout[led.keycode].column;
 
@@ -238,8 +238,12 @@ void LedMatrix::ISR() {
 
     TIM2->SR &= ~UIF;
 
-    if(++m_phase == PHASE_COUNT)
-    {
+    if(++m_phase == PHASE_COUNT) {
+        for(BYTE column = 0; column < m_column_count; ++column) {
+            // disable all columns before row switch
+            m_columns[column].port->set_odr(m_columns[column].pin);
+        }
+
         // rows are high active
         m_rows[m_row].port->clear_odr(m_rows[m_row].pin);
         if(++m_row == m_row_count)
@@ -248,8 +252,7 @@ void LedMatrix::ISR() {
         m_phase = 0;
     }
 
-    for(BYTE column = 0; column < m_column_count; ++column)
-    {
+    for(BYTE column = 0; column < m_column_count; ++column) {
         if(m_phases[m_row][column] > m_phase)
             // columns are low active
             m_columns[column].port->clear_odr(m_columns[column].pin);
