@@ -93,7 +93,7 @@ void LedMatrix::initialize() {
             using namespace pinout::left;
             RCC->AHB1ENR |= GPIOAEN | GPIOBEN;
             GPIOA->MODER |= MODE_LC1 | MODE_LC2 | MODE_LC3 | MODE_LC4 | MODE_LC5 |
-                MODE_LC6 | MODE_LC7 | MODE_LC8 | MODE_LC8 | MODE_LC10 |
+                MODE_LC6 | MODE_LC7 | MODE_LC8 | MODE_LC9 | MODE_LC10 |
                 MODE_LR1 | MODE_LR2 | MODE_LR3;
             GPIOB->MODER |= MODE_LVEN | MODE_LR4 | MODE_LR5 | MODE_LR6 | MODE_LR7 |
                 MODE_LR8 | MODE_LR9 | MODE_LR10 | MODE_LR11 | MODE_LR12;
@@ -192,7 +192,7 @@ void LedMatrix::initialize() {
             m_columns[2] = Pin { .port = GPIOB, .pin = LC3 };
             m_columns[3] = Pin { .port = GPIOB, .pin = LC4 };
             m_columns[4] = Pin { .port = GPIOB, .pin = LC5 };
-            m_columns[4] = Pin { .port = GPIOB, .pin = LC6 };
+            m_columns[5] = Pin { .port = GPIOB, .pin = LC6 };
             break;
         }
     }

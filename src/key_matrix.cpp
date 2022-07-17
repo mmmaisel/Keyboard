@@ -52,14 +52,13 @@ void KeyMatrix::initialize() {
         case Module::RIGHT: {
             using namespace pinout::right;
             RCC->AHB1ENR |= GPIOBEN | GPIOCEN;
-            GPIOB->MODER |= MODE_LVEN | MODE_KR1 | MODE_KR2 | MODE_KR3 | MODE_KR4 |
+            GPIOB->MODER |= MODE_KR1 | MODE_KR2 | MODE_KR3 | MODE_KR4 |
                 MODE_KR5 | MODE_KR6 | MODE_KR7;
             GPIOC->MODER |= MODE_KC1 | MODE_KC2 | MODE_KC3 | MODE_KC4 | MODE_KC5 |
                 MODE_KC6;
             GPIOB->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5 |
                 PUPD_KR6 | PUPD_KR7;
-            GPIOB->clear_odr(LVEN);
-            GPIOC->set_odr(KC1|KC2|KC3|KC4|KC5|KC6);
+            GPIOC->clear_odr(KC1|KC2|KC3|KC4|KC5|KC6);
 
             m_key_layout = &KEY_LAYOUT_RIGHT[0][0];
 
@@ -85,14 +84,13 @@ void KeyMatrix::initialize() {
         case Module::LEFT: {
             using namespace pinout::left;
             RCC->AHB1ENR |= GPIOBEN | GPIOCEN;
-            GPIOB->MODER |= MODE_LVEN | MODE_KR7;
+            GPIOB->MODER |= MODE_KR7;
             GPIOC->MODER |= MODE_KC1 | MODE_KC2 | MODE_KC3 | MODE_KC4 | MODE_KC5 |
                 MODE_KC6 | MODE_KR1 | MODE_KR2 | MODE_KR3 | MODE_KR4 | MODE_KR5 |
                 MODE_KR6;
             GPIOC->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5 |
                 PUPD_KR6;
-            GPIOB->clear_odr(LVEN);
-            GPIOC->set_odr(KC1|KC2|KC3|KC4|KC5|KC6);
+            GPIOC->clear_odr(KC1|KC2|KC3|KC4|KC5|KC6);
 
             m_key_layout = &KEY_LAYOUT_LEFT[0][0];
 
@@ -118,12 +116,10 @@ void KeyMatrix::initialize() {
         case Module::NAV: {
             using namespace pinout::nav;
             RCC->AHB1ENR |= GPIOBEN | GPIOCEN;
-            GPIOB->MODER |= MODE_LVEN;
             GPIOC->MODER |= MODE_KC1 | MODE_KC2 | MODE_KC3 |
                 MODE_KR1 | MODE_KR2 | MODE_KR3 | MODE_KR4 | MODE_KR5;
             GPIOC->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5;
-            GPIOB->clear_odr(LVEN);
-            GPIOC->set_odr(KC1|KC2|KC3);
+            GPIOC->clear_odr(KC1|KC2|KC3);
 
             m_key_layout = &KEY_LAYOUT_NAV[0][0];
 
@@ -144,12 +140,10 @@ void KeyMatrix::initialize() {
         case Module::NUM: {
             using namespace pinout::num;
             RCC->AHB1ENR |= GPIOBEN | GPIOCEN;
-            GPIOB->MODER |= MODE_LVEN;
             GPIOC->MODER |= MODE_KC1 | MODE_KC2 | MODE_KC3 | MODE_KC4 |
                 MODE_KR1 | MODE_KR2 | MODE_KR3 | MODE_KR4 | MODE_KR5;
             GPIOC->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5;
-            GPIOB->clear_odr(LVEN);
-            GPIOC->set_odr(KC1|KC2|KC3|KC4);
+            GPIOC->clear_odr(KC1|KC2|KC3|KC4);
 
             m_key_layout = &KEY_LAYOUT_NUM[0][0];
 
