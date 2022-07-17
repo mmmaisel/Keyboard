@@ -223,7 +223,7 @@ BYTE LedMatrix::set_led(const Led& led) {
     BYTE row = m_layout[led.keycode].row;
     BYTE column = m_layout[led.keycode].column;
 
-    if(row > MAX_DIM || column > MAX_DIM)
+    if(row >= MAX_DIM-2 || column >= MAX_DIM)
         return 0;
 
     m_phases[row][column] = led.blue;

@@ -43,6 +43,8 @@ Uart::Uart(BYTE num, UartHandler* handler) :
     using namespace dev;
     using namespace dev::rcc;
 
+    memset(m_tx_buffer, 0, BUFFER_SIZE);
+
     if(num == 1) {
         m_uart = USART1;
         m_dma = DMA2;

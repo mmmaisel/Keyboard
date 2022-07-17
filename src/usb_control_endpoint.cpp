@@ -160,8 +160,8 @@ void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
         BYTE index = wValue;
         if(index == 0 && wLength == 1) {
             // There is only one interface, just send 0
-            WORD buffer[1] = {0};
-            USBPhy::TransmitData(m_epnum, buffer, 1);
+            WORD txbuf[1] = {0};
+            USBPhy::TransmitData(m_epnum, txbuf, 1);
         } else {
             // NAK all other interfaces
             //SimpleUart::Write('z');
@@ -196,23 +196,23 @@ void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
         USBPhy::TransmitData(m_epnum, 0, 0);
     // TODO: move hid stuff to HidKeyboard class
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_REPORT) {
-        WORD buffer[2];
+        WORD txbuf[2];
         BYTE keys[ModularKeyboard::BUFFER_SIZE];
         BYTE length = 8;
         keyboard.get_keys(keys);
-        HidKeyboardEndpoint::make_report(reinterpret_cast<BYTE*>(buffer), keys);
+        HidKeyboardEndpoint::make_report(reinterpret_cast<BYTE*>(txbuf), keys);
         if(wLength < length)
             length = wLength;
-        USBPhy::TransmitData(m_epnum, buffer, length);
+        USBPhy::TransmitData(m_epnum, txbuf, length);
     } else if(bmRequestType == SET_CLASS_INTERFACE && bRequest == REQUEST_HID_SET_REPORT) {
         // Postpone command processing until the following data fragment
         // was received.
         m_last_command = REQUEST_HID_SET_REPORT;
         USBPhy::TransmitData(m_epnum, 0, 0);
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_IDLE) {
-        WORD buffer[1] = { 0 };
-        buffer[0] = ep1.get_idle();
-        USBPhy::TransmitData(m_epnum, buffer, 1);
+        WORD txbuf[1] = { 0 };
+        txbuf[0] = ep1.get_idle();
+        USBPhy::TransmitData(m_epnum, txbuf, 1);
     } else if(bmRequestType == SET_CLASS_INTERFACE && bRequest == REQUEST_HID_SET_IDLE) {
         BYTE duration = wValue >> 8;
         if(wIndex == 0) {
@@ -222,10 +222,10 @@ void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
             USBPhy::TransmitStall(m_epnum);
         }
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_PROTOCOL) {
-        WORD buffer[1] = { 0 };
+        WORD txbuf[1] = { 0 };
         // XXX: 0 == boot protocol, 1 == report protocol
         // TODO: implement action
-        USBPhy::TransmitData(m_epnum, buffer, 1);
+        USBPhy::TransmitData(m_epnum, txbuf, 1);
     } else if(bmRequestType == SET_CLASS_INTERFACE && bRequest == REQUEST_HID_SET_PROTOCOL) {
         // TODO: implement action
         // XXX: switch between boot and report protocol

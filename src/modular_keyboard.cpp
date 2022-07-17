@@ -64,9 +64,9 @@ void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
     }
 }
 
-void ModularKeyboard::update_keys(BYTE page, const BYTE* buffer) {
+void ModularKeyboard::update_keys(BYTE page, const BYTE* keycodes) {
     if(Module::get_id() == Module::RIGHT) {
-        memcpy(m_keys[page], buffer, KeyMatrix::MAX_KEYS);
+        memcpy(m_keys[page], keycodes, KeyMatrix::MAX_KEYS);
         if(page == 0) {
             BYTE buffer[BUFFER_SIZE];
             process_keys(buffer);
@@ -75,7 +75,7 @@ void ModularKeyboard::update_keys(BYTE page, const BYTE* buffer) {
     } else {
         BYTE buffer[KeyMatrix::MAX_KEYS+1];
         buffer[0] = MSG_KEYS | page;
-        memcpy(buffer+1, buffer, KeyMatrix::MAX_KEYS);
+        memcpy(buffer+1, keycodes, KeyMatrix::MAX_KEYS);
         Uart1.write(buffer, KeyMatrix::MAX_KEYS+1);
     }
 }
