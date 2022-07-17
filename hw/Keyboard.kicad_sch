@@ -4834,7 +4834,7 @@
       (reference "R1400") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/ded92af4-f0a3-4e0a-8486-e2be671b7e40"
-      (reference "R1401") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R1401") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/e9afd364-8432-4509-ae57-8242b52ca786"
       (reference "R1402") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4843,7 +4843,7 @@
       (reference "R1403") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/ace5adcd-e82e-4af0-9e49-153fddc22e53"
-      (reference "R1404") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R1404") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/ffa98c6a-8e38-457f-8a79-2d6da5f53b4d"
       (reference "R1405") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4852,7 +4852,7 @@
       (reference "R1406") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/001fda14-d156-4da3-b141-fe6b26e659d2"
-      (reference "R1407") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R1407") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/16c9d33f-b0d3-43b6-8be8-0b8be8a11f09"
       (reference "R1408") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4861,7 +4861,7 @@
       (reference "R1409") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/667bafea-aee8-4bb2-b752-eeb48baa0b74"
-      (reference "R1410") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R1410") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/f3888ac3-cceb-4ddb-9160-d21b7107ae98"
       (reference "R1411") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4870,7 +4870,7 @@
       (reference "R1412") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/71d70688-a614-4bf4-affa-384fc0bce5c7"
-      (reference "R1413") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R1413") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f512686/2c0cae3a-8d73-4805-ade9-7eefa2d6e463"
       (reference "R1414") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4903,7 +4903,7 @@
       (reference "R2200") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e62/0ae60650-bbd1-4d6f-8aba-98c0794df232"
-      (reference "R2201") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R2201") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e62/4d87b1d1-2a57-477d-82ca-2354d9b6b87e"
       (reference "R2202") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4912,7 +4912,7 @@
       (reference "R2203") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e62/0a71ab0a-5796-423e-bd87-7e37980e2eef"
-      (reference "R2204") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R2204") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e62/0ba1f929-63a2-41c4-961e-11e9fad506cb"
       (reference "R2205") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4921,7 +4921,7 @@
       (reference "R2206") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e62/1143c3ac-a6b8-4637-94fb-f288b37eef86"
-      (reference "R2207") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R2207") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4c2b/00000000-0000-0000-0000-00005ffe6e62/fc3e0924-64f8-40ce-9182-4207ad46fd46"
       (reference "R2208") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4954,7 +4954,7 @@
       (reference "R3200") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/eb0b5538-3d7c-4d35-a6da-ae9c5318b37a"
-      (reference "R3201") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R3201") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/01931d43-32cb-4524-a977-80c7fd358050"
       (reference "R3202") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4963,7 +4963,7 @@
       (reference "R3203") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/6ceeed14-b2ec-4894-88bb-153875a5ee0d"
-      (reference "R3204") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R3204") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/c02c9e3c-c31f-4d1d-b472-6f8244930a03"
       (reference "R3205") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4972,7 +4972,7 @@
       (reference "R3206") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/841ccb18-b037-4c51-87ad-aa12e914fb48"
-      (reference "R3207") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R3207") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/7e7a998c-f378-4a0f-b62e-60070e48ff55"
       (reference "R3208") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -4981,7 +4981,7 @@
       (reference "R3209") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/2d9d20aa-6195-48dd-ac9c-90e5eecfa602"
-      (reference "R3210") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R3210") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc4e61/00000000-0000-0000-0000-00005eee6542/ee58d8ba-29a5-4e7e-91c6-6cffef7f4b75"
       (reference "R3211") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -5014,7 +5014,7 @@
       (reference "R4200") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0be4/d3770682-19f4-437d-85f2-6edbdca623d9"
-      (reference "R4201") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R4201") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0be4/97956631-2df3-4a1e-9c04-8bcf0caf7506"
       (reference "R4202") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -5023,7 +5023,7 @@
       (reference "R4203") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0be4/5d8dbb9f-dccc-46a9-9565-eb17784777c8"
-      (reference "R4204") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R4204") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0be4/e4f08b08-160d-4154-95b4-5ba892f1bed9"
       (reference "R4205") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
@@ -5032,7 +5032,7 @@
       (reference "R4206") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0be4/393ea1bf-a2d5-458a-b2af-0c6f0d424135"
-      (reference "R4207") (unit 1) (value "78.7R") (footprint "Keyboard:R_0402")
+      (reference "R4207") (unit 1) (value "300R") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efc5056/00000000-0000-0000-0000-00005eef0be4/85ce90b6-f8f3-48ca-9aaa-6eaff0fb78c7"
       (reference "R4208") (unit 1) (value "127R") (footprint "Keyboard:R_0402")
