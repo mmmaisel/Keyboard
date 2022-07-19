@@ -88,6 +88,7 @@ void KeyMatrix::initialize() {
             GPIOC->MODER |= MODE_KC1 | MODE_KC2 | MODE_KC3 | MODE_KC4 | MODE_KC5 |
                 MODE_KC6 | MODE_KR1 | MODE_KR2 | MODE_KR3 | MODE_KR4 | MODE_KR5 |
                 MODE_KR6;
+            GPIOB->PUPDR |= PUPD_KR7;
             GPIOC->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5 |
                 PUPD_KR6;
             GPIOC->clear_odr(KC1|KC2|KC3|KC4|KC5|KC6);
