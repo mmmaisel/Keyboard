@@ -1965,7 +1965,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 158d428a-1e9c-40eb-871d-632e3059bd6a)
   )
-  (label "TX_M2" (at 131.445 97.79 0)
+  (label "TX_M2" (at 132.08 102.87 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 15b03975-7d17-4181-810f-98900cf1e7a6)
   )
@@ -2029,7 +2029,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 810cde75-0428-47ef-b9f0-b0cafa144f5e)
   )
-  (label "RX_M2" (at 97.79 97.79 0)
+  (label "RX_M2" (at 97.79 92.71 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 812acd12-312e-44a2-a997-467fe3a59650)
   )
@@ -2041,7 +2041,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 9714f053-266a-4ec5-afce-8b4598380e46)
   )
-  (label "RX_M2" (at 131.445 102.87 0)
+  (label "RX_M2" (at 132.08 97.79 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 97c6ca20-f1a1-4491-b41e-87e8e2545ca8)
   )
@@ -2077,7 +2077,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid c89ef379-4a79-4ab8-b2f0-adada19b37e1)
   )
-  (label "TX_M2" (at 97.79 92.71 0)
+  (label "TX_M2" (at 97.79 97.79 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid d40200a8-3ad5-49ca-ae6a-19bf07a78678)
   )
@@ -4817,6 +4817,15 @@
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f11f966/00000000-0000-0000-0000-00005f011865"
       (reference "R1201") (unit 1) (value "22.6kR") (footprint "Keyboard:R_0402")
+    )
+    (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f11f966/2a78a64a-aa6b-411d-9021-ef1aec0645a2"
+      (reference "R1202") (unit 1) (value "10.0kR") (footprint "Keyboard:R_0402")
+    )
+    (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f11f966/dd507a1e-1ac3-4988-b0e6-879a64d1ef7e"
+      (reference "R1203") (unit 1) (value "10.0kR") (footprint "Keyboard:R_0402")
+    )
+    (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f11f966/3b6246af-edb1-4d12-b8e0-2438f54cb5b9"
+      (reference "R1204") (unit 1) (value "10.0kR") (footprint "Keyboard:R_0402")
     )
     (path "/00000000-0000-0000-0000-00005efb9ff1/00000000-0000-0000-0000-00005f163059/7e3cda1f-4757-4889-9afa-473cee754858"
       (reference "R1301") (unit 1) (value "100R") (footprint "Keyboard:R_0402")
