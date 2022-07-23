@@ -127,6 +127,10 @@ Uart::Uart(BYTE num, UartHandler* handler) :
             NVIC->set_priority(isrnum::USART2, priority::UART);
         }
     } else if(num == 6) {
+        // UART6 shared pins with LED matrix on left module.
+        if(Module::get_id() == Module::LEFT)
+            return;
+
         m_uart = USART6;
         m_dma = DMA2;
         m_rx_stream = 1;
@@ -176,7 +180,6 @@ Uart::Uart(BYTE num, UartHandler* handler) :
     } else {
         asm volatile(" svc 1");
     }
-
 }
 
 void Uart::write(BYTE data) {
