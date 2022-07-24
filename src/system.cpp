@@ -20,6 +20,10 @@
 \**********************************************************************/
 #include <stdint.h>
 
+#include "FreeRTOS/FreeRTOS.h"
+#include "FreeRTOS/task.h"
+#include "FreeRTOS/queue.h"
+
 #include "dev/gpio.h"
 #include "dev/rcc.h"
 #include "pinout.h"
@@ -61,6 +65,40 @@ extern "C" void _fini() {
 /// cppcheck-suppress[unusedFunction]
 extern "C" void* _sbrk(int incr) {
     return __heap_start__;
+}
+
+/**********************************************************************\
+ * FreeRTOS
+\**********************************************************************/
+
+/// @internal
+/// FreeRTOS assertion failed hook
+extern "C" void vAssertCalled(const char* file, const char* line)
+{
+    for(;;);
+}
+
+StaticTask_t xIdleTaskTCB;
+StackType_t uxIdleTaskStack[configMINIMAL_STACK_SIZE];
+
+extern "C" void vApplicationGetIdleTaskMemory
+(
+    StaticTask_t **ppxIdleTaskTCBBuffer,
+    StackType_t **ppxIdleTaskStackBuffer,
+    uint32_t *pulIdleTaskStackSize
+)
+{
+    // Pass out a pointer to the StaticTask_t structure in
+    // which the Idle task's state will be stored.
+    *ppxIdleTaskTCBBuffer = &xIdleTaskTCB;
+
+    // Pass out the array that will be used as the Idle task's stack.
+    *ppxIdleTaskStackBuffer = uxIdleTaskStack;
+
+    // Pass out the size of the array pointed to by *ppxIdleTaskStackBuffer.
+    // Note that, as the array is necessarily of type StackType_t,
+    // configMINIMAL_STACK_SIZE is specified in words, not bytes.
+    *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
 }
 
 /**********************************************************************\

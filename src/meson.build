@@ -1,7 +1,7 @@
 project('Keyboard', ['c', 'cpp'], default_options: ['buildtype=minsize'])
 target = 'Keyboard'
 
-srcs = [
+srcs = files([
   'main.cpp',
   'inttable.c',
   'led_matrix.cpp',
@@ -18,7 +18,9 @@ srcs = [
   'usb_descriptor.cpp',
   'usb_endpoint.cpp',
   'usb_phy.cpp'
-]
+])
+
+subdir('FreeRTOS')
 
 openocd_conf = '@0@/@1@'.format(meson.current_source_dir(), 'st_nucleo_f401re.cfg')
 linker_conf = '@0@/@1@'.format(meson.current_source_dir(), 'memSections.ld')
