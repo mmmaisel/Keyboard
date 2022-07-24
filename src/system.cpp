@@ -30,17 +30,6 @@
 
 extern void* __heap_start__;
 
-void sleep_ms(ULONG ms) {
-    volatile ULONG cycles = 48000 * ms / 4; // Sysclock: 48 MHz
-    asm (
-        "1:\n"
-        "  subs %0, %0, #1\n" // 1 cycle
-        "  nop\n"             // 1 cycle
-        "  bne 1b\n"          // 1 + P cycles (here: pipeline == 1)
-        : : "r"(cycles) :
-    );
-}
-
 /// @internal
 /// A function which is called after main() and handles something
 /// with destruction of global objects.
@@ -73,8 +62,7 @@ extern "C" void* _sbrk(int incr) {
 
 /// @internal
 /// FreeRTOS assertion failed hook
-extern "C" void vAssertCalled(const char* file, const char* line)
-{
+extern "C" void vAssertCalled(const char* file, int line) {
     for(;;);
 }
 

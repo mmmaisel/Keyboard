@@ -21,5 +21,3 @@
 #pragma once
 
 #include "types.h"
-
-void sleep_ms(ULONG ms);

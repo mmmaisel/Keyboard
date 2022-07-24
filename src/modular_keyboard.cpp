@@ -77,9 +77,9 @@ void ModularKeyboard::update_keys(BYTE page, const BYTE* keycodes) {
 }
 
 void ModularKeyboard::get_keys(BYTE* buffer) {
-    dev::set_basepri(priority::USB_KEY_REQUEST);
+    //dev::set_basepri(priority::USB_KEY_REQUEST);
     process_keys(buffer);
-    dev::set_basepri(priority::BASE);
+    //dev::set_basepri(priority::BASE);
 }
 
 void ModularKeyboard::process_keys(BYTE* buffer) {

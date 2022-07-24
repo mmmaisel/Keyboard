@@ -25,6 +25,7 @@
 namespace priority {
     // Lower number means higher priority
     enum : BYTE {
+        MAX_SYSCALL = 4,
         /// Does not modify any values outside. Must drive hardware in time.
         LED_MATRIX = 7,
         /// USB priority during key value request.
@@ -36,8 +37,8 @@ namespace priority {
         UART = 8, // XXX: this causes freeze when writing to uart from key ISR
         /// Can request key values, change LED values and change used HID protocol.
         USB = 10,
-        /// Priority of non ISR code.
-        BASE = 15,
+        /// Kernel interrupt has lowest priority.
+        KERNEL = 15,
     };
 
     // FreeRTOS task priorities

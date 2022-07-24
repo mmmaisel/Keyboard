@@ -156,8 +156,6 @@ extern "C" {
         for(ctorPtr* ctor = &__init_array_start__; ctor < &__init_array_end__; ++ctor)
             (*ctor)();
 
-        set_basepri(priority::BASE);
-
         // Call main
         main();
     }
