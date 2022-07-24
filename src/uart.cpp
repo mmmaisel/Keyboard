@@ -31,14 +31,13 @@
 
 #include <cstring>
 
-Uart Uart1(1, &keyboard);
-Uart Uart2(2, &keyboard);
-Uart Uart6(6, &keyboard);
+Uart Uart1(1);
+Uart Uart2(2);
+Uart Uart6(6);
 
-Uart::Uart(BYTE num, UartHandler* handler) :
+Uart::Uart(BYTE num) :
     m_tx(0),
-    m_rx(0),
-    m_handler(handler)
+    m_rx(0)
 {
     using namespace dev;
     using namespace dev::rcc;
@@ -221,7 +220,7 @@ void Uart::ISR() {
     using namespace dev::usart;
     BYTE data = m_uart->DR;
     m_uart->SR = RXNE;
-    m_handler->OnReceive(this, data);
+    //m_handler->OnReceive(this, data);
 }
 
 void Uart::DMA_TX_ISR() {

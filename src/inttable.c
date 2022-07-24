@@ -33,15 +33,19 @@ extern void tim3_vector();
 extern void usb_vector();
 extern void usb_wakeup_vector();
 
-void uart1_vector();
-void uart2_vector();
-void uart6_vector();
-void dma1s5_vector();
-void dma1s6_vector();
-void dma2s1_vector();
-void dma2s2_vector();
-void dma2s6_vector();
-void dma2s7_vector();
+extern void xPortSysTickHandler();
+extern void xPortPendSVHandler();
+extern void vPortSVCHandler();
+
+extern void uart1_vector();
+extern void uart2_vector();
+extern void uart6_vector();
+extern void dma1s5_vector();
+extern void dma1s6_vector();
+extern void dma2s1_vector();
+extern void dma2s2_vector();
+extern void dma2s6_vector();
+extern void dma2s7_vector();
 
 extern uint8_t __stack_top__;
 
@@ -59,11 +63,11 @@ void (* const __inttable__[])() = {
     default_vector,                // 5     -    bus fault vector
     default_vector,                // 6     -    usage fault vector
     0, 0, 0, 0,                    // -     -    Reserved
-    default_vector,                // 11    -    SVCall
+    vPortSVCHandler,               // 11    -    SVCall
     default_vector,                // 12    -    Debug monitor vector
     0,                             // -     -    Reserved
-    default_vector,                // 14    -    PendSV
-    default_vector,                // 15    -    SysTick
+    xPortPendSVHandler,            // 14    -    PendSV
+    xPortSysTickHandler,           // 15    -    SysTick
     default_vector,                // 16    0    Window Watchdog
     default_vector,                // 17    1    PVD
     default_vector,                // 18    2    Tamper and Timestamps

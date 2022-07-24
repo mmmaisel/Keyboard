@@ -52,7 +52,7 @@ class Uart
     friend void dma2s7_vector();
 
     public:
-        explicit Uart(BYTE num, UartHandler* handler);
+        explicit Uart(BYTE num);
         ~Uart() {}
 
         void write(BYTE data);
@@ -69,7 +69,6 @@ class Uart
         volatile BYTE m_rx;
         static const BYTE BUFFER_SIZE = 64;
         BYTE m_tx_buffer[BUFFER_SIZE];
-        UartHandler* m_handler;
 
         void ISR();
         void DMA_TX_ISR();

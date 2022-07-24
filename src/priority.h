@@ -33,10 +33,15 @@ namespace priority {
         /// Should scan hardware in time.
         KEY_MATRIX = 9,
         /// Updates key values in ModularKeyboard and LED values.
-        UART = 9,
+        UART = 8, // XXX: this causes freeze when writing to uart from key ISR
         /// Can request key values, change LED values and change used HID protocol.
         USB = 10,
         /// Priority of non ISR code.
         BASE = 15,
+    };
+
+    // FreeRTOS task priorities
+    enum : BYTE {
+        KEYBOARD = 1
     };
 }

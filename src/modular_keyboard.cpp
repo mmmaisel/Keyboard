@@ -29,25 +29,19 @@
 
 #include <cstring>
 
-ModularKeyboard keyboard;
+BYTE ModularKeyboard::m_keys[PAGE_COUNT][KeyMatrix::MAX_KEYS] = {0};
 
-ModularKeyboard::ModularKeyboard() {
-    memset(m_keys, 0, BUFFER_SIZE);
+[[noreturn]] void ModularKeyboard::task(void* pContext __attribute((unused))) {
+    for(;;);
 }
 
-ModularKeyboard::~ModularKeyboard() {
-}
-
-void ModularKeyboard::operator delete(void* __attribute__((unused))) {
-    /// Shut up stupid linker - there are no dynamic objects!!!
-}
-
-void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
+/*void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
     // XXX: store led state in flash?
     switch(data & MSG_TYPE_MASK) {
         case MSG_KEYS: {
             BYTE page = data & MSG_PAGE_MASK;
             BYTE buffer[KeyMatrix::MAX_KEYS];
+            // XXX: read ISR never gets called because of priorities (reentrant ISR)
             uart->read(buffer, KeyMatrix::MAX_KEYS);
             update_keys(page, buffer);
             break;
@@ -62,7 +56,7 @@ void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
             break;
         }
     }
-}
+}*/
 
 void ModularKeyboard::update_keys(BYTE page, const BYTE* keycodes) {
     if(Module::get_id() == Module::RIGHT) {
@@ -76,7 +70,9 @@ void ModularKeyboard::update_keys(BYTE page, const BYTE* keycodes) {
         BYTE buffer[KeyMatrix::MAX_KEYS+1];
         buffer[0] = MSG_KEYS | page;
         memcpy(buffer+1, keycodes, KeyMatrix::MAX_KEYS);
-        Uart1.write(buffer, KeyMatrix::MAX_KEYS+1);
+
+        // XXX: adjust priorities, this causes freeze
+        //Uart1.write(buffer, KeyMatrix::MAX_KEYS+1);
     }
 }
 
@@ -113,8 +109,9 @@ void ModularKeyboard::set_led(LedMatrix::Led led) {
         buffer[0] = MSG_LEDS | 0x01;
         memcpy(buffer+1, reinterpret_cast<BYTE*>(&led), sizeof(LedMatrix::Led));
         // XXX: group transactions
-        Uart1.write(buffer, sizeof(LedMatrix::Led)+1);
-        Uart2.write(buffer, sizeof(LedMatrix::Led)+1);
-        Uart6.write(buffer, sizeof(LedMatrix::Led)+1);
+        // XXX: adjust priorities, this causes freeze
+        //Uart1.write(buffer, sizeof(LedMatrix::Led)+1);
+        //Uart2.write(buffer, sizeof(LedMatrix::Led)+1);
+        //Uart6.write(buffer, sizeof(LedMatrix::Led)+1);
     }
 }

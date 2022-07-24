@@ -21,26 +21,25 @@
 #pragma once
 
 #include "types.h"
-#include "uart_handler.h"
 #include "key_matrix.h"
 #include "led_matrix.h"
 
-class Uart;
+class ModularKeyboard {
+    // Static class
+    ModularKeyboard() = delete;
+    ModularKeyboard(const ModularKeyboard&) = delete;
+    ModularKeyboard(ModularKeyboard&&) = delete;
+    ~ModularKeyboard() = delete;
 
-class ModularKeyboard : public UartHandler {
     public:
-        ModularKeyboard();
-        ModularKeyboard(const ModularKeyboard&) = delete;
-        ModularKeyboard(ModularKeyboard&&) = delete;
-        virtual ~ModularKeyboard();
-
         static const BYTE PAGE_COUNT = 4;
         static const BYTE BUFFER_SIZE = PAGE_COUNT * KeyMatrix::MAX_KEYS;
 
-        virtual void OnReceive(Uart* uart, BYTE data) override;
-        void update_keys(BYTE page, const BYTE* buffer);
-        void get_keys(BYTE* buffer);
-        void set_led(LedMatrix::Led led);
+        [[noreturn]] static void task(void* pContext);
+
+        static void update_keys(BYTE page, const BYTE* buffer);
+        static void get_keys(BYTE* buffer);
+        static void set_led(LedMatrix::Led led);
 
     private:
         enum : BYTE {
@@ -50,11 +49,7 @@ class ModularKeyboard : public UartHandler {
             MSG_PAGE_MASK = 0x0F
         };
 
-        BYTE m_keys[PAGE_COUNT][KeyMatrix::MAX_KEYS];
+        static BYTE m_keys[PAGE_COUNT][KeyMatrix::MAX_KEYS];
 
-        void process_keys(BYTE* buffer);
-
-        static void operator delete(void* __attribute__((unused)));
+        static void process_keys(BYTE* buffer);
 };
-
-extern ModularKeyboard keyboard;

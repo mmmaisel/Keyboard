@@ -199,7 +199,7 @@ void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
         WORD txbuf[2];
         BYTE keys[ModularKeyboard::BUFFER_SIZE];
         BYTE length = 8;
-        keyboard.get_keys(keys);
+        ModularKeyboard::get_keys(keys);
         HidKeyboardEndpoint::make_report(reinterpret_cast<BYTE*>(txbuf), keys);
         if(wLength < length)
             length = wLength;
