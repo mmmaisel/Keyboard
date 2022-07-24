@@ -72,7 +72,7 @@ void ModularKeyboard::update_keys(BYTE page, const BYTE* keycodes) {
             process_keys(buffer);
             ep1.send_report(&m_keys[0][0]);
         }
-    } else {
+    } else if(*keycodes) {
         BYTE buffer[KeyMatrix::MAX_KEYS+1];
         buffer[0] = MSG_KEYS | page;
         memcpy(buffer+1, keycodes, KeyMatrix::MAX_KEYS);
