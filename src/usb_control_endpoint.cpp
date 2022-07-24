@@ -197,7 +197,7 @@ void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
     // TODO: move hid stuff to HidKeyboard class
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_REPORT) {
         WORD txbuf[2];
-        BYTE keys[ModularKeyboard::BUFFER_SIZE];
+        BYTE keys[KeyMatrix::Page::SIZE];
         BYTE length = 8;
         ModularKeyboard::get_keys(keys);
         HidKeyboardEndpoint::make_report(reinterpret_cast<BYTE*>(txbuf), keys);

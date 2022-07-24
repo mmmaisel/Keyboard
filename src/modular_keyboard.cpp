@@ -29,14 +29,51 @@
 
 #include <cstring>
 
-BYTE ModularKeyboard::m_keys[PAGE_COUNT][KeyMatrix::MAX_KEYS] = {0};
+QueueHandle_t ModularKeyboard::m_queue = 0;
+KeyMatrix::Page ModularKeyboard::m_queue_item = {0};
+StaticQueue_t ModularKeyboard::m_queue_mem = {0};
+
+KeyMatrix::Page ModularKeyboard::m_buffer = {0};
+KeyMatrix::Page ModularKeyboard::m_pages[PAGE_COUNT] = {0};
+
+void ModularKeyboard::initialize() {
+    m_queue = xQueueCreateStatic(1, sizeof(KeyMatrix::Page),
+        reinterpret_cast<BYTE*>(&m_queue_item), &m_queue_mem);
+}
 
 [[noreturn]] void ModularKeyboard::task(void* pContext __attribute((unused))) {
-    for(;;);
+    // XXX: store led state in flash?
+    for(;;) {
+        if(xQueueReceive(m_queue, &m_buffer, portMAX_DELAY) == pdTRUE) {
+            BYTE is_fn = 0;
+            BYTE fn_code = 0;
+
+            for(BYTE i = 0; i < KeyMatrix::Page::SIZE; ++i) {
+                BYTE keycode = m_buffer.keys[i];
+
+                if(keycode == keycodes::KEY_FN)
+                    is_fn = 1;
+                if(fn_code == 0)
+                    fn_code = keycode;
+            }
+
+            if(is_fn) {
+                // TODO: process fn_code to keycode here
+                memset(m_pages[m_buffer.id].keys, 0, KeyMatrix::Page::SIZE);
+            } else {
+                memcpy(&m_pages[m_buffer.id], &m_buffer, sizeof(KeyMatrix::Page));
+            }
+        }
+    }
+}
+
+void ModularKeyboard::send_page(KeyMatrix::Page* page) {
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    xQueueSendFromISR(m_queue, page, &xHigherPriorityTaskWoken);
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 /*void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
-    // XXX: store led state in flash?
     switch(data & MSG_TYPE_MASK) {
         case MSG_KEYS: {
             BYTE page = data & MSG_PAGE_MASK;
@@ -59,7 +96,7 @@ BYTE ModularKeyboard::m_keys[PAGE_COUNT][KeyMatrix::MAX_KEYS] = {0};
 }*/
 
 void ModularKeyboard::update_keys(BYTE page, const BYTE* keycodes) {
-    if(Module::get_id() == Module::RIGHT) {
+/*    if(Module::get_id() == Module::RIGHT) {
         memcpy(m_keys[page], keycodes, KeyMatrix::MAX_KEYS);
         if(page == 0) {
             BYTE buffer[BUFFER_SIZE];
@@ -73,32 +110,13 @@ void ModularKeyboard::update_keys(BYTE page, const BYTE* keycodes) {
 
         // XXX: adjust priorities, this causes freeze
         //Uart1.write(buffer, KeyMatrix::MAX_KEYS+1);
-    }
+    }*/
 }
 
 void ModularKeyboard::get_keys(BYTE* buffer) {
     //dev::set_basepri(priority::USB_KEY_REQUEST);
-    process_keys(buffer);
+    //process_keys(buffer);
     //dev::set_basepri(priority::BASE);
-}
-
-void ModularKeyboard::process_keys(BYTE* buffer) {
-    BYTE is_fn = 0;
-    BYTE fn_code = 0;
-    for(BYTE i = 0; i < BUFFER_SIZE; ++i) {
-        BYTE keycode = *(&m_keys[0][0]+i);
-        if(keycode == keycodes::KEY_FN)
-            is_fn = 1;
-        if(fn_code == 0)
-            fn_code = keycode;
-    }
-
-    if(is_fn) {
-        // TODO: process fn_code to keycode here
-        memset(buffer, 0, BUFFER_SIZE);
-    } else {
-        memcpy(buffer, &m_keys[0][0], BUFFER_SIZE);
-    }
 }
 
 void ModularKeyboard::set_led(LedMatrix::Led led) {

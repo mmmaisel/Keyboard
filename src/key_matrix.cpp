@@ -41,7 +41,7 @@ BYTE KeyMatrix::m_phase = 0;
 const BYTE* KeyMatrix::m_key_layout = 0;
 BYTE KeyMatrix::m_key_state[MAX_DIM][MAX_DIM] = {0};
 BYTE KeyMatrix::m_key_idx = 0;
-BYTE KeyMatrix::m_keys[MAX_KEYS] = {0};
+KeyMatrix::Page KeyMatrix::m_page = {0};
 
 void KeyMatrix::initialize() {
     using namespace dev;
@@ -60,6 +60,7 @@ void KeyMatrix::initialize() {
                 PUPD_KR6 | PUPD_KR7;
             GPIOC->clear_odr(KC1|KC2|KC3|KC4|KC5|KC6);
 
+            m_page.id = 0;
             m_key_layout = &KEY_LAYOUT_RIGHT[0][0];
 
             m_row_count = 7;
@@ -93,6 +94,7 @@ void KeyMatrix::initialize() {
                 PUPD_KR6;
             GPIOC->clear_odr(KC1|KC2|KC3|KC4|KC5|KC6);
 
+            m_page.id = 1;
             m_key_layout = &KEY_LAYOUT_LEFT[0][0];
 
             m_row_count = 7;
@@ -122,6 +124,7 @@ void KeyMatrix::initialize() {
             GPIOC->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5;
             GPIOC->clear_odr(KC1|KC2|KC3);
 
+            m_page.id = 2;
             m_key_layout = &KEY_LAYOUT_NAV[0][0];
 
             m_row_count = 5;
@@ -146,6 +149,7 @@ void KeyMatrix::initialize() {
             GPIOC->PUPDR |= PUPD_KR1 | PUPD_KR2 | PUPD_KR3 | PUPD_KR4 | PUPD_KR5;
             GPIOC->clear_odr(KC1|KC2|KC3|KC4);
 
+            m_page.id = 3;
             m_key_layout = &KEY_LAYOUT_NUM[0][0];
 
             m_row_count = 5;
@@ -193,7 +197,7 @@ void KeyMatrix::ISR() {
             if(m_rows[row].port->IDR & m_rows[row].pin) {
                 if(m_key_state[row][m_column] == 3) {
                     if(m_key_idx < MAX_KEYS)
-                        m_keys[m_key_idx++] =
+                        m_page.keys[m_key_idx++] =
                             *(m_key_layout + MAX_DIM*row + m_column);
                 } else {
                     ++m_key_state[row][m_column];
@@ -206,11 +210,11 @@ void KeyMatrix::ISR() {
 
         if(++m_column == m_column_count) {
             for(BYTE i = m_key_idx; i < MAX_KEYS; ++i) {
-                m_keys[i] = 0;
+                m_page.keys[i] = 0;
             }
             m_column = 0;
             m_key_idx = 0;
-            ModularKeyboard::update_keys(Module::get_id(), m_keys);
+            ModularKeyboard::send_page(&m_page);
         }
     }
 }

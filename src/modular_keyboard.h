@@ -24,6 +24,9 @@
 #include "key_matrix.h"
 #include "led_matrix.h"
 
+#include "FreeRTOS/FreeRTOS.h"
+#include "FreeRTOS/queue.h"
+
 class ModularKeyboard {
     // Static class
     ModularKeyboard() = delete;
@@ -33,9 +36,11 @@ class ModularKeyboard {
 
     public:
         static const BYTE PAGE_COUNT = 4;
-        static const BYTE BUFFER_SIZE = PAGE_COUNT * KeyMatrix::MAX_KEYS;
 
+        static void initialize();
         [[noreturn]] static void task(void* pContext);
+
+        static void send_page(KeyMatrix::Page* page);
 
         static void update_keys(BYTE page, const BYTE* buffer);
         static void get_keys(BYTE* buffer);
@@ -49,7 +54,10 @@ class ModularKeyboard {
             MSG_PAGE_MASK = 0x0F
         };
 
-        static BYTE m_keys[PAGE_COUNT][KeyMatrix::MAX_KEYS];
+        static QueueHandle_t m_queue;
+        static KeyMatrix::Page m_queue_item;
+        static StaticQueue_t m_queue_mem;
 
-        static void process_keys(BYTE* buffer);
+        static KeyMatrix::Page m_buffer;
+        static KeyMatrix::Page m_pages[PAGE_COUNT];
 };

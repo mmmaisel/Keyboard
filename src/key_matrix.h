@@ -38,6 +38,12 @@ class KeyMatrix {
         static const BYTE MAX_DIM = 16;
         static const BYTE MAX_KEYS = 16;
 
+        struct Page {
+            static const BYTE SIZE = MAX_KEYS;
+            BYTE id;
+            BYTE keys[MAX_KEYS];
+        };
+
         static void initialize();
     private:
         struct Pin {
@@ -55,7 +61,7 @@ class KeyMatrix {
         static const BYTE* m_key_layout;
         static BYTE m_key_state[MAX_DIM][MAX_DIM];
         static BYTE m_key_idx;
-        static BYTE m_keys[MAX_KEYS];
+        static Page m_page;
 
         static void ISR();
 };

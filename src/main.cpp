@@ -48,6 +48,7 @@ StackType_t  taskStack_KEYBOARD[STACK_SIZE_KEYBOARD];
 
 /// C++ main function, program starts here.
 [[noreturn]] void main() {
+    ModularKeyboard::initialize();
     LedMatrix::initialize();
     KeyMatrix::initialize();
     if(Module::get_id() == Module::RIGHT)
