@@ -109,15 +109,15 @@ const BYTE KEY_LAYOUT_LEFT[KeyMatrix::MAX_DIM][KeyMatrix::MAX_DIM] = {
 };
 const BYTE KEY_LAYOUT_NUM[KeyMatrix::MAX_DIM][KeyMatrix::MAX_DIM] = {
     // Row 0
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_KP0, KEY_KPENTER, KEY_MUTE, KEY_KPMINUS, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 1
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_KP1, KEY_KP4, KEY_NUMLOCK, KEY_KP7, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 2
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_KP3, KEY_KP6, KEY_KPASTERISK, KEY_KP9, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 3
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_KP2, KEY_KP5, KEY_KPSLASH, KEY_KP8, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 4
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_KPDOT, KEY_KPPLUS, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 5
     {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 6
@@ -143,15 +143,15 @@ const BYTE KEY_LAYOUT_NUM[KeyMatrix::MAX_DIM][KeyMatrix::MAX_DIM] = {
 };
 const BYTE KEY_LAYOUT_NAV[KeyMatrix::MAX_DIM][KeyMatrix::MAX_DIM] = {
     // Row 0
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_SCROLL, KEY_END, KEY_UP, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 1
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_PRINT, KEY_INSERT, KEY_VOLUMEDOWN, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 2
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_PAUSE, KEY_PAGEDOWN, KEY_DOWN, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 3
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_PAGEUP, KEY_VOLUMEUP, KEY_RIGHT, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 4
-    {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
+    {KEY_HOME, KEY_DELETE, KEY_LEFT, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 5
     {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 6
