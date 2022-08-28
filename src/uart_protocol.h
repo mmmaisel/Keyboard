@@ -1,7 +1,7 @@
 /**********************************************************************\
  * Keyboard
  *
- * Modular keyboard class
+ * UART protocol class
  **********************************************************************
  * Copyright (C) 2022 - Max Maisel
  *
@@ -21,40 +21,28 @@
 #pragma once
 
 #include "types.h"
+#include "uart.h"
 #include "key_matrix.h"
-#include "led_matrix.h"
 
 #include "FreeRTOS/FreeRTOS.h"
 #include "FreeRTOS/queue.h"
 
-class ModularKeyboard {
+class UartProtocol {
     // Static class
-    ModularKeyboard() = delete;
-    ModularKeyboard(const ModularKeyboard&) = delete;
-    ModularKeyboard(ModularKeyboard&&) = delete;
-    ~ModularKeyboard() = delete;
+    UartProtocol() = delete;
+    UartProtocol(const UartProtocol&) = delete;
+    UartProtocol(UartProtocol&&) = delete;
+    ~UartProtocol() = delete;
 
     public:
-        static const BYTE BUFFER_SIZE = 16;
-        static const BYTE PAGE_COUNT = 4;
+        enum : BYTE {
+            MSG_KEYS = 0x10,
+            MSG_LEDS = 0x20,
+            MSG_TYPE_MASK = 0xF0,
+            MSG_PAGE_MASK = 0x0F
+        };
 
-        static void initialize();
-        [[noreturn]] static void task(void* pContext);
-
-        static void send_page(KeyMatrix::Page* page);
-        static void send_page_from_isr(KeyMatrix::Page* page);
-
-        static void get_keys(BYTE* buffer);
-        static void set_led(LedMatrix::Led led);
+        static void send_key_page(KeyMatrix::Page& page);
 
     private:
-        static QueueHandle_t m_queue;
-        static KeyMatrix::Page m_queue_item;
-        static StaticQueue_t m_queue_mem;
-
-        static KeyMatrix::Page m_buffer;
-        static KeyMatrix::Page m_pages[PAGE_COUNT];
-
-        static void update_keys();
-        static void process_keys(BYTE* buffer);
 };

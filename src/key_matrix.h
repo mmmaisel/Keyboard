@@ -39,7 +39,6 @@ class KeyMatrix {
         static const BYTE MAX_KEYS = 16;
 
         struct Page {
-            static const BYTE SIZE = MAX_KEYS;
             BYTE id;
             BYTE keys[MAX_KEYS];
         };

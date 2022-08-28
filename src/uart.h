@@ -24,6 +24,10 @@
 #include "dev/uart.h"
 #include "dev/dma.h"
 
+#include "FreeRTOS/FreeRTOS.h"
+#include "FreeRTOS/queue.h"
+#include "FreeRTOS/semphr.h"
+
 extern "C" void uart1_vector() __attribute__((error("calling ISR")));
 extern "C" void uart2_vector() __attribute__((error("calling ISR")));
 extern "C" void uart6_vector() __attribute__((error("calling ISR")));
@@ -34,7 +38,21 @@ extern "C" void dma2s2_vector() __attribute__((error("calling ISR")));
 extern "C" void dma2s6_vector() __attribute__((error("calling ISR")));
 extern "C" void dma2s7_vector() __attribute__((error("calling ISR")));
 
-class UartHandler;
+struct UartMessage {
+    UartMessage(BYTE id = 0, BYTE dma = 0, BYTE data = 0);
+    inline BYTE is_dma() const { return m_type_id & DMA_COMPLETE; }
+    inline BYTE id() const { return m_type_id & TYPE_MASK; }
+    inline BYTE data() const { return m_data; }
+
+    private:
+        enum : BYTE {
+            DMA_COMPLETE = 0x80,
+            TYPE_MASK = 0x0F
+        };
+
+        BYTE m_type_id;
+        BYTE m_data;
+};
 
 class Uart
 {
@@ -52,21 +70,36 @@ class Uart
     friend void dma2s7_vector();
 
     public:
-        explicit Uart(BYTE num);
+        explicit Uart(BYTE id);
         ~Uart() {}
+        inline void set_queue(QueueHandle_t queue) { m_rx_queue = queue; }
 
         void write(BYTE data);
         void write(const BYTE* buffer, BYTE length);
-        void read(BYTE* buffer, BYTE length);
+        void start_read_byte();
+        void start_read(BYTE* buffer, BYTE length);
+
+        enum : BYTE {
+            UART1_ID,
+            UART2_ID,
+            UART6_ID,
+            UART_COUNT
+        };
+        static Uart* const BY_ID[UART_COUNT];
 
     private:
+        BYTE m_id;
         volatile dev::UsartStruct* m_uart;
         volatile dev::DmaStruct* m_dma;
         BYTE m_rx_stream;
         BYTE m_tx_stream;
 
-        volatile BYTE m_tx;
-        volatile BYTE m_rx;
+        QueueHandle_t m_rx_queue = 0;
+        SemaphoreHandle_t m_rx_semaphore;
+        StaticSemaphore_t m_rx_semaphore_mem;
+        SemaphoreHandle_t m_tx_semaphore;
+        StaticSemaphore_t m_tx_semaphore_mem;
+
         static const BYTE BUFFER_SIZE = 64;
         BYTE m_tx_buffer[BUFFER_SIZE];
 

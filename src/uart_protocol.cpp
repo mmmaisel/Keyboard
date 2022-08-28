@@ -1,7 +1,7 @@
 /**********************************************************************\
  * Keyboard
  *
- * Task priorities
+ * UART protocol class
  **********************************************************************
  * Copyright (C) 2022 - Max Maisel
  *
@@ -18,32 +18,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \**********************************************************************/
-#pragma once
+#include "uart_protocol.h"
+#include "modular_keyboard.h"
 
-#include "types.h"
+void UartProtocol::send_key_page(KeyMatrix::Page& page) {
+    if(page.keys[0] == 0)
+        return;
 
-namespace priority {
-    // Lower number means higher priority
-    enum : BYTE {
-        MAX_SYSCALL = 4,
-        /// Does not modify any values outside. Must drive hardware in time.
-        LED_MATRIX = 7,
-        /// USB priority during key value request.
-        USB_KEY_REQUEST = 8,
-        /// Updates key values in ModularKeyboard and triggers HID report transmission.
-        /// Should scan hardware in time.
-        KEY_MATRIX = 9,
-        /// Updates key values in ModularKeyboard and LED values.
-        UART = 8, // XXX: this causes freeze when writing to uart from key ISR
-        /// Can request key values, change LED values and change used HID protocol.
-        USB = 10,
-        /// Kernel interrupt has lowest priority.
-        KERNEL = 15,
-    };
-
-    // FreeRTOS task priorities
-    enum : BYTE {
-        KEYBOARD = 1,
-        UARTPROTO = 2,
-    };
+    page.id |= MSG_KEYS;
+    Uart1.write(reinterpret_cast<BYTE*>(&page), sizeof(KeyMatrix::Page));
+    page.id &= ~ MSG_KEYS;
 }

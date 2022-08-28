@@ -214,7 +214,8 @@ void KeyMatrix::ISR() {
             }
             m_column = 0;
             m_key_idx = 0;
-            ModularKeyboard::send_page(&m_page);
+            if(m_page.keys[0] != 0)
+                ModularKeyboard::send_page_from_isr(&m_page);
         }
     }
 }

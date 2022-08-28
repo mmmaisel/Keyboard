@@ -22,7 +22,7 @@
 #include "module.h"
 #include "priority.h"
 #include "hid_keyboard_endpoint.h"
-#include "uart.h"
+#include "uart_protocol.h"
 #include "key_layout.h"
 
 #include "dev/core.h"
@@ -47,30 +47,22 @@ void ModularKeyboard::initialize() {
 [[noreturn]] void ModularKeyboard::task(void* pContext __attribute((unused))) {
     // XXX: store led state in flash?
     for(;;) {
-        if(xQueueReceive(m_queue, &m_buffer, portMAX_DELAY) == pdTRUE) {
-            BYTE is_fn = 0;
-            BYTE fn_code = 0;
+        if(xQueueReceive(m_queue, &m_buffer, portMAX_DELAY) != pdTRUE)
+            continue;
 
-            for(BYTE i = 0; i < KeyMatrix::Page::SIZE; ++i) {
-                BYTE keycode = m_buffer.keys[i];
-
-                if(keycode == keycodes::KEY_FN)
-                    is_fn = 1;
-                if(fn_code == 0)
-                    fn_code = keycode;
-            }
-
-            if(is_fn) {
-                // TODO: process fn_code to keycode here
-                memset(m_pages[m_buffer.id].keys, 0, KeyMatrix::Page::SIZE);
-            } else {
-                memcpy(&m_pages[m_buffer.id], &m_buffer, sizeof(KeyMatrix::Page));
-            }
+        if(Module::get_id() == Module::RIGHT) {
+            update_keys();
+        } else {
+            UartProtocol::send_key_page(m_buffer);
         }
     }
 }
 
 void ModularKeyboard::send_page(KeyMatrix::Page* page) {
+    xQueueSend(m_queue, page, portMAX_DELAY);
+}
+
+void ModularKeyboard::send_page_from_isr(KeyMatrix::Page* page) {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     xQueueSendFromISR(m_queue, page, &xHigherPriorityTaskWoken);
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
@@ -78,14 +70,6 @@ void ModularKeyboard::send_page(KeyMatrix::Page* page) {
 
 /*void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
     switch(data & MSG_TYPE_MASK) {
-        case MSG_KEYS: {
-            BYTE page = data & MSG_PAGE_MASK;
-            BYTE buffer[KeyMatrix::MAX_KEYS];
-            // XXX: read ISR never gets called because of priorities (reentrant ISR)
-            uart->read(buffer, KeyMatrix::MAX_KEYS);
-            update_keys(page, buffer);
-            break;
-        }
         case MSG_LEDS: {
             BYTE length = data & MSG_PAGE_MASK;
             LedMatrix::Led leds[16];
@@ -98,24 +82,6 @@ void ModularKeyboard::send_page(KeyMatrix::Page* page) {
     }
 }*/
 
-void ModularKeyboard::update_keys(BYTE page, const BYTE* keycodes) {
-/*    if(Module::get_id() == Module::RIGHT) {
-        memcpy(m_keys[page], keycodes, KeyMatrix::MAX_KEYS);
-        if(page == 0) {
-            BYTE buffer[BUFFER_SIZE];
-            process_keys(buffer);
-            ep1.send_report(&m_keys[0][0]);
-        }
-    } else if(*keycodes) {
-        BYTE buffer[KeyMatrix::MAX_KEYS+1];
-        buffer[0] = MSG_KEYS | page;
-        memcpy(buffer+1, keycodes, KeyMatrix::MAX_KEYS);
-
-        // XXX: adjust priorities, this causes freeze
-        //Uart1.write(buffer, KeyMatrix::MAX_KEYS+1);
-    }*/
-}
-
 void ModularKeyboard::get_keys(BYTE* buffer) {
     //dev::set_basepri(priority::USB_KEY_REQUEST);
     //process_keys(buffer);
@@ -123,7 +89,7 @@ void ModularKeyboard::get_keys(BYTE* buffer) {
 }
 
 void ModularKeyboard::set_led(LedMatrix::Led led) {
-    if(!LedMatrix::set_led(led) && Module::get_id() == Module::RIGHT) {
+/*    if(!LedMatrix::set_led(led) && Module::get_id() == Module::RIGHT) {
         // Broadcast new LED state to all secondary modules since they can
         // be connected in arbitrary order.
         BYTE buffer[sizeof(LedMatrix::Led)+1];
@@ -134,5 +100,54 @@ void ModularKeyboard::set_led(LedMatrix::Led led) {
         //Uart1.write(buffer, sizeof(LedMatrix::Led)+1);
         //Uart2.write(buffer, sizeof(LedMatrix::Led)+1);
         //Uart6.write(buffer, sizeof(LedMatrix::Led)+1);
+    }*/
+}
+
+void ModularKeyboard::update_keys() {
+    BYTE id = m_buffer.id;
+    memcpy(&m_pages[id], &m_buffer, sizeof(KeyMatrix::Page));
+    if(id == 0) {
+        BYTE buffer[BUFFER_SIZE];
+        process_keys(buffer);
+        ep1.send_report(buffer);
+    }
+}
+
+void ModularKeyboard::process_keys(BYTE* buffer) {
+    BYTE pos = 0;
+    BYTE is_fn = 0;
+    BYTE fn_code = 0;
+
+//    LedMatrix::clear();
+
+    for(BYTE i = 0; i < PAGE_COUNT; ++i) {
+        for(BYTE j = 0; j < KeyMatrix::MAX_KEYS; ++j) {
+            BYTE keycode = m_pages[i].keys[j];
+
+            LedMatrix::Led led;
+            led.keycode = keycode;
+            led.green = keycode != keycodes::KEY_NONE ? 16 : 0;
+            led.red = keycode != keycodes::KEY_NONE ? 16 : 0;
+            led.blue = keycode != keycodes::KEY_NONE ? 16 : 0;
+            LedMatrix::set_led(led);
+            // XXX: send led
+
+            if (keycode != keycodes::KEY_NONE)
+                asm volatile("nop");
+
+            if(keycode == keycodes::KEY_FN)
+                is_fn = 1;
+            if(fn_code == 0)
+                fn_code = keycode;
+        }
+    }
+
+    // XXX: check for FN first, then copy non-null keys to buffer
+
+    if(is_fn) {
+        // TODO: process fn_code to keycode here
+        memset(m_pages[m_buffer.id].keys, 0, KeyMatrix::MAX_KEYS);
+    } else {
+        memcpy(&m_pages[m_buffer.id], &m_buffer, sizeof(KeyMatrix::Page));
     }
 }

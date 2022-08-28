@@ -31,20 +31,31 @@
 
 #include <cstring>
 
-Uart Uart1(1);
-Uart Uart2(2);
-Uart Uart6(6);
+UartMessage::UartMessage(BYTE id, BYTE dma, BYTE data) :
+    m_type_id(id | (dma ? DMA_COMPLETE : 0)),
+    m_data(data)
+{
+}
 
-Uart::Uart(BYTE num) :
-    m_tx(0),
-    m_rx(0)
+Uart Uart1(Uart::UART1_ID);
+Uart Uart2(Uart::UART2_ID);
+Uart Uart6(Uart::UART6_ID);
+
+Uart* const Uart::BY_ID[] = { &Uart1, &Uart2, &Uart6 };
+
+Uart::Uart(BYTE id) :
+    m_id(id)
 {
     using namespace dev;
     using namespace dev::rcc;
 
     memset(m_tx_buffer, 0, BUFFER_SIZE);
+    m_rx_semaphore = xSemaphoreCreateBinaryStatic(&m_tx_semaphore_mem);
+    xSemaphoreGive(m_rx_semaphore);
+    m_tx_semaphore = xSemaphoreCreateBinaryStatic(&m_tx_semaphore_mem);
+    xSemaphoreGive(m_tx_semaphore);
 
-    if(num == 1) {
+    if(id == UART1_ID) {
         m_uart = USART1;
         m_dma = DMA2;
         m_rx_stream = 2;
@@ -79,11 +90,11 @@ Uart::Uart(BYTE num) :
             m_uart->BRR = (m_uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) |
                 (8 << DIV_FRAC_POS); // 460800 @ uart6
             m_uart->CR3 |= DMAT;
-            m_uart->CR1 |= UE | TE | RE | RXNEIE;
+            m_uart->CR1 |= UE | TE | RE;
             NVIC->enable_isr(isrnum::USART1);
             NVIC->set_priority(isrnum::USART1, priority::UART);
         }
-    } else if(num == 2) {
+    } else if(id == UART2_ID) {
         // UART2 only exists on right module.
         if(Module::get_id() != Module::RIGHT)
             return;
@@ -121,11 +132,11 @@ Uart::Uart(BYTE num) :
             m_uart->BRR = (m_uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) |
                 (8 << DIV_FRAC_POS); // 460800 @ uart6
             m_uart->CR3 |= DMAT;
-            m_uart->CR1 |= UE | TE | RE | RXNEIE;
+            m_uart->CR1 |= UE | TE | RE;
             NVIC->enable_isr(isrnum::USART2);
             NVIC->set_priority(isrnum::USART2, priority::UART);
         }
-    } else if(num == 6) {
+    } else if(id == UART6_ID) {
         // UART6 shared pins with LED matrix on left module.
         if(Module::get_id() == Module::LEFT)
             return;
@@ -172,12 +183,10 @@ Uart::Uart(BYTE num) :
             m_uart->BRR = (m_uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) |
                 (8 << DIV_FRAC_POS); // 460800 @ uart6
             m_uart->CR3 |= DMAT;
-            m_uart->CR1 |= UE | TE | RE | RXNEIE;
+            m_uart->CR1 |= UE | TE | RE;
             NVIC->enable_isr(isrnum::USART6);
             NVIC->set_priority(isrnum::USART6, priority::UART);
         }
-    } else {
-        asm volatile(" svc 1");
     }
 }
 
@@ -189,8 +198,9 @@ void Uart::write(const BYTE* buffer, BYTE length) {
     using namespace dev;
     using namespace dev::dma;
 
-    while(m_tx);
-    m_tx = 1;
+    if(xSemaphoreTake(m_tx_semaphore, portMAX_DELAY) != pdTRUE)
+        for(;;);
+
     if(length > BUFFER_SIZE)
         length = BUFFER_SIZE;
     memcpy(m_tx_buffer, buffer, length);
@@ -200,41 +210,67 @@ void Uart::write(const BYTE* buffer, BYTE length) {
     m_dma->STREAM[m_tx_stream].CR |= EN;
 }
 
-void Uart::read(BYTE* buffer, BYTE length) {
+void Uart::start_read_byte() {
+    m_uart->CR1 |= dev::usart::RXNEIE;
+}
+
+void Uart::start_read(BYTE* buffer, BYTE length) {
     using namespace dev;
     using namespace dev::usart;
 
-    m_rx = 1;
+    if(xSemaphoreTake(m_rx_semaphore, portMAX_DELAY) != pdTRUE)
+        for(;;);
+
     m_uart->CR1 &= ~RXNEIE;
     m_uart->CR3 |= DMAR;
     m_dma->STREAM[m_rx_stream].M0AR = reinterpret_cast<WORD*>(buffer);
     m_dma->STREAM[m_rx_stream].NDTR = length;
     m_dma->STREAM[m_rx_stream].CR |= dma::EN;
-
-    while(m_rx);
-    m_uart->CR3 &= ~DMAR;
-    m_uart->CR1 |= RXNEIE;
 }
 
 void Uart::ISR() {
     using namespace dev::usart;
-    BYTE data = m_uart->DR;
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    UartMessage msg(m_id, 0, m_uart->DR);
     m_uart->SR = RXNE;
-    //m_handler->OnReceive(this, data);
+    m_uart->CR1 &= ~RXNEIE;
+
+    if(m_rx_queue == 0)
+        return;
+
+    xQueueSendFromISR(m_rx_queue, &msg, &xHigherPriorityTaskWoken);
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 void Uart::DMA_TX_ISR() {
     using namespace dev;
     using namespace dev::dma;
     m_dma->clear_isr(m_tx_stream);
-    m_tx = 0;
+
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    xSemaphoreGiveFromISR(m_tx_semaphore, &xHigherPriorityTaskWoken);
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 void Uart::DMA_RX_ISR() {
     using namespace dev;
     using namespace dev::dma;
+    using namespace dev::usart;
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    UartMessage msg(m_id, 1, 0);
+
     m_dma->clear_isr(m_rx_stream);
-    m_rx = 0;
+    m_uart->CR3 &= ~DMAR;
+
+    xSemaphoreGiveFromISR(m_rx_semaphore, &xHigherPriorityTaskWoken);
+
+    if(m_rx_queue != 0) {
+        BaseType_t xHigherPriorityTaskWoken2 = pdFALSE;
+        xQueueSendFromISR(m_rx_queue, &msg, &xHigherPriorityTaskWoken2);
+        xHigherPriorityTaskWoken |= xHigherPriorityTaskWoken2;
+    }
+
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 extern "C" void uart1_vector() {
