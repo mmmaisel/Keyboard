@@ -32,16 +32,20 @@
 #include "uart.h"
 
 #include "modular_keyboard.h"
+#include "uart_protocol.h"
 
 #include "pinout.h"
 #include "priority.h"
 #include "dev/gpio.h"
 
 const int STACK_SIZE_KEYBOARD = 0x100;
+const int STACK_SIZE_UARTPROTO = 0x100;
 
 // Task memory
 StaticTask_t taskMem_KEYBOARD;
 StackType_t  taskStack_KEYBOARD[STACK_SIZE_KEYBOARD];
+StaticTask_t taskMem_UARTPROTO;
+StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
 
 // XXX: led control usb protocol
 // XXX: control LEDs via keys + FN
@@ -49,6 +53,7 @@ StackType_t  taskStack_KEYBOARD[STACK_SIZE_KEYBOARD];
 /// C++ main function, program starts here.
 [[noreturn]] void main() {
     ModularKeyboard::initialize();
+    UartProtocol::initialize();
     LedMatrix::initialize();
     KeyMatrix::initialize();
     if(Module::get_id() == Module::RIGHT)
@@ -64,6 +69,8 @@ StackType_t  taskStack_KEYBOARD[STACK_SIZE_KEYBOARD];
 
     xTaskCreateStatic(&ModularKeyboard::task, "KEYBOARD", STACK_SIZE_KEYBOARD, 0,
         priority::KEYBOARD, taskStack_KEYBOARD, &taskMem_KEYBOARD);
+    xTaskCreateStatic(&UartProtocol::task, "UARTPROTO", STACK_SIZE_UARTPROTO, 0,
+        priority::UARTPROTO, taskStack_UARTPROTO, &taskMem_UARTPROTO);
 
     // Start scheduler
     vTaskStartScheduler();

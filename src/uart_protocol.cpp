@@ -21,11 +21,100 @@
 #include "uart_protocol.h"
 #include "modular_keyboard.h"
 
+BYTE UartProtocol::m_key_was_pressed = 0;
+QueueHandle_t UartProtocol::m_queue = 0;
+UartMessage UartProtocol::m_message;
+UartMessage UartProtocol::m_queue_items[QUEUE_LENGTH] = {0};
+StaticQueue_t UartProtocol::m_queue_mem = {0};
+UartProtocolHandler UartProtocol::m_handlers[Uart::UART_COUNT];
+TickType_t UartProtocol::m_ticks[Uart::UART_COUNT] = {0};
+
+UartProtocolHandler::UartProtocolHandler() :
+    m_state(STATE_IDLE),
+    m_page()
+{
+}
+
+void UartProtocolHandler::OnReceive(UartMessage& msg) {
+    switch(m_state) {
+        case STATE_IDLE:
+            if(msg.is_dma()) {
+                return;
+            }
+            switch(msg.data() & UartProtocol::MSG_TYPE_MASK) {
+                case UartProtocol::MSG_KEYS:
+                    m_page.id = msg.data() & UartProtocol::MSG_PAGE_MASK;
+                    Uart::BY_ID[msg.id()]->start_read(m_page.keys, KeyMatrix::MAX_KEYS);
+                    m_state = STATE_KEY_PAYLOAD;
+                    break;
+                case UartProtocol::MSG_LEDS:
+                    break;
+            }
+            break;
+        case STATE_KEY_PAYLOAD:
+            if(!msg.is_dma()) {
+                return;
+            }
+            ModularKeyboard::send_page(&m_page);
+            Uart::BY_ID[msg.id()]->start_read_byte();
+
+            m_state = STATE_IDLE;
+            break;
+
+        case STATE_LED_PAYLOAD:
+            if(!msg.is_dma()) {
+                return;
+            }
+            break;
+    }
+}
+
+void UartProtocolHandler::reset(Uart* uart) {
+    m_state = STATE_IDLE;
+    uart->start_read_byte();
+}
+
+void UartProtocol::initialize() {
+    m_queue = xQueueCreateStatic(QUEUE_LENGTH, sizeof(UartMessage),
+        reinterpret_cast<BYTE*>(&m_queue_items), &m_queue_mem);
+    Uart1.set_queue(m_queue);
+    Uart2.set_queue(m_queue);
+    Uart6.set_queue(m_queue);
+#ifdef DEBUG
+    vQueueAddToRegistry(m_queue, "UartProto");
+#endif
+}
+
+[[noreturn]] void UartProtocol::task(void* pContext __attribute((unused))) {
+    m_handlers[0].reset(Uart::BY_ID[0]);
+    m_handlers[1].reset(Uart::BY_ID[1]);
+    m_handlers[2].reset(Uart::BY_ID[2]);
+
+    m_ticks[0] = xTaskGetTickCount();
+    m_ticks[1] = m_ticks[0];
+    m_ticks[2] = m_ticks[0];
+
+    for(;;) {
+        if(xQueueReceive(m_queue, &m_message, RX_TIMEOUT) != pdTRUE) {
+            TickType_t ticks = xTaskGetTickCount();
+            for(BYTE i = 0; i < Uart::UART_COUNT; ++i) {
+                if(m_ticks[i] + RX_TIMEOUT < ticks) {
+                    m_ticks[i] = ticks;
+                    m_handlers[i].reset(Uart::BY_ID[i]);
+                }
+            }
+        } else {
+            m_ticks[m_message.id()] = xTaskGetTickCount();
+            m_handlers[m_message.id()].OnReceive(m_message);
+        }
+    }
+}
+
 void UartProtocol::send_key_page(KeyMatrix::Page& page) {
     if(page.keys[0] == 0)
         return;
 
     page.id |= MSG_KEYS;
     Uart1.write(reinterpret_cast<BYTE*>(&page), sizeof(KeyMatrix::Page));
-    page.id &= ~ MSG_KEYS;
+    page.id &= ~MSG_KEYS;
 }

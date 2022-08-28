@@ -27,6 +27,23 @@
 #include "FreeRTOS/FreeRTOS.h"
 #include "FreeRTOS/queue.h"
 
+class UartProtocolHandler {
+    public:
+        UartProtocolHandler();
+        void OnReceive(UartMessage& message);
+        void reset(Uart* uart);
+
+    private:
+        enum : BYTE {
+            STATE_IDLE,
+            STATE_KEY_PAYLOAD,
+            STATE_LED_PAYLOAD,
+        };
+
+        BYTE m_state;
+        KeyMatrix::Page m_page;
+};
+
 class UartProtocol {
     // Static class
     UartProtocol() = delete;
@@ -42,7 +59,19 @@ class UartProtocol {
             MSG_PAGE_MASK = 0x0F
         };
 
+        static void initialize();
+        [[noreturn]] static void task(void* pContext);
+
         static void send_key_page(KeyMatrix::Page& page);
 
     private:
+        static BYTE m_key_was_pressed;
+        static const BYTE QUEUE_LENGTH = 3;
+        static const BYTE RX_TIMEOUT = 20;
+        static QueueHandle_t m_queue;
+        static UartMessage m_message;
+        static UartMessage m_queue_items[QUEUE_LENGTH];
+        static StaticQueue_t m_queue_mem;
+        static UartProtocolHandler m_handlers[Uart::UART_COUNT];
+        static TickType_t m_ticks[Uart::UART_COUNT];
 };

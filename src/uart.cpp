@@ -50,7 +50,7 @@ Uart::Uart(BYTE id) :
     using namespace dev::rcc;
 
     memset(m_tx_buffer, 0, BUFFER_SIZE);
-    m_rx_semaphore = xSemaphoreCreateBinaryStatic(&m_tx_semaphore_mem);
+    m_rx_semaphore = xSemaphoreCreateBinaryStatic(&m_rx_semaphore_mem);
     xSemaphoreGive(m_rx_semaphore);
     m_tx_semaphore = xSemaphoreCreateBinaryStatic(&m_tx_semaphore_mem);
     xSemaphoreGive(m_tx_semaphore);
@@ -60,6 +60,11 @@ Uart::Uart(BYTE id) :
         m_dma = DMA2;
         m_rx_stream = 2;
         m_tx_stream = 7;
+
+#ifdef DEBUG
+        vQueueAddToRegistry(m_rx_semaphore, "UART1RX");
+        vQueueAddToRegistry(m_tx_semaphore, "UART1TX");
+#endif
 
         // Enable used port clocks and configure pins PB6 and PB7.
         // This is identical for all modules.
@@ -104,6 +109,11 @@ Uart::Uart(BYTE id) :
         m_rx_stream = 5;
         m_tx_stream = 6;
 
+#ifdef DEBUG
+        vQueueAddToRegistry(m_rx_semaphore, "UART2RX");
+        vQueueAddToRegistry(m_tx_semaphore, "UART2TX");
+#endif
+
         // Enable used port clocks and configure pins PA2 and PA3.
         using namespace pinout::right;
         RCC->AHB1ENR |= GPIOAEN | DMA1EN;
@@ -145,6 +155,11 @@ Uart::Uart(BYTE id) :
         m_dma = DMA2;
         m_rx_stream = 1;
         m_tx_stream = 6;
+
+#ifdef DEBUG
+        vQueueAddToRegistry(m_rx_semaphore, "UART6RX");
+        vQueueAddToRegistry(m_tx_semaphore, "UART6TX");
+#endif
 
         // Enable used GPIO port clocks and configure pins.
         if(Module::get_id() == Module::RIGHT) {
@@ -232,7 +247,7 @@ void Uart::ISR() {
     using namespace dev::usart;
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     UartMessage msg(m_id, 0, m_uart->DR);
-    m_uart->SR = RXNE;
+    volatile WORD _dummy = m_uart->SR;
     m_uart->CR1 &= ~RXNEIE;
 
     if(m_rx_queue == 0)
