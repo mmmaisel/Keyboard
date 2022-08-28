@@ -27,6 +27,8 @@ linker_conf = '@0@/@1@'.format(meson.current_source_dir(), 'memSections.ld')
 
 link_args = ['-T@0@'.format(linker_conf), f'-Wl,-Map=@target@.map,--cref']
 
+add_project_arguments('-DDEBUG', language: ['c', 'cpp'])
+
 main = executable(
     target,
     srcs,

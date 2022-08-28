@@ -89,6 +89,16 @@ extern "C" void vApplicationGetIdleTaskMemory
     *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
 }
 
+/// @internal
+/// FreeRTOS stack overflow hook
+#ifdef DEBUG
+extern "C" void vApplicationStackOverflowHook(
+    TaskHandle_t xTask, char *pcTaskName)
+{
+    for(;;);
+}
+#endif
+
 /**********************************************************************\
  * Fatal software errors
 \**********************************************************************/

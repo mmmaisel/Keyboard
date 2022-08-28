@@ -39,6 +39,9 @@ KeyMatrix::Page ModularKeyboard::m_pages[PAGE_COUNT] = {0};
 void ModularKeyboard::initialize() {
     m_queue = xQueueCreateStatic(1, sizeof(KeyMatrix::Page),
         reinterpret_cast<BYTE*>(&m_queue_item), &m_queue_mem);
+#ifdef DEBUG
+    vQueueAddToRegistry(m_queue, "ModKbd");
+#endif
 }
 
 [[noreturn]] void ModularKeyboard::task(void* pContext __attribute((unused))) {

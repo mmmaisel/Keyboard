@@ -15,7 +15,11 @@
 #define configUSE_MUTEXES                       0
 #define configUSE_RECURSIVE_MUTEXES             0
 #define configUSE_COUNTING_SEMAPHORES           0
+#ifdef DEBUG
+#define configQUEUE_REGISTRY_SIZE               8
+#else
 #define configQUEUE_REGISTRY_SIZE               0
+#endif
 #define configUSE_QUEUE_SETS                    0
 #define configUSE_TIME_SLICING                  0
 #define configUSE_NEWLIB_REENTRANT              1
@@ -34,7 +38,11 @@
 /* Hook function related definitions. */
 #define configUSE_IDLE_HOOK                     0
 #define configUSE_TICK_HOOK                     0
+#ifdef DEBUG
+#define configCHECK_FOR_STACK_OVERFLOW          1
+#else
 #define configCHECK_FOR_STACK_OVERFLOW          0
+#endif
 #define configUSE_MALLOC_FAILED_HOOK            0
 #define configUSE_DAEMON_TASK_STARTUP_HOOK      0
 
