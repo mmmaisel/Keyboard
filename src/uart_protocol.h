@@ -23,6 +23,7 @@
 #include "types.h"
 #include "uart.h"
 #include "key_matrix.h"
+#include "led_matrix.h"
 
 #include "FreeRTOS/FreeRTOS.h"
 #include "FreeRTOS/queue.h"
@@ -63,6 +64,7 @@ class UartProtocol {
         [[noreturn]] static void task(void* pContext);
 
         static void send_key_page(KeyMatrix::Page& page);
+        static void send_led(const LedMatrix::Led& led);
 
     private:
         static BYTE m_key_was_pressed;

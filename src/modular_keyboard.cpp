@@ -88,19 +88,9 @@ void ModularKeyboard::get_keys(BYTE* buffer) {
     //dev::set_basepri(priority::BASE);
 }
 
-void ModularKeyboard::set_led(LedMatrix::Led led) {
-/*    if(!LedMatrix::set_led(led) && Module::get_id() == Module::RIGHT) {
-        // Broadcast new LED state to all secondary modules since they can
-        // be connected in arbitrary order.
-        BYTE buffer[sizeof(LedMatrix::Led)+1];
-        buffer[0] = MSG_LEDS | 0x01;
-        memcpy(buffer+1, reinterpret_cast<BYTE*>(&led), sizeof(LedMatrix::Led));
-        // XXX: group transactions
-        // XXX: adjust priorities, this causes freeze
-        //Uart1.write(buffer, sizeof(LedMatrix::Led)+1);
-        //Uart2.write(buffer, sizeof(LedMatrix::Led)+1);
-        //Uart6.write(buffer, sizeof(LedMatrix::Led)+1);
-    }*/
+void ModularKeyboard::set_led(const LedMatrix::Led& led) {
+    if(!LedMatrix::set_led(led) && Module::get_id() == Module::RIGHT)
+        UartProtocol::send_led(led);
 }
 
 void ModularKeyboard::update_keys() {

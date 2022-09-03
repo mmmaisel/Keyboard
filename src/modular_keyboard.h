@@ -45,7 +45,7 @@ class ModularKeyboard {
         static void send_page_from_isr(KeyMatrix::Page* page);
 
         static void get_keys(BYTE* buffer);
-        static void set_led(LedMatrix::Led led);
+        static void set_led(const LedMatrix::Led& led);
 
     private:
         static QueueHandle_t m_queue;

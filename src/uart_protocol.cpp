@@ -20,6 +20,7 @@
 \**********************************************************************/
 #include "uart_protocol.h"
 #include "modular_keyboard.h"
+#include <cstring>
 
 BYTE UartProtocol::m_key_was_pressed = 0;
 QueueHandle_t UartProtocol::m_queue = 0;
@@ -117,4 +118,16 @@ void UartProtocol::send_key_page(KeyMatrix::Page& page) {
     page.id |= MSG_KEYS;
     Uart1.write(reinterpret_cast<BYTE*>(&page), sizeof(KeyMatrix::Page));
     page.id &= ~MSG_KEYS;
+}
+
+void UartProtocol::send_led(const LedMatrix::Led& led) {
+    // Broadcast new LED state to all secondary modules since they can
+    // be connected in arbitrary order.
+    BYTE buffer[sizeof(LedMatrix::Led)+1];
+    buffer[0] = MSG_LEDS | 0x01;
+    memcpy(buffer+1, reinterpret_cast<const BYTE*>(&led), sizeof(LedMatrix::Led));
+    // XXX: group transactions
+    Uart1.write(buffer, sizeof(LedMatrix::Led)+1);
+    Uart2.write(buffer, sizeof(LedMatrix::Led)+1);
+    Uart6.write(buffer, sizeof(LedMatrix::Led)+1);
 }
