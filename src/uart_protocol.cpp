@@ -31,8 +31,7 @@ UartProtocolHandler UartProtocol::m_handlers[Uart::UART_COUNT];
 TickType_t UartProtocol::m_ticks[Uart::UART_COUNT] = {0};
 
 UartProtocolHandler::UartProtocolHandler() :
-    m_state(STATE_IDLE),
-    m_page()
+    m_state(STATE_IDLE)
 {
 }
 
@@ -45,10 +44,17 @@ void UartProtocolHandler::OnReceive(UartMessage& msg) {
             switch(msg.data() & UartProtocol::MSG_TYPE_MASK) {
                 case UartProtocol::MSG_KEYS:
                     m_page.id = msg.data() & UartProtocol::MSG_PAGE_MASK;
-                    Uart::BY_ID[msg.id()]->start_read(m_page.keys, KeyMatrix::MAX_KEYS);
+                    Uart::BY_ID[msg.id()]->start_read(
+                        m_page.keys, KeyMatrix::MAX_KEYS);
                     m_state = STATE_KEY_PAYLOAD;
                     break;
                 case UartProtocol::MSG_LEDS:
+                    m_led_count = msg.data() & UartProtocol::MSG_PAGE_MASK;
+                    Uart::BY_ID[msg.id()]->start_read(
+                        reinterpret_cast<BYTE*>(m_leds),
+                        m_led_count*sizeof(LedMatrix::Led)
+                    );
+                    m_state = STATE_LED_PAYLOAD;
                     break;
             }
             break;
@@ -66,12 +72,18 @@ void UartProtocolHandler::OnReceive(UartMessage& msg) {
             if(!msg.is_dma()) {
                 return;
             }
+
+            for(BYTE i = 0; i < m_led_count; ++i)
+                LedMatrix::set_led(m_leds[i]);
+
+            m_state = STATE_IDLE;
             break;
     }
 }
 
 void UartProtocolHandler::reset(Uart* uart) {
     m_state = STATE_IDLE;
+    uart->abort_read();
     uart->start_read_byte();
 }
 

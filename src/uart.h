@@ -78,6 +78,7 @@ class Uart
         void write(const BYTE* buffer, BYTE length);
         void start_read_byte();
         void start_read(BYTE* buffer, BYTE length);
+        void abort_read();
 
         enum : BYTE {
             UART1_ID,

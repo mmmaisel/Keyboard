@@ -229,6 +229,11 @@ void Uart::start_read_byte() {
     m_uart->CR1 |= dev::usart::RXNEIE;
 }
 
+void Uart::abort_read() {
+    using namespace dev;
+    m_dma->STREAM[m_rx_stream].CR &= ~dma::EN;
+}
+
 void Uart::start_read(BYTE* buffer, BYTE length) {
     using namespace dev;
     using namespace dev::usart;

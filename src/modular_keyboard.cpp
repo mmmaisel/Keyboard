@@ -68,20 +68,6 @@ void ModularKeyboard::send_page_from_isr(KeyMatrix::Page* page) {
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
-/*void ModularKeyboard::OnReceive(Uart* uart, BYTE data) {
-    switch(data & MSG_TYPE_MASK) {
-        case MSG_LEDS: {
-            BYTE length = data & MSG_PAGE_MASK;
-            LedMatrix::Led leds[16];
-            uart->read(
-                reinterpret_cast<BYTE*>(leds), length*sizeof(LedMatrix::Led));
-            for(BYTE i = 0; i < length; ++i)
-                LedMatrix::set_led(leds[i]);
-            break;
-        }
-    }
-}*/
-
 void ModularKeyboard::get_keys(BYTE* buffer) {
     //dev::set_basepri(priority::USB_KEY_REQUEST);
     //process_keys(buffer);

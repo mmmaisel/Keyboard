@@ -42,7 +42,13 @@ class UartProtocolHandler {
         };
 
         BYTE m_state;
-        KeyMatrix::Page m_page;
+        union {
+            KeyMatrix::Page m_page;
+            struct {
+                BYTE m_led_count;
+                LedMatrix::Led m_leds[8];
+            };
+        };
 };
 
 class UartProtocol {
