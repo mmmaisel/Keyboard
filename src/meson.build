@@ -8,6 +8,7 @@ srcs = files([
   'led_layout.cpp',
   'key_matrix.cpp',
   'key_layout.cpp',
+  'effect_controller.cpp',
   'hid_keyboard_endpoint.cpp',
   'modular_keyboard.cpp',
   'module.cpp',

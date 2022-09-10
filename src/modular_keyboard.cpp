@@ -24,6 +24,7 @@
 #include "hid_keyboard_endpoint.h"
 #include "uart_protocol.h"
 #include "key_layout.h"
+#include "effect_controller.h"
 
 #include "dev/core.h"
 
@@ -82,6 +83,8 @@ void ModularKeyboard::set_led(const LedMatrix::Led& led) {
 void ModularKeyboard::update_keys() {
     BYTE id = m_buffer.id;
     BYTE buffer[BUFFER_SIZE];
+
+    EffectController::on_update_page(m_pages[id].keys, m_buffer.keys);
     memcpy(&m_pages[id], &m_buffer, sizeof(KeyMatrix::Page));
     process_keys(buffer);
     // disabled for testing, no strange keystrokes
@@ -93,19 +96,9 @@ void ModularKeyboard::process_keys(BYTE* buffer) {
     BYTE is_fn = 0;
     BYTE fn_code = 0;
 
-//    LedMatrix::clear();
-
     for(BYTE i = 0; i < PAGE_COUNT; ++i) {
         for(BYTE j = 0; j < KeyMatrix::MAX_KEYS; ++j) {
             BYTE keycode = m_pages[i].keys[j];
-
-            LedMatrix::Led led;
-            led.keycode = keycode;
-            led.green = keycode != keycodes::KEY_NONE ? 16 : 0;
-            led.red = keycode != keycodes::KEY_NONE ? 16 : 0;
-            led.blue = keycode != keycodes::KEY_NONE ? 16 : 0;
-            LedMatrix::set_led(led);
-            // XXX: send led
 
             if (keycode != keycodes::KEY_NONE)
                 asm volatile("nop");
