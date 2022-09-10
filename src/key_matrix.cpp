@@ -42,6 +42,7 @@ const BYTE* KeyMatrix::m_key_layout = 0;
 BYTE KeyMatrix::m_key_state[MAX_DIM][MAX_DIM] = {0};
 BYTE KeyMatrix::m_key_idx = 0;
 KeyMatrix::Page KeyMatrix::m_page = {0};
+BYTE KeyMatrix::m_changed = 0;
 
 void KeyMatrix::initialize() {
     using namespace dev;
@@ -196,9 +197,11 @@ void KeyMatrix::ISR() {
         for(BYTE row = 0; row < m_row_count; ++row) {
             if(m_rows[row].port->IDR & m_rows[row].pin) {
                 if(m_key_state[row][m_column] == 3) {
-                    if(m_key_idx < MAX_KEYS)
-                        m_page.keys[m_key_idx++] =
-                            *(m_key_layout + MAX_DIM*row + m_column);
+                    if(m_key_idx < MAX_KEYS) {
+                        BYTE keycode = *(m_key_layout + MAX_DIM*row + m_column);
+                        m_changed = m_changed || m_page.keys[m_key_idx] != keycode;
+                        m_page.keys[m_key_idx++] = keycode;
+                    }
                 } else {
                     ++m_key_state[row][m_column];
                 }
@@ -210,12 +213,17 @@ void KeyMatrix::ISR() {
 
         if(++m_column == m_column_count) {
             for(BYTE i = m_key_idx; i < MAX_KEYS; ++i) {
-                m_page.keys[i] = 0;
+                if(m_page.keys[i] != 0) {
+                    m_changed = 1;
+                    m_page.keys[i] = 0;
+                }
             }
             m_column = 0;
             m_key_idx = 0;
-            if(m_page.keys[0] != 0)
+            if(m_changed) {
                 ModularKeyboard::send_page_from_isr(&m_page);
+                m_changed = 0;
+            }
         }
     }
 }

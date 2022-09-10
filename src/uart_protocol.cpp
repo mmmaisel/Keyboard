@@ -124,9 +124,6 @@ void UartProtocol::initialize() {
 }
 
 void UartProtocol::send_key_page(KeyMatrix::Page& page) {
-    if(page.keys[0] == 0)
-        return;
-
     page.id |= MSG_KEYS;
     Uart1.write(reinterpret_cast<BYTE*>(&page), sizeof(KeyMatrix::Page));
     page.id &= ~MSG_KEYS;

@@ -81,12 +81,11 @@ void ModularKeyboard::set_led(const LedMatrix::Led& led) {
 
 void ModularKeyboard::update_keys() {
     BYTE id = m_buffer.id;
+    BYTE buffer[BUFFER_SIZE];
     memcpy(&m_pages[id], &m_buffer, sizeof(KeyMatrix::Page));
-    if(id == 0) {
-        BYTE buffer[BUFFER_SIZE];
-        process_keys(buffer);
-        ep1.send_report(buffer);
-    }
+    process_keys(buffer);
+    // disabled for testing, no strange keystrokes
+    // ep1.send_report(buffer);
 }
 
 void ModularKeyboard::process_keys(BYTE* buffer) {

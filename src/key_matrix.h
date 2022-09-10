@@ -61,6 +61,7 @@ class KeyMatrix {
         static BYTE m_key_state[MAX_DIM][MAX_DIM];
         static BYTE m_key_idx;
         static Page m_page;
+        static BYTE m_changed;
 
         static void ISR();
 };
