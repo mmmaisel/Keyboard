@@ -78,9 +78,6 @@ void ModularKeyboard::get_keys(BYTE* buffer) {
         for(BYTE j = 0; j < KeyMatrix::MAX_KEYS; ++j) {
             BYTE keycode = m_pages[i].keys[j];
 
-            if (keycode != keycodes::KEY_NONE)
-                asm volatile("nop");
-
             if(keycode == keycodes::KEY_FN)
                 is_fn = 1;
             if(fn_code == 0)
@@ -88,15 +85,26 @@ void ModularKeyboard::get_keys(BYTE* buffer) {
         }
     }
 
-    // XXX: check for FN first, then copy non-null keys to buffer
-    buffer[0] = 0;
-
+    // TODO: process fn_code to keycode here
     if(is_fn) {
-        // TODO: process fn_code to keycode here
-        memset(m_pages[m_buffer.id].keys, 0, KeyMatrix::MAX_KEYS);
-    } else {
-        memcpy(&m_pages[m_buffer.id], &m_buffer, sizeof(KeyMatrix::Page));
+        buffer[0] = keycodes::KEY_NONE;
+        return;
     }
+
+    for(BYTE i = 0; i < PAGE_COUNT; ++i) {
+        for(BYTE j = 0; j < KeyMatrix::MAX_KEYS; ++j) {
+            BYTE keycode = m_pages[i].keys[j];
+            if(keycode == keycodes::KEY_NONE)
+                continue;
+
+            buffer[pos] = keycode;
+            if(++pos == BUFFER_SIZE-1) {
+                buffer[pos] = keycodes::KEY_NONE;
+                return;
+            }
+        }
+    }
+    buffer[pos] = keycodes::KEY_NONE;
 }
 
 void ModularKeyboard::set_led(const LedMatrix::Led& led) {
