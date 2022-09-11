@@ -85,6 +85,8 @@ void HidKeyboardEndpoint::make_report(BYTE* buffer, const BYTE* keys) {
                 break;
             default:
                 if(pos < 8) {
+                    if(keys[i] == keycodes::KEY_NONE)
+                        return;
                     buffer[pos++] = keys[i];
                 }
                 break;

@@ -70,28 +70,6 @@ void ModularKeyboard::send_page_from_isr(KeyMatrix::Page* page) {
 }
 
 void ModularKeyboard::get_keys(BYTE* buffer) {
-    //dev::set_basepri(priority::USB_KEY_REQUEST);
-    //process_keys(buffer);
-    //dev::set_basepri(priority::BASE);
-}
-
-void ModularKeyboard::set_led(const LedMatrix::Led& led) {
-    if(!LedMatrix::set_led(led) && Module::get_id() == Module::RIGHT)
-        UartProtocol::send_led(led);
-}
-
-void ModularKeyboard::update_keys() {
-    BYTE id = m_buffer.id;
-    BYTE buffer[BUFFER_SIZE];
-
-    EffectController::on_update_page(m_pages[id].keys, m_buffer.keys);
-    memcpy(&m_pages[id], &m_buffer, sizeof(KeyMatrix::Page));
-    process_keys(buffer);
-    // disabled for testing, no strange keystrokes
-    // ep1.send_report(buffer);
-}
-
-void ModularKeyboard::process_keys(BYTE* buffer) {
     BYTE pos = 0;
     BYTE is_fn = 0;
     BYTE fn_code = 0;
@@ -111,6 +89,7 @@ void ModularKeyboard::process_keys(BYTE* buffer) {
     }
 
     // XXX: check for FN first, then copy non-null keys to buffer
+    buffer[0] = 0;
 
     if(is_fn) {
         // TODO: process fn_code to keycode here
@@ -118,4 +97,19 @@ void ModularKeyboard::process_keys(BYTE* buffer) {
     } else {
         memcpy(&m_pages[m_buffer.id], &m_buffer, sizeof(KeyMatrix::Page));
     }
+}
+
+void ModularKeyboard::set_led(const LedMatrix::Led& led) {
+    if(!LedMatrix::set_led(led) && Module::get_id() == Module::RIGHT)
+        UartProtocol::send_led(led);
+}
+
+void ModularKeyboard::update_keys() {
+    BYTE id = m_buffer.id;
+    BYTE buffer[BUFFER_SIZE];
+
+    EffectController::on_update_page(m_pages[id].keys, m_buffer.keys);
+    memcpy(&m_pages[id], &m_buffer, sizeof(KeyMatrix::Page));
+    get_keys(buffer);
+    ep1.send_report(buffer);
 }

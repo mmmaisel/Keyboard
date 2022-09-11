@@ -56,5 +56,4 @@ class ModularKeyboard {
         static KeyMatrix::Page m_pages[PAGE_COUNT];
 
         static void update_keys();
-        static void process_keys(BYTE* buffer);
 };
