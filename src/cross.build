@@ -15,6 +15,7 @@ openocd = 'openocd'
 
 [constants]
 cpu_flags = [
+    '--specs=nosys.specs',
     '-mcpu=cortex-m4',
     '-march=armv7e-m',
     '-mfpu=fpv4-sp-d16',
@@ -29,12 +30,14 @@ common_flags = [
     '-fshort-enums',
     '-ffunction-sections',
     '-fdata-sections',
+    '-fno-common',
     '-nostartfiles']
 
 [built-in options]
 c_args = cpu_flags + common_flags
 
 cpp_args = cpu_flags + common_flags + [
+    '-fno-unwind-tables',
     '-fno-exceptions',
     '-fno-rtti']
 
