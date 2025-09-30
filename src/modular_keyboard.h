@@ -1,23 +1,20 @@
-/**********************************************************************\
- * Keyboard
- *
- * Modular keyboard class
- **********************************************************************
- * Copyright (C) 2022 - Max Maisel
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-\**********************************************************************/
+/******************************************************************************\
+    Split Keyboard
+    Copyright (C) 2022-2025 - Max Maisel
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+\******************************************************************************/
 #pragma once
 
 #include "types.h"
@@ -41,19 +38,21 @@ class ModularKeyboard {
         static void initialize();
         [[noreturn]] static void task(void* pContext);
 
-        static void send_page(KeyMatrix::Page* page);
-        static void send_page_from_isr(KeyMatrix::Page* page);
+        //static void send_page(KeyMatrix::Page* page);
+        //static void send_page_from_isr(KeyMatrix::Page* page);
 
         static void get_keys(BYTE* buffer);
-        static void set_led(const LedMatrix::Led& led);
+        //static void set_led(const LedMatrix::Led& led);
+
+        static inline QueueHandle_t get_queue() { return m_queue; }
 
     private:
         static QueueHandle_t m_queue;
-        static KeyMatrix::Page m_queue_item;
+        static DWORD m_queue_item;
         static StaticQueue_t m_queue_mem;
 
-        static KeyMatrix::Page m_buffer;
-        static KeyMatrix::Page m_pages[PAGE_COUNT];
+        static DWORD m_buffer;
+        static DWORD m_pages[PAGE_COUNT];
 
-        static void update_keys();
+        //static void update_keys();
 };

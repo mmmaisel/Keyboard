@@ -1,29 +1,46 @@
-/**********************************************************************\
- * Keyboard
- *
- * Key matrix
- **********************************************************************
- * Copyright (C) 2022 - Max Maisel
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-\**********************************************************************/
+/******************************************************************************\
+    Split Keyboard
+    Copyright (C) 2022-2025 - Max Maisel
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+\******************************************************************************/
 #pragma once
+
+#include "FreeRTOS/FreeRTOS.h"
+#include "FreeRTOS/queue.h"
 
 #include "types.h"
 #include "dev/gpio.h"
 
 extern "C" void tim3_vector() __attribute__((error("calling ISR")));
+
+struct KeyMatrixConfig {
+    static const BYTE MAX_DIM = 16;
+
+    struct Pin {
+        volatile dev::GpioStruct* port;
+        WORD pin;
+    };
+
+    BYTE row_count;
+    BYTE col_count;
+    Pin row_pins[MAX_DIM];
+    Pin col_pins[MAX_DIM];
+
+    /// Maps matrix coordinates to key numbers
+    BYTE mapping[MAX_DIM][MAX_DIM];
+};
 
 class KeyMatrix {
     // Static class
@@ -35,33 +52,27 @@ class KeyMatrix {
     friend void tim3_vector();
 
     public:
-        static const BYTE MAX_DIM = 16;
-        static const BYTE MAX_KEYS = 16;
+        static void initialize(const KeyMatrixConfig* config, QueueHandle_t qtx);
 
-        struct Page {
-            BYTE id;
-            BYTE keys[MAX_KEYS];
-        };
-
-        static void initialize();
     private:
-        struct Pin {
-            volatile dev::GpioStruct* port;
-            WORD pin;
+        enum {
+            PHASE_DRIVE,
+            PHASE_READ,
         };
+        static const BYTE STATE_CNT = 3;
 
-        static BYTE m_row_count;
-        static BYTE m_column_count;
-        static BYTE m_column;
-        static Pin m_rows[MAX_DIM];
-        static Pin m_columns[MAX_DIM];
-        static BYTE m_phase;
-
-        static const BYTE* m_key_layout;
-        static BYTE m_key_state[MAX_DIM][MAX_DIM];
-        static BYTE m_key_idx;
-        static Page m_page;
-        static BYTE m_changed;
+        /// Reference to key matrix configuration
+        static const KeyMatrixConfig* _config;
+        /// Event queue sender
+        static QueueHandle_t _qtx;
+        /// Currently driven column
+        static BYTE _col;
+        /// Scan phases: drive and read
+        static BYTE _phase;
+        /// Last three key states as bitfield defined by mapping
+        static DWORD _key_state[STATE_CNT];
+        /// Index for _key_state
+        static BYTE _state_idx;
 
         static void ISR();
 };

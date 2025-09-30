@@ -31,7 +31,7 @@ void EffectController::set_effect(Effect effect) {
 }
 
 void EffectController::on_update_page(const BYTE* old_page, const BYTE* new_page) {
-    if(m_active_effect == FLASH) {
+    /*if(m_active_effect == FLASH) {
         for(BYTE i = 0; i < KeyMatrix::MAX_KEYS; ++i) {
             BYTE keycode = old_page[i];
             if(keycode == 0)
@@ -59,5 +59,5 @@ void EffectController::on_update_page(const BYTE* old_page, const BYTE* new_page
             // XXX: combine LED messages
             ModularKeyboard::set_led(led);
         }
-    }
+    }*/
 }

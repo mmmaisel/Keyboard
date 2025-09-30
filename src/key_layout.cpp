@@ -25,7 +25,7 @@ using namespace keycodes;
 
 static const BYTE NA = 0;
 
-const BYTE KEY_LAYOUT_RIGHT[KeyMatrix::MAX_DIM][KeyMatrix::MAX_DIM] = {
+/*const BYTE KEY_LAYOUT_RIGHT[KeyMatrix::MAX_DIM][KeyMatrix::MAX_DIM] = {
     // Row 0
     {KEY_F10, KEY_8, KEY_I, KEY_K, KEY_RIGHTSUPER, KEY_COMMA, NA, NA,
         NA, NA, NA, NA, NA, NA, NA, NA},
@@ -174,4 +174,4 @@ const BYTE KEY_LAYOUT_NAV[KeyMatrix::MAX_DIM][KeyMatrix::MAX_DIM] = {
     {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
     // Row 15
     {NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA},
-};
+};*/

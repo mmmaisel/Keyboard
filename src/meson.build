@@ -19,7 +19,8 @@ srcs = files([
   'usb_control_endpoint.cpp',
   'usb_descriptor.cpp',
   'usb_endpoint.cpp',
-  'usb_phy.cpp'
+  'usb_phy.cpp',
+  'wiring.cpp'
 ])
 
 subdir('FreeRTOS')

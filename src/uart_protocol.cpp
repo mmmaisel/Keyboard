@@ -36,7 +36,7 @@ UartProtocolHandler::UartProtocolHandler() :
 }
 
 void UartProtocolHandler::OnReceive(UartMessage& msg) {
-    switch(m_state) {
+    /*switch(m_state) {
         case STATE_IDLE:
             if(msg.is_dma()) {
                 return;
@@ -78,7 +78,7 @@ void UartProtocolHandler::OnReceive(UartMessage& msg) {
 
             m_state = STATE_IDLE;
             break;
-    }
+    }*/
 }
 
 void UartProtocolHandler::reset(Uart* uart) {
@@ -123,7 +123,7 @@ void UartProtocol::initialize() {
     }
 }
 
-void UartProtocol::send_key_page(KeyMatrix::Page& page) {
+/*void UartProtocol::send_key_page(KeyMatrix::Page& page) {
     page.id |= MSG_KEYS;
     Uart1.write(reinterpret_cast<BYTE*>(&page), sizeof(KeyMatrix::Page));
     page.id &= ~MSG_KEYS;
@@ -139,4 +139,4 @@ void UartProtocol::send_led(const LedMatrix::Led& led) {
     Uart1.write(buffer, sizeof(LedMatrix::Led)+1);
     Uart2.write(buffer, sizeof(LedMatrix::Led)+1);
     Uart6.write(buffer, sizeof(LedMatrix::Led)+1);
-}
+}*/

@@ -56,7 +56,7 @@ void HidKeyboardEndpoint::send_report(const BYTE* keys) {
 void HidKeyboardEndpoint::make_report(BYTE* buffer, const BYTE* keys) {
     using namespace keycodes;
     memset(buffer, 0, 8);
-    BYTE pos = 2;
+    /*BYTE pos = 2;
     for(BYTE i = 0; i < KeyMatrix::MAX_KEYS; ++i) {
         switch(keys[i]) {
             case KEY_LEFTCTRL:
@@ -91,7 +91,7 @@ void HidKeyboardEndpoint::make_report(BYTE* buffer, const BYTE* keys) {
                 }
                 break;
         }
-    }
+    }*/
 }
 
 void HidKeyboardEndpoint::OnTransmit() {

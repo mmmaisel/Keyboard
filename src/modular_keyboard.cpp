@@ -1,23 +1,20 @@
-/**********************************************************************\
- * Keyboard
- *
- * Modular keyboard class
- **********************************************************************
- * Copyright (C) 2022 - Max Maisel
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-\**********************************************************************/
+/******************************************************************************\
+    Split Keyboard
+    Copyright (C) 2022-2025 - Max Maisel
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+\******************************************************************************/
 #include "modular_keyboard.h"
 #include "module.h"
 #include "priority.h"
@@ -31,14 +28,14 @@
 #include <cstring>
 
 QueueHandle_t ModularKeyboard::m_queue = 0;
-KeyMatrix::Page ModularKeyboard::m_queue_item = {0};
+DWORD ModularKeyboard::m_queue_item = {0};
 StaticQueue_t ModularKeyboard::m_queue_mem = {0};
 
-KeyMatrix::Page ModularKeyboard::m_buffer = {0};
-KeyMatrix::Page ModularKeyboard::m_pages[PAGE_COUNT] = {0};
+DWORD ModularKeyboard::m_buffer = {0};
+DWORD ModularKeyboard::m_pages[PAGE_COUNT] = {0};
 
 void ModularKeyboard::initialize() {
-    m_queue = xQueueCreateStatic(1, sizeof(KeyMatrix::Page),
+    m_queue = xQueueCreateStatic(1, sizeof(DWORD),
         reinterpret_cast<BYTE*>(&m_queue_item), &m_queue_mem);
 #ifdef DEBUG
     vQueueAddToRegistry(m_queue, "ModKbd");
@@ -51,15 +48,17 @@ void ModularKeyboard::initialize() {
         if(xQueueReceive(m_queue, &m_buffer, portMAX_DELAY) != pdTRUE)
             continue;
 
+        asm volatile("nop");
+
         if(Module::get_id() == Module::RIGHT) {
-            update_keys();
+            //update_keys();
         } else {
-            UartProtocol::send_key_page(m_buffer);
+            //UartProtocol::send_key_page(m_buffer);
         }
     }
 }
 
-void ModularKeyboard::send_page(KeyMatrix::Page* page) {
+/*void ModularKeyboard::send_page(KeyMatrix::Page* page) {
     xQueueSend(m_queue, page, portMAX_DELAY);
 }
 
@@ -67,14 +66,14 @@ void ModularKeyboard::send_page_from_isr(KeyMatrix::Page* page) {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     xQueueSendFromISR(m_queue, page, &xHigherPriorityTaskWoken);
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-}
+}*/
 
 void ModularKeyboard::get_keys(BYTE* buffer) {
     BYTE pos = 0;
-    BYTE is_fn = 0;
-    BYTE fn_code = 0;
+    //BYTE is_fn = 0;
+    //BYTE fn_code = 0;
 
-    for(BYTE i = 0; i < PAGE_COUNT; ++i) {
+    /*for(BYTE i = 0; i < PAGE_COUNT; ++i) {
         for(BYTE j = 0; j < KeyMatrix::MAX_KEYS; ++j) {
             BYTE keycode = m_pages[i].keys[j];
 
@@ -103,11 +102,11 @@ void ModularKeyboard::get_keys(BYTE* buffer) {
                 return;
             }
         }
-    }
+    }*/
     buffer[pos] = keycodes::KEY_NONE;
 }
 
-void ModularKeyboard::set_led(const LedMatrix::Led& led) {
+/*void ModularKeyboard::set_led(const LedMatrix::Led& led) {
     if(!LedMatrix::set_led(led) && Module::get_id() == Module::RIGHT)
         UartProtocol::send_led(led);
 }
@@ -120,4 +119,4 @@ void ModularKeyboard::update_keys() {
     memcpy(&m_pages[id], &m_buffer, sizeof(KeyMatrix::Page));
     get_keys(buffer);
     ep1.send_report(buffer);
-}
+}*/

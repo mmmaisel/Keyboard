@@ -42,13 +42,13 @@ class UartProtocolHandler {
         };
 
         BYTE m_state;
-        union {
+        /*union {
             KeyMatrix::Page m_page;
             struct {
                 BYTE m_led_count;
                 LedMatrix::Led m_leds[8];
             };
-        };
+        };*/
 };
 
 class UartProtocol {
@@ -69,8 +69,8 @@ class UartProtocol {
         static void initialize();
         [[noreturn]] static void task(void* pContext);
 
-        static void send_key_page(KeyMatrix::Page& page);
-        static void send_led(const LedMatrix::Led& led);
+        //static void send_key_page(KeyMatrix::Page& page);
+        //static void send_led(const LedMatrix::Led& led);
 
     private:
         static BYTE m_key_was_pressed;
