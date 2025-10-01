@@ -19,7 +19,7 @@
 
 #include "dev/core.h"
 
-#include "effect_controller.h"
+#include "effect.h"
 #include "event.h"
 #include "hid_keyboard_endpoint.h"
 #include "key_layout.h"
@@ -38,6 +38,9 @@ DWORD ModularKeyboard::_pages[PAGE_COUNT] = {0};
     for(;;) {
         if(_queue.recv(&_buffer) != pdTRUE)
             continue;
+
+        if(_buffer.type == EVENT_KEYS)
+            EffectController::on_keys(_buffer.keys.state);
 
         asm volatile("nop");
 

@@ -18,6 +18,7 @@
 #pragma once
 
 #include "key_matrix.h"
+#include "led_matrix.h"
 
 struct Wiring {
     Wiring(BYTE mod);
@@ -26,4 +27,8 @@ struct Wiring {
     const KeyMatrixConfig* key_config;
     /// Key matrix GPIO init routine for this module
     void(*key_matrix_hw_init)();
+    /// LED matrix config for this module
+    const LedMatrixConfig* led_config;
+    /// LED matrix GPIO init routine for this module
+    void(*led_matrix_hw_init)();
 };

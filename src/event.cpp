@@ -17,6 +17,8 @@
 \******************************************************************************/
 #include "event.h"
 
+#include "led_matrix.h"
+
 EventQueue::EventQueue() {
     _queue = xQueueCreateStatic(1, sizeof(Event),
         reinterpret_cast<BYTE*>(&_queue_items), &_queue_mem);
@@ -33,4 +35,8 @@ void EventQueue::send_from_isr(Event* event) {
 
 BYTE EventQueue::recv(Event* event) {
     return xQueueReceive(_queue, event, portMAX_DELAY);
+}
+
+void EventDispatcher::set_led(BYTE num, Color color) {
+    LedMatrix::set_led(num, color);
 }

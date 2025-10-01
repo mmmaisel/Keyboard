@@ -156,14 +156,14 @@ void KeyMatrix::ISR() {
         // Read current columns rows
         for(BYTE row = 0; row < _config->row_count; ++row) {
             if(_config->row_pins[row].port->IDR & _config->row_pins[row].pin)
-                _key_state[_state_idx] |= (1 << _config->mapping[row][_col]);
+                _key_state[_state_idx] |= (1ull << _config->mapping[row][_col]);
         }
 
         // Stop drive current column
         _config->col_pins[_col].port->clear_odr(_config->col_pins[_col].pin);
 
         // All columns scanned?
-        if(++_col == _config->col_count) {
+        if(++_col >= _config->col_count) {
             _col= 0;
             // Rotate state
             if(++_state_idx >= STATE_CNT)

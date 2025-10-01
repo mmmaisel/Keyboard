@@ -18,19 +18,15 @@
 #pragma once
 
 #include "types.h"
-#include "dev/gpio.h"
 
 #include "event.h"
+#include "pin.h"
 
 extern "C" void tim3_vector() __attribute__((error("calling ISR")));
 
 struct KeyMatrixConfig {
     static const BYTE MAX_DIM = 16;
-
-    struct Pin {
-        volatile dev::GpioStruct* port;
-        WORD pin;
-    };
+    static const BYTE MAX_KEYS = 64;
 
     BYTE page;
     BYTE row_count;

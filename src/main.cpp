@@ -20,14 +20,14 @@
 #include "FreeRTOS/task.h"
 
 #include "dev/gpio.h"
+
+#include "effect.h"
 #include "key_matrix.h"
 #include "led_matrix.h"
 #include "modular_keyboard.h"
 #include "module.h"
 #include "pinout.h"
 #include "priority.h"
-#include "system.h"
-#include "uart.h"
 #include "uart_protocol.h"
 #include "usb_phy.h"
 #include "wiring.h"
@@ -50,7 +50,11 @@ StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
     Wiring wiring(Module::get_id());
 
     UartProtocol::initialize();
-    LedMatrix::initialize();
+
+    EffectController::set_effect(&effect_running);
+
+    wiring.led_matrix_hw_init();
+    LedMatrix::initialize(wiring.led_config);
 
     wiring.key_matrix_hw_init();
     KeyMatrix::initialize(wiring.key_config, ModularKeyboard::get_queue());

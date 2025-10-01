@@ -1,6 +1,6 @@
 /******************************************************************************\
     Split Keyboard
-    Copyright (C) 2019-2025 - Max Maisel
+    Copyright (C) 2025 - Max Maisel
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public License
@@ -18,37 +18,9 @@
 #pragma once
 
 #include "types.h"
+#include "dev/gpio.h"
 
-class Effect {
-    public:
-        virtual void run() = 0;
+struct Pin {
+    volatile dev::GpioStruct* port;
+    WORD pin;
 };
-
-class EffectNone : public Effect {
-    public:
-        void run();
-};
-
-class EffectFlash : public Effect {
-    public:
-        void run();
-};
-
-class EffectController {
-    // Static class
-    EffectController() = delete;
-    EffectController(const EffectController&) = delete;
-    EffectController(EffectController&&) = delete;
-    ~EffectController() = delete;
-
-    public:
-        static inline void set_effect(Effect* effect) { _effect = effect; }
-        static void on_change(DWORD keys);
-
-    private:
-        static Effect* _effect;
-        static DWORD _keys;
-};
-
-extern EffectNone effect_none;
-extern EffectFlash effect_flash;

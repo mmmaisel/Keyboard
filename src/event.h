@@ -50,3 +50,20 @@ class EventQueue {
         StaticQueue_t _queue_mem;
         Event _queue_items;
 };
+
+struct Color {
+    BYTE red;
+    BYTE green;
+    BYTE blue;
+};
+
+class EventDispatcher {
+    // Static class
+    EventDispatcher() = delete;
+    EventDispatcher(const EventDispatcher&) = delete;
+    EventDispatcher(EventDispatcher&&) = delete;
+    ~EventDispatcher() = delete;
+
+    public:
+        static void set_led(BYTE num, Color color);
+};
