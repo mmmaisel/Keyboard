@@ -18,11 +18,10 @@
 #pragma once
 
 #include "types.h"
+
+#include "event.h"
 #include "key_matrix.h"
 #include "led_matrix.h"
-
-#include "FreeRTOS/FreeRTOS.h"
-#include "FreeRTOS/queue.h"
 
 class ModularKeyboard {
     // Static class
@@ -44,15 +43,13 @@ class ModularKeyboard {
         static void get_keys(BYTE* buffer);
         //static void set_led(const LedMatrix::Led& led);
 
-        static inline QueueHandle_t get_queue() { return m_queue; }
+        static inline EventQueue* get_queue() { return &_queue; }
 
     private:
-        static QueueHandle_t m_queue;
-        static DWORD m_queue_item;
-        static StaticQueue_t m_queue_mem;
+        static EventQueue _queue;
 
-        static DWORD m_buffer;
-        static DWORD m_pages[PAGE_COUNT];
+        static Event _buffer;
+        static DWORD _pages[PAGE_COUNT];
 
         //static void update_keys();
 };

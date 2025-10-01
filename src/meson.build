@@ -3,6 +3,7 @@ target = 'Keyboard'
 
 srcs = files([
   'main.cpp',
+  'event.cpp',
   'inttable.c',
   'led_matrix.cpp',
   'led_layout.cpp',

@@ -49,7 +49,6 @@ StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
 [[noreturn]] void main() {
     Wiring wiring(Module::get_id());
 
-    ModularKeyboard::initialize();
     UartProtocol::initialize();
     LedMatrix::initialize();
 

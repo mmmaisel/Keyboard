@@ -17,11 +17,10 @@
 \******************************************************************************/
 #pragma once
 
-#include "FreeRTOS/FreeRTOS.h"
-#include "FreeRTOS/queue.h"
-
 #include "types.h"
 #include "dev/gpio.h"
+
+#include "event.h"
 
 extern "C" void tim3_vector() __attribute__((error("calling ISR")));
 
@@ -33,6 +32,7 @@ struct KeyMatrixConfig {
         WORD pin;
     };
 
+    BYTE page;
     BYTE row_count;
     BYTE col_count;
     Pin row_pins[MAX_DIM];
@@ -52,7 +52,7 @@ class KeyMatrix {
     friend void tim3_vector();
 
     public:
-        static void initialize(const KeyMatrixConfig* config, QueueHandle_t qtx);
+        static void initialize(const KeyMatrixConfig* config, EventQueue* qtx);
 
     private:
         enum {
@@ -64,7 +64,7 @@ class KeyMatrix {
         /// Reference to key matrix configuration
         static const KeyMatrixConfig* _config;
         /// Event queue sender
-        static QueueHandle_t _qtx;
+        static EventQueue* _qtx;
         /// Currently driven column
         static BYTE _col;
         /// Scan phases: drive and read

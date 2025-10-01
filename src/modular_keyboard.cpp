@@ -16,36 +16,27 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \******************************************************************************/
 #include "modular_keyboard.h"
-#include "module.h"
-#include "priority.h"
-#include "hid_keyboard_endpoint.h"
-#include "uart_protocol.h"
-#include "key_layout.h"
-#include "effect_controller.h"
 
 #include "dev/core.h"
 
+#include "effect_controller.h"
+#include "event.h"
+#include "hid_keyboard_endpoint.h"
+#include "key_layout.h"
+#include "module.h"
+#include "priority.h"
+#include "uart_protocol.h"
+
 #include <cstring>
 
-QueueHandle_t ModularKeyboard::m_queue = 0;
-DWORD ModularKeyboard::m_queue_item = {0};
-StaticQueue_t ModularKeyboard::m_queue_mem = {0};
-
-DWORD ModularKeyboard::m_buffer = {0};
-DWORD ModularKeyboard::m_pages[PAGE_COUNT] = {0};
-
-void ModularKeyboard::initialize() {
-    m_queue = xQueueCreateStatic(1, sizeof(DWORD),
-        reinterpret_cast<BYTE*>(&m_queue_item), &m_queue_mem);
-#ifdef DEBUG
-    vQueueAddToRegistry(m_queue, "ModKbd");
-#endif
-}
+EventQueue ModularKeyboard::_queue;
+Event ModularKeyboard::_buffer = {0};
+DWORD ModularKeyboard::_pages[PAGE_COUNT] = {0};
 
 [[noreturn]] void ModularKeyboard::task(void* pContext __attribute((unused))) {
     // XXX: store led state in flash?
     for(;;) {
-        if(xQueueReceive(m_queue, &m_buffer, portMAX_DELAY) != pdTRUE)
+        if(_queue.recv(&_buffer) != pdTRUE)
             continue;
 
         asm volatile("nop");

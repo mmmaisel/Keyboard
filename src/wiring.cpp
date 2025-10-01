@@ -42,6 +42,7 @@ void key_matrix_hw_init_right() {
 }
 
 KeyMatrixConfig key_matrix_cfg_right = {
+    .page = 1,
     .row_count = 7,
     .col_count = 6,
     .row_pins = {

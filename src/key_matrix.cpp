@@ -17,9 +17,6 @@
 \******************************************************************************/
 #include "key_matrix.h"
 
-#include "FreeRTOS/FreeRTOS.h"
-#include "FreeRTOS/queue.h"
-
 #include "dev/core.h"
 #include "dev/gpio.h"
 #include "dev/rcc.h"
@@ -30,13 +27,13 @@
 #include <string.h>
 
 const KeyMatrixConfig* KeyMatrix::_config = nullptr;
-QueueHandle_t KeyMatrix::_qtx = nullptr;
+EventQueue* KeyMatrix::_qtx = nullptr;
 BYTE KeyMatrix::_col = 0;
 BYTE KeyMatrix::_phase = KeyMatrix::PHASE_DRIVE;
 DWORD KeyMatrix::_key_state[KeyMatrix::STATE_CNT] = {0};
 BYTE KeyMatrix::_state_idx = 0;
 
-void KeyMatrix::initialize(const KeyMatrixConfig* config, QueueHandle_t qtx) {
+void KeyMatrix::initialize(const KeyMatrixConfig* config, EventQueue* qtx) {
     using namespace dev;
     using namespace dev::rcc;
     using namespace dev::timer;
@@ -180,9 +177,14 @@ void KeyMatrix::ISR() {
             _key_state[_state_idx] = 0;
 
             // Send event
-            BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-            xQueueSendFromISR(_qtx, &state, &xHigherPriorityTaskWoken);
-            portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+            Event event = {
+                .type = EVENT_KEYS,
+                .keys = KeyEvent {
+                    .page = _config->page,
+                    .state = state,
+                }
+            };
+            _qtx->send_from_isr(&event);
         }
 
         _phase = PHASE_DRIVE;
