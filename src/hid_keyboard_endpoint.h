@@ -20,10 +20,13 @@
 #include "types.h"
 #include "usb_endpoint.h"
 
-struct HidKeyboardReport {
-    static const BYTE LEN = 8;
+struct __attribute__((packed)) HidKeyboardReport {
+    static const BYTE LEN = 6;
     union {
-        BYTE report[LEN];
+        struct __attribute__((packed)) {
+            BYTE mods[2];
+            BYTE keys[LEN];
+        };
         WORD buffer[LEN/4];
     };
 };

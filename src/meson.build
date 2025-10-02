@@ -8,7 +8,6 @@ srcs = files([
   'inttable.c',
   'key_layout.cpp',
   'key_matrix.cpp',
-  'led_layout.cpp',
   'led_matrix.cpp',
   'main.cpp',
   'module.cpp',

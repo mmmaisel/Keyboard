@@ -70,8 +70,8 @@ StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
 
     xTaskCreateStatic(&EventSink::task, "KEYBOARD", STACK_SIZE_KEYBOARD, wiring.keyboard,
         priority::KEYBOARD, taskStack_KEYBOARD, &taskMem_KEYBOARD);
-    xTaskCreateStatic(&UartProtocol::task, "UARTPROTO", STACK_SIZE_UARTPROTO, 0,
-        priority::UARTPROTO, taskStack_UARTPROTO, &taskMem_UARTPROTO);
+    //xTaskCreateStatic(&UartProtocol::task, "UARTPROTO", STACK_SIZE_UARTPROTO, 0,
+    //    priority::UARTPROTO, taskStack_UARTPROTO, &taskMem_UARTPROTO);
 
     // Start scheduler
     vTaskStartScheduler();

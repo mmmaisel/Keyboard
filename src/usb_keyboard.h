@@ -35,6 +35,8 @@ class UsbKeyboard : public EventSink {
             HidKeyboardReport* report, BaseType_t* task_woken);
 
     private:
+        void fill_report(HidKeyboardReport* report);
+
         DWORD _pages[PAGE_COUNT];
         QueueHandle_t _queue;
         StaticQueue_t _queue_mem;

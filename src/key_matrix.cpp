@@ -127,6 +127,7 @@ void KeyMatrix::initialize(const KeyMatrixConfig* config) {
 
     // Configure 10 kHz timer
     // Timer clock is divided by 2 again if APB1_DIV != 1
+    // TODO: check frequency
     RCC->APB1ENR |= TIM3EN;
     TIM3->CR1 = DIR | URS;
     TIM3->ARR = 10;

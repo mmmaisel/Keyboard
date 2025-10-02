@@ -19,6 +19,7 @@
 
 #include "event.h"
 #include "hid_keyboard_endpoint.h"
+#include "key_matrix.h"
 #include "key_layout.h"
 
 #include <cstring>
@@ -37,14 +38,14 @@ UsbKeyboard::UsbKeyboard() {
 
 void UsbKeyboard::on_event(Event* event) {
     if(event->type == EVENT_KEYS) {
-        _pages[event->keys.page] = event->keys.state;
+        _pages[event->keys.page-1] = event->keys.state;
     }
 
     HidKeyboardReport report;
-    // TODO: populate report
+    fill_report(&report);
 
     xQueueOverwrite(_queue, &report);
-    //ep1.send_report(&report);
+    ep1.send_report(&report);
 }
 
 BYTE UsbKeyboard::get_report_from_isr(
@@ -53,40 +54,50 @@ BYTE UsbKeyboard::get_report_from_isr(
     return xQueueReceiveFromISR(_queue, report, task_woken);
 }
 
-//void ModularKeyboard::get_keys(BYTE* buffer) {
-//    BYTE pos = 0;
-    //BYTE is_fn = 0;
-    //BYTE fn_code = 0;
+void UsbKeyboard::fill_report(HidKeyboardReport* report) {
+    using namespace keycodes;
 
-    /*for(BYTE i = 0; i < PAGE_COUNT; ++i) {
-        for(BYTE j = 0; j < KeyMatrix::MAX_KEYS; ++j) {
-            BYTE keycode = m_pages[i].keys[j];
+    BYTE pos = 0;
+    report->buffer[0] = 0;
+    report->buffer[1] = 0;
 
-            if(keycode == keycodes::KEY_FN)
-    is_fn = 1;
-            if(fn_code == 0)
-                fn_code = keycode;
-        }
-    }
-
-    // TODO: process fn_code to keycode here
-    if(is_fn) {
-        buffer[0] = keycodes::KEY_NONE;
-        return;
-    }
+    // TODO: handle fn key combos
 
     for(BYTE i = 0; i < PAGE_COUNT; ++i) {
-        for(BYTE j = 0; j < KeyMatrix::MAX_KEYS; ++j) {
-            BYTE keycode = m_pages[i].keys[j];
-            if(keycode == keycodes::KEY_NONE)
-                continue;
-
-            buffer[pos] = keycode;
-            if(++pos == BUFFER_SIZE-1) {
-                buffer[pos] = keycodes::KEY_NONE;
-                return;
+        for(BYTE j = 0; j < KeyMatrixConfig::MAX_KEYS; ++j) {
+            if(_pages[i] & (1ull << j)) {
+                BYTE keycode = KEY_LAYOUT[i][j];
+                switch(keycode) {
+                    case KEY_LEFTCTRL:
+                        report->mods[0] |= MOD_LCTRL;
+                        break;
+                    case KEY_LEFTSHIFT:
+                        report->mods[0] |= MOD_LSHIFT;
+                        break;
+                    case KEY_LEFTALT:
+                        report->mods[0] |= MOD_LALT;
+                        break;
+                    case KEY_LEFTSUPER:
+                        report->mods[0] |= MOD_LSUPER;
+                        break;
+                    case KEY_RIGHTCTRL:
+                        report->mods[0] |= MOD_RCTRL;
+                        break;
+                    case KEY_RIGHTSHIFT:
+                        report->mods[0] |= MOD_RSHIFT;
+                        break;
+                    case KEY_RIGHTALT:
+                        report->mods[0] |= MOD_RALT;
+                        break;
+                    case KEY_RIGHTSUPER:
+                        report->mods[0] |= MOD_RSUPER;
+                        break;
+                    default:
+                        if(pos < 6)
+                            report->keys[pos++] = keycode;
+                        break;
+                }
             }
         }
-    }*/
-//    buffer[pos] = keycodes::KEY_NONE;
-//}
+    }
+}
