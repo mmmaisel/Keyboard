@@ -1,26 +1,27 @@
-/**********************************************************************\
- * Keyboard
- *
- * USB Control Endpoint class
- **********************************************************************
- * Copyright (C) 2019-2022 - Max Maisel
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-\**********************************************************************/
+/******************************************************************************\
+    Split Keyboard
+    Copyright (C) 2019-2025 - Max Maisel
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+\******************************************************************************/
 #pragma once
 
 #include "types.h"
+
+#include "FreeRTOS/FreeRTOS.h"
+
+#include "usb_endpoint.h"
 
 class ControlEndpoint : public USBEndpoint {
     public:
@@ -85,13 +86,14 @@ class ControlEndpoint : public USBEndpoint {
         static const BYTE SETUP_PKT_WSIZE = 2;
 
     protected:
-        virtual void OnReceive() override;
-        virtual void OnSetup() override;
-        virtual void OnTransmit() override;
+        virtual void OnReceive(BaseType_t* task_woken) override;
+        virtual void OnSetup(BaseType_t* task_woken) override;
+        virtual void OnTransmit(BaseType_t* task_woken) override;
 
     private:
         BYTE m_last_command;
-        void HandleSetup(const Buffer<BUFFER_SIZE>& buffer);
+        void HandleSetup(
+            const Buffer<BUFFER_SIZE>& buffer, BaseType_t* task_woken);
         static void EnableAppEndpoints();
 };
 extern ControlEndpoint ep0;

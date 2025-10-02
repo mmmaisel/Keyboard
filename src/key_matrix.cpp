@@ -142,6 +142,7 @@ void KeyMatrix::initialize(const KeyMatrixConfig* config) {
 void KeyMatrix::ISR() {
     using namespace dev;
     using namespace dev::timer;
+    BaseType_t task_woken = pdFALSE;
 
     TIM3->SR &= ~UIF;
 
@@ -181,11 +182,12 @@ void KeyMatrix::ISR() {
                     .state = state,
                 }
             };
-            EventDispatcher::send_from_isr(&event);
+            EventDispatcher::send_from_isr(&event, &task_woken);
         }
 
         _phase = PHASE_DRIVE;
     }
+    portYIELD_FROM_ISR(task_woken);
 }
 
 extern "C" void tim3_vector() {

@@ -1,23 +1,20 @@
-/**********************************************************************\
- * Keyboard
- *
- * USB driver class
- **********************************************************************
- * Copyright (C) 2019-2022 - Max Maisel
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-\**********************************************************************/
+/******************************************************************************\
+    Split Keyboard
+    Copyright (C) 2019-2025 - Max Maisel
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+\******************************************************************************/
 #include "usb_phy.h"
 
 #include "dev/core.h"
@@ -199,6 +196,7 @@ void USBPhy::EndpointSetDATA0(BYTE num) {
 }
 
 void USBPhy::ISR() {
+    BaseType_t task_woken = pdFALSE;
     WORD cause = USB->GINTSTS & USB->GINTMSK;
 
     if(cause & MMIS) {
@@ -271,7 +269,7 @@ void USBPhy::ISR() {
                 USBDEV->DIEPEMPMSK &= ~(1 << num);
                 // XFRC is relevant for setup and empty ack packets
                 if(cause2 & XFRC)
-                    eps[num]->OnTransmit();
+                    eps[num]->OnTransmit(&task_woken);
                 // TODO: TXFE ISR is optional here
                 //else if(cause2 & USB_OTG_DIEPINT_ITTXFE)
                 //    ;
@@ -288,9 +286,9 @@ void USBPhy::ISR() {
             if(ep_bits & mask) {
                 WORD cause2 = USB_OUTEP[num].DOEPINT & USBDEV->DOEPMSK;
                 if(cause2 & STUP)
-                    eps[num]->OnSetup();
+                    eps[num]->OnSetup(&task_woken);
                 else if(cause2 & XFRC)
-                    eps[num]->OnReceive();
+                    eps[num]->OnReceive(&task_woken);
                 // STSPHSRX ISR is broken, it never occurs
                 //else if(cause2 & USB_OTG_DOEPINT_STSPHSRX)
                 //    eps[num]->OnStatus();
@@ -298,6 +296,7 @@ void USBPhy::ISR() {
             }
         }
     }
+    portYIELD_FROM_ISR(task_woken);
 }
 
 void USBPhy::WakeupISR() {

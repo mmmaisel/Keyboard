@@ -31,10 +31,8 @@ void EventDispatcher::initialize() {
 #endif
 }
 
-void EventDispatcher::send_from_isr(Event* event) {
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    xQueueSendFromISR(_queue, event, &xHigherPriorityTaskWoken);
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+void EventDispatcher::send_from_isr(Event* event, BaseType_t* task_woken) {
+    xQueueSendFromISR(_queue, event, task_woken);
 }
 
 void EventDispatcher::next_event(Event* event) {

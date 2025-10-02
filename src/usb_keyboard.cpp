@@ -17,33 +17,41 @@
 \******************************************************************************/
 #include "usb_keyboard.h"
 
-#include "dev/core.h"
-
-#include "effect.h"
 #include "event.h"
 #include "hid_keyboard_endpoint.h"
 #include "key_layout.h"
-#include "module.h"
-#include "priority.h"
 
 #include <cstring>
 
 UsbKeyboard usb_keyboard;
 
+UsbKeyboard::UsbKeyboard() {
+    _queue = xQueueCreateStatic(1, sizeof(HidKeyboardReport),
+        reinterpret_cast<BYTE*>(&_queue_items), &_queue_mem);
+#ifdef DEBUG
+    vQueueAddToRegistry(_queue, "HidKbd");
+#endif
+}
+
 // TODO: USB needs mutex with any interrupt or xQueueOverwrite
 
 void UsbKeyboard::on_event(Event* event) {
+    if(event->type == EVENT_KEYS) {
+        _pages[event->keys.page] = event->keys.state;
+    }
+
+    HidKeyboardReport report;
+    // TODO: populate report
+
+    xQueueOverwrite(_queue, &report);
+    //ep1.send_report(&report);
 }
 
-/*void ModularKeyboard::send_page(KeyMatrix::Page* page) {
-    xQueueSend(m_queue, page, portMAX_DELAY);
+BYTE UsbKeyboard::get_report_from_isr(
+    HidKeyboardReport* report, BaseType_t* task_woken
+) {
+    return xQueueReceiveFromISR(_queue, report, task_woken);
 }
-
-void ModularKeyboard::send_page_from_isr(KeyMatrix::Page* page) {
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    xQueueSendFromISR(m_queue, page, &xHigherPriorityTaskWoken);
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-}*/
 
 //void ModularKeyboard::get_keys(BYTE* buffer) {
 //    BYTE pos = 0;
@@ -55,7 +63,7 @@ void ModularKeyboard::send_page_from_isr(KeyMatrix::Page* page) {
             BYTE keycode = m_pages[i].keys[j];
 
             if(keycode == keycodes::KEY_FN)
-                is_fn = 1;
+    is_fn = 1;
             if(fn_code == 0)
                 fn_code = keycode;
         }
@@ -82,18 +90,3 @@ void ModularKeyboard::send_page_from_isr(KeyMatrix::Page* page) {
     }*/
 //    buffer[pos] = keycodes::KEY_NONE;
 //}
-
-/*void ModularKeyboard::set_led(const LedMatrix::Led& led) {
-    if(!LedMatrix::set_led(led) && Module::get_id() == Module::RIGHT)
-        UartProtocol::send_led(led);
-}
-
-void ModularKeyboard::update_keys() {
-    BYTE id = m_buffer.id;
-    BYTE buffer[BUFFER_SIZE];
-
-    EffectController::on_update_page(m_pages[id].keys, m_buffer.keys);
-    memcpy(&m_pages[id], &m_buffer, sizeof(KeyMatrix::Page));
-    get_keys(buffer);
-    ep1.send_report(buffer);
-}*/

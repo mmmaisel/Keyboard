@@ -20,24 +20,25 @@
 #include "types.h"
 
 #include "event.h"
+#include "hid_keyboard_endpoint.h"
 
 class UsbKeyboard : public EventSink {
     public:
+        UsbKeyboard();
+
         static const BYTE BUFFER_SIZE = 16;
         static const BYTE PAGE_COUNT = 4;
 
         virtual void on_event(Event* event) override;
 
-        //static void send_page(KeyMatrix::Page* page);
-        //static void send_page_from_isr(KeyMatrix::Page* page);
-
-        void get_keys(BYTE* buffer);
-        //static void set_led(const LedMatrix::Led& led);
+        BYTE get_report_from_isr(
+            HidKeyboardReport* report, BaseType_t* task_woken);
 
     private:
         DWORD _pages[PAGE_COUNT];
-
-        //static void update_keys();
+        QueueHandle_t _queue;
+        StaticQueue_t _queue_mem;
+        HidKeyboardReport _queue_items;
 };
 
 extern UsbKeyboard usb_keyboard;

@@ -1,34 +1,31 @@
-/*********************************************************************\
- * Keyboard
- *
- * USB Control Endpoint class
- **********************************************************************
- * Copyright (C) 2019-2022 - Max Maisel
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-\**********************************************************************/
-#include "dev/usb.h"
-#include "usb_endpoint.h"
-#include "usb_phy.h"
-#include "usb_descriptor.h"
-#include "usb_control_endpoint.h"
-#include "hid_keyboard_endpoint.h"
+/******************************************************************************\
+    Split Keyboard
+    Copyright (C) 2019-2025 - Max Maisel
 
-#include "key_layout.h"
-#include "key_matrix.h"
-#include "led_matrix.h"
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+\******************************************************************************/
+#include "usb_control_endpoint.h"
+
+#include "dev/usb.h"
+
+#include "hid_keyboard_endpoint.h"
 #include "uart.h"
+#include "usb_descriptor.h"
+#include "usb_endpoint.h"
+#include "usb_keyboard.h"
+#include "usb_phy.h"
+
 #include <string.h>
 
 ControlEndpoint ep0;
@@ -42,7 +39,7 @@ ControlEndpoint::ControlEndpoint() :
 ControlEndpoint::~ControlEndpoint() {
 }
 
-void ControlEndpoint::OnReceive() {
+void ControlEndpoint::OnReceive(BaseType_t* task_woken) {
     //Uart6.write('R');
     //Uart6.write(m_bufferPos);
 
@@ -94,19 +91,25 @@ void ControlEndpoint::OnReceive() {
     USBPhy::PrepareRX(m_epnum);
 }
 
-void ControlEndpoint::OnSetup() {
+void ControlEndpoint::OnSetup(BaseType_t* task_woken) {
     //Uart6.write('S');
     //Uart6.write(m_bufferPos);
-    HandleSetup(*reinterpret_cast<Buffer<BUFFER_SIZE>*>(
-        m_buffer.w + m_bufferPos - SETUP_PKT_WSIZE));
+    HandleSetup(
+        *reinterpret_cast<Buffer<BUFFER_SIZE>*>(
+            m_buffer.w + m_bufferPos - SETUP_PKT_WSIZE
+        ),
+        task_woken
+    );
     USBPhy::PrepareRX(m_epnum);
 }
 
-void ControlEndpoint::OnTransmit() {
+void ControlEndpoint::OnTransmit(BaseType_t* task_woken) {
     //SimpleUart::Write('T');
 }
 
-void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
+void ControlEndpoint::HandleSetup(
+    const Buffer<BUFFER_SIZE>& buffer, BaseType_t* task_woken
+) {
     BYTE bmRequestType = buffer.b[0];
     BYTE bRequest = buffer.b[1];
     SHORT wValue = buffer.h[1];
@@ -195,14 +198,12 @@ void ControlEndpoint::HandleSetup(const Buffer<BUFFER_SIZE>& buffer) {
         USBPhy::TransmitData(m_epnum, 0, 0);
     // TODO: move hid stuff to HidKeyboard class
     } else if(bmRequestType == GET_CLASS_INTERFACE && bRequest == REQUEST_HID_GET_REPORT) {
-        WORD txbuf[2];
-        BYTE keys[16];
+        HidKeyboardReport report;
         BYTE length = 8;
-        //ModularKeyboard::get_keys(keys);
-        HidKeyboardEndpoint::make_report(reinterpret_cast<BYTE*>(txbuf), keys);
+        usb_keyboard.get_report_from_isr(&report, task_woken);
         if(wLength < length)
             length = wLength;
-        USBPhy::TransmitData(m_epnum, txbuf, length);
+        USBPhy::TransmitData(m_epnum, report.buffer, length);
     } else if(bmRequestType == SET_CLASS_INTERFACE && bRequest == REQUEST_HID_SET_REPORT) {
         // Postpone command processing until the following data fragment
         // was received.
