@@ -17,12 +17,15 @@
 \******************************************************************************/
 #pragma once
 
+#include "event.h"
 #include "key_matrix.h"
 #include "led_matrix.h"
 
 struct Wiring {
     Wiring(BYTE mod);
 
+    /// Event sink for this module
+    EventSink * keyboard;
     /// Key matrix config for this module
     const KeyMatrixConfig* key_config;
     /// Key matrix GPIO init routine for this module

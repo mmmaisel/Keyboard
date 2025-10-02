@@ -2,16 +2,15 @@ project('Keyboard', ['c', 'cpp'], default_options: ['buildtype=minsize'])
 target = 'Keyboard'
 
 srcs = files([
-  'main.cpp',
-  'event.cpp',
-  'inttable.c',
-  'led_matrix.cpp',
-  'led_layout.cpp',
-  'key_matrix.cpp',
-  'key_layout.cpp',
   'effect.cpp',
+  'event.cpp',
   'hid_keyboard_endpoint.cpp',
-  'modular_keyboard.cpp',
+  'inttable.c',
+  'key_layout.cpp',
+  'key_matrix.cpp',
+  'led_layout.cpp',
+  'led_matrix.cpp',
+  'main.cpp',
   'module.cpp',
   'startup.cpp',
   'system.cpp',
@@ -20,6 +19,7 @@ srcs = files([
   'usb_control_endpoint.cpp',
   'usb_descriptor.cpp',
   'usb_endpoint.cpp',
+  'usb_keyboard.cpp',
   'usb_phy.cpp',
   'wiring.cpp'
 ])

@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \**********************************************************************/
 #include "uart_protocol.h"
-#include "modular_keyboard.h"
+
 #include <cstring>
 
 BYTE UartProtocol::m_key_was_pressed = 0;

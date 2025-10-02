@@ -24,6 +24,12 @@
 
 extern "C" void tim2_vector() __attribute__((error("calling ISR")));
 
+struct Color {
+    BYTE red;
+    BYTE green;
+    BYTE blue;
+};
+
 struct LedMatrixConfig {
     static const BYTE MAX_DIM = 16;
     static const BYTE MAX_LED = 64;

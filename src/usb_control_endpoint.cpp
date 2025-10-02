@@ -24,7 +24,6 @@
 #include "usb_descriptor.h"
 #include "usb_control_endpoint.h"
 #include "hid_keyboard_endpoint.h"
-#include "modular_keyboard.h"
 
 #include "key_layout.h"
 #include "key_matrix.h"

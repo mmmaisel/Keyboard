@@ -20,36 +20,24 @@
 #include "types.h"
 
 #include "event.h"
-#include "key_matrix.h"
-#include "led_matrix.h"
 
-class ModularKeyboard {
-    // Static class
-    ModularKeyboard() = delete;
-    ModularKeyboard(const ModularKeyboard&) = delete;
-    ModularKeyboard(ModularKeyboard&&) = delete;
-    ~ModularKeyboard() = delete;
-
+class UsbKeyboard : public EventSink {
     public:
         static const BYTE BUFFER_SIZE = 16;
         static const BYTE PAGE_COUNT = 4;
 
-        static void initialize();
-        [[noreturn]] static void task(void* pContext);
+        virtual void on_event(Event* event) override;
 
         //static void send_page(KeyMatrix::Page* page);
         //static void send_page_from_isr(KeyMatrix::Page* page);
 
-        static void get_keys(BYTE* buffer);
+        void get_keys(BYTE* buffer);
         //static void set_led(const LedMatrix::Led& led);
 
-        static inline EventQueue* get_queue() { return &_queue; }
-
     private:
-        static EventQueue _queue;
-
-        static Event _buffer;
-        static DWORD _pages[PAGE_COUNT];
+        DWORD _pages[PAGE_COUNT];
 
         //static void update_keys();
 };
+
+extern UsbKeyboard usb_keyboard;

@@ -22,18 +22,16 @@
 #include "dev/rcc.h"
 #include "dev/timer.h"
 
+#include "event.h"
 #include "priority.h"
 
-#include <string.h>
-
 const KeyMatrixConfig* KeyMatrix::_config = nullptr;
-EventQueue* KeyMatrix::_qtx = nullptr;
 BYTE KeyMatrix::_col = 0;
 BYTE KeyMatrix::_phase = KeyMatrix::PHASE_DRIVE;
 DWORD KeyMatrix::_key_state[KeyMatrix::STATE_CNT] = {0};
 BYTE KeyMatrix::_state_idx = 0;
 
-void KeyMatrix::initialize(const KeyMatrixConfig* config, EventQueue* qtx) {
+void KeyMatrix::initialize(const KeyMatrixConfig* config) {
     using namespace dev;
     using namespace dev::rcc;
     using namespace dev::timer;
@@ -126,7 +124,6 @@ void KeyMatrix::initialize(const KeyMatrixConfig* config, EventQueue* qtx) {
     }*/
 
     _config = config;
-    _qtx = qtx;
 
     // Configure 10 kHz timer
     // Timer clock is divided by 2 again if APB1_DIV != 1
@@ -184,7 +181,7 @@ void KeyMatrix::ISR() {
                     .state = state,
                 }
             };
-            _qtx->send_from_isr(&event);
+            EventDispatcher::send_from_isr(&event);
         }
 
         _phase = PHASE_DRIVE;

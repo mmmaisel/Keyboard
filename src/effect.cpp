@@ -17,8 +17,8 @@
 \******************************************************************************/
 #include "effect.h"
 
-#include "event.h"
 #include "key_matrix.h"
+#include "led_matrix.h"
 
 EffectNone effect_none;
 EffectFlash effect_flash;
@@ -34,11 +34,11 @@ void EffectFlash::run(DWORD new_keys, DWORD old_keys) {
         BYTE changed = !!((new_keys & (1ull << i)) ^ (old_keys & (1ull << i)));
         if(changed) {
             if(new_keys & (1ull << i)) {
-                EventDispatcher::set_led(
+                LedMatrix::set_led(
                     i, Color { .red = 16, .green = 16, .blue = 16 }
                 );
             } else {
-                EventDispatcher::set_led(
+                LedMatrix::set_led(
                     i, Color { .red = 0, .green = 0, .blue = 0 }
                 );
             }
@@ -47,11 +47,11 @@ void EffectFlash::run(DWORD new_keys, DWORD old_keys) {
 }
 
 void EffectRunning::run(DWORD new_keys, DWORD old_keys) {
-    if(++_cnt >= 100) {
+    if(++_cnt >= 50) {
         _cnt = 0;
 
         Color color = {.red = 0, .green = 0, .blue = 0};
-        EventDispatcher::set_led(_idx / 3, color);
+        LedMatrix::set_led(_idx / 3, color);
         if(++_idx >= 120) {
             _idx = 0;
         }
@@ -60,7 +60,7 @@ void EffectRunning::run(DWORD new_keys, DWORD old_keys) {
             case 1: color.green = 16; break;
             case 2: color.blue = 16; break;
         }
-        EventDispatcher::set_led(_idx / 3, color);
+        LedMatrix::set_led(_idx / 3, color);
     }
 }
 

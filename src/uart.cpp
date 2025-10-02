@@ -27,8 +27,6 @@
 #include "dev/dma.h"
 #include "dev/rcc.h"
 
-#include "modular_keyboard.h"
-
 #include <cstring>
 
 UartMessage::UartMessage(BYTE id, BYTE dma, BYTE data) :

@@ -24,7 +24,6 @@
 #include "effect.h"
 #include "key_matrix.h"
 #include "led_matrix.h"
-#include "modular_keyboard.h"
 #include "module.h"
 #include "pinout.h"
 #include "priority.h"
@@ -50,14 +49,15 @@ StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
     Wiring wiring(Module::get_id());
 
     UartProtocol::initialize();
-
-    EffectController::set_effect(&effect_running);
+    EventDispatcher::initialize();
+    //EffectController::set_effect(&effect_running);
+    EffectController::set_effect(&effect_flash);
 
     wiring.led_matrix_hw_init();
     LedMatrix::initialize(wiring.led_config);
 
     wiring.key_matrix_hw_init();
-    KeyMatrix::initialize(wiring.key_config, ModularKeyboard::get_queue());
+    KeyMatrix::initialize(wiring.key_config);
 
     if(Module::get_id() == Module::RIGHT) {
         USBPhy::Initialize();
@@ -68,7 +68,7 @@ StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
         dev::GPIOB->set_odr(PWREN0 | PWREN1 | PWREN2);
     }
 
-    xTaskCreateStatic(&ModularKeyboard::task, "KEYBOARD", STACK_SIZE_KEYBOARD, 0,
+    xTaskCreateStatic(&EventSink::task, "KEYBOARD", STACK_SIZE_KEYBOARD, wiring.keyboard,
         priority::KEYBOARD, taskStack_KEYBOARD, &taskMem_KEYBOARD);
     xTaskCreateStatic(&UartProtocol::task, "UARTPROTO", STACK_SIZE_UARTPROTO, 0,
         priority::UARTPROTO, taskStack_UARTPROTO, &taskMem_UARTPROTO);

@@ -17,9 +17,13 @@
 \******************************************************************************/
 #include "event.h"
 
-#include "led_matrix.h"
+#include "effect.h"
 
-EventQueue::EventQueue() {
+QueueHandle_t EventDispatcher::_queue = nullptr;
+StaticQueue_t EventDispatcher::_queue_mem = {};
+Event EventDispatcher::_queue_items = {};
+
+void EventDispatcher::initialize() {
     _queue = xQueueCreateStatic(1, sizeof(Event),
         reinterpret_cast<BYTE*>(&_queue_items), &_queue_mem);
 #ifdef DEBUG
@@ -27,16 +31,23 @@ EventQueue::EventQueue() {
 #endif
 }
 
-void EventQueue::send_from_isr(Event* event) {
+void EventDispatcher::send_from_isr(Event* event) {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     xQueueSendFromISR(_queue, event, &xHigherPriorityTaskWoken);
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
-BYTE EventQueue::recv(Event* event) {
-    return xQueueReceive(_queue, event, portMAX_DELAY);
+void EventDispatcher::next_event(Event* event) {
+    while(xQueueReceive(_queue, event, portMAX_DELAY) != pdTRUE);
+
+    if(event->type == EVENT_KEYS)
+        EffectController::on_keys(event->keys.state);
 }
 
-void EventDispatcher::set_led(BYTE num, Color color) {
-    LedMatrix::set_led(num, color);
+void EventSink::task(void* pContext) {
+    EventSink* sink = reinterpret_cast<EventSink*>(pContext);
+    for(;;) {
+        EventDispatcher::next_event(&sink->_event);
+        sink->on_event(&sink->_event);
+    }
 }

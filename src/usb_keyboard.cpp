@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \******************************************************************************/
-#include "modular_keyboard.h"
+#include "usb_keyboard.h"
 
 #include "dev/core.h"
 
@@ -25,31 +25,14 @@
 #include "key_layout.h"
 #include "module.h"
 #include "priority.h"
-#include "uart_protocol.h"
 
 #include <cstring>
 
-EventQueue ModularKeyboard::_queue;
-Event ModularKeyboard::_buffer = {0};
-DWORD ModularKeyboard::_pages[PAGE_COUNT] = {0};
+UsbKeyboard usb_keyboard;
 
-[[noreturn]] void ModularKeyboard::task(void* pContext __attribute((unused))) {
-    // XXX: store led state in flash?
-    for(;;) {
-        if(_queue.recv(&_buffer) != pdTRUE)
-            continue;
+// TODO: USB needs mutex with any interrupt or xQueueOverwrite
 
-        if(_buffer.type == EVENT_KEYS)
-            EffectController::on_keys(_buffer.keys.state);
-
-        asm volatile("nop");
-
-        if(Module::get_id() == Module::RIGHT) {
-            //update_keys();
-        } else {
-            //UartProtocol::send_key_page(m_buffer);
-        }
-    }
+void UsbKeyboard::on_event(Event* event) {
 }
 
 /*void ModularKeyboard::send_page(KeyMatrix::Page* page) {
@@ -62,8 +45,8 @@ void ModularKeyboard::send_page_from_isr(KeyMatrix::Page* page) {
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }*/
 
-void ModularKeyboard::get_keys(BYTE* buffer) {
-    BYTE pos = 0;
+//void ModularKeyboard::get_keys(BYTE* buffer) {
+//    BYTE pos = 0;
     //BYTE is_fn = 0;
     //BYTE fn_code = 0;
 
@@ -97,8 +80,8 @@ void ModularKeyboard::get_keys(BYTE* buffer) {
             }
         }
     }*/
-    buffer[pos] = keycodes::KEY_NONE;
-}
+//    buffer[pos] = keycodes::KEY_NONE;
+//}
 
 /*void ModularKeyboard::set_led(const LedMatrix::Led& led) {
     if(!LedMatrix::set_led(led) && Module::get_id() == Module::RIGHT)

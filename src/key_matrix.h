@@ -19,7 +19,6 @@
 
 #include "types.h"
 
-#include "event.h"
 #include "pin.h"
 
 extern "C" void tim3_vector() __attribute__((error("calling ISR")));
@@ -48,7 +47,7 @@ class KeyMatrix {
     friend void tim3_vector();
 
     public:
-        static void initialize(const KeyMatrixConfig* config, EventQueue* qtx);
+        static void initialize(const KeyMatrixConfig* config);
 
     private:
         enum {
@@ -59,8 +58,6 @@ class KeyMatrix {
 
         /// Reference to key matrix configuration
         static const KeyMatrixConfig* _config;
-        /// Event queue sender
-        static EventQueue* _qtx;
         /// Currently driven column
         static BYTE _col;
         /// Scan phases: drive and read

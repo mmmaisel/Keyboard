@@ -23,6 +23,7 @@
 #include "module.h"
 #include "pin.h"
 #include "pinout.h"
+#include "usb_keyboard.h"
 
 using namespace dev;
 using namespace dev::rcc;
@@ -164,6 +165,7 @@ LedMatrixConfig led_matrix_cfg_right = {
 Wiring::Wiring(BYTE mod_id) {
     switch(mod_id) {
         case Module::RIGHT:
+            keyboard = &usb_keyboard;
             key_config = &key_matrix_cfg_right;
             key_matrix_hw_init = key_matrix_hw_init_right;
             led_config = &led_matrix_cfg_right;

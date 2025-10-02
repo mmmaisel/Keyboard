@@ -38,25 +38,6 @@ struct Event {
     };
 };
 
-class EventQueue {
-    public:
-        EventQueue();
-
-        void send_from_isr(Event* event);
-        BYTE recv(Event* event);
-
-    private:
-        QueueHandle_t _queue;
-        StaticQueue_t _queue_mem;
-        Event _queue_items;
-};
-
-struct Color {
-    BYTE red;
-    BYTE green;
-    BYTE blue;
-};
-
 class EventDispatcher {
     // Static class
     EventDispatcher() = delete;
@@ -65,5 +46,22 @@ class EventDispatcher {
     ~EventDispatcher() = delete;
 
     public:
-        static void set_led(BYTE num, Color color);
+        static void initialize();
+        static void send_from_isr(Event* event);
+        static void next_event(Event* event);
+
+    private:
+        static QueueHandle_t _queue;
+        static StaticQueue_t _queue_mem;
+        static Event _queue_items;
+};
+
+class EventSink {
+    public:
+        virtual void on_event(Event* event) = 0;
+
+        [[noreturn]] static void task(void* pContext);
+
+    private:
+        Event _event;
 };
