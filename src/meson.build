@@ -15,6 +15,7 @@ srcs = files([
   'system.cpp',
   'uart.cpp',
   'uart_protocol.cpp',
+  'uart_keyboard.cpp',
   'usb_control_endpoint.cpp',
   'usb_descriptor.cpp',
   'usb_endpoint.cpp',

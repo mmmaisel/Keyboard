@@ -34,8 +34,6 @@ UsbKeyboard::UsbKeyboard() {
 #endif
 }
 
-// TODO: USB needs mutex with any interrupt or xQueueOverwrite
-
 void UsbKeyboard::on_event(Event* event) {
     if(event->type == EVENT_KEYS) {
         _pages[event->keys.page-1] = event->keys.state;
