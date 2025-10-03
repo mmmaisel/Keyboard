@@ -19,28 +19,43 @@
 
 #include "types.h"
 
+#include "led_matrix.h"
+
 class Effect {
     public:
-        virtual void run(DWORD new_keys, DWORD old_keys) = 0;
+        virtual void run(BYTE led_count, DWORD new_keys, DWORD old_keys) = 0;
 };
 
 class EffectNone : public Effect {
     public:
-        virtual void run(DWORD new_keys, DWORD old_keys) override;
+        virtual void run(
+            BYTE led_count, DWORD new_keys, DWORD old_keys) override;
 };
 
 class EffectFlash : public Effect {
     public:
-        virtual void run(DWORD new_keys, DWORD old_keys) override ;
+        virtual void run(
+            BYTE led_count, DWORD new_keys, DWORD old_keys) override;
 };
 
 class EffectRunning : public Effect {
     public:
-        virtual void run(DWORD new_keys, DWORD old_keys) override;
+        virtual void run(
+            BYTE led_count, DWORD new_keys, DWORD old_keys) override;
 
     private:
         BYTE _idx;
         WORD _cnt;
+};
+
+class EffectRainbow : public Effect {
+    public:
+        virtual void run(
+            BYTE led_count, DWORD new_keys, DWORD old_keys) override;
+
+    private:
+        BYTE _phase;
+        BYTE _cnt;
 };
 
 class EffectController {
@@ -51,10 +66,12 @@ class EffectController {
     ~EffectController() = delete;
 
     public:
+        static void initialize(const LedMatrixConfig* config);
         static inline void set_effect(Effect* effect) { _effect = effect; }
         static void on_keys(DWORD keys);
 
     private:
+        static BYTE _led_count;
         static Effect* _effect;
         static DWORD _keys;
 };
@@ -62,3 +79,4 @@ class EffectController {
 extern EffectNone effect_none;
 extern EffectFlash effect_flash;
 extern EffectRunning effect_running;
+extern EffectRainbow effect_rainbow;

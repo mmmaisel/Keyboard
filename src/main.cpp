@@ -45,13 +45,16 @@ StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
 
 /// C++ main function, program starts here.
 /// Please note that the real program starts in startup.cpp
-[[noreturn]] void main() {
+[[noreturn]] int main() {
     Wiring wiring(Module::get_id());
 
     UartProtocol::initialize();
     EventDispatcher::initialize();
+    EffectController::initialize(wiring.led_config);
+
+    EffectController::set_effect(&effect_rainbow);
     //EffectController::set_effect(&effect_running);
-    EffectController::set_effect(&effect_flash);
+    //EffectController::set_effect(&effect_flash);
 
     wiring.led_matrix_hw_init();
     LedMatrix::initialize(wiring.led_config);

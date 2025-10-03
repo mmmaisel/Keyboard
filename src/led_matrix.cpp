@@ -84,6 +84,7 @@ void LedMatrix::ISR() {
 
         // Rows are high active
         _config->row_pins[_row].port->clear_odr(_config->row_pins[_row].pin);
+        // TODO: slow down small matrices
         if(++_row >= _config->rows)
             _row = 0;
         _config->row_pins[_row].port->set_odr(_config->row_pins[_row].pin);

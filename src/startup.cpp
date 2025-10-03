@@ -46,7 +46,7 @@
 #include "module.h"
 #include "priority.h"
 
-extern void main();
+extern int main();
 
 extern BYTE __data_start__;
 extern BYTE __data_load__;

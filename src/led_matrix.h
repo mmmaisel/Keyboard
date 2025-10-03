@@ -32,7 +32,7 @@ struct Color {
 
 struct LedMatrixConfig {
     static const BYTE MAX_DIM = 16;
-    static const BYTE MAX_LED = 64;
+    static const BYTE MAX_LED = 48;
 
     struct Coord {
         BYTE row;
@@ -44,6 +44,7 @@ struct LedMatrixConfig {
     Pin row_pins[MAX_DIM];
     Pin col_pins[MAX_DIM];
 
+    BYTE led_count;
     /// Maps LED numbers to coordinates
     Coord mapping[MAX_LED];
 };

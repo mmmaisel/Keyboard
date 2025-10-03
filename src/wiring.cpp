@@ -121,6 +121,7 @@ namespace right {
             Pin { .port = GPIOD, .pin = LC8 },
             Pin { .port = GPIOD, .pin = LC9 },
         },
+        .led_count = 42,
         .mapping = {
             Coord { .row =  0, .col = 0 }, // sentinel
             Coord { .row =  6, .col = 3 }, // row 1
@@ -257,6 +258,7 @@ namespace left {
             Pin { .port = GPIOA, .pin = LC9 },
             Pin { .port = GPIOA, .pin = LC10 },
         },
+        .led_count = 40,
         .mapping = {
             Coord { .row =  0, .col = 0 }, // sentinel
             Coord { .row =  3, .col = 0 }, // row 1
@@ -369,6 +371,7 @@ namespace nav {
             Pin { .port = GPIOA, .pin = LC4 },
             Pin { .port = GPIOA, .pin = LC5 },
         },
+        .led_count = 15,
         .mapping = {
             Coord { .row =  0, .col = 0 }, // sentinel
             Coord { .row =  0, .col = 0 }, // row 1
@@ -460,6 +463,7 @@ namespace num {
             Pin { .port = GPIOB, .pin = LC5 },
             Pin { .port = GPIOB, .pin = LC6 },
         },
+        .led_count = 18,
         .mapping = {
             Coord { .row =  0, .col = 0 }, // sentinel
             Coord { .row =  0, .col = 0 }, // row 1

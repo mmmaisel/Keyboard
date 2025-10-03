@@ -24,7 +24,6 @@ cpu_flags = [
 
 common_flags = [
     '-Wall',
-    '-ffreestanding',
     '-funsigned-char',
     '-funsigned-bitfields',
     '-fshort-enums',
