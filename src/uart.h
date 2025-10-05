@@ -1,23 +1,20 @@
-/**********************************************************************\
- * Keyboard
- *
- * UART class
- **********************************************************************
- * Copyright (C) 2022 - Max Maisel
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-\**********************************************************************/
+/******************************************************************************\
+    Split Keyboard
+    Copyright (C) 2022-2025 - Max Maisel
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+\******************************************************************************/
 #pragma once
 
 #include "types.h"
@@ -38,20 +35,16 @@ extern "C" void dma2s2_vector() __attribute__((error("calling ISR")));
 extern "C" void dma2s6_vector() __attribute__((error("calling ISR")));
 extern "C" void dma2s7_vector() __attribute__((error("calling ISR")));
 
-struct UartMessage {
-    UartMessage(BYTE id = 0, BYTE dma = 0, BYTE data = 0);
-    inline BYTE is_dma() const { return m_type_id & DMA_COMPLETE; }
-    inline BYTE id() const { return m_type_id & TYPE_MASK; }
-    inline BYTE data() const { return m_data; }
-
-    private:
-        enum : BYTE {
-            DMA_COMPLETE = 0x80,
-            TYPE_MASK = 0x0F
-        };
-
-        BYTE m_type_id;
-        BYTE m_data;
+struct UartConfig {
+    volatile dev::UsartStruct* uart;
+    volatile dev::DmaStruct* dma;
+    BYTE rx_stream;
+    BYTE tx_stream;
+    BYTE(*hw_init_fn)();
+#ifdef DEBUG
+    const char* rx_queue_name;
+    const char* tx_queue_name;
+#endif
 };
 
 class Uart
@@ -70,45 +63,28 @@ class Uart
     friend void dma2s7_vector();
 
     public:
-        explicit Uart(BYTE id);
-        ~Uart() {}
-        inline void set_queue(QueueHandle_t queue) { m_rx_queue = queue; }
+        explicit Uart(UartConfig* config);
 
-        void write(BYTE data);
+        /// Directly writes a single byte to FIFO.
+        void debug_write(BYTE data);
+        /// Writes buffer with DMA. Not reentrant.
         void write(const BYTE* buffer, BYTE length);
-        void start_read_byte();
-        void start_read(BYTE* buffer, BYTE length);
-        void abort_read();
-
-        enum : BYTE {
-            UART1_ID,
-            UART2_ID,
-            UART6_ID,
-            UART_COUNT
-        };
-        static Uart* const BY_ID[UART_COUNT];
+        /// Reads to buffer with DMA. Not reentrant.
+        BYTE read(BYTE* buffer, BYTE length);
 
     private:
-        BYTE m_id;
-        volatile dev::UsartStruct* m_uart;
-        volatile dev::DmaStruct* m_dma;
-        BYTE m_rx_stream;
-        BYTE m_tx_stream;
+        UartConfig* _config;
 
-        QueueHandle_t m_rx_queue = 0;
-        SemaphoreHandle_t m_rx_semaphore;
-        StaticSemaphore_t m_rx_semaphore_mem;
-        SemaphoreHandle_t m_tx_semaphore;
-        StaticSemaphore_t m_tx_semaphore_mem;
-
-        static const BYTE BUFFER_SIZE = 64;
-        BYTE m_tx_buffer[BUFFER_SIZE];
+        SemaphoreHandle_t _rx_semaphore;
+        StaticSemaphore_t _rx_semaphore_mem;
+        SemaphoreHandle_t _tx_semaphore;
+        StaticSemaphore_t _tx_semaphore_mem;
 
         void ISR();
         void DMA_TX_ISR();
         void DMA_RX_ISR();
 };
 
-extern Uart Uart1;
-extern Uart Uart2;
-extern Uart Uart6;
+extern Uart uart1;
+extern Uart uart2;
+extern Uart uart6;

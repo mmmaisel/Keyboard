@@ -26,6 +26,9 @@ class UartKeyboard : public EventSink {
         UartKeyboard();
 
         virtual void on_event(Event* event) override;
+
+    private:
+        BYTE _ctr;
 };
 
 extern UartKeyboard uart_keyboard;

@@ -18,15 +18,24 @@
 #include "uart_keyboard.h"
 
 #include "event.h"
-#include "key_matrix.h"
-#include "key_layout.h"
+#include "uart.h"
+#include "uart_protocol.h"
 
 #include <cstring>
 
 UartKeyboard uart_keyboard;
 
-UartKeyboard::UartKeyboard() {
+UartKeyboard::UartKeyboard() :
+    _ctr(0)
+{
 }
 
 void UartKeyboard::on_event(Event* event) {
+    if(event->type != EVENT_KEYS)
+        return;
+
+    // TODO: fill counter with live and ACK
+    UartMessage msg = UartMessage::serialize_keys(
+        event->keys.page, _ctr, event->keys.state);
+    uart1.write(reinterpret_cast<BYTE*>(&msg), sizeof(msg));
 }

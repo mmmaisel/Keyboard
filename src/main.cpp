@@ -48,7 +48,6 @@ StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
 [[noreturn]] int main() {
     Wiring wiring(Module::get_id());
 
-    UartProtocol::initialize();
     EventDispatcher::initialize();
     EffectController::initialize(wiring.led_config);
 

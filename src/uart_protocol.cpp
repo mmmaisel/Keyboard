@@ -1,27 +1,38 @@
-/**********************************************************************\
- * Keyboard
- *
- * UART protocol class
- **********************************************************************
- * Copyright (C) 2022 - Max Maisel
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-\**********************************************************************/
+/******************************************************************************\
+    Split Keyboard
+    Copyright (C) 2022-2025 - Max Maisel
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+\******************************************************************************/
 #include "uart_protocol.h"
 
-#include <cstring>
+#include "event.h"
 
+UartMessage UartMessage::serialize_keys(BYTE ctr, BYTE page, DWORD state) {
+    UartMessage msg = {};
+
+    msg.hdr = (ctr << 4) | ((EVENT_KEYS-1) << 2) | page;
+    for(BYTE i = 0; i < STATE_LEN; ++i) {
+        msg.keys.state[i] = state & 0xFF;
+        state >>= 8;
+    }
+
+    // TODO: crc8
+    return msg;
+}
+
+#if 0
 BYTE UartProtocol::m_key_was_pressed = 0;
 QueueHandle_t UartProtocol::m_queue = 0;
 UartMessage UartProtocol::m_message;
@@ -140,3 +151,4 @@ void UartProtocol::send_led(const LedMatrix::Led& led) {
     Uart2.write(buffer, sizeof(LedMatrix::Led)+1);
     Uart6.write(buffer, sizeof(LedMatrix::Led)+1);
 }*/
+#endif
