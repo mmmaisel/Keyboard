@@ -22,8 +22,14 @@
 #include "led_matrix.h"
 
 class Effect {
+    Effect(const Effect&) = delete;
+    Effect(Effect&&) = delete;
+
     public:
         virtual void run(BYTE led_count, DWORD new_keys, DWORD old_keys) = 0;
+
+    protected:
+        Effect() = default;
 };
 
 class EffectNone : public Effect {

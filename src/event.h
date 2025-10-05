@@ -58,6 +58,10 @@ class EventDispatcher {
 
 class EventSink {
     public:
+        EventSink() = default;
+        EventSink(const EventSink&) = delete;
+        EventSink(EventSink&&) = delete;
+
         virtual void on_event(Event* event) = 0;
 
         [[noreturn]] static void task(void* pContext);
