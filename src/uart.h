@@ -74,6 +74,7 @@ class Uart
 
     private:
         UartConfig* _config;
+        HWORD _dma_rem;
 
         SemaphoreHandle_t _rx_semaphore;
         StaticSemaphore_t _rx_semaphore_mem;

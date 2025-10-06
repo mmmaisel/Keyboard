@@ -21,8 +21,10 @@
 
 struct __attribute__((packed)) UartMessage {
     static const BYTE STATE_LEN = 5;
+    static const BYTE KEY_MSG_LEN = 2 + STATE_LEN;
 
     BYTE hdr; // counter:4 type:2 page:2
+    BYTE crc;
     union {
         struct __attribute__((packed)) {
             BYTE state[STATE_LEN];
@@ -33,7 +35,6 @@ struct __attribute__((packed)) UartMessage {
             BYTE state[STATE_LEN];
         } leds;
     };
-    BYTE crc;
 
     static UartMessage serialize_keys(BYTE ctr, BYTE page, DWORD state);
 };

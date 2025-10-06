@@ -154,9 +154,7 @@ Uart::Uart(UartConfig* config) :
     _config(config)
 {
     _rx_semaphore = xSemaphoreCreateBinaryStatic(&_rx_semaphore_mem);
-    xSemaphoreGive(_rx_semaphore);
     _tx_semaphore = xSemaphoreCreateBinaryStatic(&_tx_semaphore_mem);
-    xSemaphoreGive(_tx_semaphore);
 
 #ifdef DEBUG
     vQueueAddToRegistry(_rx_semaphore, config->rx_queue_name);
@@ -186,70 +184,83 @@ Uart::Uart(UartConfig* config) :
             (_config->uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) |
             (8 << DIV_FRAC_POS); // 460800 @ uart6
         // TODO: use 240k baud
-        // TODO: enable idle isr
-        _config->uart->CR3 |= DMAT;
-        _config->uart->CR1 |= UE | TE | RE;
+        _config->uart->CR1 |= UE | RE;
     }
 }
 
 void Uart::debug_write(BYTE data) {
-    // TODO: write without DMA to FIFO
-    //write(&data, 1);
+    using namespace dev::usart;
+
+    // There is no FIFO, wait for UART to be ready
+    while((_config->uart->SR & (TXE | TC)) != (TXE | TC))
+        asm volatile("nop");
+    _config->uart->CR3 &= ~DMAT;
+
+    // Send IDLE
+    _config->uart->CR1 &= ~TE;
+    _config->uart->SR &= ~TC;
+    _config->uart->CR1 |= TE;
+    // Send data
+    _config->uart->DR = data;
 }
 
 void Uart::write(const BYTE* buffer, BYTE length) {
     using namespace dev;
-    using namespace dev::dma;
+    using namespace dev::usart;
 
+    // There is no FIFO, wait for UART to be ready
+    while((_config->uart->SR & (TXE | TC)) != (TXE | TC))
+        asm volatile("nop");
+    _config->uart->CR3 |= DMAT;
+
+    // Send IDLE
+    _config->uart->CR1 &= ~TE;
+    _config->uart->SR &= ~TC;
+    _config->uart->CR1 |= TE;
+
+    // Setup data with DMA
     _config->dma->STREAM[_config->tx_stream].M0AR =
         const_cast<WORD*>(reinterpret_cast<const WORD*>(buffer));
     _config->dma->STREAM[_config->tx_stream].NDTR = length;
-    _config->dma->STREAM[_config->tx_stream].CR |= EN;
+    _config->dma->STREAM[_config->tx_stream].CR |= dma::EN;
 
-    // TODO: sync with ISR here
+    xSemaphoreTake(_tx_semaphore, portMAX_DELAY);
 }
-
-/*void Uart::start_read_byte() {
-    m_uart->CR1 |= dev::usart::RXNEIE;
-}
-
-void Uart::abort_read() {
-    using namespace dev;
-    m_dma->STREAM[m_rx_stream].CR &= ~dma::EN;
-}*/
-
-// TODO: https://github.com/MaJerle/stm32-usart-uart-dma-rx-tx
-// TODO: needs IDLE interrupt to detect end of frame on RX side
 
 BYTE Uart::read(BYTE* buffer, BYTE length) {
     using namespace dev;
     using namespace dev::usart;
 
-    _config->uart->CR1 &= ~RXNEIE;
+    _config->uart->CR1 = ((_config->uart->CR1 & ~RXNEIE) | IDLEIE);
     _config->uart->CR3 |= DMAR;
     _config->dma->STREAM[_config->rx_stream].M0AR = reinterpret_cast<WORD*>(buffer);
     _config->dma->STREAM[_config->rx_stream].NDTR = length;
     _config->dma->STREAM[_config->rx_stream].CR |= dma::EN;
 
-    // TODO: enable IDLE ISR, read until IDLE or buffer full
+    xSemaphoreTake(_rx_semaphore, portMAX_DELAY);
 
-    // TODO: sync with ISR here
-    return 0; // len
+    return length - _dma_rem;
 }
 
 void Uart::ISR() {
-    // TODO
-    /*using namespace dev::usart;
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    UartMessage msg(m_id, 0, m_uart->DR);
-    volatile WORD _dummy = m_uart->SR;
-    m_uart->CR1 &= ~RXNEIE;
+    using namespace dev;
+    using namespace dev::usart;
 
-    if(m_rx_queue == 0)
-        return;
+    BaseType_t task_woken = pdFALSE;
+    WORD sr = _config->uart->SR;
 
-    xQueueSendFromISR(m_rx_queue, &msg, &xHigherPriorityTaskWoken);
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);*/
+    if(sr & IDLE) {
+        // clear IDLE bit
+        BYTE _dr = _config->uart->DR;
+        (void)_dr;
+
+        _config->dma->STREAM[_config->rx_stream].CR &= ~dma::EN;
+        _dma_rem = _config->dma->STREAM[_config->rx_stream].NDTR;
+
+        xSemaphoreGiveFromISR(_rx_semaphore, &task_woken);
+    }
+
+    portYIELD_FROM_ISR(task_woken);
 }
 
 void Uart::DMA_TX_ISR() {

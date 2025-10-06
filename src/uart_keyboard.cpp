@@ -36,6 +36,6 @@ void UartKeyboard::on_event(Event* event) {
 
     // TODO: fill counter with live and ACK
     UartMessage msg = UartMessage::serialize_keys(
-        event->keys.page, _ctr, event->keys.state);
-    uart1.write(reinterpret_cast<BYTE*>(&msg), sizeof(msg));
+        _ctr, event->keys.page, event->keys.state);
+    uart1.write(reinterpret_cast<BYTE*>(&msg), UartMessage::KEY_MSG_LEN);
 }
