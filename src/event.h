@@ -47,13 +47,16 @@ class EventDispatcher {
 
     public:
         static void initialize();
+        static void send(Event* event);
         static void send_from_isr(Event* event, BaseType_t* task_woken);
         static void next_event(Event* event);
 
     private:
+        static const BYTE QUEUE_LEN = 3;
+
         static QueueHandle_t _queue;
         static StaticQueue_t _queue_mem;
-        static Event _queue_items;
+        static Event _queue_items[QUEUE_LEN];
 };
 
 class EventSink {

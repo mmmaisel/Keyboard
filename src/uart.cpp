@@ -184,7 +184,7 @@ Uart::Uart(UartConfig* config) :
             (_config->uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) |
             (8 << DIV_FRAC_POS); // 460800 @ uart6
         // TODO: use 240k baud
-        _config->uart->CR1 |= UE | RE;
+        _config->uart->CR1 |= UE;
     }
 }
 
@@ -224,6 +224,7 @@ void Uart::write(const BYTE* buffer, BYTE length) {
     _config->dma->STREAM[_config->tx_stream].NDTR = length;
     _config->dma->STREAM[_config->tx_stream].CR |= dma::EN;
 
+    // TODO: wait for TC ISR ?
     xSemaphoreTake(_tx_semaphore, portMAX_DELAY);
 }
 
@@ -231,7 +232,7 @@ BYTE Uart::read(BYTE* buffer, BYTE length) {
     using namespace dev;
     using namespace dev::usart;
 
-    _config->uart->CR1 = ((_config->uart->CR1 & ~RXNEIE) | IDLEIE);
+    _config->uart->CR1 = ((_config->uart->CR1 & ~RXNEIE) | IDLEIE | RE);
     _config->uart->CR3 |= DMAR;
     _config->dma->STREAM[_config->rx_stream].M0AR = reinterpret_cast<WORD*>(buffer);
     _config->dma->STREAM[_config->rx_stream].NDTR = length;
@@ -246,21 +247,15 @@ void Uart::ISR() {
     using namespace dev;
     using namespace dev::usart;
 
-    BaseType_t task_woken = pdFALSE;
     WORD sr = _config->uart->SR;
-
     if(sr & IDLE) {
         // clear IDLE bit
         BYTE _dr = _config->uart->DR;
         (void)_dr;
 
         _config->dma->STREAM[_config->rx_stream].CR &= ~dma::EN;
-        _dma_rem = _config->dma->STREAM[_config->rx_stream].NDTR;
-
-        xSemaphoreGiveFromISR(_rx_semaphore, &task_woken);
+        // This will trigger DMA_RX_ISR
     }
-
-    portYIELD_FROM_ISR(task_woken);
 }
 
 void Uart::DMA_TX_ISR() {
@@ -273,12 +268,16 @@ void Uart::DMA_TX_ISR() {
     portYIELD_FROM_ISR(task_woken);
 }
 
+// DMA RX was either finished or aborted.
 void Uart::DMA_RX_ISR() {
     using namespace dev;
     using namespace dev::dma;
     using namespace dev::usart;
 
     _config->dma->clear_isr(_config->rx_stream);
+    _config->dma->STREAM[_config->rx_stream].CR &= ~EN;
+    _dma_rem = _config->dma->STREAM[_config->rx_stream].NDTR;
+    _config->uart->CR1 &= ~RE;
     _config->uart->CR3 &= ~DMAR;
 
     BaseType_t task_woken = pdFALSE;

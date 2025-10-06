@@ -27,18 +27,18 @@
 #include "module.h"
 #include "pinout.h"
 #include "priority.h"
-#include "uart_protocol.h"
+#include "uart_receiver.h"
 #include "usb_phy.h"
 #include "wiring.h"
 
 const int STACK_SIZE_KEYBOARD = 0x100;
-const int STACK_SIZE_UARTPROTO = 0x100;
+const int STACK_SIZE_UARTRX = 0x100;
 
 // Task memory
-StaticTask_t taskMem_KEYBOARD;
-StackType_t  taskStack_KEYBOARD[STACK_SIZE_KEYBOARD];
-StaticTask_t taskMem_UARTPROTO;
-StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
+StaticTask_t task_mem_keyboard;
+StackType_t  task_stack_keyboard[STACK_SIZE_KEYBOARD];
+StaticTask_t task_mem_uartrx1;
+StackType_t  task_stack_uartrx1[STACK_SIZE_UARTRX];
 
 // XXX: led control usb protocol
 // XXX: control LEDs via keys + FN
@@ -70,10 +70,24 @@ StackType_t  taskStack_UARTPROTO[STACK_SIZE_UARTPROTO];
         dev::GPIOB->set_odr(PWREN0 | PWREN1 | PWREN2);
     }
 
-    xTaskCreateStatic(&EventSink::task, "KEYBOARD", STACK_SIZE_KEYBOARD, wiring.keyboard,
-        priority::KEYBOARD, taskStack_KEYBOARD, &taskMem_KEYBOARD);
-    //xTaskCreateStatic(&UartProtocol::task, "UARTPROTO", STACK_SIZE_UARTPROTO, 0,
-    //    priority::UARTPROTO, taskStack_UARTPROTO, &taskMem_UARTPROTO);
+    xTaskCreateStatic(
+        &EventSink::task,
+        "KEYBOARD",
+        STACK_SIZE_KEYBOARD,
+        wiring.keyboard,
+        priority::KEYBOARD,
+        task_stack_keyboard,
+        &task_mem_keyboard
+    );
+    xTaskCreateStatic(
+        &UartReceiver::task_trampoline,
+        "UARTRX1",
+        STACK_SIZE_UARTRX,
+        &uart1_receiver,
+        priority::UARTRX,
+        task_stack_uartrx1,
+        &task_mem_uartrx1
+    );
 
     // Start scheduler
     vTaskStartScheduler();

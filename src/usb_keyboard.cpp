@@ -60,6 +60,7 @@ void UsbKeyboard::fill_report(HidKeyboardReport* report) {
     report->buffer[1] = 0;
 
     // TODO: handle fn key combos
+    // TODO: key mapping of nav page seems wrong
 
     for(BYTE i = 0; i < PAGE_COUNT; ++i) {
         for(BYTE j = 0; j < KeyMatrixConfig::MAX_KEYS; ++j) {

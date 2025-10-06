@@ -15,27 +15,29 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \******************************************************************************/
-#include "key_layout.h"
+#include "uart_serde.h"
 
-using namespace keycodes;
+KeyEvent UartMessage::key_event() {
+    DWORD state = 0;
+    for(BYTE i = 0; i < STATE_LEN; ++i) {
+        state |= DWORD(keys.state[i]) << (8 * i);
+    }
 
-const BYTE KEY_LAYOUT[PAGE_COUNT][KeyMatrixConfig::MAX_KEYS] = {
-    {
-        KEY_F7, KEY_F8, KEY_F9, KEY_F10, KEY_F11, KEY_F12, KEY_NONE,
-        KEY_NONE, KEY_6, KEY_7, KEY_8, KEY_9, KEY_0, KEY_EQUAL,
-        KEY_NONE, KEY_Y, KEY_U, KEY_I, KEY_O, KEY_P, KEY_LEFTBRACE,
-        KEY_ENTER, KEY_H, KEY_J, KEY_L, KEY_SEMICOLON, KEY_APOSTROPHE,
-        KEY_N, KEY_M, KEY_COMMA, KEY_DOT, KEY_SLASH, KEY_RIGHTSHIFT,
-        KEY_BACKSPACE, KEY_RIGHTALT, KEY_FN, KEY_MENU, KEY_RIGHTCTRL,
-    },
-    // TODO
-    {},
-    {
-        KEY_PRINT, KEY_SCROLL, KEY_PAUSE,
-        KEY_INSERT, KEY_HOME, KEY_PAGEUP,
-        KEY_DELETE, KEY_END, KEY_PAGEDOWN,
-        KEY_VOLUMEDOWN, KEY_UP, KEY_VOLUMEUP,
-        KEY_LEFT, KEY_DOWN, KEY_RIGHT,
-    },
-    {},
-};
+    return KeyEvent {
+        .page = BYTE(hdr & 0x03),
+        .state = state,
+    };
+}
+
+UartMessage UartMessage::serialize_keys(BYTE ctr, BYTE page, DWORD state) {
+    UartMessage msg = {};
+
+    msg.hdr = (ctr << 4) | ((EVENT_KEYS-1) << 2) | page;
+    for(BYTE i = 0; i < STATE_LEN; ++i) {
+        msg.keys.state[i] = state & 0xFF;
+        state >>= 8;
+    }
+
+    // TODO: crc8
+    return msg;
+}

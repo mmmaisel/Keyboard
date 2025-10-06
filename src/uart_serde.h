@@ -15,27 +15,37 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \******************************************************************************/
-#include "key_layout.h"
+#pragma once
 
-using namespace keycodes;
+#include "types.h"
 
-const BYTE KEY_LAYOUT[PAGE_COUNT][KeyMatrixConfig::MAX_KEYS] = {
-    {
-        KEY_F7, KEY_F8, KEY_F9, KEY_F10, KEY_F11, KEY_F12, KEY_NONE,
-        KEY_NONE, KEY_6, KEY_7, KEY_8, KEY_9, KEY_0, KEY_EQUAL,
-        KEY_NONE, KEY_Y, KEY_U, KEY_I, KEY_O, KEY_P, KEY_LEFTBRACE,
-        KEY_ENTER, KEY_H, KEY_J, KEY_L, KEY_SEMICOLON, KEY_APOSTROPHE,
-        KEY_N, KEY_M, KEY_COMMA, KEY_DOT, KEY_SLASH, KEY_RIGHTSHIFT,
-        KEY_BACKSPACE, KEY_RIGHTALT, KEY_FN, KEY_MENU, KEY_RIGHTCTRL,
-    },
-    // TODO
-    {},
-    {
-        KEY_PRINT, KEY_SCROLL, KEY_PAUSE,
-        KEY_INSERT, KEY_HOME, KEY_PAGEUP,
-        KEY_DELETE, KEY_END, KEY_PAGEDOWN,
-        KEY_VOLUMEDOWN, KEY_UP, KEY_VOLUMEUP,
-        KEY_LEFT, KEY_DOWN, KEY_RIGHT,
-    },
-    {},
+#include "event.h"
+
+struct __attribute__((packed)) UartMessage {
+    static const BYTE STATE_LEN = 5;
+    static const BYTE KEY_MSG_LEN = 2 + STATE_LEN;
+
+    // Fixed data
+    BYTE hdr; // counter:4 type:2 page:2
+    BYTE crc;
+
+    // Variable data
+    union {
+        struct __attribute__((packed)) {
+            BYTE state[STATE_LEN];
+        } keys;
+        struct __attribute__((packed)) {
+            BYTE red_green;
+            BYTE blue_x;
+            BYTE state[STATE_LEN];
+        } leds;
+    };
+
+    inline BYTE type() { return ((hdr & 0x0C) >> 2) + 1; }
+    KeyEvent key_event();
+
+    static UartMessage serialize_keys(BYTE ctr, BYTE page, DWORD state);
 };
+
+// TODO: serde
+// TODO: 1 receiver task per UART

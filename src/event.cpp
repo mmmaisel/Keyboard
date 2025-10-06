@@ -21,18 +21,22 @@
 
 QueueHandle_t EventDispatcher::_queue = nullptr;
 StaticQueue_t EventDispatcher::_queue_mem = {};
-Event EventDispatcher::_queue_items = {};
+Event EventDispatcher::_queue_items[EventDispatcher::QUEUE_LEN] = {};
 
 void EventDispatcher::initialize() {
-    _queue = xQueueCreateStatic(1, sizeof(Event),
+    _queue = xQueueCreateStatic(QUEUE_LEN, sizeof(Event),
         reinterpret_cast<BYTE*>(&_queue_items), &_queue_mem);
 #ifdef DEBUG
     vQueueAddToRegistry(_queue, "ModKbd");
 #endif
 }
 
+void EventDispatcher::send(Event* event) {
+    xQueueSend(_queue, event, portMAX_DELAY);
+}
+
 void EventDispatcher::send_from_isr(Event* event, BaseType_t* task_woken) {
-    xQueueOverwriteFromISR(_queue, event, task_woken);
+    xQueueSendFromISR(_queue, event, task_woken);
 }
 
 void EventDispatcher::next_event(Event* event) {

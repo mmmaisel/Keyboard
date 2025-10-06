@@ -19,7 +19,7 @@
 
 #include "event.h"
 #include "uart.h"
-#include "uart_protocol.h"
+#include "uart_serde.h"
 
 #include <cstring>
 

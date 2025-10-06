@@ -21,13 +21,13 @@
 
 #include "event.h"
 #include "hid_keyboard_endpoint.h"
+#include "key_layout.h"
 
 class UsbKeyboard : public EventSink {
     public:
         UsbKeyboard();
 
         static const BYTE BUFFER_SIZE = 16;
-        static const BYTE PAGE_COUNT = 4;
 
         virtual void on_event(Event* event) override;
 
@@ -38,6 +38,7 @@ class UsbKeyboard : public EventSink {
         void fill_report(HidKeyboardReport* report);
 
         DWORD _pages[PAGE_COUNT];
+        // Queue for requesting state by USB host
         QueueHandle_t _queue;
         StaticQueue_t _queue_mem;
         HidKeyboardReport _queue_items;

@@ -19,6 +19,8 @@
 
 #include "types.h"
 
+#include "key_matrix.h"
+
 namespace keycodes {
     // modifiers - first byte in the report
     enum {
@@ -192,5 +194,6 @@ namespace keycodes {
     };
 }
 
-// TODO: use constants
-extern const BYTE KEY_LAYOUT[4][48];
+const BYTE PAGE_COUNT = 4;
+
+extern const BYTE KEY_LAYOUT[PAGE_COUNT][KeyMatrixConfig::MAX_KEYS];
