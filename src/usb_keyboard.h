@@ -35,7 +35,9 @@ class UsbKeyboard : public EventSink {
             HidKeyboardReport* report, BaseType_t* task_woken);
 
     private:
-        void fill_report(HidKeyboardReport* report);
+        BYTE fill_report(HidKeyboardReport* report);
+        BYTE handle_fn(HidKeyboardReport* report);
+        void replace_keys(HidKeyboardReport* report, BYTE new_key);
 
         DWORD _pages[PAGE_COUNT];
         // Queue for requesting state by USB host

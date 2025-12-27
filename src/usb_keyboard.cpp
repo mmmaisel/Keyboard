@@ -39,11 +39,16 @@ void UsbKeyboard::on_event(Event* event) {
         _pages[event->keys.page-1] = event->keys.state;
     }
 
+    BYTE send_report = 1;
     HidKeyboardReport report;
-    fill_report(&report);
+    if(fill_report(&report)) {
+        send_report = handle_fn(&report);
+    }
 
-    xQueueOverwrite(_queue, &report);
-    ep1.send_report(&report);
+    if(send_report) {
+        xQueueOverwrite(_queue, &report);
+        ep1.send_report(&report);
+    }
 }
 
 BYTE UsbKeyboard::get_report_from_isr(
@@ -52,21 +57,22 @@ BYTE UsbKeyboard::get_report_from_isr(
     return xQueueReceiveFromISR(_queue, report, task_woken);
 }
 
-void UsbKeyboard::fill_report(HidKeyboardReport* report) {
+BYTE UsbKeyboard::fill_report(HidKeyboardReport* report) {
     using namespace keycodes;
 
     BYTE pos = 0;
+    BYTE found_fn = 0;
     report->buffer[0] = 0;
     report->buffer[1] = 0;
-
-    // TODO: handle fn key combos
-    // TODO: key mapping of nav page seems wrong
 
     for(BYTE i = 0; i < PAGE_COUNT; ++i) {
         for(BYTE j = 0; j < KeyMatrixConfig::MAX_KEYS; ++j) {
             if(_pages[i] & (1ull << j)) {
                 BYTE keycode = KEY_LAYOUT[i][j];
                 switch(keycode) {
+                    case KEY_FN:
+                        found_fn = 1;
+                        break;
                     case KEY_LEFTCTRL:
                         report->mods[0] |= MOD_LCTRL;
                         break;
@@ -99,4 +105,30 @@ void UsbKeyboard::fill_report(HidKeyboardReport* report) {
             }
         }
     }
+
+    return found_fn;
+}
+
+BYTE UsbKeyboard::handle_fn(HidKeyboardReport* report) {
+    using namespace keycodes;
+
+    switch(report->keys[0]) {
+        case KEY_F12:
+            replace_keys(report, KEY_MUTE);
+            return 1;
+        case KEY_DELETE:
+            // TODO: switch effects
+            return 0;
+    }
+
+    return 1;
+}
+
+void UsbKeyboard::replace_keys(HidKeyboardReport* report, BYTE new_key) {
+    report->keys[0] = new_key;
+    report->keys[1] = 0;
+    report->keys[2] = 0;
+    report->keys[3] = 0;
+    report->keys[4] = 0;
+    report->keys[5] = 0;
 }
