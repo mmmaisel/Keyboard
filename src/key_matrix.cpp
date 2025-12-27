@@ -68,7 +68,8 @@ void KeyMatrix::ISR() {
         // Read current columns rows
         for(BYTE row = 0; row < _config->row_count; ++row) {
             if(_config->row_pins[row].port->IDR & _config->row_pins[row].pin)
-                _key_state[_state_idx] |= (1ull << _config->mapping[row][_col]);
+                _key_state[_state_idx] |=
+                    (1ull << (_config->mapping[row][_col] - 1));
         }
 
         // Stop drive current column

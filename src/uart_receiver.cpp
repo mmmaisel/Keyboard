@@ -34,7 +34,7 @@ void UartReceiver::task() {
         BYTE len = _uart->read(_buffer, BUFFER_SIZE);
         // TODO: check CRC
 
-        if(len == UartMessage::KEY_MSG_LEN && msg->type() == EVENT_KEYS ) {
+        if(len == UartMessage::KEY_MSG_LEN && msg->type() == EVENT_KEYS) {
             Event event = {
                 .type = EVENT_KEYS,
                 .keys = msg->key_event(),

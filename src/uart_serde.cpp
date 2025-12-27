@@ -24,7 +24,7 @@ KeyEvent UartMessage::key_event() {
     }
 
     return KeyEvent {
-        .page = BYTE(hdr & 0x03),
+        .page = BYTE((hdr & 0x03) + 1),
         .state = state,
     };
 }
@@ -32,7 +32,7 @@ KeyEvent UartMessage::key_event() {
 UartMessage UartMessage::serialize_keys(BYTE ctr, BYTE page, DWORD state) {
     UartMessage msg = {};
 
-    msg.hdr = (ctr << 4) | ((EVENT_KEYS-1) << 2) | page;
+    msg.hdr = (ctr << 4) | ((EVENT_KEYS-1) << 2) | (page - 1);
     for(BYTE i = 0; i < STATE_LEN; ++i) {
         msg.keys.state[i] = state & 0xFF;
         state >>= 8;
