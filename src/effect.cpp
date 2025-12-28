@@ -24,6 +24,7 @@ EffectFlash effect_flash;
 EffectRunning effect_running;
 EffectRainbow effect_rainbow;
 
+BYTE EffectController::_page = 0;
 BYTE EffectController::_led_count = 0;
 Effect* EffectController::_effect = &effect_none;
 DWORD EffectController::_keys = 0;
@@ -36,11 +37,11 @@ void EffectFlash::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {
         if(changed) {
             if(new_keys & (1ull << i)) {
                 LedMatrix::set_led(
-                    i, Color { .red = 16, .green = 16, .blue = 16 }
+                    i+1, Color { .red = 16, .green = 16, .blue = 16 }
                 );
             } else {
                 LedMatrix::set_led(
-                    i, Color { .red = 0, .green = 0, .blue = 0 }
+                    i+1, Color { .red = 0, .green = 0, .blue = 0 }
                 );
             }
         }
@@ -66,16 +67,14 @@ void EffectRunning::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {
 }
 
 void EffectRainbow::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {
-    if(++_cnt >= 20) {
-        _cnt = 0;
-        if(++_phase >= led_count)
-            _phase = 0;
-    }
-
     Color color;
+    TickType_t current_ticks = xTaskGetTickCount();
+    _phase = fmod((_phase + (current_ticks - _ticks) / 100.0), float(led_count));
+    _ticks = current_ticks;
 
     for(BYTE i = 0; i < led_count; ++i) {
-        float hi = float((i + _phase + led_count) % led_count) / float(led_count) * 6.0f;
+        float hi = fmod((float(i + led_count) + _phase), led_count)
+            / float(led_count) * 6.0f;
 
         switch(BYTE(hi)) {
             case 0:
@@ -114,11 +113,23 @@ void EffectRainbow::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {
     }
 }
 
-void EffectController::initialize(const LedMatrixConfig* config) {
+void EffectController::initialize(BYTE page, const LedMatrixConfig* config) {
+    _page = page;
     _led_count = config->led_count;
 }
 
-void EffectController::on_keys(DWORD keys) {
+void EffectController::set_effect(Effect* effect) {
+    if(_effect == effect)
+        return;
+
+    _effect = effect;
+    LedMatrix::clear();
+}
+
+void EffectController::on_keys(BYTE page, DWORD keys) {
+    if(page != _page)
+        return;
+
     _effect->run(_led_count, keys, _keys);
     _keys = keys;
 }

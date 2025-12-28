@@ -60,8 +60,8 @@ class EffectRainbow : public Effect {
             BYTE led_count, DWORD new_keys, DWORD old_keys) override;
 
     private:
-        BYTE _phase;
-        BYTE _cnt;
+        TickType_t _ticks;
+        float _phase;
 };
 
 class EffectController {
@@ -72,11 +72,12 @@ class EffectController {
     ~EffectController() = delete;
 
     public:
-        static void initialize(const LedMatrixConfig* config);
-        static inline void set_effect(Effect* effect) { _effect = effect; }
-        static void on_keys(DWORD keys);
+        static void initialize(BYTE page, const LedMatrixConfig* config);
+        static void set_effect(Effect* effect);
+        static void on_keys(BYTE page, DWORD keys);
 
     private:
+        static BYTE _page;
         static BYTE _led_count;
         static Effect* _effect;
         static DWORD _keys;

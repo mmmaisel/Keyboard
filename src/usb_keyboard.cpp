@@ -17,6 +17,7 @@
 \******************************************************************************/
 #include "usb_keyboard.h"
 
+#include "effect.h"
 #include "event.h"
 #include "hid_keyboard_endpoint.h"
 #include "key_matrix.h"
@@ -117,7 +118,11 @@ BYTE UsbKeyboard::handle_fn(HidKeyboardReport* report) {
             replace_keys(report, KEY_MUTE);
             return 1;
         case KEY_DELETE:
-            // TODO: switch effects
+            // TODO: switch on all boards
+            EffectController::set_effect(&effect_rainbow);
+            return 0;
+        case KEY_END:
+            EffectController::set_effect(&effect_flash);
             return 0;
     }
 

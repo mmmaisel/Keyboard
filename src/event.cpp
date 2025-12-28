@@ -43,7 +43,7 @@ void EventDispatcher::next_event(Event* event) {
     while(xQueueReceive(_queue, event, portMAX_DELAY) != pdTRUE);
 
     if(event->type == EVENT_KEYS)
-        EffectController::on_keys(event->keys.state);
+        EffectController::on_keys(event->keys.page, event->keys.state);
 }
 
 void EventSink::task(void* pContext) {
