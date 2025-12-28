@@ -46,6 +46,3 @@ struct __attribute__((packed)) UartMessage {
 
     static UartMessage serialize_keys(BYTE ctr, BYTE page, DWORD state);
 };
-
-// TODO: serde
-// TODO: 1 receiver task per UART

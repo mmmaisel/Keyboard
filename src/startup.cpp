@@ -124,12 +124,10 @@ extern "C" {
 
         // Set HCLK (AHB1) prescaler (DIV1)
         RCC->CFGR = (RCC->CFGR & ~HPRE_MASK) | (0 << HPRE_POS);
-
-        // Set APB1 Low speed prescaler (APB1) DIV4
+        // Set APB1 Low speed prescaler (APB1) DIV4 (12MHz)
         RCC->CFGR = (RCC->CFGR & ~PPRE1_MASK) | PPRE1_DIV4;
-
-        // SET APB2 High speed prescaler (APB2) DIV1
-        RCC->CFGR = (RCC->CFGR & ~PPRE2_MASK) | PPRE2_DIV1;
+        // SET APB2 Low speed prescaler (APB2) DIV4 (12MHz)
+        RCC->CFGR = (RCC->CFGR & ~PPRE2_MASK) | PPRE2_DIV4;
 
         // Init FPU
         SCB->CPACR = CP10_ACC_FULL | CP11_ACC_FULL;

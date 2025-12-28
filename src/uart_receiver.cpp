@@ -21,6 +21,8 @@
 #include "uart_serde.h"
 
 UartReceiver uart1_receiver(&uart1);
+UartReceiver uart2_receiver(&uart2);
+UartReceiver uart6_receiver(&uart6);
 
 UartReceiver::UartReceiver(Uart* uart) :
     _uart(uart)
@@ -30,10 +32,11 @@ UartReceiver::UartReceiver(Uart* uart) :
 void UartReceiver::task() {
     for(;;) {
         UartMessage* msg = reinterpret_cast<UartMessage*>(&_buffer);
-        // TODO: fails with reading 32 bytes
         BYTE len = _uart->read(_buffer, BUFFER_SIZE);
         // TODO: check CRC
 
+        // TODO: ignore keys message on out modules
+        // TODO: ignore led message on main module
         if(len == UartMessage::KEY_MSG_LEN && msg->type() == EVENT_KEYS) {
             Event event = {
                 .type = EVENT_KEYS,

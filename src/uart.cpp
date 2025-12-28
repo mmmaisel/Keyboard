@@ -52,6 +52,7 @@ BYTE uart1_hw_init() {
 UartConfig uart1_config = {
     .uart = dev::USART1,
     .dma = dev::DMA2,
+    .dma_ch = 4,
     .rx_stream = 2,
     .tx_stream = 7,
     .hw_init_fn = uart1_hw_init,
@@ -90,6 +91,7 @@ BYTE uart2_hw_init() {
 UartConfig uart2_config = {
     .uart = dev::USART2,
     .dma = dev::DMA1,
+    .dma_ch = 4,
     .rx_stream = 5,
     .tx_stream = 6,
     .hw_init_fn = uart2_hw_init,
@@ -103,7 +105,7 @@ BYTE uart6_hw_init() {
     using namespace dev;
     using namespace dev::rcc;
 
-    // UART6 shared pins with LED matrix on left module.
+    // UART6 shares pins with LED matrix on left module.
     if(Module::get_id() == Module::LEFT)
         return 1;
 
@@ -137,6 +139,7 @@ BYTE uart6_hw_init() {
 UartConfig uart6_config = {
     .uart = dev::USART6,
     .dma = dev::DMA2,
+    .dma_ch = 5,
     .rx_stream = 1,
     .tx_stream = 6,
     .hw_init_fn = uart6_hw_init,
@@ -168,11 +171,11 @@ Uart::Uart(UartConfig* config) :
         using namespace dev::dma;
         _config->dma->STREAM[_config->rx_stream].PAR = &_config->uart->DR;
         _config->dma->STREAM[_config->rx_stream].CR =
-            (4 << CHSEL_POS) | (1 << PL_POS) | (0 << MSIZE_POS) |
+            (_config->dma_ch << CHSEL_POS) | (1 << PL_POS) | (0 << MSIZE_POS) |
             (0 << PSIZE_POS) | MINC | DIR_P2M | TCIE;
         _config->dma->STREAM[_config->tx_stream].PAR = &_config->uart->DR;
         _config->dma->STREAM[_config->tx_stream].CR =
-            (4 << CHSEL_POS) |(1 << PL_POS) | (0 << MSIZE_POS) |
+            (_config->dma_ch << CHSEL_POS) |(1 << PL_POS) | (0 << MSIZE_POS) |
             (0 << PSIZE_POS) | MINC | DIR_M2P | TCIE;
     }
     {
@@ -181,9 +184,8 @@ Uart::Uart(UartConfig* config) :
         _config->uart->CR2 &= CR2_MASK;
         _config->uart->CR3 &= CR3_MASK;
         _config->uart->BRR =
-            (_config->uart->BRR & BRR_MASK) | (6 << DIV_MANT_POS) |
-            (8 << DIV_FRAC_POS); // 460800 @ uart6
-        // TODO: use 240k baud
+            (_config->uart->BRR & BRR_MASK) | (1 << DIV_MANT_POS) |
+            (10 << DIV_FRAC_POS); // 460800 @ 12MHz
         _config->uart->CR1 |= UE;
     }
 }

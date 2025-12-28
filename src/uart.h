@@ -38,6 +38,7 @@ extern "C" void dma2s7_vector() __attribute__((error("calling ISR")));
 struct UartConfig {
     volatile dev::UsartStruct* uart;
     volatile dev::DmaStruct* dma;
+    BYTE dma_ch;
     BYTE rx_stream;
     BYTE tx_stream;
     BYTE(*hw_init_fn)();

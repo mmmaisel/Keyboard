@@ -306,6 +306,7 @@ void USBPhy::WakeupISR() {
     EXTI->PR |= (1 << EXTINUM_WAKEUP_USB);
 
     // TODO: dedup PLL code
+    // TODO: check if sleeping works fine with matrices and uarts
     // Enable crystal
     RCC->CR |= HSEON;
     // PLL On

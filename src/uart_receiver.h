@@ -38,3 +38,5 @@ class UartReceiver {
 };
 
 extern UartReceiver uart1_receiver;
+extern UartReceiver uart2_receiver;
+extern UartReceiver uart6_receiver;

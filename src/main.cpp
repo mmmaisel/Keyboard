@@ -39,6 +39,10 @@ StaticTask_t task_mem_keyboard;
 StackType_t  task_stack_keyboard[STACK_SIZE_KEYBOARD];
 StaticTask_t task_mem_uartrx1;
 StackType_t  task_stack_uartrx1[STACK_SIZE_UARTRX];
+StaticTask_t task_mem_uartrx2;
+StackType_t  task_stack_uartrx2[STACK_SIZE_UARTRX];
+StaticTask_t task_mem_uartrx6;
+StackType_t  task_stack_uartrx6[STACK_SIZE_UARTRX];
 
 // XXX: led control usb protocol
 
@@ -78,6 +82,7 @@ StackType_t  task_stack_uartrx1[STACK_SIZE_UARTRX];
         task_stack_keyboard,
         &task_mem_keyboard
     );
+    // All secondary modules use UART1.
     xTaskCreateStatic(
         &UartReceiver::task_trampoline,
         "UARTRX1",
@@ -87,6 +92,27 @@ StackType_t  task_stack_uartrx1[STACK_SIZE_UARTRX];
         task_stack_uartrx1,
         &task_mem_uartrx1
     );
+
+    if(Module::get_id() == Module::RIGHT) {
+        xTaskCreateStatic(
+            &UartReceiver::task_trampoline,
+            "UARTRX2",
+            STACK_SIZE_UARTRX,
+            &uart2_receiver,
+            priority::UARTRX,
+            task_stack_uartrx2,
+            &task_mem_uartrx2
+        );
+        xTaskCreateStatic(
+            &UartReceiver::task_trampoline,
+            "UARTRX6",
+            STACK_SIZE_UARTRX,
+            &uart6_receiver,
+            priority::UARTRX,
+            task_stack_uartrx6,
+            &task_mem_uartrx6
+        );
+    }
 
     // Start scheduler
     vTaskStartScheduler();
