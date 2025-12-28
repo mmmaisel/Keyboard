@@ -176,6 +176,15 @@ namespace keycodes {
         KEY_VOLUMEUP = 128,
         KEY_VOLUMEDOWN = 129,
 
+        KEY_SYSREQ = 154,
+
+        // Use extra keypad keycodes for LEDs
+        LED_X = 176,
+        LED_Y = 177,
+        LED_SCROLL = 178,
+        LED_CAPSLOCK = 179,
+        LED_NUMLOCK = 180,
+
         KEY_LEFTCTRL = 224,
         KEY_LEFTSHIFT = 225,
         KEY_LEFTALT = 226,
@@ -185,11 +194,27 @@ namespace keycodes {
         KEY_RIGHTALT = 230,
         KEY_RIGHTSUPER = 231,
 
-        LED_X = 250,
-        LED_Y = 251,
-        LED_SCROLL = 252,
-        LED_CAPSLOCK = 253,
-        LED_NUMLOCK = 254,
+        KEY_MEDIA_PLAYPAUSE = 232,
+        KEY_MEDIA_STOPCD = 233,
+        KEY_MEDIA_PREVSONG = 234,
+        KEY_MEDIA_NEXTSONG = 235,
+        KEY_MEDIA_EJECT = 236,
+        KEY_MEDIA_VOLUMEUP = 237,
+        KEY_MEDIA_VOLUMEDOWN = 238,
+        KEY_MEDIA_MUTE = 239,
+        KEY_MEDIA_WWW = 240,
+        KEY_MEDIA_BACK = 241,
+        KEY_MEDIA_FORWARD = 242,
+        KEY_MEDIA_STOP = 243,
+        KEY_MEDIA_FIND = 244,
+        KEY_MEDIA_SCROLLUP = 245,
+        KEY_MEDIA_SCROLLDOWN = 246,
+        KEY_MEDIA_EDIT = 247,
+        KEY_MEDIA_SLEEP = 248,
+        KEY_MEDIA_COFFEE = 249,
+        KEY_MEDIA_REFRESH = 250,
+        KEY_MEDIA_CALC = 251,
+
         KEY_FN = 255
     };
 }
