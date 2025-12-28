@@ -35,13 +35,15 @@ void LedMatrix::initialize(const LedMatrixConfig* config) {
 
     _config = config;
 
-    // Configure 16 kHz timer
-    // Timer clock is divided by 2 again if APB1_DIV != 1
-    // TODO: check frequency
+    // Configure 24 kHz timer
+    // Timer clock is multiplied by 2 if APB1_DIV != 1
+    // f_mat = f_tim / PHASE_COUNT / n_row
+    // TODO: check frequency, currently it is 21.6 kHz, not 24
+    // TODO: bigger matrices need lower pre-resistors
     RCC->APB1ENR |= TIM2EN;
     TIM2->CR1 = DIR | URS;
     TIM2->ARR = 10;
-    TIM2->PSC = 168;
+    TIM2->PSC = 100;
     TIM2->DIER |= UIE;
     TIM2->CR1 |= CEN;
 
@@ -84,7 +86,6 @@ void LedMatrix::ISR() {
 
         // Rows are high active
         _config->row_pins[_row].port->clear_odr(_config->row_pins[_row].pin);
-        // TODO: slow down small matrices
         if(++_row >= _config->rows)
             _row = 0;
         _config->row_pins[_row].port->set_odr(_config->row_pins[_row].pin);
