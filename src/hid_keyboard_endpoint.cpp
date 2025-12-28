@@ -43,48 +43,6 @@ void HidKeyboardEndpoint::send_report(const HidKeyboardReport* report) {
     USBPhy::TransmitData(m_epnum, report->buffer, 8);
 }
 
-// TODO: needs sync as soon as changing HID protocol is supported.
-/*void HidKeyboardEndpoint::make_report(BYTE* buffer, const BYTE* keys) {
-    using namespace keycodes;
-    memset(buffer, 0, 8);
-    BYTE pos = 2;
-    for(BYTE i = 0; i < KeyMatrix::MAX_KEYS; ++i) {
-        switch(keys[i]) {
-            case KEY_LEFTCTRL:
-                buffer[0] |= MOD_LCTRL;
-                break;
-            case KEY_LEFTSHIFT:
-                buffer[0] |= MOD_LSHIFT;
-                break;
-            case KEY_LEFTALT:
-                buffer[0] |= MOD_LALT;
-                break;
-            case KEY_LEFTSUPER:
-                buffer[0] |= MOD_LSUPER;
-                break;
-            case KEY_RIGHTCTRL:
-                buffer[0] |= MOD_RCTRL;
-                break;
-            case KEY_RIGHTSHIFT:
-                buffer[0] |= MOD_RSHIFT;
-                break;
-            case KEY_RIGHTALT:
-                buffer[0] |= MOD_RALT;
-                break;
-            case KEY_RIGHTSUPER:
-                buffer[0] |= MOD_RSUPER;
-                break;
-            default:
-                if(pos < 8) {
-                    if(keys[i] == keycodes::KEY_NONE)
-                        return;
-                    buffer[pos++] = keys[i];
-                }
-                break;
-        }
-    }
-}*/
-
 void HidKeyboardEndpoint::OnTransmit(BaseType_t* task_woken) {
     m_transmitting = 0;
 }
