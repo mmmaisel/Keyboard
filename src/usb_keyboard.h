@@ -38,6 +38,7 @@ class UsbKeyboard : public EventSink {
         BYTE fill_report(HidKeyboardReport* report);
         BYTE handle_fn(HidKeyboardReport* report);
         void replace_keys(HidKeyboardReport* report, BYTE new_key);
+        void switch_effect(EffectId id);
 
         DWORD _pages[PAGE_COUNT];
         // Queue for requesting state by USB host

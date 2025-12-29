@@ -33,6 +33,7 @@ UartKeyboard::UartKeyboard() :
 void UartKeyboard::on_event(Event* event) {
     if(event->type != EVENT_KEYS)
         return;
+    // TODO: filter out different page events
 
     // TODO: fill counter with live and ACK
     UartMessage msg = UartMessage::serialize_keys(

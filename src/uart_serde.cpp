@@ -29,6 +29,16 @@ KeyEvent UartMessage::key_event() {
     };
 }
 
+EffectEvent UartMessage::effect_event() {
+    EffectId id = EFFECT_NONE;
+    if(effect.id < EFFECT_COUNT)
+        id = static_cast<EffectId>(effect.id);
+
+    return EffectEvent {
+        .id = id,
+    };
+}
+
 UartMessage UartMessage::serialize_keys(BYTE ctr, BYTE page, DWORD state) {
     UartMessage msg = {};
 
@@ -37,6 +47,16 @@ UartMessage UartMessage::serialize_keys(BYTE ctr, BYTE page, DWORD state) {
         msg.keys.state[i] = state & 0xFF;
         state >>= 8;
     }
+
+    // TODO: crc8
+    return msg;
+}
+
+UartMessage UartMessage::serialize_effect(BYTE ctr, BYTE id) {
+    UartMessage msg = {};
+
+    msg.hdr = (ctr << 4) | ((EVENT_EFFECT-1) << 2);
+    msg.effect.id = id;
 
     // TODO: crc8
     return msg;

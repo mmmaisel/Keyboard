@@ -27,14 +27,32 @@ struct KeyEvent {
     DWORD state;
 };
 
+enum EffectId {
+    EFFECT_NONE = 0,
+    EFFECT_FLASH,
+    EFFECT_RUNNING,
+    EFFECT_RAINBOW,
+
+    EFFECT_COUNT,
+};
+
+struct EffectEvent {
+    EffectId id;
+};
+
+// Encoding allows for a maximum of 4 different events.
 enum EventType {
     EVENT_KEYS = 1,
+    EVENT_LEDS = 2,
+    EVENT_EFFECT = 3,
+    EVENT_UNUSED = 4,
 };
 
 struct Event {
     BYTE type;
     union {
         KeyEvent keys;
+        EffectEvent effect;
     };
 };
 

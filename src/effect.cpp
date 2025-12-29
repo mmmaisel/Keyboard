@@ -123,6 +123,7 @@ void EffectController::set_effect(Effect* effect) {
         return;
 
     _effect = effect;
+    _keys = 0;
     LedMatrix::clear();
 }
 
@@ -132,4 +133,19 @@ void EffectController::on_keys(BYTE page, DWORD keys) {
 
     _effect->run(_led_count, keys, _keys);
     _keys = keys;
+}
+
+Effect* EffectController::effect_by_id(EffectId id) {
+    switch(id) {
+        case EFFECT_NONE:
+            return &effect_none;
+        case EFFECT_FLASH:
+            return &effect_flash;
+        case EFFECT_RUNNING:
+            return &effect_running;
+        case EFFECT_RAINBOW:
+            return &effect_rainbow;
+        default:
+            return &effect_none;
+    }
 }

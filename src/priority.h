@@ -31,7 +31,7 @@ namespace priority {
         /// Should scan hardware in time.
         KEY_MATRIX = 9,
         /// Updates key values in ModularKeyboard and LED values.
-        UART = 8, // XXX: this causes freeze when writing to uart from key ISR
+        UART = 8,
         /// Can request key values, change LED values and change used HID protocol.
         USB = 10,
         /// Kernel interrupt has lowest priority.

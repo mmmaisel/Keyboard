@@ -44,7 +44,7 @@ StackType_t  task_stack_uartrx2[STACK_SIZE_UARTRX];
 StaticTask_t task_mem_uartrx6;
 StackType_t  task_stack_uartrx6[STACK_SIZE_UARTRX];
 
-// XXX: led control usb protocol
+// TODO: led control usb protocol
 
 /// C++ main function, program starts here.
 /// Please note that the real program starts in startup.cpp
@@ -53,10 +53,7 @@ StackType_t  task_stack_uartrx6[STACK_SIZE_UARTRX];
 
     EventDispatcher::initialize();
     EffectController::initialize(wiring.key_config->page, wiring.led_config);
-
     EffectController::set_effect(&effect_rainbow);
-    //EffectController::set_effect(&effect_running);
-    //EffectController::set_effect(&effect_flash);
 
     wiring.led_matrix_hw_init();
     LedMatrix::initialize(wiring.led_config);

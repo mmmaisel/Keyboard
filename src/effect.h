@@ -19,6 +19,7 @@
 
 #include "types.h"
 
+#include "event.h"
 #include "led_matrix.h"
 
 class Effect {
@@ -31,6 +32,8 @@ class Effect {
     protected:
         Effect() = default;
 };
+
+// TODO: constant colored backlight effect with configurable color
 
 class EffectNone : public Effect {
     public:
@@ -75,6 +78,7 @@ class EffectController {
         static void initialize(BYTE page, const LedMatrixConfig* config);
         static void set_effect(Effect* effect);
         static void on_keys(BYTE page, DWORD keys);
+        static Effect* effect_by_id(EffectId id);
 
     private:
         static BYTE _page;

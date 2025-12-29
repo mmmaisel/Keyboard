@@ -22,6 +22,8 @@
 #include "hid_keyboard_endpoint.h"
 #include "key_matrix.h"
 #include "key_layout.h"
+#include "uart.h"
+#include "uart_serde.h"
 
 #include <cstring>
 
@@ -36,9 +38,10 @@ UsbKeyboard::UsbKeyboard() {
 }
 
 void UsbKeyboard::on_event(Event* event) {
-    if(event->type == EVENT_KEYS) {
-        _pages[event->keys.page-1] = event->keys.state;
-    }
+    if(event->type != EVENT_KEYS)
+        return;
+
+    _pages[event->keys.page-1] = event->keys.state;
 
     BYTE send_report = 1;
     HidKeyboardReport report;
@@ -118,11 +121,10 @@ BYTE UsbKeyboard::handle_fn(HidKeyboardReport* report) {
             replace_keys(report, KEY_MUTE);
             return 1;
         case KEY_DELETE:
-            // TODO: switch on all boards
-            EffectController::set_effect(&effect_rainbow);
+            switch_effect(EFFECT_RAINBOW);
             return 0;
         case KEY_END:
-            EffectController::set_effect(&effect_flash);
+            switch_effect(EFFECT_FLASH);
             return 0;
     }
 
@@ -136,4 +138,13 @@ void UsbKeyboard::replace_keys(HidKeyboardReport* report, BYTE new_key) {
     report->keys[3] = 0;
     report->keys[4] = 0;
     report->keys[5] = 0;
+}
+
+void UsbKeyboard::switch_effect(EffectId id) {
+    // TODO: needs counter and ACK
+    UartMessage msg = UartMessage::serialize_effect(0, id);
+    EffectController::set_effect(EffectController::effect_by_id(id));
+    uart1.write(reinterpret_cast<BYTE*>(&msg), UartMessage::EFF_MSG_LEN);
+    uart2.write(reinterpret_cast<BYTE*>(&msg), UartMessage::EFF_MSG_LEN);
+    uart6.write(reinterpret_cast<BYTE*>(&msg), UartMessage::EFF_MSG_LEN);
 }

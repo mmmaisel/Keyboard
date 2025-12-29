@@ -42,8 +42,16 @@ void EventDispatcher::send_from_isr(Event* event, BaseType_t* task_woken) {
 void EventDispatcher::next_event(Event* event) {
     while(xQueueReceive(_queue, event, portMAX_DELAY) != pdTRUE);
 
-    if(event->type == EVENT_KEYS)
-        EffectController::on_keys(event->keys.page, event->keys.state);
+    switch(event->type) {
+        case EVENT_KEYS:
+            EffectController::on_keys(event->keys.page, event->keys.state);
+            break;
+        case EVENT_EFFECT:
+            EffectController::set_effect(
+                EffectController::effect_by_id(event->effect.id)
+            );
+            break;
+    }
 }
 
 void EventSink::task(void* pContext) {

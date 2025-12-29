@@ -24,6 +24,8 @@
 struct __attribute__((packed)) UartMessage {
     static const BYTE STATE_LEN = 5;
     static const BYTE KEY_MSG_LEN = 2 + STATE_LEN;
+    // TODO: LED message
+    static const BYTE EFF_MSG_LEN = 2 + 1;
 
     // Fixed data
     BYTE hdr; // counter:4 type:2 page:2
@@ -39,10 +41,15 @@ struct __attribute__((packed)) UartMessage {
             BYTE blue_x;
             BYTE state[STATE_LEN];
         } leds;
+        struct __attribute__((packed)) {
+            BYTE id;
+        } effect;
     };
 
     inline BYTE type() { return ((hdr & 0x0C) >> 2) + 1; }
     KeyEvent key_event();
+    EffectEvent effect_event();
 
     static UartMessage serialize_keys(BYTE ctr, BYTE page, DWORD state);
+    static UartMessage serialize_effect(BYTE ctr, BYTE id);
 };
