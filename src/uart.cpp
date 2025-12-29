@@ -227,6 +227,7 @@ void Uart::write(const BYTE* buffer, BYTE length) {
     _config->dma->STREAM[_config->tx_stream].CR |= dma::EN;
 
     // TODO: wait for TC ISR ?
+    // TODO: parallel write support
     xSemaphoreTake(_tx_semaphore, portMAX_DELAY);
 }
 

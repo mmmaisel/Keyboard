@@ -2,6 +2,7 @@ project('Keyboard', ['c', 'cpp'], default_options: ['buildtype=minsize'])
 target = 'Keyboard'
 
 srcs = files([
+  'crc8.cpp',
   'effect.cpp',
   'event.cpp',
   'hid_keyboard_endpoint.cpp',

@@ -33,7 +33,9 @@ void UartReceiver::task() {
     for(;;) {
         UartMessage* msg = reinterpret_cast<UartMessage*>(&_buffer);
         BYTE len = _uart->read(_buffer, BUFFER_SIZE);
-        // TODO: check CRC
+
+        if(!msg->is_valid(len))
+            continue;
 
         // TODO: ignore keys message on out modules
         // TODO: ignore led message on main module
@@ -46,8 +48,6 @@ void UartReceiver::task() {
         } else if(
             len == UartMessage::EFF_MSG_LEN && msg->type() == EVENT_EFFECT)
         {
-            // TODO: KEY_VOLUME_UP is interpreted as EFFECT_NONE
-            // TODO: message fragment: 02 00 00 [08 00 00] 00, confirmed by debug
             Event event = {
                 .type = EVENT_EFFECT,
                 .effect = msg->effect_event(),

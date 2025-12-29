@@ -47,6 +47,7 @@ struct __attribute__((packed)) UartMessage {
     };
 
     inline BYTE type() { return ((hdr & 0x0C) >> 2) + 1; }
+    BYTE is_valid(BYTE len);
     KeyEvent key_event();
     EffectEvent effect_event();
 

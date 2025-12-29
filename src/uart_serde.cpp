@@ -17,6 +17,17 @@
 \******************************************************************************/
 #include "uart_serde.h"
 
+#include "crc8.h"
+
+BYTE UartMessage::is_valid(BYTE len) {
+    BYTE rxcrc = crc;
+    crc = 0;
+    BYTE calccrc = crc8_ccitt(reinterpret_cast<const BYTE*>(this), len);
+    crc = rxcrc;
+
+    return calccrc == rxcrc;
+}
+
 KeyEvent UartMessage::key_event() {
     DWORD state = 0;
     for(BYTE i = 0; i < STATE_LEN; ++i) {
@@ -47,8 +58,8 @@ UartMessage UartMessage::serialize_keys(BYTE ctr, BYTE page, DWORD state) {
         msg.keys.state[i] = state & 0xFF;
         state >>= 8;
     }
+    msg.crc = crc8_ccitt(reinterpret_cast<const BYTE*>(&msg), KEY_MSG_LEN);
 
-    // TODO: crc8
     return msg;
 }
 
@@ -57,7 +68,7 @@ UartMessage UartMessage::serialize_effect(BYTE ctr, BYTE id) {
 
     msg.hdr = (ctr << 4) | ((EVENT_EFFECT-1) << 2);
     msg.effect.id = id;
+    msg.crc = crc8_ccitt(reinterpret_cast<const BYTE*>(&msg), EFF_MSG_LEN);
 
-    // TODO: crc8
     return msg;
 }
