@@ -25,7 +25,9 @@ UartReceiver uart2_receiver(&uart2);
 UartReceiver uart6_receiver(&uart6);
 
 UartReceiver::UartReceiver(Uart* uart) :
-    _uart(uart)
+    _uart(uart),
+    _key_ctr(0),
+    _cmd_ctr(0)
 {
 }
 
@@ -40,6 +42,10 @@ void UartReceiver::task() {
         // TODO: ignore keys message on out modules
         // TODO: ignore led message on main module
         if(len == UartMessage::KEY_MSG_LEN && msg->type() == EVENT_KEYS) {
+            if(msg->ctr() == _key_ctr)
+                continue;
+            _key_ctr = msg->ctr();
+
             Event event = {
                 .type = EVENT_KEYS,
                 .keys = msg->key_event(),
@@ -48,6 +54,10 @@ void UartReceiver::task() {
         } else if(
             len == UartMessage::EFF_MSG_LEN && msg->type() == EVENT_EFFECT)
         {
+            if(msg->ctr() == _cmd_ctr)
+                continue;
+            _cmd_ctr = msg->ctr();
+
             Event event = {
                 .type = EVENT_EFFECT,
                 .effect = msg->effect_event(),

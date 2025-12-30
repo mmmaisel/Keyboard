@@ -35,6 +35,8 @@ class UartReceiver {
 
         Uart* _uart;
         BYTE _buffer[BUFFER_SIZE];
+        BYTE _key_ctr;
+        BYTE _cmd_ctr;
 };
 
 extern UartReceiver uart1_receiver;

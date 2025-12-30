@@ -29,7 +29,10 @@
 
 UsbKeyboard usb_keyboard;
 
-UsbKeyboard::UsbKeyboard() {
+UsbKeyboard::UsbKeyboard() :
+    _pages{},
+    _cmd_ctr(0)
+{
     _queue = xQueueCreateStatic(1, sizeof(HidKeyboardReport),
         reinterpret_cast<BYTE*>(&_queue_items), &_queue_mem);
 #ifdef DEBUG
@@ -144,8 +147,11 @@ void UsbKeyboard::replace_keys(HidKeyboardReport* report, BYTE new_key) {
 }
 
 void UsbKeyboard::switch_effect(EffectId id) {
-    // TODO: needs counter and ACK
-    UartMessage msg = UartMessage::serialize_effect(0, id);
+    // TODO: only increment counter on key press/release
+    if(++_cmd_ctr > 16)
+        _cmd_ctr = 0;
+    UartMessage msg = UartMessage::serialize_effect(_cmd_ctr, id);
+
     EffectController::set_effect(EffectController::effect_by_id(id));
     uart1.write(reinterpret_cast<BYTE*>(&msg), UartMessage::EFF_MSG_LEN);
     uart2.write(reinterpret_cast<BYTE*>(&msg), UartMessage::EFF_MSG_LEN);
