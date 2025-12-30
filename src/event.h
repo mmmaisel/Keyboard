@@ -29,6 +29,7 @@ struct KeyEvent {
 
 enum EffectId {
     EFFECT_NONE = 0,
+    EFFECT_BACKLIGHT,
     EFFECT_FLASH,
     EFFECT_RUNNING,
     EFFECT_RAINBOW,

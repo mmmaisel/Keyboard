@@ -20,6 +20,7 @@
 #include <math.h>
 
 EffectNone effect_none;
+EffectBacklight effect_backlight;
 EffectFlash effect_flash;
 EffectRunning effect_running;
 EffectRainbow effect_rainbow;
@@ -29,7 +30,25 @@ BYTE EffectController::_led_count = 0;
 Effect* EffectController::_effect = &effect_none;
 DWORD EffectController::_keys = 0;
 
+void Effect::activate() {}
+
 void EffectNone::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {}
+
+void EffectBacklight::activate() {
+    _changed = 1;
+}
+
+void EffectBacklight::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {
+    if(!_changed)
+        return;
+
+    _changed = 0;
+    for(BYTE i = 0; i < led_count; ++i) {
+        LedMatrix::set_led(
+            i+1, Color { .red = 16, .green = 16, .blue = 16 }
+        );
+    }
+}
 
 void EffectFlash::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {
     for(BYTE i = 0; i < led_count; ++i) {
@@ -124,6 +143,7 @@ void EffectController::set_effect(Effect* effect) {
 
     _effect = effect;
     _keys = 0;
+    _effect->activate();
     LedMatrix::clear();
 }
 
@@ -139,6 +159,8 @@ Effect* EffectController::effect_by_id(EffectId id) {
     switch(id) {
         case EFFECT_NONE:
             return &effect_none;
+        case EFFECT_BACKLIGHT:
+            return &effect_backlight;
         case EFFECT_FLASH:
             return &effect_flash;
         case EFFECT_RUNNING:

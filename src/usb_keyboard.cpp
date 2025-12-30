@@ -121,10 +121,13 @@ BYTE UsbKeyboard::handle_fn(HidKeyboardReport* report) {
             replace_keys(report, KEY_MUTE);
             return 1;
         case KEY_DELETE:
-            switch_effect(EFFECT_RAINBOW);
+            switch_effect(EFFECT_BACKLIGHT);
             return 0;
         case KEY_END:
             switch_effect(EFFECT_FLASH);
+            return 0;
+        case KEY_PAGEDOWN:
+            switch_effect(EFFECT_RAINBOW);
             return 0;
     }
 

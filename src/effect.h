@@ -27,18 +27,28 @@ class Effect {
     Effect(Effect&&) = delete;
 
     public:
+        virtual void activate();
         virtual void run(BYTE led_count, DWORD new_keys, DWORD old_keys) = 0;
 
     protected:
         Effect() = default;
 };
 
-// TODO: constant colored backlight effect with configurable color
-
 class EffectNone : public Effect {
     public:
         virtual void run(
             BYTE led_count, DWORD new_keys, DWORD old_keys) override;
+};
+
+// TODO: configurable color/brightness
+class EffectBacklight : public Effect {
+    public:
+        virtual void activate() override;
+        virtual void run(
+            BYTE led_count, DWORD new_keys, DWORD old_keys) override;
+
+    private:
+        BYTE _changed;
 };
 
 class EffectFlash : public Effect {
@@ -88,6 +98,7 @@ class EffectController {
 };
 
 extern EffectNone effect_none;
+extern EffectBacklight effect_backlight;
 extern EffectFlash effect_flash;
 extern EffectRunning effect_running;
 extern EffectRainbow effect_rainbow;

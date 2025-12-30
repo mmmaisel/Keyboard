@@ -53,7 +53,7 @@ StackType_t  task_stack_uartrx6[STACK_SIZE_UARTRX];
 
     EventDispatcher::initialize();
     EffectController::initialize(wiring.key_config->page, wiring.led_config);
-    EffectController::set_effect(&effect_rainbow);
+    EffectController::set_effect(&effect_backlight);
 
     wiring.led_matrix_hw_init();
     LedMatrix::initialize(wiring.led_config);
