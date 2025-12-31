@@ -3509,7 +3509,7 @@
 			)
 		)
 		(property "Footprint" "Keyboard:APTF1616-RGB"
-			(at 3.81 0 0)
+			(at -11.684 -17.018 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3519,7 +3519,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.kingbrightusa.com/images/catalog/SPEC/APTF1616LSEEZGKQBKC.pdf"
-			(at 3.81 0 0)
+			(at -23.876 -14.732 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3529,7 +3529,7 @@
 			)
 		)
 		(property "Description" "APTF1616LSEEZGKQBKC"
-			(at 0 0 0)
+			(at 0.254 -12.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3542,6 +3542,42 @@
 			(effects
 				(font
 					(size 1.524 1.524)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "APTF1616LSEEZGKQBKC.spice"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "aptf1616lseezgkqbkc-dc"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=A 2=R 3=G 4=B"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
