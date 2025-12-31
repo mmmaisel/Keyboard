@@ -70,8 +70,8 @@ class LedMatrix {
         static const LedMatrixConfig* _config;
         /// Fraction of LED on time between 0 and PHASE_COUNT
         static BYTE _phase;
-        /// Currently driven row
-        static BYTE _row;
+        /// Currently driven column
+        static BYTE _col;
         /// To be displayed colors by matrix coordinates
         static BYTE _colors[LedMatrixConfig::MAX_DIM][LedMatrixConfig::MAX_DIM];
 

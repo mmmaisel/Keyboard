@@ -25,8 +25,8 @@
 
 const LedMatrixConfig* LedMatrix::_config = nullptr;
 BYTE LedMatrix::_phase = 0;
-BYTE LedMatrix::_row = 0;
-BYTE LedMatrix::_colors[LedMatrixConfig::MAX_DIM][LedMatrixConfig::MAX_DIM] = {0};
+BYTE LedMatrix::_col = 0;
+BYTE LedMatrix::_colors[LedMatrixConfig::MAX_DIM][LedMatrixConfig::MAX_DIM] = {{0}};
 
 void LedMatrix::initialize(const LedMatrixConfig* config) {
     using namespace dev;
@@ -79,25 +79,25 @@ void LedMatrix::ISR() {
     TIM2->SR &= ~UIF;
 
     if(++_phase >= PHASE_COUNT) {
-        for(BYTE col = 0; col < _config->cols; ++col) {
-            // Disable all columns before row switch
-            _config->col_pins[col].port->set_odr(_config->col_pins[col].pin);
+        for(BYTE row = 0; row < _config->rows; ++row) {
+            // Disable all rows before column switch
+            _config->row_pins[row].port->clear_odr(_config->row_pins[row].pin);
         }
 
-        // Rows are high active
-        _config->row_pins[_row].port->clear_odr(_config->row_pins[_row].pin);
-        if(++_row >= _config->rows)
-            _row = 0;
-        _config->row_pins[_row].port->set_odr(_config->row_pins[_row].pin);
+        // Columns are low active
+        _config->col_pins[_col].port->set_odr(_config->col_pins[_col].pin);
+        if(++_col >= _config->cols)
+            _col = 0;
+        _config->col_pins[_col].port->clear_odr(_config->col_pins[_col].pin);
         _phase = 0;
     }
 
-    for(BYTE col = 0; col < _config->cols; ++col) {
-        if(_colors[_row][col] > _phase)
-            // Columns are low active
-            _config->col_pins[col].port->clear_odr(_config->col_pins[col].pin);
+    for(BYTE row = 0; row < _config->rows; ++row) {
+        if(_colors[row][_col] > _phase)
+            // Rows are high active
+            _config->row_pins[row].port->set_odr(_config->row_pins[row].pin);
         else
-            _config->col_pins[col].port->set_odr(_config->col_pins[col].pin);
+            _config->row_pins[row].port->clear_odr(_config->row_pins[row].pin);
     }
 }
 
