@@ -24,9 +24,11 @@
 #include "dev/timer.h"
 
 const LedMatrixConfig* LedMatrix::_config = nullptr;
-BYTE LedMatrix::_phase = 0;
+BYTE LedMatrix::_phase = LedMatrix::PHASE_DRIVE;
+BYTE LedMatrix::_frac = 0;
 BYTE LedMatrix::_col = 0;
-BYTE LedMatrix::_colors[LedMatrixConfig::MAX_DIM][LedMatrixConfig::MAX_DIM] = {{0}};
+BYTE LedMatrix::_colors[LedMatrixConfig::MAX_DIM][LedMatrixConfig::MAX_DIM] =
+    {{0}};
 
 void LedMatrix::initialize(const LedMatrixConfig* config) {
     using namespace dev;
@@ -37,9 +39,8 @@ void LedMatrix::initialize(const LedMatrixConfig* config) {
 
     // Configure 24 kHz timer
     // Timer clock is multiplied by 2 if APB1_DIV != 1
-    // f_mat = f_tim / PHASE_COUNT / n_row
+    // f_mat = f_tim / FRAC_COUNT / n_row
     // TODO: check frequency, currently it is 21.6 kHz, not 24
-    // TODO: bigger matrices need lower pre-resistors
     RCC->APB1ENR |= TIM2EN;
     TIM2->CR1 = DIR | URS;
     TIM2->ARR = 10;
@@ -78,26 +79,54 @@ void LedMatrix::ISR() {
 
     TIM2->SR &= ~UIF;
 
-    if(++_phase >= PHASE_COUNT) {
-        for(BYTE row = 0; row < _config->rows; ++row) {
-            // Disable all rows before column switch
-            _config->row_pins[row].port->clear_odr(_config->row_pins[row].pin);
-        }
+    if(_phase == PHASE_DRIVE) {
+        if(++_frac >= FRAC_COUNT) {
+            _frac = 0;
 
-        // Columns are low active
-        _config->col_pins[_col].port->set_odr(_config->col_pins[_col].pin);
-        if(++_col >= _config->cols)
-            _col = 0;
-        _config->col_pins[_col].port->clear_odr(_config->col_pins[_col].pin);
-        _phase = 0;
+            for(BYTE row = 0; row < _config->rows; ++row) {
+                // Disable all rows before column switch
+                _config->row_pins[row].port->clear_odr(
+                    _config->row_pins[row].pin
+                );
+            }
+
+            // Columns are low active
+            _config->col_pins[_col].port->set_odr(_config->col_pins[_col].pin);
+            if(++_col >= _config->cols) {
+                _col = 0;
+                if(_config->nops != 0) {
+                    _phase = PHASE_NOP;
+                    return;
+                }
+            }
+            _config->col_pins[_col].port->clear_odr(_config->col_pins[_col].pin);
+        }
+    } else if(_phase == PHASE_NOP) {
+        if(++_frac >= FRAC_COUNT) {
+            _frac = 0;
+            if(++_col >= _config->nops) {
+                _col = 0;
+                _phase = PHASE_DRIVE;
+                _config->col_pins[_col].port->clear_odr(
+                    _config->col_pins[_col].pin
+                );
+            } else {
+                return;
+            }
+        } else {
+            return;
+        }
     }
 
     for(BYTE row = 0; row < _config->rows; ++row) {
-        if(_colors[row][_col] > _phase)
+        if(_colors[row][_col] > _frac) {
             // Rows are high active
             _config->row_pins[row].port->set_odr(_config->row_pins[row].pin);
-        else
-            _config->row_pins[row].port->clear_odr(_config->row_pins[row].pin);
+        } else {
+            _config->row_pins[row].port->clear_odr(
+                _config->row_pins[row].pin
+            );
+        }
     }
 }
 

@@ -19,7 +19,6 @@
 
 #include "types.h"
 
-#include "event.h"
 #include "pin.h"
 
 extern "C" void tim2_vector() __attribute__((error("calling ISR")));
@@ -41,6 +40,7 @@ struct LedMatrixConfig {
 
     BYTE rows;
     BYTE cols;
+    BYTE nops;
     Pin row_pins[MAX_DIM];
     Pin col_pins[MAX_DIM];
 
@@ -64,12 +64,18 @@ class LedMatrix {
         static void set_led(BYTE num, Color color);
 
     private:
-        static const BYTE PHASE_COUNT = 16;
+        enum {
+            PHASE_DRIVE,
+            PHASE_NOP,
+        };
+        static const BYTE FRAC_COUNT = 16;
 
         /// Reference to LED matrix configuration
         static const LedMatrixConfig* _config;
-        /// Fraction of LED on time between 0 and PHASE_COUNT
+        /// Drive of Nop
         static BYTE _phase;
+        /// Fraction of LED on time between 0 and FRAC_COUNT
+        static BYTE _frac;
         /// Currently driven column
         static BYTE _col;
         /// To be displayed colors by matrix coordinates

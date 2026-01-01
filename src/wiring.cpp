@@ -93,6 +93,7 @@ namespace right {
     LedMatrixConfig led_matrix_cfg = {
         .rows = 15,
         .cols = 9,
+        .nops = 1,
         .row_pins = {
             Pin { .port = GPIOE, .pin = LR1 },
             Pin { .port = GPIOE, .pin = LR2 },
@@ -232,6 +233,7 @@ namespace left {
     LedMatrixConfig led_matrix_cfg = {
         .rows = 12,
         .cols = 10,
+        .nops = 0,
         .row_pins = {
             Pin { .port = GPIOA, .pin = LR1 },
             Pin { .port = GPIOA, .pin = LR2 },
@@ -353,6 +355,7 @@ namespace nav {
     LedMatrixConfig led_matrix_cfg = {
         .rows = 9,
         .cols = 5,
+        .nops = 5,
         .row_pins = {
             Pin { .port = GPIOB, .pin = LR1 },
             Pin { .port = GPIOB, .pin = LR2 },
@@ -444,6 +447,7 @@ namespace num {
     LedMatrixConfig led_matrix_cfg = {
         .rows = 9,
         .cols = 6,
+        .nops = 4,
         .row_pins = {
             Pin { .port = GPIOA, .pin = LR1 },
             Pin { .port = GPIOA, .pin = LR2 },
