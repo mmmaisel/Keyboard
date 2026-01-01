@@ -20,8 +20,6 @@
 #include "usb_endpoint.h"
 #include "usb_phy.h"
 
-#include <string.h>
-
 HidKeyboardEndpoint ep1;
 
 HidKeyboardEndpoint::HidKeyboardEndpoint() :

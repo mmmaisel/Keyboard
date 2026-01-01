@@ -20,7 +20,7 @@
 #include "types.h"
 #include "usb_endpoint.h"
 
-struct __attribute__((packed)) HidKeyboardReport {
+struct __attribute__((packed, aligned(4))) HidKeyboardReport {
     static const BYTE LEN = 6;
     union {
         struct __attribute__((packed)) {
