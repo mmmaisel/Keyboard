@@ -307,6 +307,7 @@ void USBPhy::WakeupISR() {
 
     // TODO: dedup PLL code
     // TODO: check if sleeping works fine with matrices and uarts
+    // TODO: turn off matrices before sleep and re-enable on wake
     // Enable crystal
     RCC->CR |= HSEON;
     // PLL On

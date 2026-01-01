@@ -26,8 +26,6 @@
 #include "usb_keyboard.h"
 #include "usb_phy.h"
 
-#include <string.h>
-
 ControlEndpoint ep0;
 
 ControlEndpoint::ControlEndpoint() :
@@ -45,45 +43,42 @@ void ControlEndpoint::OnReceive(BaseType_t* task_woken) {
 
     // Set Num / Caps / Scroll LEDs
     if(m_last_command == REQUEST_HID_SET_REPORT) {
-        /*BYTE leds = m_buffer.b[8];
-        LedMatrix::Led led_on {
-            .red = 16,
-            .green = 0,
-            .blue = 0,
-        };
-        LedMatrix::Led led_off {
-            .red = 0,
-            .green = 0,
-            .blue = 0,
-        };
+        using namespace keycodes;
+        BYTE leds = m_buffer.b[8];
 
         if(leds & NUMLOCK_MASK) {
-            led_on.keycode = keycodes::LED_NUMLOCK;
-            LedMatrix::set_led(led_on);
+            usb_keyboard.set_led(
+                LED_NUMLOCK, Color { .red = 16, .green = 16, .blue = 16 }
+            );
         } else {
-            led_off.keycode = keycodes::LED_NUMLOCK;
-            LedMatrix::set_led(led_off);
+            usb_keyboard.set_led(
+                LED_NUMLOCK, Color { .red = 0, .green = 0, .blue = 0 }
+            );
         }
         if(leds & CAPSLOCK_MASK) {
-            led_on.keycode = keycodes::LED_CAPSLOCK;
-            LedMatrix::set_led(led_on);
+            usb_keyboard.set_led(
+                LED_CAPSLOCK, Color { .red = 16, .green = 16, .blue = 16 }
+            );
         } else {
-            led_off.keycode = keycodes::LED_CAPSLOCK;
-            LedMatrix::set_led(led_off);
+            usb_keyboard.set_led(
+                LED_CAPSLOCK, Color { .red = 0, .green = 0, .blue = 0 }
+            );
         }
         if(leds & SCROLL_MASK) {
-            led_on.keycode = keycodes::LED_SCROLL;
-            LedMatrix::set_led(led_on);
+            usb_keyboard.set_led(
+                LED_SCROLL, Color { .red = 16, .green = 16, .blue = 16 }
+            );
         } else {
-            led_off.keycode = keycodes::LED_SCROLL;
-            LedMatrix::set_led(led_off);
-        }*/
+            usb_keyboard.set_led(
+                LED_SCROLL, Color { .red = 0, .green = 0, .blue = 0 }
+            );
+        }
         m_last_command = 0;
     }
 
     m_length = 0;
     m_bufferPos = 0;
-    // XXX: just in case
+    // Clear buffer, just in case
     m_buffer.w[0] = 0;
     m_buffer.w[1] = 0;
     m_buffer.w[2] = 0;

@@ -22,6 +22,7 @@
 #include "event.h"
 #include "hid_keyboard_endpoint.h"
 #include "key_layout.h"
+#include "led_matrix.h"
 
 class UsbKeyboard : public EventSink {
     public:
@@ -31,6 +32,7 @@ class UsbKeyboard : public EventSink {
 
         virtual void on_event(Event* event) override;
 
+        void set_led(BYTE keycode, Color color);
         BYTE get_report_from_isr(
             HidKeyboardReport* report, BaseType_t* task_woken);
 

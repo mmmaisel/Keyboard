@@ -58,6 +58,20 @@ void UsbKeyboard::on_event(Event* event) {
     }
 }
 
+void UsbKeyboard::set_led(BYTE keycode, Color color) {
+    BYTE num = 0;
+    // TODO: support other pages
+    BYTE page = 0;
+    for(BYTE i = 0; i < KeyMatrixConfig::MAX_KEYS; ++i) {
+        if(keycode == KEY_LAYOUT[page][i]) {
+            num = i+1;
+            break;
+        }
+    }
+
+    LedMatrix::set_led(num, color);
+}
+
 BYTE UsbKeyboard::get_report_from_isr(
     HidKeyboardReport* report, BaseType_t* task_woken
 ) {
