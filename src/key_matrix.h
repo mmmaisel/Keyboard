@@ -30,6 +30,7 @@ struct KeyMatrixConfig {
     BYTE page;
     BYTE row_count;
     BYTE col_count;
+    BYTE nops;
     Pin row_pins[MAX_DIM];
     Pin col_pins[MAX_DIM];
 
@@ -53,8 +54,9 @@ class KeyMatrix {
         enum {
             PHASE_DRIVE,
             PHASE_READ,
+            PHASE_NOP,
         };
-        static const BYTE STATE_CNT = 3;
+        static const BYTE HISTORY_LEN = 3;
 
         /// Reference to key matrix configuration
         static const KeyMatrixConfig* _config;
@@ -62,10 +64,12 @@ class KeyMatrix {
         static BYTE _col;
         /// Scan phases: drive and read
         static BYTE _phase;
+        /// Key debouncing direction
+        static DWORD _debounced_keys;
         /// Last three key states as bitfield defined by mapping
-        static DWORD _key_state[STATE_CNT];
-        /// Index for _key_state
-        static BYTE _state_idx;
+        static DWORD _key_history[HISTORY_LEN];
+        /// Index for _key_history
+        static BYTE _history_idx;
 
         static void ISR();
 };

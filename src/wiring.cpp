@@ -49,6 +49,7 @@ namespace right {
         .page = 1,
         .row_count = 7,
         .col_count = 6,
+        .nops = 0,
         .row_pins = {
             Pin { .port = GPIOB, .pin = KR1 },
             Pin { .port = GPIOB, .pin = KR2 },
@@ -190,6 +191,7 @@ namespace left {
         .page = 2,
         .row_count = 7,
         .col_count = 6,
+        .nops = 0,
         .row_pins = {
             Pin { .port = GPIOC, .pin = KR1 },
             Pin { .port = GPIOC, .pin = KR2 },
@@ -322,6 +324,7 @@ namespace nav {
         .page = 3,
         .row_count = 5,
         .col_count = 3,
+        .nops = 3,
         .row_pins = {
             Pin { .port = GPIOC, .pin = KR1 },
             Pin { .port = GPIOC, .pin = KR2 },
@@ -411,6 +414,7 @@ namespace num {
         .page = 4,
         .row_count = 5,
         .col_count = 4,
+        .nops = 2,
         .row_pins = {
             Pin { .port = GPIOC, .pin = KR1 },
             Pin { .port = GPIOC, .pin = KR2 },

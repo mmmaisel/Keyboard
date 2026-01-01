@@ -28,8 +28,9 @@
 const KeyMatrixConfig* KeyMatrix::_config = nullptr;
 BYTE KeyMatrix::_col = 0;
 BYTE KeyMatrix::_phase = KeyMatrix::PHASE_DRIVE;
-DWORD KeyMatrix::_key_state[KeyMatrix::STATE_CNT] = {0};
-BYTE KeyMatrix::_state_idx = 0;
+DWORD KeyMatrix::_debounced_keys = 0;
+DWORD KeyMatrix::_key_history[KeyMatrix::HISTORY_LEN] = {0};
+BYTE KeyMatrix::_history_idx = 0;
 
 void KeyMatrix::initialize(const KeyMatrixConfig* config) {
     using namespace dev;
@@ -65,11 +66,11 @@ void KeyMatrix::ISR() {
         // Drive next column.
         _config->col_pins[_col].port->set_odr(_config->col_pins[_col].pin);
         _phase = PHASE_READ;
-    } else {
+    } else if(_phase == PHASE_READ) {
         // Read current columns rows
         for(BYTE row = 0; row < _config->row_count; ++row) {
             if(_config->row_pins[row].port->IDR & _config->row_pins[row].pin)
-                _key_state[_state_idx] |=
+                _key_history[_history_idx] |=
                     (1ull << (_config->mapping[row][_col] - 1));
         }
 
@@ -79,29 +80,45 @@ void KeyMatrix::ISR() {
         // All columns scanned?
         if(++_col >= _config->col_count) {
             _col= 0;
-            // Rotate state
-            if(++_state_idx >= STATE_CNT)
-                _state_idx = 0;
+            // Rotate history
+            if(++_history_idx >= HISTORY_LEN)
+                _history_idx = 0;
 
-            // Debounce state
-            DWORD state = _key_state[0];
-            for(BYTE i = 1; i < STATE_CNT; ++i)
-                state &= _key_state[i];
+            // Debounce state, change it if the new state occurred
+            // three times in a row.
+            DWORD keys_or = _key_history[0];
+            DWORD keys_and = _key_history[0];
+            for(BYTE i = 1; i < HISTORY_LEN; ++i) {
+                keys_and &= _key_history[i];
+                keys_or |= _key_history[i];
+            }
+            _debounced_keys =
+                (~_debounced_keys & keys_and) | (_debounced_keys & keys_or);
+
             // Clear state for next scan
-            _key_state[_state_idx] = 0;
+            _key_history[_history_idx] = 0;
 
             // Send event
             Event event = {
                 .type = EVENT_KEYS,
                 .keys = KeyEvent {
                     .page = _config->page,
-                    .state = state,
+                    .state = _debounced_keys,
                 }
             };
             EventDispatcher::send_from_isr(&event, &task_woken);
         }
 
-        _phase = PHASE_DRIVE;
+        if(_col == 0 && _config->nops != 0)
+            _phase = PHASE_NOP;
+        else
+            _phase = PHASE_DRIVE;
+    } else {
+        // One cycle consists of drive and read
+        if(++_col >= _config->nops*2) {
+            _col = 0;
+            _phase = PHASE_DRIVE;
+        }
     }
     portYIELD_FROM_ISR(task_woken);
 }
