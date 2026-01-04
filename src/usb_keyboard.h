@@ -47,6 +47,7 @@ class UsbKeyboard : public EventSink {
         QueueHandle_t _queue;
         StaticQueue_t _queue_mem;
         HidKeyboardReport _queue_items;
+        BYTE _last_cmd;
         BYTE _cmd_ctr;
 };
 

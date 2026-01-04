@@ -31,6 +31,7 @@ UsbKeyboard usb_keyboard;
 
 UsbKeyboard::UsbKeyboard() :
     _pages{},
+    _last_cmd(EFFECT_BACKLIGHT),
     _cmd_ctr(0)
 {
     _queue = xQueueCreateStatic(1, sizeof(HidKeyboardReport),
@@ -161,9 +162,11 @@ void UsbKeyboard::replace_keys(HidKeyboardReport* report, BYTE new_key) {
 }
 
 void UsbKeyboard::switch_effect(EffectId id) {
-    // TODO: only increment counter on key press/release
-    if(++_cmd_ctr > 16)
-        _cmd_ctr = 0;
+    if(_last_cmd != id) {
+        if(++_cmd_ctr > 16)
+            _cmd_ctr = 0;
+        _last_cmd = id;
+    }
     UartMessage msg = UartMessage::serialize_effect(_cmd_ctr, id);
 
     EffectController::set_effect(EffectController::effect_by_id(id));
