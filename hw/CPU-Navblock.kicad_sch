@@ -9461,12 +9461,13 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "TLV62150x 4V to 17-V 1-A"
 			(at 82.55 172.085 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "mouser#" "595-TLV62150ARGTR"
