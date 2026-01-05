@@ -939,566 +939,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Keyboard:DTA114E"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at 5.08 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "DTA114E"
-				(at 5.08 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Keyboard:SC-75"
-				(at 2.54 -0.635 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "http://www.onsemi.com/pub/Collateral/DTA114E-D.PDF"
-				(at 5.08 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Description" "digital transistor PNP 10k/10k"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "digikey#" "DTA114EET1GOSCT-ND"
-				(at -1.27 12.7 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "transistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "SOT?23* SC-59*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "DTA114E_0_0"
-				(text "10k"
-					(at -3.302 0.889 0)
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(text "10k"
-					(at -2.159 -1.524 900)
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-			(symbol "DTA114E_0_1"
-				(polyline
-					(pts
-						(xy -3.429 0) (xy -3.81 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center -1.27 0)
-					(radius 0.127)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 0) (xy -1.27 -0.381) (xy -0.762 -0.508) (xy -1.778 -0.762) (xy -0.762 -1.016) (xy -1.778 -1.27)
-						(xy -0.762 -1.524) (xy -1.778 -1.778) (xy -1.27 -1.905) (xy -1.27 -2.286) (xy 2.54 -2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy -1.905 0) (xy -2.032 0.508) (xy -2.286 -0.508) (xy -2.54 0.508) (xy -2.794 -0.508)
-						(xy -3.048 0.508) (xy -3.302 -0.508) (xy -3.429 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.254) (xy 2.54 2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.127 1.524) (xy 0.127 -1.651)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.397 -1.651) (xy 1.905 -1.143) (xy 0.889 -0.635) (xy 1.397 -1.651)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 2.286) (xy 2.54 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -2.286) (xy 0 0.254) (xy 0 0.254)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.54 -2.286)
-					(radius 0.127)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "DTA114E_1_1"
-				(pin input line
-					(at -6.35 0 0)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "E"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Keyboard:DTC114EE"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at 5.08 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "DTC114EE"
-				(at 5.08 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Keyboard:SC-75"
-				(at -6.985 -6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-				(at -33.02 9.525 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Description" "Digital Transistor, 10k/10k, SOT-416-SC-75"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "mouser#" "863-DTC114EET1G"
-				(at 0.635 6.35 0)
-				(effects
-					(font
-						(size 1.524 1.524)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "Digital Transistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "SC-75"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "DTC114EE_0_0"
-				(text "10k"
-					(at -3.302 0.889 0)
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(text "10k"
-					(at -2.159 -1.524 900)
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-			(symbol "DTC114EE_0_1"
-				(polyline
-					(pts
-						(xy -3.429 0) (xy -3.81 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center -1.27 0)
-					(radius 0.127)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 0) (xy -1.27 -0.381) (xy -0.762 -0.508) (xy -1.778 -0.762) (xy -0.762 -1.016) (xy -1.778 -1.27)
-						(xy -0.762 -1.524) (xy -1.778 -1.778) (xy -1.27 -1.905) (xy -1.27 -2.286) (xy 2.54 -2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy -1.905 0) (xy -2.032 0.508) (xy -2.286 -0.508) (xy -2.54 0.508) (xy -2.794 -0.508)
-						(xy -3.048 0.508) (xy -3.302 -0.508) (xy -3.429 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.254) (xy 2.54 2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.127 1.524) (xy 0.127 -1.651)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.889 -1.143) (xy 1.397 -0.635) (xy 1.905 -1.651) (xy 0.889 -1.143)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 2.286) (xy 2.54 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -2.286) (xy 0 0.254) (xy 0 0.254)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.54 -2.286)
-					(radius 0.127)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "DTC114EE_1_1"
-				(pin input line
-					(at -6.35 0 0)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "E"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Keyboard:GND"
 			(power)
 			(pin_names
@@ -1598,6 +1038,709 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Keyboard:NTA4151PT1G"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Q"
+				(at 5.842 -2.032 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "NTA4151P"
+				(at 9.398 1.778 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Footprint" "Keyboard:SC-75"
+				(at 0.254 -11.938 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4151p-d.pdf"
+				(at 0.254 -13.462 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "P-Channel MOSFET"
+				(at 0 -17.78 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "mouser#" "863-NTA4151PT1G"
+				(at 0.508 -22.352 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "farnell#" "2317622"
+				(at 0 -20.066 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Library" "lib/spice/NTA4151P.LIB"
+				(at -0.254 -15.748 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Name" "nta4151p"
+				(at 0 -26.416 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "SUBCKT"
+				(at 0 -24.384 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=2 2=3 3=1"
+				(at 0.254 -28.194 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "nmos mosfet n-channel"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "NTA4151PT1G_0_1"
+				(polyline
+					(pts
+						(xy 0.254 1.905) (xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 2.286) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 1.778) (xy 3.302 1.778) (xy 3.302 -1.778) (xy 0.762 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508) (xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27) (xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 0) (xy 1.27 0.381) (xy 1.27 -0.381) (xy 2.286 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 -1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.921 -0.381) (xy 3.683 -0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.302 -0.381) (xy 2.921 0.254) (xy 3.683 0.254) (xy 3.302 -0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "NTA4151PT1G_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Keyboard:NTA4153NT1G"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Q"
+				(at 5.842 -2.032 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "NTA4153N"
+				(at 9.398 1.778 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Footprint" "Keyboard:SC-75"
+				(at 0.254 -11.938 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+				(at 0.254 -13.462 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "N-Channel MOSFET"
+				(at 0 -17.78 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "mouser#" "863-NTA4153NT1G"
+				(at 0.508 -22.352 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "farnell#" "2317621"
+				(at 0 -20.066 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+				(at -0.254 -15.748 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Name" "nta4153n"
+				(at 0 -26.416 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "SUBCKT"
+				(at 0 -24.384 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=2 2=3 3=1"
+				(at 0.254 -28.194 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "nmos mosfet n-channel"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "NTA4153NT1G_0_1"
+				(polyline
+					(pts
+						(xy 0.254 1.905) (xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 2.286) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508) (xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27) (xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 -1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.921 0.381) (xy 3.683 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "NTA4153NT1G_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4459,7 +4602,7 @@
 	)
 	(hierarchical_label "LC2"
 		(shape input)
-		(at 38.1 26.67 180)
+		(at 39.37 26.67 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4470,7 +4613,7 @@
 	)
 	(hierarchical_label "LC3"
 		(shape input)
-		(at 59.69 26.67 180)
+		(at 60.96 26.67 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4481,7 +4624,7 @@
 	)
 	(hierarchical_label "LC4"
 		(shape input)
-		(at 81.28 26.67 180)
+		(at 82.55 26.67 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4492,7 +4635,7 @@
 	)
 	(hierarchical_label "LR5"
 		(shape input)
-		(at 162.56 85.725 90)
+		(at 163.83 85.725 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4503,7 +4646,7 @@
 	)
 	(hierarchical_label "LR9"
 		(shape input)
-		(at 178.435 105.41 90)
+		(at 179.705 105.41 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4514,7 +4657,7 @@
 	)
 	(hierarchical_label "LR1"
 		(shape input)
-		(at 146.685 66.04 90)
+		(at 147.955 66.04 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4525,7 +4668,7 @@
 	)
 	(hierarchical_label "LR2"
 		(shape input)
-		(at 162.56 66.04 90)
+		(at 163.83 66.04 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4536,7 +4679,7 @@
 	)
 	(hierarchical_label "LR7"
 		(shape input)
-		(at 146.685 105.41 90)
+		(at 147.955 105.41 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4547,18 +4690,18 @@
 	)
 	(hierarchical_label "LC1"
 		(shape input)
-		(at 16.51 26.67 90)
+		(at 17.78 26.67 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "69894c92-8c14-4698-a6ea-c183d5d9f846")
 	)
 	(hierarchical_label "LR4"
 		(shape input)
-		(at 146.685 85.725 90)
+		(at 147.955 85.725 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4569,7 +4712,7 @@
 	)
 	(hierarchical_label "LR8"
 		(shape input)
-		(at 162.56 105.41 90)
+		(at 163.83 105.41 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4580,7 +4723,7 @@
 	)
 	(hierarchical_label "LR3"
 		(shape input)
-		(at 178.435 66.04 90)
+		(at 179.705 66.04 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4591,7 +4734,7 @@
 	)
 	(hierarchical_label "LC6"
 		(shape input)
-		(at 124.46 26.67 180)
+		(at 125.73 26.67 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4602,7 +4745,7 @@
 	)
 	(hierarchical_label "LC5"
 		(shape input)
-		(at 102.87 26.67 180)
+		(at 104.14 26.67 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4613,7 +4756,7 @@
 	)
 	(hierarchical_label "LR6"
 		(shape input)
-		(at 178.435 85.725 90)
+		(at 179.705 85.725 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6199,7 +6342,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTC114EE")
+		(lib_id "Keyboard:NTA4153NT1G")
 		(at 184.785 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6208,7 +6351,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797b4")
 		(property "Reference" "Q2208"
-			(at 189.865 69.215 90)
+			(at 190.754 69.088 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6216,7 +6359,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTC114EE"
+		(property "Value" "NTA4153N"
 			(at 176.53 69.85 0)
 			(effects
 				(font
@@ -6227,38 +6370,82 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 177.8 72.39 0)
+			(at 185.039 77.978 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-			(at 151.765 56.515 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+			(at 185.039 79.502 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 184.785 66.04 0)
+		(property "Description" "N-Channel MOSFET"
+			(at 184.785 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "mouser#" "863-DTC114EET1G"
-			(at 185.42 59.69 0)
+		(property "mouser#" "863-NTA4153NT1G"
+			(at 185.293 88.392 0)
 			(effects
 				(font
-					(size 1.524 1.524)
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317621"
+			(at 184.785 86.106 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+			(at 184.531 81.788 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4153n"
+			(at 184.785 92.456 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 184.785 90.424 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 185.039 94.234 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
@@ -6282,7 +6469,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTC114EE")
+		(lib_id "Keyboard:NTA4153NT1G")
 		(at 168.91 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6291,7 +6478,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797b5")
 		(property "Reference" "Q2207"
-			(at 173.99 69.215 90)
+			(at 174.879 69.088 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6299,7 +6486,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTC114EE"
+		(property "Value" "NTA4153N"
 			(at 160.655 69.85 0)
 			(effects
 				(font
@@ -6310,38 +6497,82 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 161.925 72.39 0)
+			(at 169.164 77.978 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-			(at 135.89 56.515 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+			(at 169.164 79.502 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 168.91 66.04 0)
+		(property "Description" "N-Channel MOSFET"
+			(at 168.91 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "mouser#" "863-DTC114EET1G"
-			(at 169.545 59.69 0)
+		(property "mouser#" "863-NTA4153NT1G"
+			(at 169.418 88.392 0)
 			(effects
 				(font
-					(size 1.524 1.524)
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317621"
+			(at 168.91 86.106 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+			(at 168.656 81.788 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4153n"
+			(at 168.91 92.456 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 168.91 90.424 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 169.164 94.234 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
@@ -6365,7 +6596,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTC114EE")
+		(lib_id "Keyboard:NTA4153NT1G")
 		(at 153.035 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6374,7 +6605,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797bc")
 		(property "Reference" "Q2206"
-			(at 158.115 69.215 90)
+			(at 159.004 69.088 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6382,7 +6613,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTC114EE"
+		(property "Value" "NTA4153N"
 			(at 144.78 69.85 0)
 			(effects
 				(font
@@ -6393,38 +6624,82 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 146.05 72.39 0)
+			(at 153.289 77.978 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-			(at 120.015 56.515 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+			(at 153.289 79.502 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 153.035 66.04 0)
+		(property "Description" "N-Channel MOSFET"
+			(at 153.035 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "mouser#" "863-DTC114EET1G"
-			(at 153.67 59.69 0)
+		(property "mouser#" "863-NTA4153NT1G"
+			(at 153.543 88.392 0)
 			(effects
 				(font
-					(size 1.524 1.524)
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317621"
+			(at 153.035 86.106 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+			(at 152.781 81.788 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4153n"
+			(at 153.035 92.456 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 153.035 90.424 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 153.289 94.234 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
@@ -6448,7 +6723,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTA114E")
+		(lib_id "Keyboard:NTA4151PT1G")
 		(at 22.86 26.67 0)
 		(mirror x)
 		(unit 1)
@@ -6458,7 +6733,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797c0")
 		(property "Reference" "Q2200"
-			(at 27.94 23.495 90)
+			(at 28.829 23.368 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6466,7 +6741,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTA114E"
+		(property "Value" "NTA4151P"
 			(at 27.6352 27.813 0)
 			(effects
 				(font
@@ -6477,35 +6752,88 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 25.4 26.035 0)
+			(at 23.114 14.732 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.onsemi.com/pub/Collateral/DTA114E-D.PDF"
-			(at 27.94 28.575 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4151p-d.pdf"
+			(at 23.114 13.208 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 22.86 26.67 0)
+		(property "Description" "P-Channel MOSFET"
+			(at 22.86 8.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "digikey#" "DTA114EET1GOSCT-ND"
 			(at 21.59 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser#" "863-NTA4151PT1G"
+			(at 23.368 4.318 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317622"
+			(at 22.86 6.604 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4151P.LIB"
+			(at 22.606 10.922 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4151p"
+			(at 22.86 0.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 22.86 2.286 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 23.114 -1.524 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6532,7 +6860,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTA114E")
+		(lib_id "Keyboard:NTA4151PT1G")
 		(at 44.45 26.67 0)
 		(mirror x)
 		(unit 1)
@@ -6542,7 +6870,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797c1")
 		(property "Reference" "Q2201"
-			(at 49.53 23.495 90)
+			(at 50.419 23.368 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6550,7 +6878,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTA114E"
+		(property "Value" "NTA4151P"
 			(at 49.2252 27.813 0)
 			(effects
 				(font
@@ -6561,35 +6889,88 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 46.99 26.035 0)
+			(at 44.704 14.732 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.onsemi.com/pub/Collateral/DTA114E-D.PDF"
-			(at 49.53 28.575 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4151p-d.pdf"
+			(at 44.704 13.208 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 44.45 26.67 0)
+		(property "Description" "P-Channel MOSFET"
+			(at 44.45 8.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "digikey#" "DTA114EET1GOSCT-ND"
 			(at 43.18 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser#" "863-NTA4151PT1G"
+			(at 44.958 4.318 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317622"
+			(at 44.45 6.604 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4151P.LIB"
+			(at 44.196 10.922 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4151p"
+			(at 44.45 0.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 44.45 2.286 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 44.704 -1.524 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6616,7 +6997,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTA114E")
+		(lib_id "Keyboard:NTA4151PT1G")
 		(at 66.04 26.67 0)
 		(mirror x)
 		(unit 1)
@@ -6626,7 +7007,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797c2")
 		(property "Reference" "Q2202"
-			(at 71.12 23.495 90)
+			(at 72.009 23.368 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6634,7 +7015,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTA114E"
+		(property "Value" "NTA4151P"
 			(at 70.8152 27.813 0)
 			(effects
 				(font
@@ -6645,35 +7026,88 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 68.58 26.035 0)
+			(at 66.294 14.732 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.onsemi.com/pub/Collateral/DTA114E-D.PDF"
-			(at 71.12 28.575 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4151p-d.pdf"
+			(at 66.294 13.208 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 66.04 26.67 0)
+		(property "Description" "P-Channel MOSFET"
+			(at 66.04 8.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "digikey#" "DTA114EET1GOSCT-ND"
 			(at 64.77 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser#" "863-NTA4151PT1G"
+			(at 66.548 4.318 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317622"
+			(at 66.04 6.604 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4151P.LIB"
+			(at 65.786 10.922 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4151p"
+			(at 66.04 0.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 66.04 2.286 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 66.294 -1.524 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6700,7 +7134,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTA114E")
+		(lib_id "Keyboard:NTA4151PT1G")
 		(at 87.63 26.67 0)
 		(mirror x)
 		(unit 1)
@@ -6710,7 +7144,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797c3")
 		(property "Reference" "Q2203"
-			(at 92.71 23.495 90)
+			(at 93.599 23.368 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6718,7 +7152,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTA114E"
+		(property "Value" "NTA4151P"
 			(at 92.4052 27.813 0)
 			(effects
 				(font
@@ -6729,35 +7163,88 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 90.17 26.035 0)
+			(at 87.884 14.732 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.onsemi.com/pub/Collateral/DTA114E-D.PDF"
-			(at 92.71 28.575 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4151p-d.pdf"
+			(at 87.884 13.208 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 87.63 26.67 0)
+		(property "Description" "P-Channel MOSFET"
+			(at 87.63 8.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "digikey#" "DTA114EET1GOSCT-ND"
 			(at 86.36 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser#" "863-NTA4151PT1G"
+			(at 88.138 4.318 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317622"
+			(at 87.63 6.604 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4151P.LIB"
+			(at 87.376 10.922 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4151p"
+			(at 87.63 0.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 87.63 2.286 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 87.884 -1.524 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6784,7 +7271,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTA114E")
+		(lib_id "Keyboard:NTA4151PT1G")
 		(at 130.81 26.67 0)
 		(mirror x)
 		(unit 1)
@@ -6794,7 +7281,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797c5")
 		(property "Reference" "Q2205"
-			(at 136.525 23.495 90)
+			(at 136.652 23.368 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6802,7 +7289,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTA114E"
+		(property "Value" "NTA4151P"
 			(at 135.5852 27.813 0)
 			(effects
 				(font
@@ -6813,35 +7300,88 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 133.35 26.035 0)
+			(at 131.064 14.732 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.onsemi.com/pub/Collateral/DTA114E-D.PDF"
-			(at 135.89 28.575 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4151p-d.pdf"
+			(at 131.064 13.208 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 130.81 26.67 0)
+		(property "Description" "P-Channel MOSFET"
+			(at 130.81 8.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "digikey#" "DTA114EET1GOSCT-ND"
 			(at 129.54 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser#" "863-NTA4151PT1G"
+			(at 131.318 4.318 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317622"
+			(at 130.81 6.604 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4151P.LIB"
+			(at 130.556 10.922 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4151p"
+			(at 130.81 0.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 130.81 2.286 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 131.064 -1.524 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6868,7 +7408,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTC114EE")
+		(lib_id "Keyboard:NTA4153NT1G")
 		(at 184.785 85.725 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6877,7 +7417,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797cc")
 		(property "Reference" "Q2211"
-			(at 189.865 88.9 90)
+			(at 190.754 88.773 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6885,7 +7425,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTC114EE"
+		(property "Value" "NTA4153N"
 			(at 176.53 89.535 0)
 			(effects
 				(font
@@ -6896,38 +7436,82 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 177.8 92.075 0)
+			(at 185.039 97.663 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-			(at 151.765 76.2 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+			(at 185.039 99.187 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 184.785 85.725 0)
+		(property "Description" "N-Channel MOSFET"
+			(at 184.785 103.505 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "mouser#" "863-DTC114EET1G"
-			(at 185.42 79.375 0)
+		(property "mouser#" "863-NTA4153NT1G"
+			(at 185.293 108.077 0)
 			(effects
 				(font
-					(size 1.524 1.524)
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317621"
+			(at 184.785 105.791 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+			(at 184.531 101.473 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4153n"
+			(at 184.785 112.141 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 184.785 110.109 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 185.039 113.919 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
@@ -6951,7 +7535,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTC114EE")
+		(lib_id "Keyboard:NTA4153NT1G")
 		(at 168.91 105.41 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6960,7 +7544,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3797d1")
 		(property "Reference" "Q2213"
-			(at 173.99 108.585 90)
+			(at 174.879 108.458 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6968,7 +7552,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTC114EE"
+		(property "Value" "NTA4153N"
 			(at 160.655 109.22 0)
 			(effects
 				(font
@@ -6979,38 +7563,82 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 161.925 111.76 0)
+			(at 169.164 117.348 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-			(at 135.89 95.885 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+			(at 169.164 118.872 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 168.91 105.41 0)
+		(property "Description" "N-Channel MOSFET"
+			(at 168.91 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "mouser#" "863-DTC114EET1G"
-			(at 169.545 99.06 0)
+		(property "mouser#" "863-NTA4153NT1G"
+			(at 169.418 127.762 0)
 			(effects
 				(font
-					(size 1.524 1.524)
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317621"
+			(at 168.91 125.476 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+			(at 168.656 121.158 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4153n"
+			(at 168.91 131.826 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 168.91 129.794 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 169.164 133.604 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
@@ -7099,7 +7727,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTA114E")
+		(lib_id "Keyboard:NTA4151PT1G")
 		(at 109.22 26.67 0)
 		(mirror x)
 		(unit 1)
@@ -7109,7 +7737,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005fbd1522")
 		(property "Reference" "Q2204"
-			(at 114.3 23.495 90)
+			(at 115.189 23.368 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7117,7 +7745,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTA114E"
+		(property "Value" "NTA4151P"
 			(at 113.9952 27.813 0)
 			(effects
 				(font
@@ -7128,35 +7756,88 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 111.76 26.035 0)
+			(at 109.474 14.732 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.onsemi.com/pub/Collateral/DTA114E-D.PDF"
-			(at 114.3 28.575 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4151p-d.pdf"
+			(at 109.474 13.208 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 109.22 26.67 0)
+		(property "Description" "P-Channel MOSFET"
+			(at 109.22 8.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "digikey#" "DTA114EET1GOSCT-ND"
 			(at 107.95 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser#" "863-NTA4151PT1G"
+			(at 109.728 4.318 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317622"
+			(at 109.22 6.604 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4151P.LIB"
+			(at 108.966 10.922 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4151p"
+			(at 109.22 0.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 109.22 2.286 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 109.474 -1.524 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7183,7 +7864,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTC114EE")
+		(lib_id "Keyboard:NTA4153NT1G")
 		(at 153.035 85.725 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7192,7 +7873,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-0000608152ec")
 		(property "Reference" "Q2209"
-			(at 158.115 88.9 90)
+			(at 159.004 88.773 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7200,7 +7881,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTC114EE"
+		(property "Value" "NTA4153N"
 			(at 144.78 89.535 0)
 			(effects
 				(font
@@ -7211,38 +7892,82 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 146.05 92.075 0)
+			(at 153.289 97.663 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-			(at 120.015 76.2 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+			(at 153.289 99.187 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 153.035 85.725 0)
+		(property "Description" "N-Channel MOSFET"
+			(at 153.035 103.505 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "mouser#" "863-DTC114EET1G"
-			(at 153.67 79.375 0)
+		(property "mouser#" "863-NTA4153NT1G"
+			(at 153.543 108.077 0)
 			(effects
 				(font
-					(size 1.524 1.524)
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317621"
+			(at 153.035 105.791 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+			(at 152.781 101.473 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4153n"
+			(at 153.035 112.141 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 153.035 110.109 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 153.289 113.919 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
@@ -7266,7 +7991,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTC114EE")
+		(lib_id "Keyboard:NTA4153NT1G")
 		(at 168.91 85.725 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7275,7 +8000,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060815308")
 		(property "Reference" "Q2210"
-			(at 173.99 88.9 90)
+			(at 174.879 88.773 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7283,7 +8008,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTC114EE"
+		(property "Value" "NTA4153N"
 			(at 160.655 89.535 0)
 			(effects
 				(font
@@ -7294,38 +8019,82 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 161.925 92.075 0)
+			(at 169.164 97.663 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-			(at 135.89 76.2 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+			(at 169.164 99.187 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 168.91 85.725 0)
+		(property "Description" "N-Channel MOSFET"
+			(at 168.91 103.505 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "mouser#" "863-DTC114EET1G"
-			(at 169.545 79.375 0)
+		(property "mouser#" "863-NTA4153NT1G"
+			(at 169.418 108.077 0)
 			(effects
 				(font
-					(size 1.524 1.524)
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317621"
+			(at 168.91 105.791 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+			(at 168.656 101.473 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4153n"
+			(at 168.91 112.141 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 168.91 110.109 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 169.164 113.919 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
@@ -7349,7 +8118,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTC114EE")
+		(lib_id "Keyboard:NTA4153NT1G")
 		(at 153.035 105.41 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7358,7 +8127,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060843764")
 		(property "Reference" "Q2212"
-			(at 158.115 108.585 90)
+			(at 159.004 108.458 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7366,7 +8135,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTC114EE"
+		(property "Value" "NTA4153N"
 			(at 144.78 109.22 0)
 			(effects
 				(font
@@ -7377,38 +8146,82 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 146.05 111.76 0)
+			(at 153.289 117.348 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-			(at 120.015 95.885 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+			(at 153.289 118.872 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 153.035 105.41 0)
+		(property "Description" "N-Channel MOSFET"
+			(at 153.035 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "mouser#" "863-DTC114EET1G"
-			(at 153.67 99.06 0)
+		(property "mouser#" "863-NTA4153NT1G"
+			(at 153.543 127.762 0)
 			(effects
 				(font
-					(size 1.524 1.524)
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317621"
+			(at 153.035 125.476 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+			(at 152.781 121.158 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4153n"
+			(at 153.035 131.826 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 153.035 129.794 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 153.289 133.604 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
@@ -7432,7 +8245,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Keyboard:DTC114EE")
+		(lib_id "Keyboard:NTA4153NT1G")
 		(at 184.785 105.41 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7441,7 +8254,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060843787")
 		(property "Reference" "Q2214"
-			(at 189.865 108.585 90)
+			(at 190.754 108.458 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7449,7 +8262,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DTC114EE"
+		(property "Value" "NTA4153N"
 			(at 176.53 109.22 0)
 			(effects
 				(font
@@ -7460,38 +8273,82 @@
 			)
 		)
 		(property "Footprint" "Keyboard:SC-75"
-			(at 177.8 111.76 0)
+			(at 185.039 117.348 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://eu.mouser.com/datasheet/2/308/DTC114E-D-278467.pdf"
-			(at 151.765 95.885 0)
+		(property "Datasheet" "https://www.onsemi.com/download/data-sheet/pdf/nta4153n-d.pdf"
+			(at 185.039 118.872 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 184.785 105.41 0)
+		(property "Description" "N-Channel MOSFET"
+			(at 184.785 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "mouser#" "863-DTC114EET1G"
-			(at 185.42 99.06 0)
+		(property "mouser#" "863-NTA4153NT1G"
+			(at 185.293 127.762 0)
 			(effects
 				(font
-					(size 1.524 1.524)
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "farnell#" "2317621"
+			(at 184.785 125.476 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Library" "lib/spice/NTA4153N.REV0.LIB"
+			(at 184.531 121.158 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Name" "nta4153n"
+			(at 184.785 131.826 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "SUBCKT"
+			(at 184.785 129.794 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=2 2=3 3=1"
+			(at 185.039 133.604 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
