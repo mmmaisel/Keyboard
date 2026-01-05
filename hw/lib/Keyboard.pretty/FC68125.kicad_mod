@@ -91,6 +91,46 @@
 		(uuid "5e40aaa9-7d65-4db4-904a-8c56473a1708")
 	)
 	(fp_line
+		(start -3.8 -11.7)
+		(end 3.8 -11.7)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "f5509e90-9b6f-4e20-9bbb-1eb1cfe3d847")
+	)
+	(fp_line
+		(start -3.8 3.8)
+		(end -3.8 -11.7)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "d67c2c31-bf9c-44c9-820a-5a9006724ff5")
+	)
+	(fp_line
+		(start 3.8 -11.7)
+		(end 3.8 3.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "255a84a1-33c5-450c-b136-4104fde3b602")
+	)
+	(fp_line
+		(start 3.8 3.8)
+		(end -3.8 3.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "9894a695-23db-4393-af93-d571513da5a1")
+	)
+	(fp_line
 		(start -4.75 -11.7)
 		(end 4.75 -11.7)
 		(stroke
