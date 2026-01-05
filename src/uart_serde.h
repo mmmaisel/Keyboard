@@ -22,6 +22,7 @@
 #include "event.h"
 
 struct __attribute__((packed)) UartMessage {
+    static const BYTE CTR_MAX = 15;
     static const BYTE STATE_LEN = 5;
     static const BYTE KEY_MSG_LEN = 2 + STATE_LEN;
     // TODO: LED message

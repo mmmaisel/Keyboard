@@ -31,8 +31,9 @@ UsbKeyboard usb_keyboard;
 
 UsbKeyboard::UsbKeyboard() :
     _pages{},
-    _last_cmd(EFFECT_BACKLIGHT),
-    _cmd_ctr(0)
+    _last_cmd(EFFECT_NONE),
+    _cmd_ctr(0),
+    _idle_ctr(0)
 {
     _queue = xQueueCreateStatic(1, sizeof(HidKeyboardReport),
         reinterpret_cast<BYTE*>(&_queue_items), &_queue_mem);
@@ -147,6 +148,13 @@ BYTE UsbKeyboard::handle_fn(HidKeyboardReport* report) {
         case KEY_PAGEDOWN:
             switch_effect(EFFECT_RAINBOW);
             return 0;
+        default:
+            if(_last_cmd != EFFECT_NONE) {
+                if(++_idle_ctr > IDLE_DURATION) {
+                    _idle_ctr = 0;
+                    _last_cmd = EFFECT_NONE;
+                }
+            }
     }
 
     return 1;
@@ -163,13 +171,13 @@ void UsbKeyboard::replace_keys(HidKeyboardReport* report, BYTE new_key) {
 
 void UsbKeyboard::switch_effect(EffectId id) {
     if(_last_cmd != id) {
-        if(++_cmd_ctr > 16)
+        if(++_cmd_ctr > UartMessage::CTR_MAX)
             _cmd_ctr = 0;
         _last_cmd = id;
+        EffectController::set_effect(EffectController::effect_by_id(id));
     }
-    UartMessage msg = UartMessage::serialize_effect(_cmd_ctr, id);
 
-    EffectController::set_effect(EffectController::effect_by_id(id));
+    UartMessage msg = UartMessage::serialize_effect(_cmd_ctr, id);
     uart1.write(reinterpret_cast<BYTE*>(&msg), UartMessage::EFF_MSG_LEN);
     uart2.write(reinterpret_cast<BYTE*>(&msg), UartMessage::EFF_MSG_LEN);
     uart6.write(reinterpret_cast<BYTE*>(&msg), UartMessage::EFF_MSG_LEN);

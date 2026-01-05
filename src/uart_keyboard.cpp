@@ -35,7 +35,7 @@ void UartKeyboard::on_event(Event* event) {
         return;
     // TODO: filter out different page events
 
-    if(++_ctr > 16)
+    if(++_ctr > UartMessage::CTR_MAX)
         _ctr = 0;
     UartMessage msg = UartMessage::serialize_keys(
         _ctr, event->keys.page, event->keys.state);

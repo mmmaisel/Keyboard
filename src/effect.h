@@ -40,7 +40,6 @@ class EffectNone : public Effect {
             BYTE led_count, DWORD new_keys, DWORD old_keys) override;
 };
 
-// TODO: configurable color/brightness
 class EffectBacklight : public Effect {
     public:
         virtual void activate() override;
@@ -48,7 +47,10 @@ class EffectBacklight : public Effect {
             BYTE led_count, DWORD new_keys, DWORD old_keys) override;
 
     private:
-        BYTE _changed;
+        static const BYTE STATE_COUNT = 9;
+
+        BYTE _changed = 1;
+        BYTE _state = STATE_COUNT-1;
 };
 
 class EffectFlash : public Effect {

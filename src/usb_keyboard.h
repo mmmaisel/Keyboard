@@ -42,6 +42,8 @@ class UsbKeyboard : public EventSink {
         static void replace_keys(HidKeyboardReport* report, BYTE new_key);
         void switch_effect(EffectId id);
 
+        static const BYTE IDLE_DURATION = 250;
+
         DWORD _pages[PAGE_COUNT];
         // Queue for requesting state by USB host
         QueueHandle_t _queue;
@@ -49,6 +51,7 @@ class UsbKeyboard : public EventSink {
         HidKeyboardReport _queue_items;
         BYTE _last_cmd;
         BYTE _cmd_ctr;
+        BYTE _idle_ctr;
 };
 
 extern UsbKeyboard usb_keyboard;

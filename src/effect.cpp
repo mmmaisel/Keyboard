@@ -36,6 +36,8 @@ void EffectNone::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {}
 
 void EffectBacklight::activate() {
     _changed = 1;
+    if(++_state >= STATE_COUNT)
+        _state = 0;
 }
 
 void EffectBacklight::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {
@@ -43,10 +45,40 @@ void EffectBacklight::run(BYTE led_count, DWORD new_keys, DWORD old_keys) {
         return;
 
     _changed = 0;
+    Color color;
+
+    switch(_state) {
+        case 0:
+            color = Color { .red = 16, .green = 16, .blue = 16 };
+            break;
+        case 1:
+            color = Color { .red = 8, .green = 8, .blue = 8 };
+            break;
+        case 2:
+            color = Color { .red = 16, .green = 0, .blue = 0 };
+            break;
+        case 3:
+            color = Color { .red = 16, .green = 16, .blue = 0 };
+            break;
+        case 4:
+            color = Color { .red = 0, .green = 16, .blue = 0 };
+            break;
+        case 5:
+            color = Color { .red = 0, .green = 16, .blue = 16 };
+            break;
+        case 6:
+            color = Color { .red = 0, .green = 0, .blue = 16 };
+            break;
+        case 7:
+            color = Color { .red = 16, .green = 0, .blue = 16 };
+            break;
+        case 8:
+            color = Color { .red = 0, .green = 0, .blue = 0 };
+            break;
+    }
+
     for(BYTE i = 0; i < led_count; ++i) {
-        LedMatrix::set_led(
-            i+1, Color { .red = 16, .green = 16, .blue = 16 }
-        );
+        LedMatrix::set_led(i+1, color);
     }
 }
 
@@ -138,8 +170,10 @@ void EffectController::initialize(BYTE page, const LedMatrixConfig* config) {
 }
 
 void EffectController::set_effect(Effect* effect) {
-    if(_effect == effect)
+    if(_effect == effect) {
+        _effect->activate();
         return;
+    }
 
     _effect = effect;
     _keys = 0;
