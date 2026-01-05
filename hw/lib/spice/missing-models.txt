@@ -1,0 +1,5 @@
+Missing simulation models that can not be redistributed should be available
+for download at the following links:
+
+https://www.onsemi.com/download/models/lib/nta4153n.rev0.lib
+https://www.onsemi.com/download/models/lib/nta4151p.lib
