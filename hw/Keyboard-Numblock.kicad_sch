@@ -1,1535 +1,3926 @@
-(kicad_sch (version 20230121) (generator eeschema)
-
-  (uuid 17c631fd-c7f6-4f53-bd8a-247ae1d32a6c)
-
-  (paper "A4")
-
-  (lib_symbols
-    (symbol "Keyboard:1.0MR" (pin_numbers hide) (pin_names (offset 0.254) hide) (in_bom yes) (on_board yes)
-      (property "Reference" "R" (at 0.762 0.508 0)
-        (effects (font (size 1.27 1.27)) (justify left))
-      )
-      (property "Value" "1.0MR" (at 0.762 -1.016 0)
-        (effects (font (size 1.27 1.27)) (justify left))
-      )
-      (property "Footprint" "Keyboard:R_0402" (at -1.778 -2.032 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "667-ERJ-2RKF1004X" (at 0.762 0.508 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "mouser#" "667-ERJ-2RKF1004X" (at 3.302 3.048 0)
-        (effects (font (size 1.524 1.524)) hide)
-      )
-      (property "ki_keywords" "r resistor 1.0MR 0402" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_description" "Resistor, small symbol" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_fp_filters" "R_*" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "1.0MR_0_1"
-        (rectangle (start -0.762 1.778) (end 0.762 -1.778)
-          (stroke (width 0.2032) (type default))
-          (fill (type none))
-        )
-      )
-      (symbol "1.0MR_1_1"
-        (pin passive line (at 0 2.54 270) (length 0.762)
-          (name "~" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-        (pin passive line (at 0 -2.54 90) (length 0.762)
-          (name "~" (effects (font (size 1.27 1.27))))
-          (number "2" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-    (symbol "Keyboard:4.7nF_50V" (pin_numbers hide) (pin_names (offset 0.254) hide) (in_bom yes) (on_board yes)
-      (property "Reference" "C" (at 0.254 1.778 0)
-        (effects (font (size 1.27 1.27)) (justify left))
-      )
-      (property "Value" "4.7nF_50V" (at 0.254 -2.032 0)
-        (effects (font (size 1.27 1.27)) (justify left))
-      )
-      (property "Footprint" "Keyboard:C_0402" (at -2.286 -0.762 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "810-CGA2B2X7R1H472K" (at 0.254 1.778 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "mouser#" "810-CGA2B2X7R1H472K" (at 2.794 4.318 0)
-        (effects (font (size 1.524 1.524)) hide)
-      )
-      (property "ki_keywords" "Multilayer Ceramic Capacitors MLCC - SMD/SMT 0402 4.7nF 50 volts" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_description" "Unpolarized capacitor" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_fp_filters" "C_*" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "4.7nF_50V_0_1"
-        (polyline
-          (pts
-            (xy -1.524 -0.508)
-            (xy 1.524 -0.508)
-          )
-          (stroke (width 0.3302) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -1.524 0.508)
-            (xy 1.524 0.508)
-          )
-          (stroke (width 0.3048) (type default))
-          (fill (type none))
-        )
-      )
-      (symbol "4.7nF_50V_1_1"
-        (pin passive line (at 0 2.54 270) (length 2.032)
-          (name "~" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-        (pin passive line (at 0 -2.54 90) (length 2.032)
-          (name "~" (effects (font (size 1.27 1.27))))
-          (number "2" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-    (symbol "Keyboard:Distance-Bolt_6x3.5" (in_bom yes) (on_board yes)
-      (property "Reference" "X" (at -2.54 3.81 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Value" "Distance-Bolt_6x3.5" (at 0 -3.81 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "Keyboard:DistanceBolt-6x3.5" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "Distance-Bolt_6x3.5_0_1"
-        (rectangle (start -2.54 2.54) (end 2.54 -2.54)
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -1.27 0)
-            (xy 1.27 0)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 0 -1.27)
-            (xy 0 1.27)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (circle (center 0 0) (radius 1.8034)
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-      )
-    )
-    (symbol "Keyboard:GND" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
-      (property "Reference" "#PWR" (at 0 -6.35 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Value" "GND" (at 0 -3.175 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "~" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_keywords" "Power Flag Symbol" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_description" "ground power-flag symbol" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "GND_0_1"
-        (rectangle (start -1.27 -1.524) (end 1.27 -2.032)
-          (stroke (width 0.254) (type default))
-          (fill (type outline))
-        )
-        (polyline
-          (pts
-            (xy 0 0)
-            (xy 0 -1.524)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-      )
-      (symbol "GND_1_1"
-        (pin power_in line (at 0 0 270) (length 0) hide
-          (name "GND" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-    (symbol "Keyboard:Mounting-Hole-M3" (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
-      (property "Reference" "X" (at -2.54 3.81 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Value" "Mounting-Hole-M3" (at 1.27 -3.81 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "Keyboard:Mounting-Hole-M3" (at 0 -6.35 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "Mounting-Hole-M3_0_1"
-        (rectangle (start -2.54 2.54) (end 2.54 -2.54)
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -1.27 0)
-            (xy 1.27 0)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 0 -1.27)
-            (xy 0 1.27)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (circle (center 0 0) (radius 1.8034)
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-      )
-      (symbol "Mounting-Hole-M3_1_1"
-        (pin passive line (at 5.08 0 180) (length 2.45)
-          (name "" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-    (symbol "Keyboard:Screw M3x10" (in_bom yes) (on_board yes)
-      (property "Reference" "X" (at -2.54 3.81 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Value" "Screw M3x10" (at 0 -3.81 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "reichelt#" "SKL-E M3X10-100" (at 0 -6.35 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "Screw M3x10_0_1"
-        (rectangle (start -2.54 2.54) (end 2.54 -2.54)
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -1.27 0)
-            (xy 1.27 0)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 0 -1.27)
-            (xy 0 1.27)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (circle (center 0 0) (radius 1.8034)
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-      )
-    )
-    (symbol "Keyboard:VDD_5V0_2" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
-      (property "Reference" "#PWR" (at 0 -3.81 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Value" "VDD_5V0_2" (at 0 3.556 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "~" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_keywords" "Power Flag Symbol" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_description" "power-flag symbol +5.0V" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "VDD_5V0_2_0_1"
-        (polyline
-          (pts
-            (xy -0.762 1.27)
-            (xy 0 2.54)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 0 0)
-            (xy 0 2.54)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 0 2.54)
-            (xy 0.762 1.27)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-      )
-      (symbol "VDD_5V0_2_1_1"
-        (pin power_in line (at 0 0 90) (length 0) hide
-          (name "VDD_5V0_2" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-  )
-
-  (junction (at 63.5 63.5) (diameter 0) (color 0 0 0 0)
-    (uuid 17c9c32b-822d-40a3-bf45-1a05c9f42d6f)
-  )
-  (junction (at 67.31 70.485) (diameter 0) (color 0 0 0 0)
-    (uuid 2404d0ba-9f85-4ee1-88ca-67c9842a7bf6)
-  )
-  (junction (at 67.31 48.26) (diameter 0) (color 0 0 0 0)
-    (uuid 3af74145-a542-446c-8c77-334375382d81)
-  )
-  (junction (at 67.31 63.5) (diameter 0) (color 0 0 0 0)
-    (uuid a1360411-712c-47d3-804c-27e790794374)
-  )
-  (junction (at 67.31 55.88) (diameter 0) (color 0 0 0 0)
-    (uuid ddcb36b8-ba4d-4a3e-a92d-0d318d758ff1)
-  )
-
-  (wire (pts (xy 114.3 144.78) (xy 215.9 144.78))
-    (stroke (width 0) (type default))
-    (uuid 02677e21-c483-4d95-a2d8-70d53a8916bd)
-  )
-  (wire (pts (xy 146.05 81.28) (xy 114.3 81.28))
-    (stroke (width 0) (type default))
-    (uuid 08a14a3d-c6f3-406f-86fc-d26a9a52fda3)
-  )
-  (wire (pts (xy 184.15 93.98) (xy 187.96 93.98))
-    (stroke (width 0) (type default))
-    (uuid 103728e6-e09f-4d51-8b12-db5428d71d4b)
-  )
-  (wire (pts (xy 114.3 139.7) (xy 215.9 139.7))
-    (stroke (width 0) (type default))
-    (uuid 13641336-7c89-4399-b634-0c70a3a0a4a9)
-  )
-  (wire (pts (xy 114.3 124.46) (xy 215.9 124.46))
-    (stroke (width 0) (type default))
-    (uuid 25680635-3dca-4a9e-b590-3de2ea2cb777)
-  )
-  (wire (pts (xy 146.05 68.58) (xy 114.3 68.58))
-    (stroke (width 0) (type default))
-    (uuid 26d6043e-eb48-4919-b5d7-75eff12235af)
-  )
-  (wire (pts (xy 184.15 71.12) (xy 215.9 71.12))
-    (stroke (width 0) (type default))
-    (uuid 34c66ad2-289c-44fc-8e12-9a0e646d0eb6)
-  )
-  (wire (pts (xy 146.05 43.18) (xy 114.3 43.18))
-    (stroke (width 0) (type default))
-    (uuid 361c1d3b-01a8-4b18-8ced-bf6b16498f26)
-  )
-  (wire (pts (xy 43.18 55.88) (xy 67.31 55.88))
-    (stroke (width 0) (type default))
-    (uuid 3849b460-9798-4858-ae04-dfb78955f088)
-  )
-  (wire (pts (xy 184.15 43.18) (xy 215.9 43.18))
-    (stroke (width 0) (type default))
-    (uuid 3a1e6e05-4e96-44c9-bfaa-9f4e33c4b7c1)
-  )
-  (wire (pts (xy 184.15 76.2) (xy 215.9 76.2))
-    (stroke (width 0) (type default))
-    (uuid 3f4e2d19-273d-482c-9c29-2e4a4036cdc0)
-  )
-  (wire (pts (xy 114.3 119.38) (xy 215.9 119.38))
-    (stroke (width 0) (type default))
-    (uuid 436a3121-ef56-4bfd-897a-05c3be189d3a)
-  )
-  (wire (pts (xy 215.9 137.16) (xy 114.3 137.16))
-    (stroke (width 0) (type default))
-    (uuid 4c01312b-183f-405e-8666-25d2d0b3e98f)
-  )
-  (wire (pts (xy 184.15 33.02) (xy 215.9 33.02))
-    (stroke (width 0) (type default))
-    (uuid 4eb3e1b6-db77-4da8-b090-6948618fa811)
-  )
-  (wire (pts (xy 184.15 38.1) (xy 215.9 38.1))
-    (stroke (width 0) (type default))
-    (uuid 5126758d-6621-4d1e-b52c-969249180f65)
-  )
-  (wire (pts (xy 184.15 81.28) (xy 215.9 81.28))
-    (stroke (width 0) (type default))
-    (uuid 52bcaad3-1052-4409-8611-e13831c2a1d0)
-  )
-  (wire (pts (xy 114.3 96.52) (xy 146.05 96.52))
-    (stroke (width 0) (type default))
-    (uuid 56844006-f995-409d-a7c7-a742efeb48f3)
-  )
-  (wire (pts (xy 114.3 35.56) (xy 146.05 35.56))
-    (stroke (width 0) (type default))
-    (uuid 60d7e35f-bc19-4d75-9814-03e765b76763)
-  )
-  (wire (pts (xy 215.9 45.72) (xy 184.15 45.72))
-    (stroke (width 0) (type default))
-    (uuid 64a50bb0-3045-4279-b12c-bb78d2d089b3)
-  )
-  (wire (pts (xy 63.5 63.5) (xy 67.31 63.5))
-    (stroke (width 0) (type default))
-    (uuid 660b79fd-0c3e-4fcd-9ea5-eb3a6f080691)
-  )
-  (wire (pts (xy 215.9 78.74) (xy 184.15 78.74))
-    (stroke (width 0) (type default))
-    (uuid 6d75c047-e812-494c-bad6-fdce6b5e805f)
-  )
-  (wire (pts (xy 184.15 63.5) (xy 215.9 63.5))
-    (stroke (width 0) (type default))
-    (uuid 71f27864-c56b-4731-a59d-314dfc359956)
-  )
-  (wire (pts (xy 67.31 48.26) (xy 67.31 55.88))
-    (stroke (width 0) (type default))
-    (uuid 7281335f-b70f-437c-818b-9f20564b0909)
-  )
-  (wire (pts (xy 67.31 55.88) (xy 67.31 63.5))
-    (stroke (width 0) (type default))
-    (uuid 77b4815b-b03a-424b-a9b3-f1160b1e6fe9)
-  )
-  (wire (pts (xy 146.05 38.1) (xy 114.3 38.1))
-    (stroke (width 0) (type default))
-    (uuid 79bfc858-48bb-446f-be1f-54f080518924)
-  )
-  (wire (pts (xy 215.9 40.64) (xy 184.15 40.64))
-    (stroke (width 0) (type default))
-    (uuid 7adce408-8e03-44e3-a0fc-5d07f9c8bd47)
-  )
-  (wire (pts (xy 146.05 93.98) (xy 114.3 93.98))
-    (stroke (width 0) (type default))
-    (uuid 7dc3c30b-36d2-4a9a-8202-75ce2bf2525c)
-  )
-  (wire (pts (xy 114.3 40.64) (xy 146.05 40.64))
-    (stroke (width 0) (type default))
-    (uuid 874ba6df-48a1-43d9-874c-cb12cdbd3257)
-  )
-  (wire (pts (xy 215.9 68.58) (xy 184.15 68.58))
-    (stroke (width 0) (type default))
-    (uuid 89b37791-a7b3-4d1a-81e5-feac35e176b1)
-  )
-  (wire (pts (xy 43.18 63.5) (xy 63.5 63.5))
-    (stroke (width 0) (type default))
-    (uuid 8e6d0d3e-22d3-41e2-9846-097b0e7f84d4)
-  )
-  (wire (pts (xy 67.31 68.58) (xy 67.31 70.485))
-    (stroke (width 0) (type default))
-    (uuid 90346d44-ccb0-449a-91ef-fa130e7c7aff)
-  )
-  (wire (pts (xy 146.05 73.66) (xy 114.3 73.66))
-    (stroke (width 0) (type default))
-    (uuid 9338e1df-3255-4d34-a853-8eecd0bd60e2)
-  )
-  (wire (pts (xy 114.3 71.12) (xy 146.05 71.12))
-    (stroke (width 0) (type default))
-    (uuid 9811da15-a5d9-4f8c-b134-60c0a3153f9b)
-  )
-  (wire (pts (xy 114.3 27.94) (xy 146.05 27.94))
-    (stroke (width 0) (type default))
-    (uuid 99367aeb-7ec3-44a7-80dd-4129e77ab199)
-  )
-  (wire (pts (xy 215.9 60.96) (xy 184.15 60.96))
-    (stroke (width 0) (type default))
-    (uuid 9e16f38c-c5dc-4344-9642-65940b5aa078)
-  )
-  (wire (pts (xy 215.9 73.66) (xy 184.15 73.66))
-    (stroke (width 0) (type default))
-    (uuid a0df613f-5803-422b-b393-d7d43d10edf9)
-  )
-  (wire (pts (xy 114.3 134.62) (xy 215.9 134.62))
-    (stroke (width 0) (type default))
-    (uuid a28a1689-89cc-4604-9576-69dc32497351)
-  )
-  (wire (pts (xy 215.9 127) (xy 114.3 127))
-    (stroke (width 0) (type default))
-    (uuid a4975157-b37f-47ba-88a2-6a09d1be3372)
-  )
-  (wire (pts (xy 114.3 76.2) (xy 146.05 76.2))
-    (stroke (width 0) (type default))
-    (uuid a6e73968-bfeb-49ba-b5d0-6a71117f7ee3)
-  )
-  (wire (pts (xy 67.31 40.64) (xy 67.31 48.26))
-    (stroke (width 0) (type default))
-    (uuid af09752a-8de7-428f-a250-e39a5d047975)
-  )
-  (wire (pts (xy 146.05 63.5) (xy 114.3 63.5))
-    (stroke (width 0) (type default))
-    (uuid b921d26f-7ef4-44ea-b823-31f7682918a6)
-  )
-  (wire (pts (xy 63.5 70.485) (xy 67.31 70.485))
-    (stroke (width 0) (type default))
-    (uuid be2edb2e-1162-4860-ad25-83ea2af4af8e)
-  )
-  (wire (pts (xy 146.05 33.02) (xy 114.3 33.02))
-    (stroke (width 0) (type default))
-    (uuid bed4b9e6-a349-4338-8e65-378c655adaa1)
-  )
-  (wire (pts (xy 43.18 48.26) (xy 67.31 48.26))
-    (stroke (width 0) (type default))
-    (uuid c3eda21a-3dc2-4414-9d33-bfc11d5fcb87)
-  )
-  (wire (pts (xy 114.3 78.74) (xy 146.05 78.74))
-    (stroke (width 0) (type default))
-    (uuid c6088b7c-82d7-46a8-af67-8f78469aaf4c)
-  )
-  (wire (pts (xy 114.3 60.96) (xy 146.05 60.96))
-    (stroke (width 0) (type default))
-    (uuid c6712a62-abcb-4fa6-845a-f86b7c45b588)
-  )
-  (wire (pts (xy 215.9 121.92) (xy 114.3 121.92))
-    (stroke (width 0) (type default))
-    (uuid c7839bc5-da38-4d79-bbff-1cb65572ceb7)
-  )
-  (wire (pts (xy 187.96 96.52) (xy 184.15 96.52))
-    (stroke (width 0) (type default))
-    (uuid cf6731a0-7770-4937-aa31-fb6c458a6c13)
-  )
-  (wire (pts (xy 43.18 40.64) (xy 67.31 40.64))
-    (stroke (width 0) (type default))
-    (uuid d03637cf-ef6f-459c-b6c9-475c98d8b03e)
-  )
-  (wire (pts (xy 215.9 66.04) (xy 184.15 66.04))
-    (stroke (width 0) (type default))
-    (uuid d1f4b5ba-fb17-4113-b186-c7f7693955a7)
-  )
-  (wire (pts (xy 215.9 142.24) (xy 114.3 142.24))
-    (stroke (width 0) (type default))
-    (uuid e245fbde-080c-43c5-9cf8-94d1763b95d1)
-  )
-  (wire (pts (xy 36.195 31.75) (xy 38.1 31.75))
-    (stroke (width 0) (type default))
-    (uuid ec273ab0-862b-4dfc-9440-1ac9e42745de)
-  )
-  (wire (pts (xy 215.9 35.56) (xy 184.15 35.56))
-    (stroke (width 0) (type default))
-    (uuid ec439804-44ec-41ef-afaa-b4e655146849)
-  )
-  (wire (pts (xy 63.5 68.58) (xy 63.5 70.485))
-    (stroke (width 0) (type default))
-    (uuid ed6d7d27-4f44-48ee-8ad1-e4b97d676f4d)
-  )
-  (wire (pts (xy 114.3 66.04) (xy 146.05 66.04))
-    (stroke (width 0) (type default))
-    (uuid f59c464d-b008-448f-97da-9521c60cdf40)
-  )
-  (wire (pts (xy 114.3 45.72) (xy 146.05 45.72))
-    (stroke (width 0) (type default))
-    (uuid fd4c17d8-ce8b-41fa-87cf-1e9f12037dcf)
-  )
-
-  (text "Keyboard Copyright (c) 2021-2022 - Max Maisel\nLicensed under CERN-OHL-S v2 or any later version"
-    (at 177.8 171.45 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid 9ff34875-5bce-4a42-ac43-2d2f1137b1b9)
-  )
-
-  (label "SHIELD_2" (at 63.5 40.64 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid 0d4e72c5-1181-4398-8381-453123a72ed5)
-  )
-
-  (hierarchical_label "TX_S1" (shape output) (at 187.96 93.98 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left))
-    (uuid 044dbba4-6690-40d4-a386-30fdf72df499)
-  )
-  (hierarchical_label "VDD_5V_S1" (shape input) (at 36.195 31.75 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right))
-    (uuid 41873cde-32f3-4c97-892f-e3699df62249)
-  )
-  (hierarchical_label "RX_S1" (shape input) (at 187.96 96.52 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left))
-    (uuid 6eb3a55e-1570-4482-a861-2ab569daf1b5)
-  )
-
-  (symbol (lib_id "Keyboard:VDD_5V0_2") (at 38.1 31.75 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 00000000-0000-0000-0000-00005ef2faad)
-    (property "Reference" "#PWR02001" (at 38.1 35.56 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "VDD_5V0_2" (at 38.481 27.3558 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 38.1 31.75 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 38.1 31.75 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid d5732363-7998-445b-80d3-56ffbc12243c))
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "#PWR02001") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Mounting-Hole-M3") (at 38.1 40.64 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 00000000-0000-0000-0000-00005feb400d)
-    (property "Reference" "X2000" (at 35.56 36.83 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Mounting-Hole-M3" (at 42.545 38.735 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:Mounting-Hole-M3" (at 38.1 40.64 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 40.64 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid d0b4ca7d-3164-4b5c-b03c-65f30902dadd))
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2000") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Mounting-Hole-M3") (at 38.1 48.26 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 00000000-0000-0000-0000-00005feb4013)
-    (property "Reference" "X2001" (at 35.56 44.45 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Mounting-Hole-M3" (at 42.545 46.355 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:Mounting-Hole-M3" (at 38.1 48.26 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 48.26 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 431f8d8b-a375-4a72-af0d-74e5782fc531))
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2001") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Mounting-Hole-M3") (at 38.1 55.88 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 00000000-0000-0000-0000-00005feb4019)
-    (property "Reference" "X2002" (at 35.56 52.07 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Mounting-Hole-M3" (at 42.545 53.975 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:Mounting-Hole-M3" (at 38.1 55.88 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 55.88 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid a8d46206-a4d5-4448-aed1-068baf46d71e))
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2002") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Mounting-Hole-M3") (at 38.1 63.5 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 00000000-0000-0000-0000-00005feb401f)
-    (property "Reference" "X2003" (at 35.56 59.69 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Mounting-Hole-M3" (at 42.545 61.595 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:Mounting-Hole-M3" (at 38.1 63.5 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 63.5 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid a2247195-33e5-414d-8328-7b02e89a41ec))
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2003") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Screw M3x10") (at 38.1 101.6 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 0280727f-b964-4884-9a72-3d39e9623b41)
-    (property "Reference" "X2009" (at 41.275 100.6915 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Screw M3x10" (at 41.275 103.4666 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 38.1 101.6 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 101.6 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "SKL-E M3X10-100" (at 38.1 107.95 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2009") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Screw M3x10") (at 57.15 114.3 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 15a99902-1d02-4ce9-8390-3a1e0df00fae)
-    (property "Reference" "X2015" (at 60.325 113.3915 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Screw M3x10" (at 60.325 116.1666 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 57.15 114.3 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 57.15 114.3 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "SKL-E M3X10-100" (at 57.15 120.65 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2015") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:1.0MR") (at 67.31 66.04 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 340698bf-cd21-4fe7-8f49-e4705e7eab81)
-    (property "Reference" "R2005" (at 68.58 66.04 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "1.0MR" (at 68.58 68.58 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:R_0402" (at 65.532 68.072 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "667-ERJ-2RKF1004X" (at 68.072 65.532 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "mouser#" "667-ERJ-2RKF1004X" (at 70.612 62.992 0)
-      (effects (font (size 1.524 1.524)) hide)
-    )
-    (pin "1" (uuid 3551af07-6011-4122-9520-63b091fab687))
-    (pin "2" (uuid 10669c58-1676-467f-a8b9-e4f609420323))
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "R2005") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:4.7nF_50V") (at 63.5 66.04 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 472af3f3-ceab-4e3d-824a-e79af5a4198f)
-    (property "Reference" "C2017" (at 55.245 66.04 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "4.7nF_50V" (at 53.34 68.58 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:C_0402" (at 61.214 66.802 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "810-CGA2B2X7R1H472K" (at 63.754 64.262 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "mouser#" "810-CGA2B2X7R1H472K" (at 66.294 61.722 0)
-      (effects (font (size 1.524 1.524)) hide)
-    )
-    (pin "1" (uuid 4750e176-1dcb-4489-b286-616b94db8530))
-    (pin "2" (uuid a44c4e8c-da90-4c7d-b04f-a72a53692690))
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "C2017") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Distance-Bolt_6x3.5") (at 38.1 82.55 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 48a0e4e2-2cfa-4ee0-9b03-3727d1f51d85)
-    (property "Reference" "X2006" (at 41.275 81.6415 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Distance-Bolt_M3x5" (at 41.275 84.4166 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:DistanceBolt-6x3.5" (at 38.1 82.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 82.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "VT DI 5MM\n" (at 38.1 88.9 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2006") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Screw M3x10") (at 38.1 107.95 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 74ab2518-7bc1-40da-92c8-53d525594c10)
-    (property "Reference" "X2010" (at 41.275 107.0415 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Screw M3x10" (at 41.275 109.8166 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 38.1 107.95 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 107.95 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "SKL-E M3X10-100" (at 38.1 114.3 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2010") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Distance-Bolt_6x3.5") (at 38.1 88.9 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 74b25ccc-aff0-4d18-9fb6-39d1cdff8908)
-    (property "Reference" "X2007" (at 41.275 87.9915 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Distance-Bolt_M3x5" (at 41.275 90.7666 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:DistanceBolt-6x3.5" (at 38.1 88.9 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 88.9 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "VT DI 5MM\n" (at 38.1 95.25 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2007") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Distance-Bolt_6x3.5") (at 38.1 69.85 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 7c4be5f8-0f0e-4f49-8cbc-9f6fd7396ff4)
-    (property "Reference" "X2004" (at 41.275 68.9415 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Distance-Bolt_M3x5" (at 41.275 71.7166 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:DistanceBolt-6x3.5" (at 38.1 69.85 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 69.85 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "VT DI 5MM\n" (at 38.1 76.2 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2004") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Screw M3x10") (at 57.15 101.6 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 8af1d8ff-25c5-46ee-99d6-164393753964)
-    (property "Reference" "X2013" (at 60.325 100.6915 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Screw M3x10" (at 60.325 103.4666 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 57.15 101.6 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 57.15 101.6 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "SKL-E M3X10-100" (at 57.15 107.95 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2013") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Screw M3x10") (at 38.1 95.25 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 8c1bed2c-3142-4505-b7b9-858c5494e527)
-    (property "Reference" "X2008" (at 41.275 94.3415 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Screw M3x10" (at 41.275 97.1166 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 38.1 95.25 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 95.25 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "SKL-E M3X10-100" (at 38.1 101.6 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2008") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Screw M3x10") (at 57.15 107.95 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 8fdbf206-511b-430d-860e-6dea4c14ab3f)
-    (property "Reference" "X2014" (at 60.325 107.0415 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Screw M3x10" (at 60.325 109.8166 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 57.15 107.95 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 57.15 107.95 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "SKL-E M3X10-100" (at 57.15 114.3 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2014") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:GND") (at 67.31 70.485 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid b9717a58-1e5f-448b-bfb3-76be985049f2)
-    (property "Reference" "#PWR02016" (at 67.31 76.835 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 67.4116 74.422 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 67.31 70.485 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 67.31 70.485 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid e0bca1e2-fee5-46e5-817a-ae8860964dd1))
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "#PWR02016") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Distance-Bolt_6x3.5") (at 38.1 76.2 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid c2403b6c-1482-489c-b50f-3cc4f550b500)
-    (property "Reference" "X2005" (at 41.275 75.2915 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Distance-Bolt_M3x5" (at 41.275 78.0666 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Keyboard:DistanceBolt-6x3.5" (at 38.1 76.2 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 76.2 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "VT DI 5MM\n" (at 38.1 82.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2005") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Screw M3x10") (at 38.1 114.3 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid c5b9d995-0deb-4ac2-92d7-262c0ada7d6f)
-    (property "Reference" "X2011" (at 41.275 113.3915 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Screw M3x10" (at 41.275 116.1666 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 38.1 114.3 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 38.1 114.3 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "SKL-E M3X10-100" (at 38.1 120.65 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2011") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Keyboard:Screw M3x10") (at 57.15 95.25 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid dc3c35d4-fe2e-4568-8c76-f8f7f9012e3b)
-    (property "Reference" "X2012" (at 60.325 94.3415 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Screw M3x10" (at 60.325 97.1166 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 57.15 95.25 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 57.15 95.25 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "reichelt#" "SKL-E M3X10-100" (at 57.15 101.6 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
-          (reference "X2012") (unit 1)
-        )
-      )
-    )
-  )
-
-  (sheet (at 76.2 25.4) (size 38.1 127) (fields_autoplaced)
-    (stroke (width 0) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 00000000-0000-0000-0000-00005ffe6e1b)
-    (property "Sheetname" "CPU-Numblock" (at 76.2 24.6884 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "CPU-Numblock.kicad_sch" (at 76.2 152.9846 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (pin "USART1_TX" output (at 114.3 93.98 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid b2547c4a-4c21-40e5-be45-e79c69e17e23)
-    )
-    (pin "USART1_RX" input (at 114.3 96.52 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 39781e1d-5e14-462a-a81a-cc49fddf9e84)
-    )
-    (pin "LV_EN" output (at 114.3 27.94 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid ec93df62-15bf-4201-a842-2afed20df3dd)
-    )
-    (pin "KR1" input (at 114.3 134.62 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid ed034005-ef40-49a1-a068-5884f8143db0)
-    )
-    (pin "KR2" input (at 114.3 137.16 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 1d5df1c8-99ba-481b-8666-0e805167d641)
-    )
-    (pin "KR3" input (at 114.3 139.7 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 968b666e-cb51-4a52-848e-9c01737182f7)
-    )
-    (pin "KR4" input (at 114.3 142.24 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 2572c3e8-fe47-4c48-ae11-293e24b4b0c9)
-    )
-    (pin "KR5" input (at 114.3 144.78 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid a08b6870-94c0-4c72-8c3f-e5cb61234d4d)
-    )
-    (pin "KC1" output (at 114.3 119.38 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 12073d32-e094-46b5-8c66-25548ef94012)
-    )
-    (pin "KC2" output (at 114.3 121.92 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 28de8b5f-88c5-4fcc-857e-85e9d0fa267c)
-    )
-    (pin "KC3" output (at 114.3 124.46 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid e7d2b7b7-19c6-4dbc-9a68-f9798141f1bc)
-    )
-    (pin "KC4" output (at 114.3 127 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 2433adc2-160f-49a3-ac1c-21769cc1c2f8)
-    )
-    (pin "LC1" output (at 114.3 33.02 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid befc88cd-2c7f-4218-95fd-4cb48d768ac4)
-    )
-    (pin "LC2" output (at 114.3 35.56 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 3fda080e-f768-4619-ba3c-beddd1d2b960)
-    )
-    (pin "LC3" output (at 114.3 38.1 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid c523b33c-0b1e-4e91-a4b2-14a2a34234b3)
-    )
-    (pin "LC4" output (at 114.3 40.64 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 7ce4c3ac-af36-468d-8d4a-7cd1732eef4c)
-    )
-    (pin "LC5" output (at 114.3 43.18 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid f12b6934-7dc8-44ad-90dc-aeb37bcb85a9)
-    )
-    (pin "LC6" output (at 114.3 45.72 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid c616a105-78a0-43c3-aed2-dc0aff6bc3a3)
-    )
-    (pin "LR1" output (at 114.3 60.96 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid f121565f-1e83-46fe-b408-0e7478f06e60)
-    )
-    (pin "LR2" output (at 114.3 63.5 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 4352ce3a-b9fe-4025-86da-b5f8bb58b524)
-    )
-    (pin "LR3" output (at 114.3 66.04 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid d4db0edd-a695-4c1e-afce-bcb6a6c993c0)
-    )
-    (pin "LR4" output (at 114.3 68.58 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid fb2f8970-b77c-4269-ba94-2c94275e1ea3)
-    )
-    (pin "LR5" output (at 114.3 71.12 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 0213f5e7-9762-4e30-b146-3612e8adaa2b)
-    )
-    (pin "LR6" output (at 114.3 73.66 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 18216b85-9bee-46fd-bd5a-79c84c0c6626)
-    )
-    (pin "LR7" output (at 114.3 76.2 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid f6e90877-59ba-4e00-84cc-ee2fb3dfa447)
-    )
-    (pin "LR8" output (at 114.3 78.74 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 8d1ae1e0-1e3b-41a4-81b1-40d596d39cef)
-    )
-    (pin "LR9" output (at 114.3 81.28 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 5fa0b7df-91c3-46bb-a136-855f6ab64ae7)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b" (page "9"))
-      )
-    )
-  )
-
-  (sheet (at 215.9 114.3) (size 38.1 38.1) (fields_autoplaced)
-    (stroke (width 0) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 00000000-0000-0000-0000-00005ffe6e4a)
-    (property "Sheetname" "KeyMatrix-Numblock" (at 215.9 113.5884 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "KeyMatrix-Numblock.kicad_sch" (at 215.9 152.9846 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (pin "KR1" output (at 215.9 134.62 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid e4f1c922-a77b-49ef-9458-17cf8fb1fe27)
-    )
-    (pin "KR2" output (at 215.9 137.16 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 738b8c40-79e9-4f75-bfbf-1f8336a1fb01)
-    )
-    (pin "KR3" output (at 215.9 139.7 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 5e093d33-f1ec-4253-addd-a0ab528eafcd)
-    )
-    (pin "KR4" output (at 215.9 142.24 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid ca4af199-e93e-46b1-9de2-a202adb17905)
-    )
-    (pin "KR5" output (at 215.9 144.78 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 6b34c62d-e8b5-477e-add7-fab7b9561d73)
-    )
-    (pin "KC1" input (at 215.9 119.38 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 5de63618-b65b-49f7-9c5e-be66982a0d17)
-    )
-    (pin "KC2" input (at 215.9 121.92 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 9e4f8a0b-b3ca-42c5-a9aa-21f8de4f6f49)
-    )
-    (pin "KC3" input (at 215.9 124.46 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 78bcd0d3-9b3e-4028-855a-2527db648a89)
-    )
-    (pin "KC4" input (at 215.9 127 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 4fee8a49-3c8a-491a-9515-641213d3fdb1)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b" (page "12"))
-      )
-    )
-  )
-
-  (sheet (at 215.9 25.4) (size 38.1 76.2) (fields_autoplaced)
-    (stroke (width 0) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 00000000-0000-0000-0000-00005ffe6e62)
-    (property "Sheetname" "LedMatrix-Numblock" (at 215.9 24.6884 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "LedMatrix-Numblock.kicad_sch" (at 215.9 102.1846 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (pin "LC1" input (at 215.9 33.02 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 70df7c20-24fb-41f3-88b5-451a12bb3149)
-    )
-    (pin "LC2" input (at 215.9 35.56 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 123f3ad3-0fd7-40f5-9a7f-3e2dc105ea7e)
-    )
-    (pin "LC3" input (at 215.9 38.1 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 7f77d6e6-dd7f-4f4b-a560-08a8734d719c)
-    )
-    (pin "LC4" input (at 215.9 40.64 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 3afe4c86-2707-4eb5-97c2-132ac139df37)
-    )
-    (pin "LC5" input (at 215.9 43.18 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 21df56d8-42ea-400b-96d4-c4edb883c3dc)
-    )
-    (pin "LC6" input (at 215.9 45.72 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 1da27dd4-b124-4e57-958d-0d79668c57d3)
-    )
-    (pin "LR1" input (at 215.9 60.96 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 5e5d5176-6131-4561-aed0-77c39d8ef012)
-    )
-    (pin "LR2" input (at 215.9 63.5 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 85a718cd-5240-447e-8784-d2ec0711dc04)
-    )
-    (pin "LR3" input (at 215.9 66.04 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid c46ba216-273e-4524-a30d-767504fe3bef)
-    )
-    (pin "LR4" input (at 215.9 68.58 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid c8151f52-0000-4062-8e87-d6a81a8b9539)
-    )
-    (pin "LR5" input (at 215.9 71.12 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 334ed57c-e727-4eb6-87b5-a89308be9628)
-    )
-    (pin "LR6" input (at 215.9 73.66 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 28fbcd9b-2888-4dfb-8715-b0e6e9c7db10)
-    )
-    (pin "LR7" input (at 215.9 76.2 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid bfe6bcd1-2ddf-4b09-b683-11e5deb07af9)
-    )
-    (pin "LR8" input (at 215.9 78.74 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 34bf7dfc-d1c0-43e4-91d7-96b846263d3a)
-    )
-    (pin "LR9" input (at 215.9 81.28 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 0fa4f4fd-e8b6-41aa-9179-1b5a4d3dc51d)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b" (page "11"))
-      )
-    )
-  )
-
-  (sheet (at 146.05 25.4) (size 38.1 88.9) (fields_autoplaced)
-    (stroke (width 0) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 00000000-0000-0000-0000-00005ffe6e9d)
-    (property "Sheetname" "LevelShifters-Numblock" (at 146.05 24.6884 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "LevelShifters-Numblock.kicad_sch" (at 146.05 114.8846 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (pin "TX_S1_5V" output (at 184.15 93.98 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 32ec1b01-bf11-4db3-bac0-261151deccc7)
-    )
-    (pin "RX_S1_5V" input (at 184.15 96.52 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid d6415e27-ba31-4650-a674-a8c5d72bfc58)
-    )
-    (pin "TX_S1_3V3" input (at 146.05 93.98 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid ce16226b-4358-4889-ac30-db100cc55b6a)
-    )
-    (pin "RX_S1_3V3" output (at 146.05 96.52 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 73c1352c-bd0a-474b-b182-79d251a3c7d0)
-    )
-    (pin "LV_EN" input (at 146.05 27.94 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 3d50bd26-f008-4ff6-9c2c-c0ed3a9de192)
-    )
-    (pin "LC1_3V3" input (at 146.05 33.02 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid dc394b0f-8490-491b-b931-ce081b78c2bb)
-    )
-    (pin "LC2_3V3" input (at 146.05 35.56 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid ceebb513-e24b-454a-9758-cb422b1f127d)
-    )
-    (pin "LC3_3V3" input (at 146.05 38.1 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid e1c58014-e84d-4d3a-9c70-61911241ba72)
-    )
-    (pin "LC4_3V3" input (at 146.05 40.64 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 7b35dc26-1381-466d-8b8b-177a6686160f)
-    )
-    (pin "LC5_3V3" input (at 146.05 43.18 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 1d4642bf-3ad0-4749-a828-40b8d828b87f)
-    )
-    (pin "LC6_3V3" input (at 146.05 45.72 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 26d609ee-fda2-4abb-b3a6-315c018021d4)
-    )
-    (pin "LR1_3V3" input (at 146.05 60.96 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 7f14ed5d-a752-4620-9e92-f77b5b22f31e)
-    )
-    (pin "LR3_3V3" input (at 146.05 66.04 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid c9a8b410-080b-41f2-a746-2aea17b02d58)
-    )
-    (pin "LR4_3V3" input (at 146.05 68.58 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 957b8cbe-bff9-47e7-8e1b-9494ec3fe33e)
-    )
-    (pin "LR5_3V3" input (at 146.05 71.12 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 45876128-343b-4b78-af24-e07bf37e3eb7)
-    )
-    (pin "LR6_3V3" input (at 146.05 73.66 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid fb64afad-a905-4f4b-98a2-d21a64bd12f3)
-    )
-    (pin "LR7_3V3" input (at 146.05 76.2 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid a11954b2-c8da-400f-812a-7b2df2ccf5b3)
-    )
-    (pin "LR8_3V3" input (at 146.05 78.74 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 07886ae7-f6c3-45e0-aa23-b0cb8bb4a82f)
-    )
-    (pin "LR9_3V3" input (at 146.05 81.28 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid c2fd0953-c1f8-4dcd-9da9-84d9f54e4430)
-    )
-    (pin "LR2_3V3" input (at 146.05 63.5 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 0481119f-5df6-429e-9483-4c6b3dd087b0)
-    )
-    (pin "LC1_5V" output (at 184.15 33.02 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 130d654a-7c7c-4db0-b53a-2b94470efd4b)
-    )
-    (pin "LC2_5V" output (at 184.15 35.56 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 96170bb3-3b9a-42d6-9ed0-d1a9381c542d)
-    )
-    (pin "LC3_5V" output (at 184.15 38.1 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 24c01a78-3470-4b05-b7bc-6162cce2180f)
-    )
-    (pin "LC4_5V" output (at 184.15 40.64 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 5d0a1925-cf92-4506-a942-fb736cbcfdaa)
-    )
-    (pin "LC5_5V" output (at 184.15 43.18 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid f620f98c-4704-4c3f-899a-6eebf9284f64)
-    )
-    (pin "LC6_5V" output (at 184.15 45.72 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 6f8a76e5-acc4-4a2a-80cb-c36845c77eed)
-    )
-    (pin "LR1_5V" output (at 184.15 60.96 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 31c13dcf-900d-4ec1-9646-aae765f5b3c5)
-    )
-    (pin "LR3_5V" output (at 184.15 66.04 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 5574e8bb-4b66-4b83-9411-31b005cf15ec)
-    )
-    (pin "LR4_5V" output (at 184.15 68.58 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 917baa9e-a1ac-4c67-a762-b6c6cf4f207d)
-    )
-    (pin "LR5_5V" output (at 184.15 71.12 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 511e9a47-88c1-4b75-8962-849e854cb5b9)
-    )
-    (pin "LR6_5V" output (at 184.15 73.66 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 8175b58e-28a3-4b20-83a0-f3144bb70aa5)
-    )
-    (pin "LR7_5V" output (at 184.15 76.2 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid bf0c4ca5-5945-4802-b90e-1994d6247061)
-    )
-    (pin "LR8_5V" output (at 184.15 78.74 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 87151cbb-6da7-4c29-8997-ea6f913b0295)
-    )
-    (pin "LR2_5V" output (at 184.15 63.5 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid b3e90fa4-e8b4-44e5-ba7e-d1bf0f54ad3c)
-    )
-    (pin "LR9_5V" output (at 184.15 81.28 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 3297c04c-eb0a-4987-858e-908206c9ab72)
-    )
-    (instances
-      (project "Keyboard"
-        (path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b" (page "10"))
-      )
-    )
-  )
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "17c631fd-c7f6-4f53-bd8a-247ae1d32a6c")
+	(paper "A4")
+	(lib_symbols
+		(symbol "Keyboard:1.0MR"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 0.762 0.508 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "1.0MR"
+				(at 0.762 -1.016 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Keyboard:R_0402"
+				(at -1.778 -2.032 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "667-ERJ-2RKF1004X"
+				(at 0.762 0.508 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, small symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "mouser#" "667-ERJ-2RKF1004X"
+				(at 3.302 3.048 0)
+				(effects
+					(font
+						(size 1.524 1.524)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "r resistor 1.0MR 0402"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "1.0MR_0_1"
+				(rectangle
+					(start -0.762 1.778)
+					(end 0.762 -1.778)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "1.0MR_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 0.762)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 0.762)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Keyboard:4.7nF_50V"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.254 1.778 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "4.7nF_50V"
+				(at 0.254 -2.032 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Keyboard:C_0402"
+				(at -2.286 -0.762 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "810-CGA2B2X7R1H472K"
+				(at 0.254 1.778 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "mouser#" "810-CGA2B2X7R1H472K"
+				(at 2.794 4.318 0)
+				(effects
+					(font
+						(size 1.524 1.524)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Multilayer Ceramic Capacitors MLCC - SMD/SMT 0402 4.7nF 50 volts"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "4.7nF_50V_0_1"
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
+					)
+					(stroke
+						(width 0.3302)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "4.7nF_50V_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 2.032)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 2.032)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Keyboard:Distance-Bolt_6x3.5"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "X"
+				(at -2.54 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Distance-Bolt_6x3.5"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Keyboard:DistanceBolt-6x3.5"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Distance-Bolt_6x3.5_0_1"
+				(rectangle
+					(start -2.54 2.54)
+					(end 2.54 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 0)
+					(radius 1.8034)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -1.27) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Keyboard:GND"
+			(power)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.175 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "ground power-flag symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Power Flag Symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GND_0_1"
+				(rectangle
+					(start -1.27 -1.524)
+					(end 1.27 -2.032)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(hide yes)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Keyboard:Mounting-Hole-M3"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "X"
+				(at -2.54 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Mounting-Hole-M3"
+				(at 1.27 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Keyboard:Mounting-Hole-M3"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Mounting-Hole-M3_0_1"
+				(rectangle
+					(start -2.54 2.54)
+					(end 2.54 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 0)
+					(radius 1.8034)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -1.27) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Mounting-Hole-M3_1_1"
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.45)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Keyboard:Screw M3x10"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "X"
+				(at -2.54 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Screw M3x10"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "reichelt#" "SKL-E M3X10-100"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Screw M3x10_0_1"
+				(rectangle
+					(start -2.54 2.54)
+					(end 2.54 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 0)
+					(radius 1.8034)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -1.27) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Keyboard:VDD_5V0_2"
+			(power)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "VDD_5V0_2"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "power-flag symbol +5.0V"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Power Flag Symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "VDD_5V0_2_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "VDD_5V0_2_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(hide yes)
+					(name "VDD_5V0_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(text "Keyboard Copyright (c) 2021-2022 - Max Maisel\nLicensed under CERN-OHL-S v2 or any later version"
+		(exclude_from_sim no)
+		(at 177.8 171.45 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9ff34875-5bce-4a42-ac43-2d2f1137b1b9")
+	)
+	(junction
+		(at 63.5 63.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "17c9c32b-822d-40a3-bf45-1a05c9f42d6f")
+	)
+	(junction
+		(at 67.31 70.485)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2404d0ba-9f85-4ee1-88ca-67c9842a7bf6")
+	)
+	(junction
+		(at 67.31 48.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3af74145-a542-446c-8c77-334375382d81")
+	)
+	(junction
+		(at 67.31 63.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a1360411-712c-47d3-804c-27e790794374")
+	)
+	(junction
+		(at 67.31 55.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ddcb36b8-ba4d-4a3e-a92d-0d318d758ff1")
+	)
+	(wire
+		(pts
+			(xy 114.3 144.78) (xy 215.9 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "02677e21-c483-4d95-a2d8-70d53a8916bd")
+	)
+	(wire
+		(pts
+			(xy 146.05 81.28) (xy 114.3 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08a14a3d-c6f3-406f-86fc-d26a9a52fda3")
+	)
+	(wire
+		(pts
+			(xy 184.15 93.98) (xy 187.96 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "103728e6-e09f-4d51-8b12-db5428d71d4b")
+	)
+	(wire
+		(pts
+			(xy 114.3 139.7) (xy 215.9 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13641336-7c89-4399-b634-0c70a3a0a4a9")
+	)
+	(wire
+		(pts
+			(xy 114.3 124.46) (xy 215.9 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "25680635-3dca-4a9e-b590-3de2ea2cb777")
+	)
+	(wire
+		(pts
+			(xy 146.05 68.58) (xy 114.3 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26d6043e-eb48-4919-b5d7-75eff12235af")
+	)
+	(wire
+		(pts
+			(xy 184.15 71.12) (xy 215.9 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "34c66ad2-289c-44fc-8e12-9a0e646d0eb6")
+	)
+	(wire
+		(pts
+			(xy 146.05 43.18) (xy 114.3 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "361c1d3b-01a8-4b18-8ced-bf6b16498f26")
+	)
+	(wire
+		(pts
+			(xy 43.18 55.88) (xy 67.31 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3849b460-9798-4858-ae04-dfb78955f088")
+	)
+	(wire
+		(pts
+			(xy 184.15 43.18) (xy 215.9 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a1e6e05-4e96-44c9-bfaa-9f4e33c4b7c1")
+	)
+	(wire
+		(pts
+			(xy 184.15 76.2) (xy 215.9 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f4e2d19-273d-482c-9c29-2e4a4036cdc0")
+	)
+	(wire
+		(pts
+			(xy 114.3 119.38) (xy 215.9 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "436a3121-ef56-4bfd-897a-05c3be189d3a")
+	)
+	(wire
+		(pts
+			(xy 215.9 137.16) (xy 114.3 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c01312b-183f-405e-8666-25d2d0b3e98f")
+	)
+	(wire
+		(pts
+			(xy 184.15 33.02) (xy 215.9 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4eb3e1b6-db77-4da8-b090-6948618fa811")
+	)
+	(wire
+		(pts
+			(xy 184.15 38.1) (xy 215.9 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5126758d-6621-4d1e-b52c-969249180f65")
+	)
+	(wire
+		(pts
+			(xy 184.15 81.28) (xy 215.9 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "52bcaad3-1052-4409-8611-e13831c2a1d0")
+	)
+	(wire
+		(pts
+			(xy 114.3 96.52) (xy 146.05 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "56844006-f995-409d-a7c7-a742efeb48f3")
+	)
+	(wire
+		(pts
+			(xy 114.3 35.56) (xy 146.05 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "60d7e35f-bc19-4d75-9814-03e765b76763")
+	)
+	(wire
+		(pts
+			(xy 215.9 45.72) (xy 184.15 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64a50bb0-3045-4279-b12c-bb78d2d089b3")
+	)
+	(wire
+		(pts
+			(xy 63.5 63.5) (xy 67.31 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "660b79fd-0c3e-4fcd-9ea5-eb3a6f080691")
+	)
+	(wire
+		(pts
+			(xy 215.9 78.74) (xy 184.15 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d75c047-e812-494c-bad6-fdce6b5e805f")
+	)
+	(wire
+		(pts
+			(xy 184.15 63.5) (xy 215.9 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71f27864-c56b-4731-a59d-314dfc359956")
+	)
+	(wire
+		(pts
+			(xy 67.31 48.26) (xy 67.31 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7281335f-b70f-437c-818b-9f20564b0909")
+	)
+	(wire
+		(pts
+			(xy 67.31 55.88) (xy 67.31 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77b4815b-b03a-424b-a9b3-f1160b1e6fe9")
+	)
+	(wire
+		(pts
+			(xy 146.05 38.1) (xy 114.3 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "79bfc858-48bb-446f-be1f-54f080518924")
+	)
+	(wire
+		(pts
+			(xy 215.9 40.64) (xy 184.15 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7adce408-8e03-44e3-a0fc-5d07f9c8bd47")
+	)
+	(wire
+		(pts
+			(xy 146.05 93.98) (xy 114.3 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7dc3c30b-36d2-4a9a-8202-75ce2bf2525c")
+	)
+	(wire
+		(pts
+			(xy 114.3 40.64) (xy 146.05 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "874ba6df-48a1-43d9-874c-cb12cdbd3257")
+	)
+	(wire
+		(pts
+			(xy 215.9 68.58) (xy 184.15 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "89b37791-a7b3-4d1a-81e5-feac35e176b1")
+	)
+	(wire
+		(pts
+			(xy 43.18 63.5) (xy 63.5 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8e6d0d3e-22d3-41e2-9846-097b0e7f84d4")
+	)
+	(wire
+		(pts
+			(xy 67.31 68.58) (xy 67.31 70.485)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90346d44-ccb0-449a-91ef-fa130e7c7aff")
+	)
+	(wire
+		(pts
+			(xy 146.05 73.66) (xy 114.3 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9338e1df-3255-4d34-a853-8eecd0bd60e2")
+	)
+	(wire
+		(pts
+			(xy 114.3 71.12) (xy 146.05 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9811da15-a5d9-4f8c-b134-60c0a3153f9b")
+	)
+	(wire
+		(pts
+			(xy 114.3 27.94) (xy 146.05 27.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99367aeb-7ec3-44a7-80dd-4129e77ab199")
+	)
+	(wire
+		(pts
+			(xy 215.9 60.96) (xy 184.15 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9e16f38c-c5dc-4344-9642-65940b5aa078")
+	)
+	(wire
+		(pts
+			(xy 215.9 73.66) (xy 184.15 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a0df613f-5803-422b-b393-d7d43d10edf9")
+	)
+	(wire
+		(pts
+			(xy 114.3 134.62) (xy 215.9 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a28a1689-89cc-4604-9576-69dc32497351")
+	)
+	(wire
+		(pts
+			(xy 215.9 127) (xy 114.3 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4975157-b37f-47ba-88a2-6a09d1be3372")
+	)
+	(wire
+		(pts
+			(xy 114.3 76.2) (xy 146.05 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a6e73968-bfeb-49ba-b5d0-6a71117f7ee3")
+	)
+	(wire
+		(pts
+			(xy 67.31 40.64) (xy 67.31 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af09752a-8de7-428f-a250-e39a5d047975")
+	)
+	(wire
+		(pts
+			(xy 146.05 63.5) (xy 114.3 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b921d26f-7ef4-44ea-b823-31f7682918a6")
+	)
+	(wire
+		(pts
+			(xy 63.5 70.485) (xy 67.31 70.485)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be2edb2e-1162-4860-ad25-83ea2af4af8e")
+	)
+	(wire
+		(pts
+			(xy 146.05 33.02) (xy 114.3 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bed4b9e6-a349-4338-8e65-378c655adaa1")
+	)
+	(wire
+		(pts
+			(xy 43.18 48.26) (xy 67.31 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3eda21a-3dc2-4414-9d33-bfc11d5fcb87")
+	)
+	(wire
+		(pts
+			(xy 114.3 78.74) (xy 146.05 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6088b7c-82d7-46a8-af67-8f78469aaf4c")
+	)
+	(wire
+		(pts
+			(xy 114.3 60.96) (xy 146.05 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6712a62-abcb-4fa6-845a-f86b7c45b588")
+	)
+	(wire
+		(pts
+			(xy 215.9 121.92) (xy 114.3 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c7839bc5-da38-4d79-bbff-1cb65572ceb7")
+	)
+	(wire
+		(pts
+			(xy 187.96 96.52) (xy 184.15 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf6731a0-7770-4937-aa31-fb6c458a6c13")
+	)
+	(wire
+		(pts
+			(xy 43.18 40.64) (xy 67.31 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d03637cf-ef6f-459c-b6c9-475c98d8b03e")
+	)
+	(wire
+		(pts
+			(xy 215.9 66.04) (xy 184.15 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1f4b5ba-fb17-4113-b186-c7f7693955a7")
+	)
+	(wire
+		(pts
+			(xy 215.9 142.24) (xy 114.3 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e245fbde-080c-43c5-9cf8-94d1763b95d1")
+	)
+	(wire
+		(pts
+			(xy 36.195 31.75) (xy 38.1 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec273ab0-862b-4dfc-9440-1ac9e42745de")
+	)
+	(wire
+		(pts
+			(xy 215.9 35.56) (xy 184.15 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec439804-44ec-41ef-afaa-b4e655146849")
+	)
+	(wire
+		(pts
+			(xy 63.5 68.58) (xy 63.5 70.485)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed6d7d27-4f44-48ee-8ad1-e4b97d676f4d")
+	)
+	(wire
+		(pts
+			(xy 114.3 66.04) (xy 146.05 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f59c464d-b008-448f-97da-9521c60cdf40")
+	)
+	(wire
+		(pts
+			(xy 114.3 45.72) (xy 146.05 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd4c17d8-ce8b-41fa-87cf-1e9f12037dcf")
+	)
+	(label "SHIELD_2"
+		(at 63.5 40.64 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "0d4e72c5-1181-4398-8381-453123a72ed5")
+	)
+	(hierarchical_label "TX_S1"
+		(shape output)
+		(at 187.96 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "044dbba4-6690-40d4-a386-30fdf72df499")
+	)
+	(hierarchical_label "VDD_5V_S1"
+		(shape input)
+		(at 36.195 31.75 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "41873cde-32f3-4c97-892f-e3699df62249")
+	)
+	(hierarchical_label "RX_S1"
+		(shape input)
+		(at 187.96 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6eb3a55e-1570-4482-a861-2ab569daf1b5")
+	)
+	(symbol
+		(lib_id "Keyboard:VDD_5V0_2")
+		(at 38.1 31.75 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-00005ef2faad")
+		(property "Reference" "#PWR02001"
+			(at 38.1 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VDD_5V0_2"
+			(at 38.481 27.3558 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 38.1 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 38.1 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d5732363-7998-445b-80d3-56ffbc12243c")
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "#PWR02001")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Mounting-Hole-M3")
+		(at 38.1 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-00005feb400d")
+		(property "Reference" "X2000"
+			(at 35.56 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Mounting-Hole-M3"
+			(at 42.545 38.735 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:Mounting-Hole-M3"
+			(at 38.1 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d0b4ca7d-3164-4b5c-b03c-65f30902dadd")
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2000")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Mounting-Hole-M3")
+		(at 38.1 48.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-00005feb4013")
+		(property "Reference" "X2001"
+			(at 35.56 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Mounting-Hole-M3"
+			(at 42.545 46.355 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:Mounting-Hole-M3"
+			(at 38.1 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "431f8d8b-a375-4a72-af0d-74e5782fc531")
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2001")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Mounting-Hole-M3")
+		(at 38.1 55.88 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-00005feb4019")
+		(property "Reference" "X2002"
+			(at 35.56 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Mounting-Hole-M3"
+			(at 42.545 53.975 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:Mounting-Hole-M3"
+			(at 38.1 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a8d46206-a4d5-4448-aed1-068baf46d71e")
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2002")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Mounting-Hole-M3")
+		(at 38.1 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-00005feb401f")
+		(property "Reference" "X2003"
+			(at 35.56 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Mounting-Hole-M3"
+			(at 42.545 61.595 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:Mounting-Hole-M3"
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a2247195-33e5-414d-8328-7b02e89a41ec")
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2003")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Screw M3x10")
+		(at 38.1 101.6 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0280727f-b964-4884-9a72-3d39e9623b41")
+		(property "Reference" "X2009"
+			(at 41.275 100.6915 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Screw M3x10"
+			(at 41.275 103.4666 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 38.1 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "SKL-E M3X10-100"
+			(at 38.1 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2009")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Screw M3x10")
+		(at 57.15 114.3 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "15a99902-1d02-4ce9-8390-3a1e0df00fae")
+		(property "Reference" "X2015"
+			(at 60.325 113.3915 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Screw M3x10"
+			(at 60.325 116.1666 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 57.15 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 57.15 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 57.15 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "SKL-E M3X10-100"
+			(at 57.15 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:1.0MR")
+		(at 67.31 66.04 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "340698bf-cd21-4fe7-8f49-e4705e7eab81")
+		(property "Reference" "R2005"
+			(at 68.58 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1.0MR"
+			(at 68.58 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:R_0402"
+			(at 65.532 68.072 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "667-ERJ-2RKF1004X"
+			(at 68.072 65.532 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 67.31 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "mouser#" "667-ERJ-2RKF1004X"
+			(at 70.612 62.992 0)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3551af07-6011-4122-9520-63b091fab687")
+		)
+		(pin "2"
+			(uuid "10669c58-1676-467f-a8b9-e4f609420323")
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "R2005")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:4.7nF_50V")
+		(at 63.5 66.04 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "472af3f3-ceab-4e3d-824a-e79af5a4198f")
+		(property "Reference" "C2017"
+			(at 55.245 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "4.7nF_50V"
+			(at 53.34 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:C_0402"
+			(at 61.214 66.802 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "810-CGA2B2X7R1H472K"
+			(at 63.754 64.262 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 63.5 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "mouser#" "810-CGA2B2X7R1H472K"
+			(at 66.294 61.722 0)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4750e176-1dcb-4489-b286-616b94db8530")
+		)
+		(pin "2"
+			(uuid "a44c4e8c-da90-4c7d-b04f-a72a53692690")
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "C2017")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Distance-Bolt_6x3.5")
+		(at 38.1 82.55 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "48a0e4e2-2cfa-4ee0-9b03-3727d1f51d85")
+		(property "Reference" "X2006"
+			(at 41.275 81.6415 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Distance-Bolt_M3x5"
+			(at 41.275 84.4166 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:DistanceBolt-6x3.5"
+			(at 38.1 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "VT DI 5MM\n"
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2006")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Screw M3x10")
+		(at 38.1 107.95 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "74ab2518-7bc1-40da-92c8-53d525594c10")
+		(property "Reference" "X2010"
+			(at 41.275 107.0415 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Screw M3x10"
+			(at 41.275 109.8166 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 38.1 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "SKL-E M3X10-100"
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2010")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Distance-Bolt_6x3.5")
+		(at 38.1 88.9 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "74b25ccc-aff0-4d18-9fb6-39d1cdff8908")
+		(property "Reference" "X2007"
+			(at 41.275 87.9915 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Distance-Bolt_M3x5"
+			(at 41.275 90.7666 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:DistanceBolt-6x3.5"
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "VT DI 5MM\n"
+			(at 38.1 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2007")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Distance-Bolt_6x3.5")
+		(at 38.1 69.85 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7c4be5f8-0f0e-4f49-8cbc-9f6fd7396ff4")
+		(property "Reference" "X2004"
+			(at 41.275 68.9415 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Distance-Bolt_M3x5"
+			(at 41.275 71.7166 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:DistanceBolt-6x3.5"
+			(at 38.1 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "VT DI 5MM\n"
+			(at 38.1 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2004")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Screw M3x10")
+		(at 57.15 101.6 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8af1d8ff-25c5-46ee-99d6-164393753964")
+		(property "Reference" "X2013"
+			(at 60.325 100.6915 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Screw M3x10"
+			(at 60.325 103.4666 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 57.15 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 57.15 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 57.15 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "SKL-E M3X10-100"
+			(at 57.15 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2013")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Screw M3x10")
+		(at 38.1 95.25 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8c1bed2c-3142-4505-b7b9-858c5494e527")
+		(property "Reference" "X2008"
+			(at 41.275 94.3415 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Screw M3x10"
+			(at 41.275 97.1166 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 38.1 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "SKL-E M3X10-100"
+			(at 38.1 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2008")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Screw M3x10")
+		(at 57.15 107.95 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8fdbf206-511b-430d-860e-6dea4c14ab3f")
+		(property "Reference" "X2014"
+			(at 60.325 107.0415 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Screw M3x10"
+			(at 60.325 109.8166 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 57.15 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 57.15 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 57.15 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "SKL-E M3X10-100"
+			(at 57.15 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2014")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:GND")
+		(at 67.31 70.485 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b9717a58-1e5f-448b-bfb3-76be985049f2")
+		(property "Reference" "#PWR02016"
+			(at 67.31 76.835 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 67.4116 74.422 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 67.31 70.485 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 67.31 70.485 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 67.31 70.485 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e0bca1e2-fee5-46e5-817a-ae8860964dd1")
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "#PWR02016")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Distance-Bolt_6x3.5")
+		(at 38.1 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c2403b6c-1482-489c-b50f-3cc4f550b500")
+		(property "Reference" "X2005"
+			(at 41.275 75.2915 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Distance-Bolt_M3x5"
+			(at 41.275 78.0666 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Keyboard:DistanceBolt-6x3.5"
+			(at 38.1 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "VT DI 5MM\n"
+			(at 38.1 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2005")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Screw M3x10")
+		(at 38.1 114.3 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c5b9d995-0deb-4ac2-92d7-262c0ada7d6f")
+		(property "Reference" "X2011"
+			(at 41.275 113.3915 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Screw M3x10"
+			(at 41.275 116.1666 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 38.1 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "SKL-E M3X10-100"
+			(at 38.1 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Keyboard:Screw M3x10")
+		(at 57.15 95.25 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dc3c35d4-fe2e-4568-8c76-f8f7f9012e3b")
+		(property "Reference" "X2012"
+			(at 60.325 94.3415 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Screw M3x10"
+			(at 60.325 97.1166 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 57.15 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 57.15 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 57.15 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "reichelt#" "SKL-E M3X10-100"
+			(at 57.15 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(reference "X2012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet
+		(at 76.2 25.4)
+		(size 38.1 127)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "00000000-0000-0000-0000-00005ffe6e1b")
+		(property "Sheetname" "CPU-Numblock"
+			(at 76.2 24.6884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "CPU-Numblock.kicad_sch"
+			(at 76.2 152.9846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "USART1_TX" output
+			(at 114.3 93.98 0)
+			(uuid "b2547c4a-4c21-40e5-be45-e79c69e17e23")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "USART1_RX" input
+			(at 114.3 96.52 0)
+			(uuid "39781e1d-5e14-462a-a81a-cc49fddf9e84")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LV_EN" output
+			(at 114.3 27.94 0)
+			(uuid "ec93df62-15bf-4201-a842-2afed20df3dd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "KR1" input
+			(at 114.3 134.62 0)
+			(uuid "ed034005-ef40-49a1-a068-5884f8143db0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "KR2" input
+			(at 114.3 137.16 0)
+			(uuid "1d5df1c8-99ba-481b-8666-0e805167d641")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "KR3" input
+			(at 114.3 139.7 0)
+			(uuid "968b666e-cb51-4a52-848e-9c01737182f7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "KR4" input
+			(at 114.3 142.24 0)
+			(uuid "2572c3e8-fe47-4c48-ae11-293e24b4b0c9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "KR5" input
+			(at 114.3 144.78 0)
+			(uuid "a08b6870-94c0-4c72-8c3f-e5cb61234d4d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "KC1" output
+			(at 114.3 119.38 0)
+			(uuid "12073d32-e094-46b5-8c66-25548ef94012")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "KC2" output
+			(at 114.3 121.92 0)
+			(uuid "28de8b5f-88c5-4fcc-857e-85e9d0fa267c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "KC3" output
+			(at 114.3 124.46 0)
+			(uuid "e7d2b7b7-19c6-4dbc-9a68-f9798141f1bc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "KC4" output
+			(at 114.3 127 0)
+			(uuid "2433adc2-160f-49a3-ac1c-21769cc1c2f8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC1" output
+			(at 114.3 33.02 0)
+			(uuid "befc88cd-2c7f-4218-95fd-4cb48d768ac4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC2" output
+			(at 114.3 35.56 0)
+			(uuid "3fda080e-f768-4619-ba3c-beddd1d2b960")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC3" output
+			(at 114.3 38.1 0)
+			(uuid "c523b33c-0b1e-4e91-a4b2-14a2a34234b3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC4" output
+			(at 114.3 40.64 0)
+			(uuid "7ce4c3ac-af36-468d-8d4a-7cd1732eef4c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC5" output
+			(at 114.3 43.18 0)
+			(uuid "f12b6934-7dc8-44ad-90dc-aeb37bcb85a9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC6" output
+			(at 114.3 45.72 0)
+			(uuid "c616a105-78a0-43c3-aed2-dc0aff6bc3a3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR1" output
+			(at 114.3 60.96 0)
+			(uuid "f121565f-1e83-46fe-b408-0e7478f06e60")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR2" output
+			(at 114.3 63.5 0)
+			(uuid "4352ce3a-b9fe-4025-86da-b5f8bb58b524")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR3" output
+			(at 114.3 66.04 0)
+			(uuid "d4db0edd-a695-4c1e-afce-bcb6a6c993c0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR4" output
+			(at 114.3 68.58 0)
+			(uuid "fb2f8970-b77c-4269-ba94-2c94275e1ea3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR5" output
+			(at 114.3 71.12 0)
+			(uuid "0213f5e7-9762-4e30-b146-3612e8adaa2b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR6" output
+			(at 114.3 73.66 0)
+			(uuid "18216b85-9bee-46fd-bd5a-79c84c0c6626")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR7" output
+			(at 114.3 76.2 0)
+			(uuid "f6e90877-59ba-4e00-84cc-ee2fb3dfa447")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR8" output
+			(at 114.3 78.74 0)
+			(uuid "8d1ae1e0-1e3b-41a4-81b1-40d596d39cef")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR9" output
+			(at 114.3 81.28 0)
+			(uuid "5fa0b7df-91c3-46bb-a136-855f6ab64ae7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(page "9")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 215.9 114.3)
+		(size 38.1 38.1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "00000000-0000-0000-0000-00005ffe6e4a")
+		(property "Sheetname" "KeyMatrix-Numblock"
+			(at 215.9 113.5884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "KeyMatrix-Numblock.kicad_sch"
+			(at 215.9 152.9846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "KR1" output
+			(at 215.9 134.62 180)
+			(uuid "e4f1c922-a77b-49ef-9458-17cf8fb1fe27")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "KR2" output
+			(at 215.9 137.16 180)
+			(uuid "738b8c40-79e9-4f75-bfbf-1f8336a1fb01")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "KR3" output
+			(at 215.9 139.7 180)
+			(uuid "5e093d33-f1ec-4253-addd-a0ab528eafcd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "KR4" output
+			(at 215.9 142.24 180)
+			(uuid "ca4af199-e93e-46b1-9de2-a202adb17905")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "KR5" output
+			(at 215.9 144.78 180)
+			(uuid "6b34c62d-e8b5-477e-add7-fab7b9561d73")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "KC1" input
+			(at 215.9 119.38 180)
+			(uuid "5de63618-b65b-49f7-9c5e-be66982a0d17")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "KC2" input
+			(at 215.9 121.92 180)
+			(uuid "9e4f8a0b-b3ca-42c5-a9aa-21f8de4f6f49")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "KC3" input
+			(at 215.9 124.46 180)
+			(uuid "78bcd0d3-9b3e-4028-855a-2527db648a89")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "KC4" input
+			(at 215.9 127 180)
+			(uuid "4fee8a49-3c8a-491a-9515-641213d3fdb1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(page "12")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 215.9 25.4)
+		(size 38.1 76.2)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "00000000-0000-0000-0000-00005ffe6e62")
+		(property "Sheetname" "LedMatrix-Numblock"
+			(at 215.9 24.6884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "LedMatrix-Numblock.kicad_sch"
+			(at 215.9 102.1846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "LC1" input
+			(at 215.9 33.02 180)
+			(uuid "70df7c20-24fb-41f3-88b5-451a12bb3149")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC2" input
+			(at 215.9 35.56 180)
+			(uuid "123f3ad3-0fd7-40f5-9a7f-3e2dc105ea7e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC3" input
+			(at 215.9 38.1 180)
+			(uuid "7f77d6e6-dd7f-4f4b-a560-08a8734d719c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC4" input
+			(at 215.9 40.64 180)
+			(uuid "3afe4c86-2707-4eb5-97c2-132ac139df37")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC5" input
+			(at 215.9 43.18 180)
+			(uuid "21df56d8-42ea-400b-96d4-c4edb883c3dc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC6" input
+			(at 215.9 45.72 180)
+			(uuid "1da27dd4-b124-4e57-958d-0d79668c57d3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR1" input
+			(at 215.9 60.96 180)
+			(uuid "5e5d5176-6131-4561-aed0-77c39d8ef012")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR2" input
+			(at 215.9 63.5 180)
+			(uuid "85a718cd-5240-447e-8784-d2ec0711dc04")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR3" input
+			(at 215.9 66.04 180)
+			(uuid "c46ba216-273e-4524-a30d-767504fe3bef")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR4" input
+			(at 215.9 68.58 180)
+			(uuid "c8151f52-0000-4062-8e87-d6a81a8b9539")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR5" input
+			(at 215.9 71.12 180)
+			(uuid "334ed57c-e727-4eb6-87b5-a89308be9628")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR6" input
+			(at 215.9 73.66 180)
+			(uuid "28fbcd9b-2888-4dfb-8715-b0e6e9c7db10")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR7" input
+			(at 215.9 76.2 180)
+			(uuid "bfe6bcd1-2ddf-4b09-b683-11e5deb07af9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR8" input
+			(at 215.9 78.74 180)
+			(uuid "34bf7dfc-d1c0-43e4-91d7-96b846263d3a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR9" input
+			(at 215.9 81.28 180)
+			(uuid "0fa4f4fd-e8b6-41aa-9179-1b5a4d3dc51d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(page "11")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 146.05 25.4)
+		(size 38.1 88.9)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "00000000-0000-0000-0000-00005ffe6e9d")
+		(property "Sheetname" "LevelShifters-Numblock"
+			(at 146.05 24.6884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "LevelShifters-Numblock.kicad_sch"
+			(at 146.05 114.8846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "TX_S1_5V" output
+			(at 184.15 93.98 0)
+			(uuid "32ec1b01-bf11-4db3-bac0-261151deccc7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "RX_S1_5V" input
+			(at 184.15 96.52 0)
+			(uuid "d6415e27-ba31-4650-a674-a8c5d72bfc58")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "TX_S1_3V3" input
+			(at 146.05 93.98 180)
+			(uuid "ce16226b-4358-4889-ac30-db100cc55b6a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "RX_S1_3V3" output
+			(at 146.05 96.52 180)
+			(uuid "73c1352c-bd0a-474b-b182-79d251a3c7d0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LV_EN" input
+			(at 146.05 27.94 180)
+			(uuid "3d50bd26-f008-4ff6-9c2c-c0ed3a9de192")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC1_3V3" input
+			(at 146.05 33.02 180)
+			(uuid "dc394b0f-8490-491b-b931-ce081b78c2bb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC2_3V3" input
+			(at 146.05 35.56 180)
+			(uuid "ceebb513-e24b-454a-9758-cb422b1f127d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC3_3V3" input
+			(at 146.05 38.1 180)
+			(uuid "e1c58014-e84d-4d3a-9c70-61911241ba72")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC4_3V3" input
+			(at 146.05 40.64 180)
+			(uuid "7b35dc26-1381-466d-8b8b-177a6686160f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC5_3V3" input
+			(at 146.05 43.18 180)
+			(uuid "1d4642bf-3ad0-4749-a828-40b8d828b87f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC6_3V3" input
+			(at 146.05 45.72 180)
+			(uuid "26d609ee-fda2-4abb-b3a6-315c018021d4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR1_3V3" input
+			(at 146.05 60.96 180)
+			(uuid "7f14ed5d-a752-4620-9e92-f77b5b22f31e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR3_3V3" input
+			(at 146.05 66.04 180)
+			(uuid "c9a8b410-080b-41f2-a746-2aea17b02d58")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR4_3V3" input
+			(at 146.05 68.58 180)
+			(uuid "957b8cbe-bff9-47e7-8e1b-9494ec3fe33e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR5_3V3" input
+			(at 146.05 71.12 180)
+			(uuid "45876128-343b-4b78-af24-e07bf37e3eb7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR6_3V3" input
+			(at 146.05 73.66 180)
+			(uuid "fb64afad-a905-4f4b-98a2-d21a64bd12f3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR7_3V3" input
+			(at 146.05 76.2 180)
+			(uuid "a11954b2-c8da-400f-812a-7b2df2ccf5b3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR8_3V3" input
+			(at 146.05 78.74 180)
+			(uuid "07886ae7-f6c3-45e0-aa23-b0cb8bb4a82f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR9_3V3" input
+			(at 146.05 81.28 180)
+			(uuid "c2fd0953-c1f8-4dcd-9da9-84d9f54e4430")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LR2_3V3" input
+			(at 146.05 63.5 180)
+			(uuid "0481119f-5df6-429e-9483-4c6b3dd087b0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LC1_5V" output
+			(at 184.15 33.02 0)
+			(uuid "130d654a-7c7c-4db0-b53a-2b94470efd4b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC2_5V" output
+			(at 184.15 35.56 0)
+			(uuid "96170bb3-3b9a-42d6-9ed0-d1a9381c542d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC3_5V" output
+			(at 184.15 38.1 0)
+			(uuid "24c01a78-3470-4b05-b7bc-6162cce2180f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC4_5V" output
+			(at 184.15 40.64 0)
+			(uuid "5d0a1925-cf92-4506-a942-fb736cbcfdaa")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC5_5V" output
+			(at 184.15 43.18 0)
+			(uuid "f620f98c-4704-4c3f-899a-6eebf9284f64")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LC6_5V" output
+			(at 184.15 45.72 0)
+			(uuid "6f8a76e5-acc4-4a2a-80cb-c36845c77eed")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR1_5V" output
+			(at 184.15 60.96 0)
+			(uuid "31c13dcf-900d-4ec1-9646-aae765f5b3c5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR3_5V" output
+			(at 184.15 66.04 0)
+			(uuid "5574e8bb-4b66-4b83-9411-31b005cf15ec")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR4_5V" output
+			(at 184.15 68.58 0)
+			(uuid "917baa9e-a1ac-4c67-a762-b6c6cf4f207d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR5_5V" output
+			(at 184.15 71.12 0)
+			(uuid "511e9a47-88c1-4b75-8962-849e854cb5b9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR6_5V" output
+			(at 184.15 73.66 0)
+			(uuid "8175b58e-28a3-4b20-83a0-f3144bb70aa5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR7_5V" output
+			(at 184.15 76.2 0)
+			(uuid "bf0c4ca5-5945-4802-b90e-1994d6247061")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR8_5V" output
+			(at 184.15 78.74 0)
+			(uuid "87151cbb-6da7-4c29-8997-ea6f913b0295")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR2_5V" output
+			(at 184.15 63.5 0)
+			(uuid "b3e90fa4-e8b4-44e5-ba7e-d1bf0f54ad3c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LR9_5V" output
+			(at 184.15 81.28 0)
+			(uuid "3297c04c-eb0a-4987-858e-908206c9ab72")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "Keyboard"
+				(path "/2ed8ceed-ea7b-4754-b556-0fa4187ce396/00000000-0000-0000-0000-00005efc4c2b"
+					(page "10")
+				)
+			)
+		)
+	)
 )
