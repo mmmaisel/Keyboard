@@ -36,7 +36,7 @@ class HidKeyboardEndpoint : public USBEndpoint {
         HidKeyboardEndpoint();
         HidKeyboardEndpoint(const HidKeyboardEndpoint&) = delete;
         HidKeyboardEndpoint(HidKeyboardEndpoint&&) = delete;
-        virtual ~HidKeyboardEndpoint();
+        virtual ~HidKeyboardEndpoint() override;
 
         inline void set_idle(BYTE idle) { m_idle = idle; }
         inline BYTE get_idle() { return m_idle; }

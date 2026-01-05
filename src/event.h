@@ -67,7 +67,7 @@ class EventDispatcher {
     public:
         static void initialize();
         static void send(Event* event);
-        static void send_from_isr(Event* event, BaseType_t* task_woken);
+        static void send_from_isr(const Event* event, BaseType_t* task_woken);
         static void next_event(Event* event);
 
     private:

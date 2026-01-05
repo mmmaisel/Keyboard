@@ -32,14 +32,14 @@ class UsbKeyboard : public EventSink {
 
         virtual void on_event(Event* event) override;
 
-        void set_led(BYTE keycode, Color color);
+        static void set_led(BYTE keycode, Color color);
         BYTE get_report_from_isr(
             HidKeyboardReport* report, BaseType_t* task_woken);
 
     private:
         BYTE fill_report(HidKeyboardReport* report);
         BYTE handle_fn(HidKeyboardReport* report);
-        void replace_keys(HidKeyboardReport* report, BYTE new_key);
+        static void replace_keys(HidKeyboardReport* report, BYTE new_key);
         void switch_effect(EffectId id);
 
         DWORD _pages[PAGE_COUNT];

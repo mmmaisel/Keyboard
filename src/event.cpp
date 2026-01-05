@@ -35,7 +35,7 @@ void EventDispatcher::send(Event* event) {
     xQueueSend(_queue, event, portMAX_DELAY);
 }
 
-void EventDispatcher::send_from_isr(Event* event, BaseType_t* task_woken) {
+void EventDispatcher::send_from_isr(const Event* event, BaseType_t* task_woken) {
     xQueueSendFromISR(_queue, event, task_woken);
 }
 

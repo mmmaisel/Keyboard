@@ -28,7 +28,7 @@ class ControlEndpoint : public USBEndpoint {
         ControlEndpoint();
         ControlEndpoint(const ControlEndpoint&) = delete;
         ControlEndpoint(ControlEndpoint&&) = delete;
-        virtual ~ControlEndpoint();
+        virtual ~ControlEndpoint() override;
 
         enum {
             REQUEST_DIR_OUT = 0x00,

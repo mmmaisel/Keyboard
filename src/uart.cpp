@@ -154,7 +154,8 @@ Uart uart2(&uart2_config);
 Uart uart6(&uart6_config);
 
 Uart::Uart(UartConfig* config) :
-    _config(config)
+    _config(config),
+    _dma_rem(0)
 {
     _rx_semaphore = xSemaphoreCreateBinaryStatic(&_rx_semaphore_mem);
     _tx_semaphore = xSemaphoreCreateBinaryStatic(&_tx_semaphore_mem);
