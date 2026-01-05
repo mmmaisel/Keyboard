@@ -1,21 +1,87 @@
-(footprint "Lightpipe-51513530188F" (version 20221018) (generator pcbnew)
-  (layer "F.Cu")
-  (attr through_hole)
-  (fp_text reference "REF**" (at 0 0.5) (layer "F.Fab")
-      (effects (font (size 1 1) (thickness 0.15)))
-    (tstamp 4f0afcaf-8e53-4357-987c-788163a85cc8)
-  )
-  (fp_text value "Lightpipe-51513530188F" (at 0 0) (layer "F.Fab")
-      (effects (font (size 0.25 0.25) (thickness 0.05)))
-    (tstamp ca3814d1-d0c6-42f5-8a33-e38db5494ef5)
-  )
-  (fp_circle (center 0 0) (end 1.98 0)
-    (stroke (width 0.12) (type solid)) (fill none) (layer "Dwgs.User") (tstamp 8ec49db3-9aa4-4392-a3e1-70be6e0a69c5))
-  (fp_circle (center 0 0) (end 1.78 0)
-    (stroke (width 0.15) (type solid)) (fill none) (layer "F.Fab") (tstamp f90ec41a-a6ba-4cae-9281-9de970d27bcb))
-  (model "${KIPRJMOD}/lib/Keyboard.pretty/Lightpipe-51513530188F.x3d"
-    (offset (xyz 0 0 0))
-    (scale (xyz 0.3937007874 0.3937007874 0.3937007874))
-    (rotate (xyz -90 0 0))
-  )
+(footprint "Lightpipe-51513530188F"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 0.5 0)
+		(layer "F.Fab")
+		(uuid "4f0afcaf-8e53-4357-987c-788163a85cc8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Lightpipe-51513530188F"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "ca3814d1-d0c6-42f5-8a33-e38db5494ef5")
+		(effects
+			(font
+				(size 0.25 0.25)
+				(thickness 0.05)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "73444190-a9a4-4b77-85c4-05b98bea54a7")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0074ea23-f6da-469e-a975-af3f0a3902b4")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center 0 0)
+		(end 1.98 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill no)
+		(layer "Dwgs.User")
+		(uuid "8ec49db3-9aa4-4392-a3e1-70be6e0a69c5")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 1.78 0)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "f90ec41a-a6ba-4cae-9281-9de970d27bcb")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib/Keyboard.pretty/Lightpipe-51513530188F.x3d"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 0.3937007874 0.3937007874 0.3937007874)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )

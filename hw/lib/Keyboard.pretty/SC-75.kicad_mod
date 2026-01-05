@@ -1,29 +1,163 @@
-(footprint "SC-75" (version 20211014) (generator pcbnew)
-  (layer "F.Cu")
-  (tedit 6242D283)
-  (attr through_hole)
-  (fp_text reference "REF**" (at 0 -1.4) (layer "F.SilkS")
-    (effects (font (size 0.8 0.8) (thickness 0.1)))
-    (tstamp 2e2597db-7b14-4f87-b3f7-8f0264db605b)
-  )
-  (fp_text value "SC-75" (at 0 0) (layer "F.Fab")
-    (effects (font (size 0.25 0.25) (thickness 0.05)))
-    (tstamp 98263902-b805-479d-ae0a-2ad72f3ab34b)
-  )
-  (fp_line (start -0.8 -0.4) (end 0.8 -0.4) (layer "F.SilkS") (width 0.15) (tstamp 187ef78f-31ae-4766-b71e-18f19d93ab5e))
-  (fp_line (start 0.8 -0.4) (end 0.8 0.4) (layer "F.SilkS") (width 0.15) (tstamp 750cb84e-d795-4364-9358-ec0975478b7f))
-  (fp_line (start 0.8 0.4) (end -0.8 0.4) (layer "F.SilkS") (width 0.15) (tstamp aff00d57-63ea-46b6-99f8-32eff51e9707))
-  (fp_line (start -0.8 0.4) (end -0.8 -0.4) (layer "F.SilkS") (width 0.15) (tstamp e9ffb4af-af8a-465a-aabc-c654e7bccf5d))
-  (fp_line (start -1 -0.6) (end -1 0.6) (layer "F.CrtYd") (width 0.12) (tstamp 58a19930-7e6b-47cd-84cb-b0b147cfc2d9))
-  (fp_line (start 1 -0.6) (end -1 -0.6) (layer "F.CrtYd") (width 0.12) (tstamp 652b30fa-1bd3-4fc0-9348-449333ab0130))
-  (fp_line (start -1 0.6) (end 1 0.6) (layer "F.CrtYd") (width 0.12) (tstamp 7cb7f6ee-23b9-4dcb-98d4-db030b94d28c))
-  (fp_line (start 1 0.6) (end 1 -0.6) (layer "F.CrtYd") (width 0.12) (tstamp f88c21c5-2a57-43db-90d2-6edb95829507))
-  (pad "1" smd rect (at -0.5 0.6475) (size 0.356 0.508) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 04b4594e-0a49-4715-a6a1-54c2247add38))
-  (pad "2" smd rect (at 0.5 0.6475) (size 0.356 0.508) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 84de1abd-37fc-4251-b1df-d4f45bbe0070))
-  (pad "3" smd rect (at 0 -0.6475) (size 0.356 0.508) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp f5085a91-2c3d-4f5c-900f-9ea6af63a392))
-  (model "${KIPRJMOD}/lib/Keyboard.pretty/SC-75.x3d"
-    (offset (xyz 0 0 0))
-    (scale (xyz 0.3937997874 0.3937997874 0.3937997874))
-    (rotate (xyz 0 0 0))
-  )
+(footprint "SC-75"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -1.4 0)
+		(layer "F.SilkS")
+		(uuid "2e2597db-7b14-4f87-b3f7-8f0264db605b")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "SC-75"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "98263902-b805-479d-ae0a-2ad72f3ab34b")
+		(effects
+			(font
+				(size 0.25 0.25)
+				(thickness 0.05)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e59c0a17-862b-4f4a-a578-ec3c7a5ff008")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e201fdbc-c520-4766-aba2-93aeeef3280d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -0.8 -0.4)
+		(end 0.8 -0.4)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "187ef78f-31ae-4766-b71e-18f19d93ab5e")
+	)
+	(fp_line
+		(start -0.8 0.4)
+		(end -0.8 -0.4)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e9ffb4af-af8a-465a-aabc-c654e7bccf5d")
+	)
+	(fp_line
+		(start 0.8 -0.4)
+		(end 0.8 0.4)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "750cb84e-d795-4364-9358-ec0975478b7f")
+	)
+	(fp_line
+		(start 0.8 0.4)
+		(end -0.8 0.4)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "aff00d57-63ea-46b6-99f8-32eff51e9707")
+	)
+	(fp_line
+		(start -1 -0.6)
+		(end -1 0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "58a19930-7e6b-47cd-84cb-b0b147cfc2d9")
+	)
+	(fp_line
+		(start -1 0.6)
+		(end 1 0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "7cb7f6ee-23b9-4dcb-98d4-db030b94d28c")
+	)
+	(fp_line
+		(start 1 -0.6)
+		(end -1 -0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "652b30fa-1bd3-4fc0-9348-449333ab0130")
+	)
+	(fp_line
+		(start 1 0.6)
+		(end 1 -0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "f88c21c5-2a57-43db-90d2-6edb95829507")
+	)
+	(pad "1" smd rect
+		(at -0.5 0.6475)
+		(size 0.356 0.508)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "04b4594e-0a49-4715-a6a1-54c2247add38")
+	)
+	(pad "2" smd rect
+		(at 0.5 0.6475)
+		(size 0.356 0.508)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "84de1abd-37fc-4251-b1df-d4f45bbe0070")
+	)
+	(pad "3" smd rect
+		(at 0 -0.6475)
+		(size 0.356 0.508)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "f5085a91-2c3d-4f5c-900f-9ea6af63a392")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib/Keyboard.pretty/SC-75.x3d"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 0.3937997874 0.3937997874 0.3937997874)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )

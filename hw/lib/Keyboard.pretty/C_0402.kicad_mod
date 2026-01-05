@@ -1,30 +1,159 @@
-(footprint "C_0402" (version 20211014) (generator pcbnew)
-  (layer "F.Cu")
-  (tedit 62137AE4)
-  (descr "Capacitor SMD 0402, reflow soldering, AVX (see smccp.pdf)")
-  (tags "capacitor 0402")
-  (attr smd)
-  (fp_text reference "REF**" (at 0 -1.05) (layer "F.SilkS")
-    (effects (font (size 0.8 0.8) (thickness 0.1)))
-    (tstamp 01f83146-4808-4dce-868e-509173e2f2d2)
-  )
-  (fp_text value "C_0402" (at 0 0) (layer "F.Fab")
-    (effects (font (size 0.25 0.25) (thickness 0.05)))
-    (tstamp daf70a07-a3d2-4ced-9e93-1c9d8ce83d0f)
-  )
-  (fp_line (start -0.5 -0.35) (end 0.5 -0.35) (layer "F.SilkS") (width 0.15) (tstamp 0ddd913a-01fd-481e-b154-5f1b5423e9cd))
-  (fp_line (start -0.5 0.35) (end -0.5 -0.35) (layer "F.SilkS") (width 0.15) (tstamp 8fec7a85-0782-4e68-84e4-1af1e7efedfe))
-  (fp_line (start 0.5 -0.35) (end 0.5 0.35) (layer "F.SilkS") (width 0.15) (tstamp d348d117-4b9d-47d4-9150-4630fb2e9cf8))
-  (fp_line (start 0.5 0.35) (end -0.5 0.35) (layer "F.SilkS") (width 0.15) (tstamp d98ff9ae-e1f8-4424-8c9a-9e8a74700dc5))
-  (fp_line (start 0.95 -0.5) (end 0.95 0.5) (layer "F.CrtYd") (width 0.12) (tstamp 68d5716c-39ed-4b45-ac19-32a5be0d9a55))
-  (fp_line (start -0.95 -0.5) (end 0.95 -0.5) (layer "F.CrtYd") (width 0.12) (tstamp 739b591f-ee89-4e4b-a089-6321966edc77))
-  (fp_line (start -0.95 0.5) (end -0.95 -0.5) (layer "F.CrtYd") (width 0.12) (tstamp 8642366e-14d5-4a4a-acc5-de8c0e7dc7d5))
-  (fp_line (start 0.95 0.5) (end -0.95 0.5) (layer "F.CrtYd") (width 0.12) (tstamp ebc05d4e-ad2b-4267-bddb-704aafe43beb))
-  (pad "1" smd rect (at -0.5 0) (size 0.6 0.7) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp fc4733a3-c200-4f8e-9f63-f3b7c6201473))
-  (pad "2" smd rect (at 0.5 0) (size 0.6 0.7) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 3234a86c-96a3-4c56-805c-943fb18854fb))
-  (model "${KIPRJMOD}/lib/Keyboard.pretty/C_0402.x3d"
-    (offset (xyz 0 0 0))
-    (scale (xyz 1 1 1))
-    (rotate (xyz 0 0 0))
-  )
+(footprint "C_0402"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "Capacitor SMD 0402, reflow soldering, AVX (see smccp.pdf)")
+	(tags "capacitor 0402")
+	(property "Reference" "REF**"
+		(at 0 -1.05 0)
+		(layer "F.SilkS")
+		(uuid "01f83146-4808-4dce-868e-509173e2f2d2")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "C_0402"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "daf70a07-a3d2-4ced-9e93-1c9d8ce83d0f")
+		(effects
+			(font
+				(size 0.25 0.25)
+				(thickness 0.05)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "05dbe2a0-2cc5-41e9-92bc-3cb6f2e143d3")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b49d84e6-6a45-4427-b1c8-a1996bc0ec58")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -0.5 -0.35)
+		(end 0.5 -0.35)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0ddd913a-01fd-481e-b154-5f1b5423e9cd")
+	)
+	(fp_line
+		(start -0.5 0.35)
+		(end -0.5 -0.35)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8fec7a85-0782-4e68-84e4-1af1e7efedfe")
+	)
+	(fp_line
+		(start 0.5 -0.35)
+		(end 0.5 0.35)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d348d117-4b9d-47d4-9150-4630fb2e9cf8")
+	)
+	(fp_line
+		(start 0.5 0.35)
+		(end -0.5 0.35)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d98ff9ae-e1f8-4424-8c9a-9e8a74700dc5")
+	)
+	(fp_line
+		(start -0.95 -0.5)
+		(end 0.95 -0.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "739b591f-ee89-4e4b-a089-6321966edc77")
+	)
+	(fp_line
+		(start -0.95 0.5)
+		(end -0.95 -0.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "8642366e-14d5-4a4a-acc5-de8c0e7dc7d5")
+	)
+	(fp_line
+		(start 0.95 -0.5)
+		(end 0.95 0.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "68d5716c-39ed-4b45-ac19-32a5be0d9a55")
+	)
+	(fp_line
+		(start 0.95 0.5)
+		(end -0.95 0.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "ebc05d4e-ad2b-4267-bddb-704aafe43beb")
+	)
+	(pad "1" smd rect
+		(at -0.5 0)
+		(size 0.6 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "fc4733a3-c200-4f8e-9f63-f3b7c6201473")
+	)
+	(pad "2" smd rect
+		(at 0.5 0)
+		(size 0.6 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "3234a86c-96a3-4c56-805c-943fb18854fb")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib/Keyboard.pretty/C_0402.x3d"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )

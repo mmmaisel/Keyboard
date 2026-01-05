@@ -1,20 +1,87 @@
-(footprint "DistanceBolt-M3x5" (version 20211014) (generator pcbnew)
-  (layer "F.Cu")
-  (tedit 62054075)
-  (attr through_hole)
-  (fp_text reference "REF**" (at 0 -3.4) (layer "F.Fab")
-    (effects (font (size 0.8 0.8) (thickness 0.1)))
-    (tstamp d765feb8-0d2b-4f91-9055-021e050d2c2d)
-  )
-  (fp_text value "DistanceBolt-M3x5" (at -0.05 0) (layer "F.Fab")
-    (effects (font (size 0.25 0.25) (thickness 0.05)))
-    (tstamp d525482e-5dc6-4c44-b919-a131777fba8e)
-  )
-  (fp_circle (center 0 0) (end 3 0) (layer "B.CrtYd") (width 0.12) (fill none) (tstamp b0e60bf5-2ca9-4c6d-859b-816ea2de1be9))
-  (fp_circle (center 0 0) (end 3 0) (layer "F.CrtYd") (width 0.12) (fill none) (tstamp b5b9cc39-57c4-4b34-9753-47ab693cf9f1))
-  (model "${KIPRJMOD}/lib/Keyboard.pretty/DistanceBolt-M3x5.x3d"
-    (offset (xyz 0 0 0))
-    (scale (xyz 0.3938 0.3938 0.3938))
-    (rotate (xyz -90 0 0))
-  )
+(footprint "DistanceBolt-M3x5"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -3.4 0)
+		(layer "F.Fab")
+		(uuid "d765feb8-0d2b-4f91-9055-021e050d2c2d")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "DistanceBolt-M3x5"
+		(at -0.05 0 0)
+		(layer "F.Fab")
+		(uuid "d525482e-5dc6-4c44-b919-a131777fba8e")
+		(effects
+			(font
+				(size 0.25 0.25)
+				(thickness 0.05)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "81cb6164-32ab-4ac5-95b4-0a4d0c9401e8")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6a311f15-11e7-47b7-9956-6296c38cd7e9")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center 0 0)
+		(end 3 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill no)
+		(layer "B.CrtYd")
+		(uuid "b0e60bf5-2ca9-4c6d-859b-816ea2de1be9")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 3 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "b5b9cc39-57c4-4b34-9753-47ab693cf9f1")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib/Keyboard.pretty/DistanceBolt-M3x5.x3d"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 0.3938 0.3938 0.3938)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )

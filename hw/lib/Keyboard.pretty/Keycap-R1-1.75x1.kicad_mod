@@ -1,25 +1,135 @@
-(footprint "Keycap-R1-1.75x1" (version 20211014) (generator pcbnew)
-  (layer "F.Cu")
-  (tedit 620B8CA1)
-  (attr through_hole)
-  (fp_text reference "REF**" (at 0 0.5) (layer "Eco1.User")
-    (effects (font (size 0.8 0.8) (thickness 0.1)))
-    (tstamp e1754158-40dc-4df5-848e-7e0c189ace53)
-  )
-  (fp_text value "Keycap-R1-1.75x1" (at 0 -0.5) (layer "F.Fab")
-    (effects (font (size 0.25 0.25) (thickness 0.05)))
-    (tstamp d4e5a639-c802-4fd5-bd43-bd9483f1fee3)
-  )
-  (fp_line (start 16.125 -9) (end 16.125 9) (layer "Eco1.User") (width 0.15) (tstamp 40ef82a7-1843-41e2-896c-620f16b91b4f))
-  (fp_line (start 0 -8) (end 0 -2) (layer "Eco1.User") (width 0.12) (tstamp 91a85248-7895-453a-bdbc-36a6edbe91db))
-  (fp_line (start 0 -8) (end 2 -6) (layer "Eco1.User") (width 0.12) (tstamp a0400e61-7ec0-4cc7-a41d-d7c451e758fe))
-  (fp_line (start 16.125 9) (end -16.125 9) (layer "Eco1.User") (width 0.15) (tstamp de01c5f0-8b67-4f95-a915-b01789f320eb))
-  (fp_line (start -16.125 9) (end -16.125 -9) (layer "Eco1.User") (width 0.15) (tstamp e0937f55-5a21-4b1f-aa30-aba62e4969e5))
-  (fp_line (start -16.125 -9) (end 16.125 -9) (layer "Eco1.User") (width 0.15) (tstamp e0bbf399-c52b-4993-8f0b-a5400682c686))
-  (fp_line (start -2 -6) (end 0 -8) (layer "Eco1.User") (width 0.12) (tstamp e44b0081-5f25-4984-8fb5-ea876fb2fc1c))
-  (model "${KIPRJMOD}/lib/Keyboard.pretty/Keycap-R1-1.75x1.x3d"
-    (offset (xyz 0 0 0))
-    (scale (xyz 0.3937997874 0.3937997874 0.3937997874))
-    (rotate (xyz 0 0 0))
-  )
+(footprint "Keycap-R1-1.75x1"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 0.5 0)
+		(layer "Eco1.User")
+		(uuid "e1754158-40dc-4df5-848e-7e0c189ace53")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "Keycap-R1-1.75x1"
+		(at 0 -0.5 0)
+		(layer "F.Fab")
+		(uuid "d4e5a639-c802-4fd5-bd43-bd9483f1fee3")
+		(effects
+			(font
+				(size 0.25 0.25)
+				(thickness 0.05)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ae79f8e9-f28e-4bf6-ac16-0e3685e7b2ab")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8f3c3ec6-f58a-4863-a1d5-b35b3c3d8d85")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -16.125 -9)
+		(end 16.125 -9)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "Eco1.User")
+		(uuid "e0bbf399-c52b-4993-8f0b-a5400682c686")
+	)
+	(fp_line
+		(start -16.125 9)
+		(end -16.125 -9)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "Eco1.User")
+		(uuid "e0937f55-5a21-4b1f-aa30-aba62e4969e5")
+	)
+	(fp_line
+		(start -2 -6)
+		(end 0 -8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Eco1.User")
+		(uuid "e44b0081-5f25-4984-8fb5-ea876fb2fc1c")
+	)
+	(fp_line
+		(start 0 -8)
+		(end 0 -2)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Eco1.User")
+		(uuid "91a85248-7895-453a-bdbc-36a6edbe91db")
+	)
+	(fp_line
+		(start 0 -8)
+		(end 2 -6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Eco1.User")
+		(uuid "a0400e61-7ec0-4cc7-a41d-d7c451e758fe")
+	)
+	(fp_line
+		(start 16.125 -9)
+		(end 16.125 9)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "Eco1.User")
+		(uuid "40ef82a7-1843-41e2-896c-620f16b91b4f")
+	)
+	(fp_line
+		(start 16.125 9)
+		(end -16.125 9)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "Eco1.User")
+		(uuid "de01c5f0-8b67-4f95-a915-b01789f320eb")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib/Keyboard.pretty/Keycap-R1-1.75x1.x3d"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 0.3937997874 0.3937997874 0.3937997874)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )
