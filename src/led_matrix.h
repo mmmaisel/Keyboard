@@ -68,7 +68,8 @@ class LedMatrix {
             PHASE_DRIVE,
             PHASE_NOP,
         };
-        static const BYTE FRAC_COUNT = 16;
+        static const BYTE FRAC_COUNT = 32;
+        static const BYTE LOG_SCALE[16];
 
         /// Reference to LED matrix configuration
         static const LedMatrixConfig* _config;
@@ -81,5 +82,6 @@ class LedMatrix {
         /// To be displayed colors by matrix coordinates
         static BYTE _colors[LedMatrixConfig::MAX_DIM][LedMatrixConfig::MAX_DIM];
 
+        static BYTE clamp_color(BYTE color);
         static void ISR();
 };

@@ -24,6 +24,9 @@
 #include "dev/timer.h"
 
 const LedMatrixConfig* LedMatrix::_config = nullptr;
+const BYTE LedMatrix::LOG_SCALE[16] = {
+    0, 1, 2, 4, 5, 6, 7, 9, 10, 12, 14, 17, 20, 23, 27, 32,
+};
 BYTE LedMatrix::_phase = LedMatrix::PHASE_DRIVE;
 BYTE LedMatrix::_frac = 0;
 BYTE LedMatrix::_col = 0;
@@ -43,7 +46,7 @@ void LedMatrix::initialize(const LedMatrixConfig* config) {
     // TODO: check frequency, currently it is 21.6 kHz, not 24
     RCC->APB1ENR |= TIM2EN;
     TIM2->CR1 = DIR | URS;
-    TIM2->ARR = 10;
+    TIM2->ARR = 5;
     TIM2->PSC = 100;
     TIM2->DIER |= UIE;
     TIM2->CR1 |= CEN;
@@ -68,9 +71,16 @@ void LedMatrix::set_led(BYTE num, Color color) {
     if(row >= LedMatrixConfig::MAX_DIM-2 || column >= LedMatrixConfig::MAX_DIM)
         return;
 
-    _colors[row][column] = color.blue;
-    _colors[row+1][column] = color.green;
-    _colors[row+2][column] = color.red;
+    _colors[row][column] = clamp_color(color.blue);
+    _colors[row+1][column] = clamp_color(color.green);
+    _colors[row+2][column] = clamp_color(color.red);
+}
+
+BYTE LedMatrix::clamp_color(BYTE color) {
+    if(color > 15)
+        return 15;
+    else
+        return color;
 }
 
 void LedMatrix::ISR() {
@@ -119,7 +129,7 @@ void LedMatrix::ISR() {
     }
 
     for(BYTE row = 0; row < _config->rows; ++row) {
-        if(_colors[row][_col] > _frac) {
+        if(LOG_SCALE[_colors[row][_col]] > _frac) {
             // Rows are high active
             _config->row_pins[row].port->set_odr(_config->row_pins[row].pin);
         } else {
