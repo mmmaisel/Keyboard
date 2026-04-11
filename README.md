@@ -1,5 +1,7 @@
 # Keyboard
 
+This repo was migrated to [Codeberg](https://codeberg.org/mmmaisel/Keyboard).
+
 An Open-Source and Open-Hardware full-sized modular, ergonomic, RGB keyboard.
 
 This project is currently work in progress and not tested.
